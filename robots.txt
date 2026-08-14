@@ -1,0 +1,8 @@
+# Robots.txt for BSH (BS Students Helper)
+# https://bs-students-helper.github.io/websie-/
+
+User-agent: *
+Allow: /
+
+# Sitemap Location for Search Engine Indexing
+Sitemap: https://bs-students-helper.github.io/websie-/sitemap.xml
