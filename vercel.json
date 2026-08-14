@@ -4,15 +4,15 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "/home.html"
+      "destination": "/home"
     },
     {
       "source": "/index",
-      "destination": "/home.html"
+      "destination": "/home"
     },
     {
       "source": "/index.html",
-      "destination": "/home.html"
+      "destination": "/home"
     }
   ]
 }
