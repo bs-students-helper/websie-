@@ -5,4 +5,4 @@ User-agent: *
 Allow: /
 
 # Sitemap Location for Search Engine Indexing
-Sitemap: https://bs-students-helper.github.io/websie-/sitemap.xml
+Sitemap: https://bsstudentshelper.vercel.app/sitemap.xml

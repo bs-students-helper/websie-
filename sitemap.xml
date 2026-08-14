@@ -5,13 +5,13 @@
                             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <!-- Main Landing Page -->
     <url>
-        <loc>https://bs-students-helper.github.io/websie-/</loc>
+        <loc>https://bsstudentshelper.vercel.app/</loc>
         <lastmod>2026-08-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.00</priority>
     </url>
     <url>
-        <loc>https://bs-students-helper.github.io/websie-/index.html</loc>
+        <loc>https://bsstudentshelper.vercel.app/index.html</loc>
         <lastmod>2026-08-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
@@ -19,7 +19,7 @@
 
     <!-- SEC Grade Calculator Page -->
     <url>
-        <loc>https://bs-students-helper.github.io/websie-/calculatorpage/index.html</loc>
+        <loc>https://bsstudentshelper.vercel.app/calculatorpage/index.html</loc>
         <lastmod>2026-08-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.95</priority>
@@ -27,7 +27,7 @@
 
     <!-- About Us Page -->
     <url>
-        <loc>https://bs-students-helper.github.io/websie-/aboutuspage/index.html</loc>
+        <loc>https://bsstudentshelper.vercel.app/aboutuspage/index.html</loc>
         <lastmod>2026-08-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.80</priority>
