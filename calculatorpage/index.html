@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEC Grade Calculator | BSH - IIT Madras BS Student Portal</title>
+    <meta name="description"
+        content="Calculate your exact course score (T), letter grade (S, A, B, C, D, E), and CGPA for all IIT Madras BS Foundational, Diploma, and Degree courses using official May 2026 term formulas.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome / Lucide Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header Navigation -->
+    <header class="site-header" id="header">
+        <div class="header-container">
+            <!-- BSH Brand Logo -->
+            <a href="../index.html" class="brand-logo" aria-label="BSH Homepage">
+                <img src="../style/uploads/logo.png" alt="BSH - Portal for IIT Madras BS Students" class="logo-img">
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="nav-menu" id="navMenu">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../index.html#quiz-preview" class="nav-link">Quiz Practice</a>
+                <a href="index.html" class="nav-link active">SEC Calculator</a>
+                <a href="../aboutuspage/index.html" class="nav-link">About Us</a>
+                <a href="../index.html#testimonials" class="nav-link">Reviews</a>
+                <a href="../index.html#faq" class="nav-link">FAQ</a>
+            </nav>
+
+            <!-- Header Actions -->
+            <div class="header-actions">
+                <a href="../index.html#quiz-preview" class="btn btn-secondary">
+                    <i class="fa-solid fa-play"></i>
+                    <span>Practice Quiz</span>
+                </a>
+                <a href="../index.html" class="btn btn-primary">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Back to Portal</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Banner -->
+        <section class="calc-hero">
+            <div class="container hero-header">
+                <div class="pill-badge mb-2">
+                    <span class="badge-dot"></span>
+                    <span>Updated May 2026 Term Official Rules</span>
+                </div>
+                <h1 class="calc-hero-title">IITM BS Course Grade & SEC Calculator</h1>
+                <p class="calc-hero-sub">
+                    Select any course across Foundational, Diploma, or Degree levels to view its official grading
+                    formula
+                    and calculate your exact course score ($T$), letter grade ($S, A, B, C, D, E$), and target End-Term
+                    preparation requirements.
+                </p>
+
+                <!-- Switcher Tabs: Course Calculator vs CGPA Predictor -->
+                <div class="mode-tabs-wrapper">
+                    <div class="mode-tabs">
+                        <button class="tab-btn active" id="tabCourseCalc">
+                            <i class="fa-solid fa-calculator"></i>
+                            <span>Course Grade Calculator</span>
+                        </button>
+                        <button class="tab-btn" id="tabCgpaCalc">
+                            <i class="fa-solid fa-chart-pie"></i>
+                            <span>CGPA & Term GPA Predictor</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Calculator Section -->
+        <section class="calc-section">
+            <div class="container">
+
+                <!-- 1. COURSE GRADE CALCULATOR TAB -->
+                <div id="courseCalcSection">
+                    <!-- Level Filter Chips -->
+                    <div class="level-filters">
+                        <button class="filter-chip active" data-level="all">All Courses (35+)</button>
+                        <button class="filter-chip" data-level="foundational">Foundational Level</button>
+                        <button class="filter-chip" data-level="diploma">Diploma Level</button>
+                        <button class="filter-chip" data-level="degree">Degree Level</button>
+                    </div>
+
+                    <!-- Subject Picker Card -->
+                    <div class="subject-picker-card">
+                        <div class="picker-header">
+                            <label class="picker-label" for="subjectSelect">
+                                <i class="fa-solid fa-book"></i> Select Course / Subject
+                            </label>
+                            <div class="search-box-wrap">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" id="subjectSearch"
+                                    placeholder="Search subject (e.g. Stats, Python, MLP...)" class="search-input">
+                            </div>
+                        </div>
+
+                        <div class="select-wrapper">
+                            <select id="subjectSelect" class="subject-select">
+                                <!-- Populated dynamically by JavaScript -->
+                            </select>
+                            <i class="fa-solid fa-chevron-down select-arrow"></i>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Formula Banner -->
+                    <div class="formula-info-box" id="formulaInfoBox">
+                        <div class="formula-header">
+                            <div class="formula-title">
+                                <i class="fa-solid fa-square-root-variable" style="color: var(--accent-gold);"></i>
+                                <span id="displaySubjectName">Mathematics for Data Science 1</span>
+                            </div>
+                            <span class="level-tag" id="displayLevelTag">FOUNDATIONAL LEVEL • 4 CREDITS</span>
+                        </div>
+                        <div class="formula-body">
+                            <div class="formula-equation-box" id="displayFormulaEquation">
+                                T = max(0.6*F + 0.3*max(Qz1, Qz2), 0.45*F + 0.25*Qz1 + 0.3*Qz2)
+                            </div>
+                            <div class="formula-notes" id="displayFormulaNotes">
+                                <!-- Notes populated via JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calculator Interactive Form & Output Grid -->
+                    <div class="calc-grid">
+                        <!-- Input Controls Card -->
+                        <div class="calc-card">
+                            <div class="card-title-bar">
+                                <h3><i class="fa-solid fa-sliders"></i> Enter Your Component Scores</h3>
+                                <span class="pill-badge" style="font-size: 0.75rem;">Scale: 0 - 100</span>
+                            </div>
+
+                            <div class="form-inputs-wrap" id="dynamicInputsWrap">
+                                <!-- Inputs populated dynamically by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Result Output Analytics Card -->
+                        <div class="calc-card">
+                            <div class="card-title-bar">
+                                <h3><i class="fa-solid fa-chart-line"></i> Grade Analytics & Results</h3>
+                                <div id="resultStatusBadge" class="pill-badge text-success">
+                                    <i class="fa-solid fa-circle-check"></i> Eligible
+                                </div>
+                            </div>
+
+                            <div class="result-card-inner">
+                                <div class="grade-display-circle">
+                                    <svg viewBox="0 0 100 100" class="grade-ring-svg">
+                                        <circle class="ring-bg" cx="50" cy="50" r="42"></circle>
+                                        <circle class="ring-fill" id="resultGradeRing" cx="50" cy="50" r="42"
+                                            stroke-dasharray="264" stroke-dashoffset="30"></circle>
+                                    </svg>
+                                    <div class="grade-center-text">
+                                        <span class="predicted-grade" id="resultGradeLetter">S</span>
+                                        <span class="grade-subtext">Letter Grade</span>
+                                    </div>
+                                </div>
+
+                                <div class="summary-box">
+                                    <div class="summary-row">
+                                        <span>Total Weighted Score (T):</span>
+                                        <strong id="resultTotalScore">85.4 / 100</strong>
+                                    </div>
+                                    <div class="summary-row">
+                                        <span>Grade Points (10 Scale):</span>
+                                        <strong id="resultGradePoints">10 Points</strong>
+                                    </div>
+                                    <div class="summary-row">
+                                        <span>Course Status:</span>
+                                        <strong class="text-success"><i class="fa-solid fa-check"></i> PASS
+                                            GRADE</strong>
+                                    </div>
+                                </div>
+
+                                <div class="breakdown-box">
+                                    <div class="breakdown-title">
+                                        <i class="fa-solid fa-calculator"></i> Step-by-Step Formula Evaluation
+                                    </div>
+                                    <div class="breakdown-list" id="resultStepList">
+                                        <!-- Steps populated dynamically -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Target End-Term Score Predictor Card -->
+                    <div class="target-predictor-card">
+                        <div class="card-title-bar">
+                            <h3><i class="fa-solid fa-bullseye"></i> Target End-Term Score Predictor</h3>
+                            <span class="pill-badge"><i class="fa-solid fa-lightbulb"></i> Minimum End Term Exam Marks
+                                Needed</span>
+                        </div>
+                        <p class="calc-hero-sub" style="font-size: 0.95rem; text-align: left; margin-bottom: 0;">
+                            Based on your currently entered Quiz and Assignment scores, here are the exact minimum
+                            End-Term exam marks you need to secure target letter grades:
+                        </p>
+                        <div class="target-grid" id="targetGrid">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. CGPA & TERM GPA PREDICTOR TAB -->
+                <div id="cgpaCalcSection" class="hidden">
+                    <div class="cgpa-container">
+                        <div class="card-title-bar">
+                            <h3><i class="fa-solid fa-graduation-cap"></i> Term GPA & Cumulative CGPA Estimator</h3>
+                            <div id="cgpaStatusBadge" class="pill-badge text-success">
+                                <i class="fa-solid fa-star"></i> High Distinction Target
+                            </div>
+                        </div>
+                        <p class="calc-hero-sub" style="font-size: 0.95rem; text-align: left; margin-bottom: 20px;">
+                            Add your current or upcoming term courses below to calculate your estimated Term GPA and
+                            overall Cumulative Grade Point Average (CGPA).
+                        </p>
+
+                        <div class="cgpa-table-wrap">
+                            <table class="cgpa-table">
+                                <thead>
+                                    <tr>
+                                        <th>Course Name</th>
+                                        <th>Course Credits</th>
+                                        <th>Estimated Score (T)</th>
+                                        <th>Grade & Points</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cgpaTableBody">
+                                    <!-- Populated dynamically via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div style="display: flex; gap: 12px; margin-bottom: 24px;">
+                            <button class="btn btn-secondary" id="addCourseRowBtn">
+                                <i class="fa-solid fa-plus"></i> Add Another Course
+                            </button>
+                        </div>
+
+                        <div class="cgpa-summary-card">
+                            <div class="cgpa-stat">
+                                <div class="cgpa-val" id="overallCgpaEl">9.25</div>
+                                <div class="cgpa-lbl" style="color: #111;">Estimated Term GPA</div>
+                            </div>
+                            <div class="cgpa-stat">
+                                <div class="cgpa-val" id="totalCreditsEl" style="color: #111;">16 Credits</div>
+                                <div class="cgpa-lbl" style="color: #111;">Total Credits</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="../index.html" class="brand-logo footer-logo" aria-label="BSH Homepage">
+                    <img src="../style/uploads/logo.png" alt="BSH - Portal for IIT Madras BS Students" class="logo-img">
+                </a>
+                <p class="footer-desc">
+                    The open, student-driven academic companion for IIT Madras BS in Data Science & Electronic Systems.
+                </p>
+            </div>
+
+            <div class="footer-links-group">
+                <div class="footer-col">
+                    <h4 class="footer-heading">Navigation</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../index.html#quiz-preview">Quiz Engine</a></li>
+                        <li><a href="index.html">SEC Calculator</a></li>
+                        <li><a href="../aboutuspage/index.html">About Us</a></li>
+                        <li><a href="../index.html#testimonials">Wall of Love</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-heading">Course Levels</h4>
+                    <ul>
+                        <li><a href="index.html">Foundational Level</a></li>
+                        <li><a href="index.html">Diploma Level</a></li>
+                        <li><a href="index.html">Degree Level</a></li>
+                        <li><a href="index.html">CGPA Predictor</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-heading">Community</h4>
+                    <ul>
+                        <li><a href="../index.html#faq">FAQ</a></li>
+                        <li><a href="../index.html#testimonials">Feedback</a></li>
+                        <li><a href="#">Discord Community</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <p>&copy; 2026 BSH (BS Students Helper). Built with passion for IITM BS Students.</p>
+                <p class="disclaimer-text">Disclaimer: BSH is an independent student community initiative and is not
+                    officially affiliated with or endorsed by IIT Madras.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>
