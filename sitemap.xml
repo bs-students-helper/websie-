@@ -19,7 +19,7 @@
 
     <!-- SEC Grade Calculator Page -->
     <url>
-        <loc>https://bsstudentshelper.vercel.app/calculatorpage/index.html</loc>
+        <loc>https://bsstudentshelper.vercel.app/calculator.html</loc>
         <lastmod>2026-08-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.95</priority>
@@ -27,7 +27,7 @@
 
     <!-- About Us Page -->
     <url>
-        <loc>https://bsstudentshelper.vercel.app/aboutuspage/index.html</loc>
+        <loc>https://bsstudentshelper.vercel.app/about.html</loc>
         <lastmod>2026-08-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.80</priority>
