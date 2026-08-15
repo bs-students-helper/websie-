@@ -3,7 +3,7 @@
    Imports main design tokens & adds dedicated calculator UI components
    ========================================================================== */
 
-@import "../style/style.css";
+@import "style.css";
 
 /* --------------------------------------------------------------------------
    1. Calculator Hero & Mode Switcher Tabs

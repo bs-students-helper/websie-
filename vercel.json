@@ -3,16 +3,13 @@
   "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/",
-      "destination": "/home"
+      "source": "/home",
+      "destination": "/index"
     },
     {
-      "source": "/index",
-      "destination": "/home"
-    },
-    {
-      "source": "/index.html",
-      "destination": "/home"
+      "source": "/home.html",
+      "destination": "/index"
     }
   ]
 }
+
