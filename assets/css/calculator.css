@@ -644,3 +644,51 @@
 .hidden {
     display: none !important;
 }
+
+/* --------------------------------------------------------------------------
+   9. Dark Theme Figma-Grade Overrides for Calculator Page
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] .filter-chip.active {
+    background: rgba(16, 185, 129, 0.18);
+    border-color: #10B981;
+    color: #34D399;
+}
+
+[data-theme="dark"] .search-input,
+[data-theme="dark"] .subject-select {
+    background: #1A1E2B;
+    color: #F3F4F6;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .search-input:focus,
+[data-theme="dark"] .subject-select:focus {
+    border-color: #10B981;
+}
+
+[data-theme="dark"] .subject-select option {
+    background: #12151E;
+    color: #F3F4F6;
+}
+
+[data-theme="dark"] .formula-info-banner,
+[data-theme="dark"] .sec-formula-box {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(56, 189, 248, 0.08) 100%);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #F3F4F6;
+}
+
+[data-theme="dark"] .cgpa-val {
+    color: #F3F4F6;
+}
+
+[data-theme="dark"] .cgpa-lbl {
+    color: #9CA3AF;
+}
+
+[data-theme="dark"] .grade-display-card,
+[data-theme="dark"] .subject-picker-card,
+[data-theme="dark"] .calc-card {
+    background: #12151E;
+    border-color: rgba(255, 255, 255, 0.14);
+}

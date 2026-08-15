@@ -8,6 +8,7 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+    initThemeToggle();
     initCleanURLRouting();
     initAnnouncementBar();
     initNavigation();
@@ -20,7 +21,70 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* --------------------------------------------------------------------------
-   0. Clean URL Routing & History State
+   0. Dark / Light Theme Toggle Engine
+   -------------------------------------------------------------------------- */
+function initThemeToggle() {
+    function applyTheme(theme) {
+        if (theme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            if (document.body) document.body.setAttribute('data-theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            if (document.body) document.body.setAttribute('data-theme', 'light');
+        }
+        updateToggleIcons(theme);
+    }
+
+    function updateToggleIcons(theme) {
+        const toggleBtns = document.querySelectorAll('#themeToggleBtn, .theme-toggle-btn');
+        toggleBtns.forEach(btn => {
+            const icon = btn.querySelector('i');
+            if (icon) {
+                if (theme === 'dark') {
+                    icon.className = 'fa-solid fa-sun';
+                    btn.setAttribute('aria-label', 'Switch to Light Theme');
+                    btn.setAttribute('title', 'Switch to Light Theme');
+                } else {
+                    icon.className = 'fa-solid fa-moon';
+                    btn.setAttribute('aria-label', 'Switch to Dark Theme');
+                    btn.setAttribute('title', 'Switch to Dark Theme');
+                }
+            }
+        });
+    }
+
+    const savedTheme = localStorage.getItem('bsh-theme');
+    let currentTheme = 'light';
+
+    if (savedTheme) {
+        currentTheme = savedTheme;
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        currentTheme = 'dark';
+    }
+
+    applyTheme(currentTheme);
+
+    const toggleBtns = document.querySelectorAll('#themeToggleBtn, .theme-toggle-btn');
+    toggleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const activeTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = activeTheme === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('bsh-theme', newTheme);
+            applyTheme(newTheme);
+        });
+    });
+
+    if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('bsh-theme')) {
+                applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+    }
+}
+
+/* --------------------------------------------------------------------------
+   0.1 Clean URL Routing & History State
    -------------------------------------------------------------------------- */
 function initCleanURLRouting() {
     // Optional address bar cleanup for current page without blocking navigation

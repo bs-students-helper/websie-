@@ -10,10 +10,12 @@
     /* Color Palette */
     --bg-main: #F9F9F7;
     --bg-surface: #FFFFFF;
+    --bg-card: #FFFFFF;
     --bg-subtle: #F3F3EE;
     --bg-hover: #EAEAE4;
     --bg-dark: #111111;
     --bg-dark-surface: #1A1A1A;
+    --bg-header-rgb: 249, 249, 247;
 
     --text-primary: #111111;
     --text-secondary: #555550;
@@ -49,6 +51,195 @@
     --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.06);
     --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.1);
     --shadow-crisp: 4px 4px 0px #111111;
+    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+    --logo-filter: none;
+}
+
+/* Dark Theme Overrides - Modern Tech Figma Palette */
+[data-theme="dark"] {
+    --bg-main: #0A0C10;
+    --bg-surface: #12151E;
+    --bg-card: #12151E;
+    --bg-subtle: #1A1E2B;
+    --bg-hover: #242938;
+    --bg-dark: #1E2333;
+    --bg-dark-surface: #12151E;
+    --bg-header-rgb: 10, 12, 16;
+
+    --text-primary: #F3F4F6;
+    --text-secondary: #9CA3AF;
+    --text-muted: #6B7280;
+    --text-inverse: #F3F4F6;
+
+    --border-color: rgba(255, 255, 255, 0.14);
+    --border-light: rgba(255, 255, 255, 0.08);
+    --border-dashed: rgba(255, 255, 255, 0.2);
+
+    --accent-gold: #F59E0B;
+    --accent-green: #10B981;
+    --accent-blue: #38BDF8;
+    --accent-purple: #A78BFA;
+    --accent-red: #EF4444;
+
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.7);
+    --shadow-crisp: 4px 4px 0px rgba(255, 255, 255, 0.15);
+    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.4);
+
+    --logo-filter: invert(0.92) contrast(1.1);
+}
+
+/* --------------------------------------------------------------------------
+   Dark Theme Figma-Grade Components & Accents (Preserving Light Theme 100%)
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] .hero-glow-blob {
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.14) 0%, rgba(56, 189, 248, 0.06) 45%, transparent 70%);
+}
+
+[data-theme="dark"] .hero-bg-grid {
+    background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+[data-theme="dark"] .title-highlight {
+    background: linear-gradient(180deg, transparent 65%, rgba(16, 185, 129, 0.28) 65%);
+}
+
+[data-theme="dark"] .pill-badge {
+    background: rgba(16, 185, 129, 0.14);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    color: #34D399;
+}
+
+[data-theme="dark"] .pill-badge .badge-dot {
+    background: #34D399;
+    box-shadow: 0 0 10px #34D399;
+}
+
+[data-theme="dark"] .btn-primary {
+    background: #10B981;
+    color: #0A0C10;
+    border-color: #10B981;
+    box-shadow: 4px 4px 0px rgba(16, 185, 129, 0.35);
+}
+
+[data-theme="dark"] .btn-primary:hover {
+    background: #34D399;
+    border-color: #34D399;
+    box-shadow: 6px 6px 0px rgba(52, 211, 153, 0.45);
+    color: #0A0C10;
+}
+
+[data-theme="dark"] .btn-secondary {
+    background: #12151E;
+    color: #F3F4F6;
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 4px 4px 0px rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+    background: #1A1E2B;
+    border-color: #38BDF8;
+    color: #38BDF8;
+    box-shadow: 6px 6px 0px rgba(56, 189, 248, 0.25);
+}
+
+[data-theme="dark"] .feature-icon,
+[data-theme="dark"] .card-icon {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38BDF8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+[data-theme="dark"] .card-icon.icon-gold {
+    background: rgba(245, 158, 11, 0.15);
+    color: #FBBF24;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+[data-theme="dark"] .feature-tag {
+    background: rgba(16, 185, 129, 0.14);
+    color: #34D399;
+    border: 1px solid rgba(16, 185, 129, 0.28);
+}
+
+[data-theme="dark"] .preview-tag,
+[data-theme="dark"] .quiz-timer {
+    background: rgba(245, 158, 11, 0.15);
+    color: #FBBF24;
+    border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+[data-theme="dark"] .progress-bar,
+[data-theme="dark"] .quiz-progress-fill {
+    background: linear-gradient(90deg, #10B981, #38BDF8);
+}
+
+[data-theme="dark"] .stats-ribbon {
+    background: #12151E;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .stat-number {
+    color: #34D399;
+    text-shadow: 0 0 20px rgba(52, 211, 153, 0.35);
+}
+
+[data-theme="dark"] .calc-result-card {
+    background: #161A26;
+    border-color: rgba(255, 255, 255, 0.16);
+    color: #F3F4F6;
+}
+
+[data-theme="dark"] .quiz-option:hover,
+[data-theme="dark"] .quiz-option.selected {
+    border-color: #38BDF8;
+    background: rgba(56, 189, 248, 0.08);
+}
+
+[data-theme="dark"] .quiz-option.correct,
+[data-theme="dark"] .quiz-feedback-box.correct-fb {
+    border-color: #34D399;
+    background: rgba(52, 211, 153, 0.15);
+    color: #34D399;
+}
+
+[data-theme="dark"] .quiz-option.incorrect,
+[data-theme="dark"] .quiz-feedback-box.incorrect-fb {
+    border-color: #F87171;
+    background: rgba(248, 113, 113, 0.15);
+    color: #F87171;
+}
+
+[data-theme="dark"] .star-rating i {
+    color: #FBBF24;
+}
+
+[data-theme="dark"] .user-badge {
+    background: rgba(52, 211, 153, 0.15);
+    color: #34D399;
+    border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+[data-theme="dark"] .filter-chip.active,
+[data-theme="dark"] .filter-tab.active {
+    background: #10B981;
+    color: #fbfcff;
+    border-color: #10B981;
+}
+
+[data-theme="dark"] .notify-input-group input {
+    background: #1A1E2B;
+    color: #F3F4F6;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .coming-soon-modal .modal-content {
+    background: #12151E;
+    border-color: rgba(255, 255, 255, 0.18);
 }
 
 /* --------------------------------------------------------------------------
@@ -325,12 +516,12 @@ h4 {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(249, 249, 247, 0.92);
+    background: rgba(var(--bg-header-rgb, 249, 249, 247), 0.92);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-light);
     padding: 14px 0;
-    transition: all var(--transition-base);
+    transition: background-color var(--transition-base), border-color var(--transition-base);
 }
 
 .header-container {
@@ -366,6 +557,8 @@ h4 {
     max-width: 100%;
     object-fit: contain;
     display: block;
+    filter: var(--logo-filter, none);
+    transition: filter var(--transition-base);
 }
 
 .logo-text {
@@ -438,13 +631,56 @@ h4 {
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
+}
+
+/* Theme Toggle Button - Modern Figma Pill Style */
+.theme-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-full);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    box-shadow: 2px 2px 0px var(--border-color);
+    cursor: pointer;
+    font-size: 1.15rem;
+    transition: background-color var(--transition-base), color var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-fast);
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.theme-toggle-btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px var(--border-color);
+    background: var(--bg-hover);
+}
+
+.theme-toggle-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0px var(--border-color);
+}
+
+.theme-toggle-btn i {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.theme-toggle-btn:hover i {
+    transform: rotate(25deg);
+}
+
+[data-theme="dark"] .theme-toggle-btn i {
+    transform: rotate(360deg);
 }
 
 .mobile-menu-toggle {
     display: none;
     background: transparent;
     border: 1px solid var(--border-color);
+    color: var(--text-primary);
     padding: 8px 12px;
     border-radius: var(--radius-sm);
     font-size: 1.2rem;
@@ -1225,6 +1461,7 @@ svg.grade-ring-svg {
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
+    color: #363636;
     transition: all var(--transition-fast);
 }
 
@@ -1746,9 +1983,8 @@ svg.grade-ring-svg {
     gap: 16px;
 }
 
-.footer-logo .logo-img {
+.footer-logo .logo-img-footer {
     height: 56px;
-    filter: brightness(0) invert(1);
 }
 
 .footer-logo .logo-text {

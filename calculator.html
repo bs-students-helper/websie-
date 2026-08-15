@@ -29,6 +29,18 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="assets/css/calculator.css">
+
+    <!-- Anti-Flash Theme Script -->
+    <script>
+        (function () {
+            const saved = localStorage.getItem('bsh-theme');
+            if (saved === 'dark' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
 </head>
 
 <body>
@@ -53,14 +65,20 @@
 
             <!-- Header Actions -->
             <div class="header-actions">
-                <a href="404.html" class="btn btn-secondary">
+                <a href="404.html" class="btn btn-secondary nav-btn-desktop">
                     <i class="fa-solid fa-play"></i>
                     <span>Practice Quiz</span>
                 </a>
-                <a href="index.html" class="btn btn-primary">
+                <a href="index.html" class="btn btn-primary nav-btn-desktop">
                     <i class="fa-solid fa-house"></i>
                     <span>Back to Portal</span>
                 </a>
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Light/Dark Theme" title="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
         </div>
     </header>
@@ -341,6 +359,7 @@
     </footer>
 
     <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
     <script src="assets/js/calculator.js"></script>
 </body>
 

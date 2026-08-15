@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BSH - Helper for IIT Madras BS Students</title>
+    <title>BSH -IIT Madras BS Students | Quiz Practice & SEC Grade Calculator</title>
     <meta name="description"
         content="BSH (BS Students Helper) is the premier student-driven portal for IIT Madras BS in Data Science & Applications. Access quiz practice engines, SEC grade calculators, and previous year questions.">
     <meta name="google-site-verification" content="evx9KJjqZknflfgYP1cPjExy03tjkjmQpBcLdPk6nRo" />
@@ -26,6 +26,18 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Anti-Flash Theme Script -->
+    <script>
+        (function () {
+            const saved = localStorage.getItem('bsh-theme');
+            if (saved === 'dark' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
 </head>
 
 <body>
@@ -71,6 +83,10 @@
                     <span>Calculate SEC Grade</span>
                     <i class="fa-solid fa-calculator"></i>
                 </a>
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Light/Dark Theme"
+                    title="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
                 <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">
                     <i class="fa-solid fa-bars"></i>
                 </button>
@@ -683,7 +699,8 @@
         <div class="container footer-container">
             <div class="footer-brand">
                 <a href="index.html" class="brand-logo footer-logo" aria-label="BSH Homepage">
-                    <img src="assets/images/logo.png" alt="BSH - Portal for IIT Madras BS Students" class="logo-img">
+                    <img src="assets/images/logo.png" alt="BSH - Portal for IIT Madras BS Students"
+                        class="logo-img-footer">
                 </a>
                 <p class="footer-desc">
                     The open, student-driven academic companion for IIT Madras BS in Data Science & Electronic Systems.
