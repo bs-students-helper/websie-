@@ -2361,3 +2361,11 @@ svg.grade-ring-svg {
     color: #FFFFFF;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
+
+/* --------------------------------------------------------------------------
+   Inspect & Drag Protection Utilities
+   -------------------------------------------------------------------------- */
+img {
+    -webkit-user-drag: none;
+    user-drag: none;
+}

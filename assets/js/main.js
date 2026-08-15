@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFAQAccordion();
     initStatsCounter();
     initComingSoonModal();
+    initInspectProtection();
 });
 
 /* --------------------------------------------------------------------------
@@ -615,3 +616,52 @@ function initComingSoonModal() {
         });
     }
 }
+
+/* --------------------------------------------------------------------------
+   Inspect & Developer Tools Protection Engine
+   -------------------------------------------------------------------------- */
+function initInspectProtection() {
+    // 1. Disable Right-Click Context Menu (Silent)
+    document.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        return false;
+    });
+
+    // 2. Prevent Image Dragging (Silent)
+    document.addEventListener('dragstart', (e) => {
+        if (e.target && e.target.tagName === 'IMG') {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // 3. Prevent DevTools & Source Viewing Keyboard Shortcuts (Silent)
+    document.addEventListener('keydown', (e) => {
+        const key = e.key ? e.key.toUpperCase() : '';
+        const keyCode = e.keyCode || e.which;
+
+        // F12 key (Key code 123)
+        const isF12 = key === 'F12' || keyCode === 123;
+        
+        // Ctrl+Shift+I / Cmd+Opt+I (Inspect element)
+        // Ctrl+Shift+J / Cmd+Opt+J (Console)
+        // Ctrl+Shift+C / Cmd+Opt+C (Element picker)
+        // Ctrl+Shift+K / Cmd+Opt+K (Firefox console)
+        // Ctrl+Shift+E (Network tab)
+        const isDevToolsShortcut = (e.ctrlKey || e.metaKey) && (e.shiftKey || e.altKey) && ['I', 'J', 'C', 'K', 'E'].includes(key);
+
+        // Ctrl+U / Cmd+U (View Page Source)
+        const isViewSourceShortcut = (e.ctrlKey || e.metaKey) && key === 'U';
+
+        // Ctrl+S / Cmd+S (Save Page)
+        const isSaveShortcut = (e.ctrlKey || e.metaKey) && key === 'S';
+
+        if (isF12 || isDevToolsShortcut || isViewSourceShortcut || isSaveShortcut) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+    }, true);
+}
+
+
