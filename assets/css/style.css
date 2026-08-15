@@ -361,7 +361,7 @@ h4 {
 }
 
 .logo-img {
-    height: 44px;
+    height: 58px;
     width: auto;
     max-width: 100%;
     object-fit: contain;
@@ -1747,7 +1747,7 @@ svg.grade-ring-svg {
 }
 
 .footer-logo .logo-img {
-    height: 48px;
+    height: 56px;
     filter: brightness(0) invert(1);
 }
 
@@ -1888,7 +1888,7 @@ svg.grade-ring-svg {
     }
 
     .logo-img {
-        height: 36px;
+        height: 40px;
     }
 
     .logo-text {
