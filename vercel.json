@@ -1,15 +1,16 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "rewrites": [
+  "redirects": [
     {
       "source": "/home",
-      "destination": "/index"
+      "destination": "/",
+      "permanent": true
     },
     {
       "source": "/home.html",
-      "destination": "/index"
+      "destination": "/",
+      "permanent": true
     }
   ]
 }
-

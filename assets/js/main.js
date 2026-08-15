@@ -122,6 +122,7 @@ let quizTimerInterval = null;
 let secondsRemaining = 105; // 01:45 countdown
 
 function initQuizEngine() {
+    if (!document.getElementById('quizSubject')) return;
     renderQuestion();
     startQuizTimer();
 
