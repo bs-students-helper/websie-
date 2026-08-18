@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz 2 - IITM BS Degree Question Papers | BSH</title>
+    <meta name="description"
+        content="Practice Quiz 2 with IITM's online BS degree question papers to improve your preparation across all terms and subjects.">
+    <link rel="canonical" href="https://bsstudentshelper.vercel.app/quiz_2_practice.html">
+
+    <!-- JSON-LD Breadcrumbs -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "BSH Home",
+          "item": "https://bsstudentshelper.vercel.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Quiz Practice Modes",
+          "item": "https://bsstudentshelper.vercel.app/quiz_practice.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Quiz 2 Question Papers",
+          "item": "https://bsstudentshelper.vercel.app/quiz_2_practice.html"
+        }
+      ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script>
+        (function () {
+            const saved = localStorage.getItem('bsh-theme');
+            if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+            else document.documentElement.setAttribute('data-theme', 'light');
+        })();
+    </script>
+    <style>
+        .page-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .mode-banner {
+            background: linear-gradient(135deg, #a78bfa22, #7c3aed22);
+            border: 1px solid #7c3aed44;
+            border-radius: var(--radius-xl);
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .mode-banner-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #a78bfa, #7c3aed);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .papers-toolbar {
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
+            margin-bottom: 1rem;
+        }
+
+        .papers-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .papers-title {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+            letter-spacing: 0.02em;
+        }
+
+        .papers-title span {
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            color: var(--accent-purple);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+            padding: 0.35rem 0.75rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--accent-purple);
+            border-color: var(--accent-purple);
+        }
+
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            margin-bottom: 0.6rem;
+            align-items: flex-start;
+        }
+
+        .filter-group {
+            flex: 0 1 auto;
+        }
+
+        .filter-group.course-group {
+            width: 240px;
+            max-width: 100%;
+        }
+
+        .filter-group.year-group {
+            width: 130px;
+            max-width: 100%;
+        }
+
+        .filter-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .filter-group select {
+            width: 100%;
+            padding: 0.45rem 0.75rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.65rem center;
+            background-size: 0.9em;
+            padding-right: 2rem;
+        }
+
+        .filter-group select:focus {
+            border-color: var(--accent-purple);
+            box-shadow: none;
+        }
+
+        .filter-hint {
+            font-size: 0.73rem;
+            color: var(--text-muted);
+            font-style: italic;
+            line-height: 1.4;
+            margin: 0;
+            padding-top: 0.2rem;
+        }
+
+        .filter-hint code {
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            font-size: inherit;
+            border: none;
+            font-style: normal;
+        }
+
+        .divider-line {
+            height: 1px;
+            background: var(--border-color);
+            opacity: 0.5;
+            margin: 1.5rem 0 2.5rem 0;
+        }
+
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            border: none;
+            border-radius: 0;
+            background: transparent;
+        }
+
+        .empty-state img.empty-state-img {
+            width: 220px;
+            max-width: 85%;
+            height: auto;
+            margin-bottom: 1.5rem;
+            filter: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .empty-state:hover img.empty-state-img {
+            transform: translateY(-4px);
+            filter: none;
+        }
+
+        .empty-state h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.35rem;
+        }
+
+        .empty-state p {
+            color: var(--text-muted);
+            max-width: 420px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .papers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 0.85rem;
+            display: none;
+        }
+
+        .papers-grid.active {
+            display: grid;
+        }
+
+        .paper-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 0.85rem 1rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .paper-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-purple);
+            box-shadow: none;
+        }
+
+        .paper-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #a78bfa33, #7c3aed33);
+            color: #7c3aed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+        }
+
+        [data-theme="dark"] .paper-icon {
+            color: #c4b5fd;
+        }
+
+        .paper-title {
+            font-family: var(--font-display);
+            font-size: 0.88rem;
+            color: var(--text-primary);
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .paper-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            margin-top: auto;
+        }
+
+        .paper-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.18rem 0.45rem;
+            border-radius: 999px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .paper-tag.year {
+            color: var(--accent-purple);
+        }
+
+        .paper-tag.course {
+            color: var(--accent-cyan);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header" id="header">
+        <div class="header-container">
+            <a href="index.html" class="brand-logo"><img src="assets/images/logo.png" alt="BSH" class="logo-img"></a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html#features" class="nav-link">Features</a>
+                <a href="quiz_practice.html" class="nav-link active">Quiz Practice</a>
+                <a href="calculator.html" class="nav-link">SEC Calculator</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="index.html#testimonials" class="nav-link">Reviews</a>
+                <a href="contact_us.html" class="nav-link">Feedback</a>
+                <a href="index.html#faq" class="nav-link">FAQ</a>
+                <div class="mobile-menu-actions">
+                    <a href="quiz_practice.html" class="btn btn-secondary btn-full">Practice Quiz</a>
+                    <a href="calculator.html" class="btn btn-primary btn-full">Calculate SEC Grade</a>
+                </div>
+            </nav>
+            <div class="header-actions">
+                <a href="quiz_practice.html" class="btn btn-secondary nav-btn-desktop"><i
+                        class="fa-solid fa-gamepad"></i><span>Practice Quiz</span></a>
+                <a href="calculator.html" class="btn btn-primary nav-btn-desktop"><span>Calculate SEC Grade</span><i
+                        class="fa-solid fa-calculator"></i></a>
+                <button class="theme-toggle-btn" id="themeToggleBtn"><i class="fa-solid fa-moon"></i></button>
+                <button class="mobile-menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- <section class="hero-section">
+            <div class="hero-bg-grid"></div>
+            <div class="container hero-container text-center">
+                <div class="hero-badge-wrapper" style="justify-content:center;">
+                    <div class="pill-badge"><i class="fa-solid fa-clipboard-question"></i><span class="badge-text">QUIZ
+                            2 - QUESTION PAPERS</span></div>
+                </div>
+                <h1 class="hero-title" style="font-size:3rem; margin-bottom:1rem;">
+                    Quiz 2 Question Papers <br>
+                    <span class="title-highlight">All Courses & Years.</span>
+                </h1>
+                <p class="hero-subtitle" style="margin:0 auto; max-width:750px;">
+                    Second-half syllabus previous papers for every Foundational & Diploma course.
+                    Filter by subject and year, then dive into a practice set.
+                </p>
+            </div>
+        </section> -->
+
+        <section class="section" style="padding:3rem 0 4rem;">
+            <div class="container page-wrap">
+                <div class="mode-banner">
+                    <div class="mode-banner-icon"><i class="fa-solid fa-clipboard-question"></i></div>
+                    <div>
+                        <h3
+                            style="font-family:var(--font-display); font-size:1.2rem; color:var(--text-primary); margin-bottom:0.25rem;">
+                            Quiz 2 Papers Library</h3>
+                        <p style="color:var(--text-muted); font-size:0.9rem; margin:0;">High-weightage Week 7–12
+                            syllabus papers across all terms.</p>
+                    </div>
+                </div>
+
+                <div class="papers-toolbar">
+                    <div class="papers-title-row">
+                        <h2 class="papers-title">QUIZ 2 - <span>QUESTION PAPERS</span></h2>
+                        <a href="quiz_practice.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> All Quiz
+                            Modes</a>
+                    </div>
+                    <div class="filter-row">
+                <div class="filter-group course-group">
+                    <label for="courseSelect">Select Course</label>
+                    <select id="courseSelect">
+                        <option value="">Select course...</option>
+                        <option value="maths1">Mathematics for Data Science I</option>
+                        <option value="maths2">Mathematics for Data Science II</option>
+                        <option value="stats1">Statistics for Data Science I</option>
+                        <option value="stats2">Statistics for Data Science II</option>
+                        <option value="ct">Computational Thinking</option>
+                        <option value="english1">English I</option>
+                        <option value="english2">English II</option>
+                        <option value="python">Python Programming</option>
+                        <option value="ml">Machine Learning</option>
+                        <option value="es-embedded">ES - Embedded Systems</option>
+                    </select>
+                </div>
+                <div class="filter-group year-group">
+                    <label for="yearSelect">Year</label>
+                    <select id="yearSelect">
+                        <option value="all">All</option>
+                        <option value="2026">2026</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                    </select>
+                </div>
+            </div>
+
+            <p class="filter-hint">
+                There may be some courses in different name. eg: You might see Math 1 and Math1 listed separately. Each one will have different Question Papers
+            </p>
+        </div>
+
+                <div class="divider-line"></div>
+
+                <div class="empty-state" id="emptyState">
+                    <img src="assets/images/empty.png" alt="Choose a Course" class="empty-state-img">
+                    <h3>Please Choose a course</h3>
+                    <p>Pick a subject from the dropdown above to view available Quiz 2 question papers. Year filter is
+                        optional (defaults to <b>All</b>).</p>
+                </div>
+
+                <div class="papers-grid" id="papersGrid"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="brand-logo footer-logo"><img src="assets/images/logo.png" alt="BSH" class="logo-img"></a>
+                <p class="footer-desc">The open, student-driven academic companion for IIT Madras BS in Data Science & Electronic Systems.</p>
+            </div>
+            <div class="footer-links-group">
+                <div class="footer-col">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Portal Home</a></li>
+                        <li><a href="quiz_practice.html">Quiz Practice Hub</a></li>
+                        <li><a href="calculator.html">SEC Calculator</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact_us.html">Submit Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-heading">Quiz Modes</h4>
+                    <ul>
+                        <li><a href="quiz_1_practice.html">Quiz 1 Sets</a></li>
+                        <li><a href="quiz_2_practice.html"><b>Quiz 2 Sets</b></a></li>
+                        <li><a href="end_term_practice.html">End Term Mocks</a></li>
+                        <li><a href="pyq_practice.html">Previous Year (PYQ)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <p>&copy; 2026 BSH (BS Students Helper). Built with passion for IITM BS Students.</p>
+                <p class="disclaimer-text">Disclaimer: BSH is an independent student community initiative and is not officially affiliated with or endorsed by IIT Madras.</p>
+            </div>
+        </div>
+    </footer> -->
+
+    <div class="modal-overlay" id="comingSoonModal">
+        <div class="modal-card coming-soon-card">
+            <div class="modal-header">
+                <span class="badge badge-gold"><i class="fa-solid fa-clock-rotate-left"></i> STAY TUNED</span>
+                <button class="modal-close" id="closeComingSoonModal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body coming-soon-body">
+                <div class="coming-soon-icon-wrap"><i class="fa-solid fa-rocket coming-soon-icon"></i></div>
+                <h3 id="comingSoonTitle" class="coming-soon-heading">Feature Under Development</h3>
+                <p id="comingSoonDesc" class="coming-soon-text">We are actively building this feature for IIT Madras BS
+                    Students. Stay tuned for early access & updates!</p>
+                <form id="comingSoonNotifyForm" class="coming-soon-form">
+                    <div class="notify-input-group">
+                        <input type="email" id="notifyEmail" placeholder="Enter your student email..." required>
+                        <button type="submit" class="btn btn-primary">Notify Me <i
+                                class="fa-solid fa-bell"></i></button>
+                    </div>
+                    <span class="form-hint"><i class="fa-solid fa-shield-halved"></i> No spam. Only IITM BS
+                        updates.</span>
+                </form>
+                <div id="notifySuccessMsg" class="notify-success" style="display:none;"><i
+                        class="fa-solid fa-circle-check"></i> You're on the priority list! We'll notify you soon.</div>
+                <button type="button" class="btn btn-secondary btn-full" id="closeComingSoonBtn">Got It <i
+                        class="fa-solid fa-check"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        const QUIZ2_PAPERS = [
+            { id: 1, title: "Quiz 2 - Mathematics for Data Science I - May 2026", course: "maths1", courseLabel: "Maths 1", year: "2026", url: "#" },
+            { id: 2, title: "Quiz 2 - Mathematics for Data Science II - Sep 2025", course: "maths2", courseLabel: "Maths 2", year: "2025", url: "#" },
+            { id: 3, title: "Quiz 2 - Statistics for Data Science I - May 2026", course: "stats1", courseLabel: "Stats 1", year: "2026", url: "#" },
+            { id: 4, title: "Quiz 2 - Computational Thinking - Sep 2025", course: "ct", courseLabel: "CT", year: "2025", url: "#" },
+            { id: 5, title: "Quiz 2 - Python Programming - Jan 2025", course: "python", courseLabel: "Python", year: "2025", url: "#" },
+            { id: 6, title: "Quiz 2 - Statistics for Data Science II - May 2026", course: "stats2", courseLabel: "Stats 2", year: "2026", url: "#" },
+            { id: 7, title: "Quiz 2 - Machine Learning - Sep 2024", course: "ml", courseLabel: "ML", year: "2024", url: "#" },
+            { id: 8, title: "Quiz 2 - English II - Jan 2024", course: "english2", courseLabel: "English 2", year: "2024", url: "#" },
+        ];
+
+        const courseSelect = document.getElementById('courseSelect');
+        const yearSelect = document.getElementById('yearSelect');
+        const emptyState = document.getElementById('emptyState');
+        const papersGrid = document.getElementById('papersGrid');
+        const DEFAULT_EMPTY_HEADING = 'Please Choose a course';
+        const DEFAULT_EMPTY_DESC = `Pick a subject from the dropdown above to view available Quiz 2 question papers. Year filter is optional (defaults to <b>All</b>).`;
+
+        function renderPapers() {
+            const courseVal = courseSelect.value;
+            const yearVal = yearSelect.value;
+            if (!courseVal) {
+                emptyState.style.display = 'flex';
+                emptyState.querySelector('h3').textContent = DEFAULT_EMPTY_HEADING;
+                emptyState.querySelector('p').innerHTML = DEFAULT_EMPTY_DESC;
+                papersGrid.classList.remove('active');
+                papersGrid.innerHTML = '';
+                return;
+            }
+            let filtered = QUIZ2_PAPERS.filter(p => p.course === courseVal);
+            if (yearVal !== 'all') filtered = filtered.filter(p => p.year === yearVal);
+
+            if (filtered.length === 0) {
+                emptyState.style.display = 'flex';
+                emptyState.querySelector('h3').textContent = 'No papers found';
+                emptyState.querySelector('p').innerHTML = `Try changing the <b>Year</b> filter or pick another course.`;
+                papersGrid.classList.remove('active');
+                papersGrid.innerHTML = '';
+                return;
+            }
+            emptyState.style.display = 'none';
+            papersGrid.innerHTML = filtered.map(p => {
+                const comingSoonAttr = (!p.url || p.url === '#') ? ' data-coming-soon="Paper viewer launching soon"' : '';
+                return `
+                <a href="${p.url}" class="paper-card"${comingSoonAttr}>
+                    <div class="paper-icon"><i class="fa-regular fa-file-lines"></i></div>
+                    <h4 class="paper-title">${p.title}</h4>
+                    <div class="paper-meta">
+                        <span class="paper-tag course"><i class="fa-solid fa-book"></i> ${p.courseLabel}</span>
+                        <span class="paper-tag year"><i class="fa-solid fa-calendar"></i> ${p.year}</span>
+                        <span class="paper-tag"><i class="fa-solid fa-pen"></i> Quiz 2</span>
+                    </div>
+                </a>
+            `;
+            }).join('');
+            papersGrid.classList.add('active');
+        }
+        renderPapers();
+        courseSelect.addEventListener('change', renderPapers);
+        yearSelect.addEventListener('change', renderPapers);
+    </script>
+</body>
+
+</html>

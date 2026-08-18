@@ -14,13 +14,15 @@
 
     <!-- Search Engine & Robots Meta -->
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <meta name="keywords" content="IIT Madras BS, BS Data Science, IITM BS Grade Calculator, SEC Grade Calculator, BS Students Helper, BSH, IIT Madras Quiz Prep, IITM BS Previous Year Questions, IIT Madras Electronic Systems">
+    <meta name="keywords"
+        content="IIT Madras BS, BS Data Science, IITM BS Grade Calculator, SEC Grade Calculator, BS Students Helper, BSH, IIT Madras Quiz Prep, IITM BS Previous Year Questions, IIT Madras Electronic Systems">
 
     <!-- Open Graph Metadata -->
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
     <meta property="og:title" content="BSH - IIT Madras BS Students | Quiz Practice & SEC Grade Calculator">
-    <meta property="og:description" content="BSH (BS Students Helper) is the premier student-driven portal for IIT Madras BS in Data Science & Applications. Access quiz practice engines, SEC grade calculators, and previous year questions.">
+    <meta property="og:description"
+        content="BSH (BS Students Helper) is the premier student-driven portal for IIT Madras BS in Data Science & Applications. Access quiz practice engines, SEC grade calculators, and previous year questions.">
     <meta property="og:url" content="https://bsstudentshelper.vercel.app/">
     <meta property="og:site_name" content="BSH - BS Students Helper">
     <meta property="og:image" content="https://bsstudentshelper.vercel.app/assets/images/logo.png">
@@ -28,7 +30,8 @@
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="BSH - IIT Madras BS Students | Quiz Practice & SEC Grade Calculator">
-    <meta name="twitter:description" content="BSH (BS Students Helper) is the premier student-driven portal for IIT Madras BS in Data Science & Applications. Access quiz practice engines, SEC grade calculators, and previous year questions.">
+    <meta name="twitter:description"
+        content="BSH (BS Students Helper) is the premier student-driven portal for IIT Madras BS in Data Science & Applications. Access quiz practice engines, SEC grade calculators, and previous year questions.">
     <meta name="twitter:image" content="https://bsstudentshelper.vercel.app/assets/images/logo.png">
 
     <!-- Structured Data (JSON-LD) -->
@@ -42,7 +45,85 @@
           "url": "https://bsstudentshelper.vercel.app/",
           "name": "BSH - BS Students Helper",
           "description": "Student-driven portal for IIT Madras BS in Data Science and Electronic Systems students.",
-          "inLanguage": "en"
+          "inLanguage": "en",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://bsstudentshelper.vercel.app/quiz_practice.html?course={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://bsstudentshelper.vercel.app/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://bsstudentshelper.vercel.app/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Quiz Practice Engine",
+              "item": "https://bsstudentshelper.vercel.app/quiz_practice.html"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "SEC Grade Calculator",
+              "item": "https://bsstudentshelper.vercel.app/calculator.html"
+            }
+          ]
+        },
+        {
+          "@type": "ItemList",
+          "@id": "https://bsstudentshelper.vercel.app/#sitelinks",
+          "name": "BSH Quiz Practice & Resources",
+          "itemListElement": [
+            {
+              "@type": "SiteNavigationElement",
+              "position": 1,
+              "name": "Quiz 1",
+              "description": "Practice Quiz 1 with IITM's online BS degree question papers",
+              "url": "https://bsstudentshelper.vercel.app/quiz_1_practice.html"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 2,
+              "name": "Quiz 2",
+              "description": "Practice Quiz 2 with IITM's online BS degree question papers",
+              "url": "https://bsstudentshelper.vercel.app/quiz_2_practice.html"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 3,
+              "name": "End Term Quiz",
+              "description": "Practice End Term Quiz with IITM's online BS degree question papers",
+              "url": "https://bsstudentshelper.vercel.app/end_term_practice.html"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 4,
+              "name": "IITM BS Degree Question Papers",
+              "description": "Practice with IITM's online BS degree question papers and quizzes",
+              "url": "https://bsstudentshelper.vercel.app/quiz_practice.html"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 5,
+              "name": "Oppe - question papers",
+              "description": "Practice OPPE and PYQs with IITM's online BS degree question papers",
+              "url": "https://bsstudentshelper.vercel.app/pyq_practice.html"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 6,
+              "name": "SEC Grade Calculator",
+              "description": "Calculate SEC grades for IIT Madras BS courses",
+              "url": "https://bsstudentshelper.vercel.app/calculator.html"
+            }
+          ]
         },
         {
           "@type": "EducationalOrganization",
@@ -172,20 +253,21 @@
             <!-- Navigation Links & Mobile Menu Drawer -->
             <nav class="nav-menu" id="navMenu">
                 <a href="#features" class="nav-link">Features</a>
-                <a href="404.html" class="nav-link">Quiz Practice</a>
+                <a href="quiz_practice.html" class="nav-link">Quiz Practice</a>
                 <a href="calculator.html" class="nav-link">SEC Calculator</a>
                 <a href="about.html" class="nav-link">About Us</a>
                 <a href="#reviews" class="nav-link">Reviews</a>
+                <a href="contact_us.html" class="nav-link">Feedback</a>
                 <a href="#faq" class="nav-link">FAQ</a>
                 <div class="mobile-menu-actions">
-                    <a href="#quiz-preview" class="btn btn-secondary btn-full">Practice Quiz</a>
+                    <a href="quiz_practice.html" class="btn btn-secondary btn-full">Practice Quiz</a>
                     <a href="calculator.html" class="btn btn-primary btn-full">Calculate SEC Grade</a>
                 </div>
             </nav>
 
             <!-- Desktop Header Actions -->
             <div class="header-actions">
-                <a href="#quiz-preview" class="btn btn-secondary nav-btn-desktop">Practice Quiz</a>
+                <a href="quiz_practice.html" class="btn btn-secondary nav-btn-desktop">Practice Quiz</a>
                 <a href="calculator.html" class="btn btn-primary nav-btn-desktop">
                     <span>Calculate SEC Grade</span>
                     <i class="fa-solid fa-calculator"></i>
@@ -228,7 +310,7 @@
                 </p>
 
                 <div class="hero-cta-group">
-                    <a href="#quiz-preview" class="btn btn-primary btn-lg">
+                    <a href="quiz_practice.html" class="btn btn-primary btn-lg">
                         <span>Start Practice Quiz</span>
                         <i class="fa-solid fa-play"></i>
                     </a>
@@ -579,6 +661,19 @@
                         <button class="filter-tab" data-filter="diploma">Diploma Level</button>
                         <button class="filter-tab" data-filter="degree">Degree Level</button>
                     </div>
+
+                    <!-- Submit Your Review CTA Button -->
+                    <div class="text-center" style="margin-top: 2rem;">
+                        <a href="contact_us.html" class="btn btn-primary btn-lg">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <span>Submit Your Review & Feedback</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <p class="form-hint" style="margin-top: 0.75rem; color: var(--text-muted);">
+                            <i class="fa-solid fa-heart"></i> Your feedback helps thousands of IITM BS students every
+                            term. Share your BSH experience!
+                        </p>
+                    </div>
                 </div>
 
                 <!-- Full-Width Infinite Marquee Carousel (Right to Left Scrolling) -->
@@ -829,7 +924,7 @@
                     <h4 class="footer-heading">Quick Navigation</h4>
                     <ul>
                         <li><a href="#features">Features</a></li>
-                        <li><a href="404.html">Quiz Engine</a></li>
+                        <li><a href="quiz_practice.html">Quiz Engine</a></li>
                         <li><a href="calculator.html">SEC Predictor</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="#reviews">Reviews</a></li>
@@ -839,10 +934,10 @@
                 <div class="footer-col">
                     <h4 class="footer-heading">Core Courses</h4>
                     <ul>
-                        <li><a href="404.html">Mathematics 1 & 2</a></li>
-                        <li><a href="404.html">Statistics 1 & 2</a></li>
-                        <li><a href="404.html">Computational Thinking</a></li>
-                        <li><a href="404.html">Python Programming</a></li>
+                        <li><a href="pyq_practice.html">Mathematics 1 & 2</a></li>
+                        <li><a href="pyq_practice.html">Statistics 1 & 2</a></li>
+                        <li><a href="pyq_practice.html">Computational Thinking</a></li>
+                        <li><a href="pyq_practice.html">Python Programming</a></li>
                     </ul>
                 </div>
 
@@ -850,7 +945,7 @@
                     <h4 class="footer-heading">Community & Support</h4>
                     <ul>
                         <li><a href="#faq">FAQ</a></li>
-                        <!-- <li><a href="#testimonials">Submit Feedback</a></li> -->
+                        <li><a href="contact_us.html">Submit Feedback</a></li>
                         <li><a href="#" data-coming-soon="Official BSH Discord Server">Discord Server</a></li>
                         <li><a href="#" data-coming-soon="BSH Open Source GitHub Repo">Open Source Repo</a></li>
                     </ul>

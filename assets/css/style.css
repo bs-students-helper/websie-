@@ -707,15 +707,7 @@ h4 {
 }
 
 .hero-glow-blob {
-    position: absolute;
-    top: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(235, 235, 220, 0.8) 0%, rgba(249, 249, 247, 0) 70%);
-    z-index: -1;
-    pointer-events: none;
+    display: none;
 }
 
 .hero-container {
