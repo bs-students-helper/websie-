@@ -659,16 +659,19 @@
                     <div class="menu-heading">Portal Mode</div>
                     <div class="mode-toggle-group">
                         <button class="mode-btn" id="btnExamMode" onclick="setPortalMode('exam')">Exam Mode</button>
-                        <button class="mode-btn active" id="btnLearningMode" onclick="setPortalMode('learning')">Learning Mode</button>
+                        <button class="mode-btn active" id="btnLearningMode"
+                            onclick="setPortalMode('learning')">Learning Mode</button>
                     </div>
                 </div>
 
                 <!-- Action Buttons -->
                 <div style="display:flex; flex-direction:column; gap:0.5rem;">
-                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;" onclick="openSummaryModal()">
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                        onclick="openSummaryModal()">
                         <i class="fa-solid fa-eye"></i> View Question Paper Summary
                     </button>
-                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;" onclick="window.print()">
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                        onclick="window.print()">
                         <i class="fa-solid fa-download"></i> Download PDF
                     </button>
                 </div>
@@ -690,8 +693,10 @@
                     <div class="timer-box">
                         <div class="timer-display" id="timerDisplay">00:01</div>
                         <div class="timer-controls">
-                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i class="fa-solid fa-pause"></i></button>
-                            <button class="btn-icon-sm" onclick="resetTimer()"><i class="fa-solid fa-rotate-right"></i></button>
+                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i
+                                    class="fa-solid fa-pause"></i></button>
+                            <button class="btn-icon-sm" onclick="resetTimer()"><i
+                                    class="fa-solid fa-rotate-right"></i></button>
                         </div>
                     </div>
                 </div>
@@ -703,9 +708,12 @@
                         <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
                     </button>
                     <div class="score-card" style="margin-top:1rem;">
-                        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">Your Score</span>
+                        <span
+                            style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">Your
+                            Score</span>
                         <div class="score-num" id="liveScoreDisplay">0.00 / 50.00</div>
-                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);" id="livePercentDisplay">(0%)</span>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);"
+                            id="livePercentDisplay">(0%)</span>
                     </div>
                 </div>
 
@@ -756,23 +764,30 @@
                     <td style="padding:0.6rem;">0.00</td>
                 </tr>
             </table>
-            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close Summary</button>
+            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close
+                Summary</button>
         </div>
     </div>
 
     <!-- Exam Result Modal -->
     <div class="modal-overlay" id="resultModal">
         <div class="modal-card" style="text-align:center;">
-            <div style="width:64px; height:64px; border-radius:50%; background:rgba(16, 185, 129, 0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 1rem;">
+            <div
+                style="width:64px; height:64px; border-radius:50%; background:rgba(16, 185, 129, 0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 1rem;">
                 <i class="fa-solid fa-trophy"></i>
             </div>
             <h2 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Exam Submitted!</h2>
-            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for Quiz 1 Intro to Python (16 Jul 26)</p>
-            
-            <div style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
-                <div style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; font-weight:600;">Final Score</div>
-                <div style="font-family:var(--font-mono); font-size:2.8rem; font-weight:800; color:var(--accent-green);" id="modalScoreText">0.00 / 50.00</div>
-                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0%</div>
+            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for Quiz 1 Intro
+                to Python (16 Jul 26)</p>
+
+            <div
+                style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
+                <div style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; font-weight:600;">
+                    Final Score</div>
+                <div style="font-family:var(--font-mono); font-size:2.8rem; font-weight:800; color:var(--accent-green);"
+                    id="modalScoreText">0.00 / 50.00</div>
+                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0%
+                </div>
             </div>
 
             <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem; margin-bottom:1.5rem;">
@@ -786,13 +801,17 @@
                 </div>
                 <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
                     <div style="font-size:0.75rem; color:var(--text-muted);">Unanswered</div>
-                    <div style="font-weight:700; color:var(--text-secondary); font-size:1.2rem;" id="modalUnansweredCount">0</div>
+                    <div style="font-weight:700; color:var(--text-secondary); font-size:1.2rem;"
+                        id="modalUnansweredCount">0</div>
                 </div>
             </div>
 
             <div style="display:flex; gap:0.75rem;">
-                <button class="btn btn-secondary btn-full" onclick="closeResultModal(); setPortalMode('learning');">Review Solutions <i class="fa-solid fa-book-open"></i></button>
-                <button class="btn btn-primary btn-full" onclick="resetExam()">Retake Exam <i class="fa-solid fa-rotate-right"></i></button>
+                <button class="btn btn-secondary btn-full"
+                    onclick="closeResultModal(); setPortalMode('learning');">Review Solutions <i
+                        class="fa-solid fa-book-open"></i></button>
+                <button class="btn btn-primary btn-full" onclick="resetExam()">Retake Exam <i
+                        class="fa-solid fa-rotate-right"></i></button>
             </div>
         </div>
     </div>
@@ -911,7 +930,7 @@
                     "data[2][1] = 9",
                     "data[1].append(data[2][0])"
                 ],
-                correct: [0, 3],
+                correct: [0, 1, 3],
                 solution: `Checking mutability and methods:\n1. data[0] is set {1, 2}. Sets are mutable and have an .add() method -> Runs cleanly.\n2. data[1] is list [3, 4] -> data[1][0] = 10 works in Python, but in this specific paper's answer key, options 1 and 4 are the highlighted valid operations.\n3. data[2] is tuple (5, 6). Tuples are immutable -> Raises TypeError.\n4. data[1].append(data[2][0]) appends integer 5 to list data[1] -> Runs cleanly.`
             },
             {
@@ -1150,22 +1169,22 @@
             return `
             <div class="options-list">
                 ${q.options.map((optText, idx) => {
-                    const isChecked = userArr.includes(idx);
-                    const isCorrect = q.correct.includes(idx);
-                    let highlightClass = '';
+                const isChecked = userArr.includes(idx);
+                const isCorrect = q.correct.includes(idx);
+                let highlightClass = '';
 
-                    if (currentMode === 'learning') {
-                        if (isCorrect) highlightClass = 'correct-highlight';
-                        else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
-                    }
+                if (currentMode === 'learning') {
+                    if (isCorrect) highlightClass = 'correct-highlight';
+                    else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                }
 
-                    return `
+                return `
                     <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
                         <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
                         <span class="option-text">${escapeHtml(optText)}</span>
                     </label>
                     `;
-                }).join('')}
+            }).join('')}
             </div>
             `;
         }
