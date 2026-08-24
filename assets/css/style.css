@@ -2361,3 +2361,38 @@ img {
     -webkit-user-drag: none;
     user-drag: none;
 }
+
+/* --------------------------------------------------------------------------
+   Practice Library Hub Pages Mobile Responsiveness
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    .papers-title-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .papers-title {
+        font-size: 1.15rem;
+    }
+
+    .filter-row {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+    }
+
+    .filter-group.course-group,
+    .filter-group.year-group {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .papers-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .empty-state {
+        padding: 2rem 1rem !important;
+    }
+}
