@@ -6,7 +6,7 @@
     <!-- Main Landing Page -->
     <url>
         <loc>https://bsstudentshelper.vercel.app/</loc>
-        <lastmod>2026-08-18</lastmod>
+        <lastmod>2026-08-24</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.00</priority>
     </url>
@@ -14,87 +14,47 @@
     <!-- Quiz Practice Hub Page -->
     <url>
         <loc>https://bsstudentshelper.vercel.app/quiz_practice.html</loc>
-        <lastmod>2026-08-18</lastmod>
+        <lastmod>2026-08-24</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.95</priority>
     </url>
 
-    <!-- Quiz 1 Question Papers -->
+    <!-- Quiz 1 Question Papers Library Hub -->
     <url>
         <loc>https://bsstudentshelper.vercel.app/quiz_1_practice.html</loc>
-        <lastmod>2026-08-18</lastmod>
+        <lastmod>2026-08-24</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
 
-    <!-- Quiz 2 Question Papers -->
+    <!-- Quiz 2 Question Papers Library Hub -->
     <url>
         <loc>https://bsstudentshelper.vercel.app/quiz_2_practice.html</loc>
-        <lastmod>2026-08-18</lastmod>
+        <lastmod>2026-08-24</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
 
-    <!-- End Term Question Papers -->
+    <!-- End Term Question Papers Library Hub -->
     <url>
         <loc>https://bsstudentshelper.vercel.app/end_term_practice.html</loc>
-        <lastmod>2026-08-18</lastmod>
+        <lastmod>2026-08-24</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
 
-    <!-- PYQ Archives & OPP Papers -->
+    <!-- PYQ Archives & OPP Library Hub -->
     <url>
         <loc>https://bsstudentshelper.vercel.app/pyq_practice.html</loc>
-        <lastmod>2026-08-18</lastmod>
+        <lastmod>2026-08-24</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
-    </url>
-
-    <!-- Python Quiz 1 Practice Paper (16 Jul 2026) -->
-    <url>
-        <loc>https://bsstudentshelper.vercel.app/python/quiz_1_python_16jul26.html</loc>
-        <lastmod>2026-08-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.85</priority>
-    </url>
-
-    <!-- Python Quiz 1 Practice Paper (15 Mar 2026) -->
-    <url>
-        <loc>https://bsstudentshelper.vercel.app/python/quiz_1_python_15mar26.html</loc>
-        <lastmod>2026-08-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.85</priority>
-    </url>
-
-    <!-- Python Quiz 1 Practice Paper (26 Oct 2025) -->
-    <url>
-        <loc>https://bsstudentshelper.vercel.app/python/quiz_1_python_26oct25.html</loc>
-        <lastmod>2026-08-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.85</priority>
-    </url>
-
-    <!-- Python Quiz 1 Practice Paper (13 Jul 2025) -->
-    <url>
-        <loc>https://bsstudentshelper.vercel.app/python/quiz_1_python_13jul25.html</loc>
-        <lastmod>2026-08-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.85</priority>
-    </url>
-
-    <!-- Python Quiz 1 Practice Paper (23 Feb 2025) -->
-    <url>
-        <loc>https://bsstudentshelper.vercel.app/python/quiz_1_python_23feb25.html</loc>
-        <lastmod>2026-08-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.85</priority>
     </url>
 
     <!-- SEC Grade Calculator Page -->
     <url>
         <loc>https://bsstudentshelper.vercel.app/calculator.html</loc>
-        <lastmod>2026-08-18</lastmod>
+        <lastmod>2026-08-24</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
@@ -102,15 +62,15 @@
     <!-- About Us Page -->
     <url>
         <loc>https://bsstudentshelper.vercel.app/about.html</loc>
-        <lastmod>2026-08-18</lastmod>
+        <lastmod>2026-08-24</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.80</priority>
     </url>
 
-    <!-- Contact Us Page -->
+    <!-- Contact & Feedback Page -->
     <url>
         <loc>https://bsstudentshelper.vercel.app/contact_us.html</loc>
-        <lastmod>2026-08-18</lastmod>
+        <lastmod>2026-08-24</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.70</priority>
     </url>
