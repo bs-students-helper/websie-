@@ -51,10 +51,42 @@
         <priority>0.90</priority>
     </url>
 
-    <!-- Python Quiz 1 Practice Paper -->
+    <!-- Python Quiz 1 Practice Paper (16 Jul 2026) -->
     <url>
         <loc>https://bsstudentshelper.vercel.app/python/quiz_1_python_16jul26.html</loc>
-        <lastmod>2026-08-18</lastmod>
+        <lastmod>2026-08-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.85</priority>
+    </url>
+
+    <!-- Python Quiz 1 Practice Paper (15 Mar 2026) -->
+    <url>
+        <loc>https://bsstudentshelper.vercel.app/python/quiz_1_python_15mar26.html</loc>
+        <lastmod>2026-08-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.85</priority>
+    </url>
+
+    <!-- Python Quiz 1 Practice Paper (26 Oct 2025) -->
+    <url>
+        <loc>https://bsstudentshelper.vercel.app/python/quiz_1_python_26oct25.html</loc>
+        <lastmod>2026-08-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.85</priority>
+    </url>
+
+    <!-- Python Quiz 1 Practice Paper (13 Jul 2025) -->
+    <url>
+        <loc>https://bsstudentshelper.vercel.app/python/quiz_1_python_13jul25.html</loc>
+        <lastmod>2026-08-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.85</priority>
+    </url>
+
+    <!-- Python Quiz 1 Practice Paper (23 Feb 2025) -->
+    <url>
+        <loc>https://bsstudentshelper.vercel.app/python/quiz_1_python_23feb25.html</loc>
+        <lastmod>2026-08-24</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.85</priority>
     </url>

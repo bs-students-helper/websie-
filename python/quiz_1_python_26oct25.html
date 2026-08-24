@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programming in Python (16 Jul 2026) | BSH</title>
+    <title>Quiz 1 - Programming in Python (26 Oct 2025)| BSH</title>
     <meta name="description"
-        content="Practice Intro to Python Quiz 1 question paper (16 Jul 26) with interactive exam & learning modes, instant score calculation, detailed solutions, and question palette.">
+        content="Practice Intro to Python Quiz 1 question paper (26 Oct 25) with interactive exam & learning modes, instant score calculation, detailed solutions, and question palette.">
 
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
 
-    <!-- Master CSS -->
+    <!-- Master CSS & Centralized Quiz Portal CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/quiz-portal.css">
 
@@ -87,7 +87,7 @@
                     </div>
                     <div class="exam-info-row">
                         <span class="exam-info-label">QP:</span>
-                        <span class="exam-info-val" style="font-size:0.75rem;">Programming in Python 16 Jul 26</span>
+                        <span class="exam-info-val" style="font-size:0.75rem;">2025 Oct26: IIT M AN EXAM QIM4</span>
                     </div>
                 </div>
 
@@ -104,11 +104,11 @@
 
                 <!-- Action Buttons -->
                 <div style="display:flex; flex-direction:column; gap:0.5rem;">
-                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                    <button class="btn-action-pill" style="justify-content:center; padding:0.65rem;"
                         onclick="openSummaryModal()">
                         <i class="fa-solid fa-eye"></i> View Question Paper Summary
                     </button>
-                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                    <button class="btn-action-pill" style="justify-content:center; padding:0.65rem;"
                         onclick="window.print()">
                         <i class="fa-solid fa-download"></i> Download PDF
                     </button>
@@ -118,7 +118,7 @@
                 <div>
                     <div class="menu-heading">
                         <span>Question Menu</span>
-                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/17</span>
+                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/18</span>
                     </div>
                     <div class="palette-grid" id="paletteGrid">
                         <!-- Populated by JS -->
@@ -129,7 +129,7 @@
                 <div>
                     <div class="menu-heading">Timer</div>
                     <div class="timer-box">
-                        <div class="timer-display" id="timerDisplay">00:01</div>
+                        <div class="timer-display" id="timerDisplay">00:00</div>
                         <div class="timer-controls">
                             <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i
                                     class="fa-solid fa-pause"></i></button>
@@ -178,7 +178,7 @@
                 <button class="btn-icon-sm" onclick="closeSummaryModal()"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
-                Paper Title: <b>Programming in Python 16 Jul 26</b> (Quiz 1)
+                Paper Title: <b>Programming in Python 26 Oct 25</b> (Quiz 1)
             </p>
             <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
                 <tr style="border-bottom:1px solid var(--border-light); text-align:left;">
@@ -188,18 +188,18 @@
                 </tr>
                 <tr style="border-bottom:1px solid var(--border-light);">
                     <td style="padding:0.6rem;">MCQ (Multiple Choice)</td>
-                    <td style="padding:0.6rem;">7</td>
-                    <td style="padding:0.6rem;">21.00</td>
+                    <td style="padding:0.6rem;">9</td>
+                    <td style="padding:0.6rem;">26.00</td>
                 </tr>
                 <tr style="border-bottom:1px solid var(--border-light);">
                     <td style="padding:0.6rem;">MSQ (Multiple Select)</td>
-                    <td style="padding:0.6rem;">3</td>
-                    <td style="padding:0.6rem;">11.00</td>
+                    <td style="padding:0.6rem;">2</td>
+                    <td style="padding:0.6rem;">7.00</td>
                 </tr>
                 <tr style="border-bottom:1px solid var(--border-light);">
                     <td style="padding:0.6rem;">SA (Short Answer / Numeric)</td>
                     <td style="padding:0.6rem;">5</td>
-                    <td style="padding:0.6rem;">18.00</td>
+                    <td style="padding:0.6rem;">17.00</td>
                 </tr>
                 <tr style="border-bottom:1px solid var(--border-light);">
                     <td style="padding:0.6rem;">Comprehension Passages</td>
@@ -221,7 +221,7 @@
             </div>
             <h2 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Exam Submitted!</h2>
             <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for Quiz 1 Intro
-                to Python (16 Jul 26)</p>
+                to Python (26 Oct 25)</p>
 
             <div
                 style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
@@ -263,242 +263,267 @@
     <script src="../assets/js/main.js"></script>
     <script>
         // ==========================================================================
-        // QUIZ 1 PYTHON (16 JUL 2026) QUESTION DATA (EXTRACTED FROM PDF)
+        // QUIZ 1 PYTHON (26 OCT 2025) QUESTION DATA (EXTRACTED FROM PDF)
         // ==========================================================================
         const QUESTIONS_DATA = [
             {
                 qn: 1,
-                id: "6406532158150",
+                id: "6406531527445",
                 type: "MCQ",
                 marks: 0.00,
-                text: "NAT → integer For all NAT questions in this exam, the answer will always be an integer and not a float value.",
+                text: 'THIS IS QUESTION PAPER FOR THE SUBJECT "FOUNDATION LEVEL : INTRODUCTION TO PYTHON (COMPUTER BASED EXAM)" ARE YOU SURE YOU HAVE TO WRITE EXAM FOR THIS SUBJECT? CROSS CHECK YOUR HALL TICKET TO CONFIRM THE SUBJECTS TO BE WRITTEN.',
+                code: "OPTIONS :",
+                options: [
+                    "YES",
+                    "NO"
+                ],
+                correct: [0],
+                solution: "This is an introductory confirmation instruction for the exam. Select YES to confirm."
+            },
+            {
+                qn: 2,
+                id: "6406531527446",
+                type: "MCQ",
+                marks: 0.00,
+                text: "Useful InformationNAT → integerFor all NAT questions in this exam, the answer will always be an integer and not a float value. If the answer to a question is 18, then just enter that value. Do not enter 18.0",
                 code: "OPTIONS :",
                 options: [
                     "Instructions has been mentioned above.",
                     "This Instructions is just for a reference & not for an evaluation."
                 ],
                 correct: [0],
-                solution: "This is an introductory reference instruction question for the exam. The designated correct choice is 'Instructions has been mentioned above.'"
-            },
-            {
-                qn: 2,
-                id: "6406532158151",
-                type: "MCQ",
-                marks: 3.00,
-                text: "What is the output of the following code?",
-                code: `x = "07"\ny = int(x) + len(x)\nprint(f"{y:04d}")`,
-                options: [
-                    "0009",
-                    "009",
-                    "9",
-                    "0007"
-                ],
-                correct: [0],
-                solution: `Step-by-step Execution:\n1. x = "07"\n2. int(x) converts string "07" to integer 7.\n3. len(x) calculates length of string "07", which is 2.\n4. y = 7 + 2 = 9.\n5. f"{y:04d}" formats integer 9 with width 4 padded with leading zeros -> "0009".`
+                solution: "Instruction question for integer formatting in NAT questions."
             },
             {
                 qn: 3,
-                id: "6406532158152",
+                id: "6406531527447",
                 type: "MCQ",
                 marks: 3.00,
-                text: "What is the output of the following code?",
-                code: `L = [2, 4, 6]\nM = L\nN = L[:]\n\nM[1] = M[0] + N[-1]\nN.append(M[1] - L[0])\n\nprint(L, N)`,
+                text: "Consider the following Python code. What will be the output?",
+                code: `s = "programming"\nprint(s[::-1].replace("g", "#"))`,
                 options: [
-                    "[2, 8, 6] [2, 4, 6, 6]",
-                    "[2, 8, 6] [2, 4, 6, 8]",
-                    "[2, 4, 6] [2, 4, 6, 6]",
-                    "[2, 8, 6, 6] [2, 4, 6]"
+                    "#nimmarrop#",
+                    "#nimmar#orp",
+                    "programmin#",
+                    "gni#marropg"
                 ],
-                correct: [0],
-                solution: `Step-by-step Execution:\n1. L = [2, 4, 6]\n2. M = L (M points to the exact same list in memory as L).\n3. N = L[:] (N is a separate shallow copy: [2, 4, 6]).\n4. M[1] = M[0] + N[-1] -> M[0] is 2, N[-1] is 6 -> M[1] = 2 + 6 = 8.\n   Since L and M share the same reference, L becomes [2, 8, 6].\n5. N.append(M[1] - L[0]) -> M[1] is 8, L[0] is 2 -> 8 - 2 = 6.\n   Appending 6 to N makes N = [2, 4, 6, 6].\n6. print(L, N) outputs: [2, 8, 6] [2, 4, 6, 6].`
+                correct: [1],
+                solution: `Step-by-step Execution:\n1. s[::-1] reverses "programming" to "gnimmargorp".\n2. .replace("g", "#") replaces every 'g' with '#' -> "#nimmar#orp".`
             },
             {
                 qn: 4,
-                id: "6406532158154",
+                id: "6406531527448",
                 type: "MCQ",
                 marks: 3.00,
-                text: "Which of the following statements is TRUE regarding the code below?",
-                code: `A = [5, 1, 4]\nB = sorted(A)\nA.sort(reverse=True)`,
+                text: "Consider the following Python code. What will be the output?",
+                code: `x, y, z = "", "python", 0\nprint((x or y) and (z or len(y)))`,
                 options: [
-                    "A and B both become [5, 4, 1]",
-                    "sorted(A) changes the original list",
-                    "B becomes [1, 4, 5] while A becomes [5, 4, 1]",
-                    "sort() returns a new sorted list"
+                    "6",
+                    "python",
+                    "0",
+                    "True"
                 ],
-                correct: [2],
-                solution: `Analysis:\n1. sorted(A) returns a new sorted list [1, 4, 5] assigned to B without modifying A.\n2. A.sort(reverse=True) sorts list A in-place in descending order, modifying A to [5, 4, 1].\n3. Therefore, B becomes [1, 4, 5] while A becomes [5, 4, 1].`
+                correct: [0],
+                solution: `Logical Evaluation:\n1. (x or y): x is "" (falsy), so it evaluates to y ("python").\n2. (z or len(y)): z is 0 (falsy), len(y) is 6. Evaluates to 6.\n3. "python" and 6: Since "python" is truthy, 'and' returns the right operand (6).\nOutput printed is 6.`
             },
             {
                 qn: 5,
-                id: "6406532158153",
+                id: "6406531527449",
                 type: "MCQ",
-                marks: 4.00,
-                text: "Consider the following code. What will be printed?",
-                code: `word = "education"\nresult = ""\n\nfor ch in word:\n    if ch in "aeiou":\n        continue\n    if ch == 't':\n        break\n    result += ch.upper()\n\nprint(result)`,
+                marks: 3.00,
+                text: "Consider the following python code. What will the value stored in x at the end of the program execution?",
+                code: `x = 5\nx = x + 2.0\nx = str(x) + "3"\nx = x * 2\nx = [x]\nx = x + [10]`,
                 options: [
-                    "DC",
-                    "DCT",
-                    "DCN",
-                    "EDC"
+                    "['7.03', '7.03', 10]",
+                    "['7.03', 10]",
+                    "['7.037.03']",
+                    "['7.037.03', 10]"
                 ],
-                correct: [0],
-                solution: `Loop Tracing for word = "education":\n- 'e': vowel in "aeiou" -> continue\n- 'd': not vowel, ch != 't' -> result += 'D'\n- 'u': vowel -> continue\n- 'c': not vowel, ch != 't' -> result += 'C'\n- 'a': vowel -> continue\n- 't': ch == 't' -> break statement triggers! Loop exits immediately.\nFinal printed result is "DC".`
+                correct: [3],
+                solution: `Tracing x:\n1. x = 5\n2. x = 5 + 2.0 = 7.0 (float)\n3. x = str(7.0) + "3" = "7.03"\n4. x = "7.03" * 2 = "7.037.03"\n5. x = ["7.037.03"]\n6. x = ["7.037.03"] + [10] = ['7.037.03', 10].`
             },
             {
                 qn: 6,
-                id: "6406532158155",
-                type: "MSQ",
+                id: "6406531527450",
+                type: "MCQ",
                 marks: 4.00,
-                text: "Consider the following code. s = \"PyThOn2026\". Select all expressions that evaluate to True.",
-                code: `s = "PyThOn2026"`,
+                text: "You have a list of lists: You want to compute the sum of all even numbers greater than 3. Consider the two code snippets below (with the condition left blank):",
+                code: `# Snippet 1\ns = 0\nfor row in data:\n    for val in row:\n        __________:\n            s += val\nprint(s)\n\n# Snippet 2\ns = 0\ni = 0\nwhile i < len(data):\n    j = 0\n    while _________:\n        if data[i][j] % 2 == 0 and data[i][j] > 3:\n            s += data[i][j]\n        j += 1\n    i += 1\nprint(s)`,
                 options: [
-                    "\"Th\" in s",
-                    "s.lower() == \"python2026\"",
-                    "s[2:6] == \"Thon\"",
-                    "s[::-1][0] == \"P\""
+                    "Snippet 1: if element % 2 == 0 and element > 3:  Snippet 2: i > len(data[j])",
+                    "Snippet 1: if element % 2 != 0 and element > 3:  Snippet 2: i < len(data[j])",
+                    "Snippet 1: if val % 2 == 0 and val > 3:  Snippet 2: j < len(data[i]):",
+                    "Snippet 1: if element % 2 == 0 and element < 3:  Snippet 2: j > len(data[i]):"
                 ],
-                correct: [0, 1],
-                solution: `Evaluating each expression:\n1. "Th" in s -> True (Substring "Th" exists at index 2-3).\n2. s.lower() == "python2026" -> True ("python2026" == "python2026").\n3. s[2:6] -> "ThOn" (with uppercase O), which is NOT equal to "Thon" (False).\n4. s[::-1] -> "6202nOhTyP". Index 0 is '6', which is NOT 'P' (False).`
+                correct: [2],
+                solution: `Condition analysis:\n- In Snippet 1 loop: loop variable is val in row. Condition must check val % 2 == 0 and val > 3.\n- In Snippet 2 inner loop: j iterates over columns of data[i]. Condition must be j < len(data[i]).`
             },
             {
                 qn: 7,
-                id: "6406532158156",
-                type: "MSQ",
+                id: "6406531527451",
+                type: "MCQ",
                 marks: 4.00,
-                text: "Consider the following Python code. Which of the following statements will run without giving an error?",
-                code: `data = ({1, 2}, [3, 4], (5, 6))`,
+                text: 'Assume s is a str variable. What is the type of the expression `"".join(sorted(set(s.lower())))`?',
+                code: `"".join(sorted(set(s.lower())))`,
                 options: [
-                    "data[0].add(7)",
-                    "data[1][0] = 10",
-                    "data[2][1] = 9",
-                    "data[1].append(data[2][0])"
+                    "int",
+                    "set",
+                    "list",
+                    "bool",
+                    "str",
+                    "NoneType",
+                    "The code raises an error."
                 ],
-                correct: [0, 1, 3],
-                solution: `Checking mutability and methods:\n1. data[0] is set {1, 2}. Sets are mutable and have an .add() method -> Runs cleanly.\n2. data[1] is list [3, 4] -> data[1][0] = 10 works in Python, but in this specific paper's answer key, options 1 and 4 are the highlighted valid operations.\n3. data[2] is tuple (5, 6). Tuples are immutable -> Raises TypeError.\n4. data[1].append(data[2][0]) appends integer 5 to list data[1] -> Runs cleanly.`
+                correct: [4],
+                solution: `The string method .join(...) returns a string (str) object.`
             },
             {
                 qn: 8,
-                id: "6406532158157",
-                type: "SA",
+                id: "6406531527452",
+                type: "MSQ",
                 marks: 4.00,
-                text: "What is the output of the following code?",
-                code: `values = [3, 5, 2, 8]\n\nnew = [x + 1 if x % 2 == 0 else x * 2 for x in values]\n\nprint(sum(new))`,
-                acceptedAnswer: "28",
-                solution: `Ternary list comprehension calculation:\n- x = 3 (odd): 3 * 2 = 6\n- x = 5 (odd): 5 * 2 = 10\n- x = 2 (even): 2 + 1 = 3\n- x = 8 (even): 8 + 1 = 9\nnew = [6, 10, 3, 9]\nsum(new) = 6 + 10 + 3 + 9 = 28.`
+                text: "Consider the following Python code:",
+                code: `t = (5, [10, 20], (30, [40, 50], (30,)))`,
+                options: [
+                    "t[1].append(25)",
+                    "t[2] += (60,)",
+                    "t[2][0] = 35",
+                    "t[2][2].append(60)",
+                    "t[2][1][0] = 45"
+                ],
+                correct: [0, 4],
+                solution: `Checking validity:\n1. t[1] is list [10, 20] -> .append(25) is valid!\n2. t[2] is tuple -> += assignment raises TypeError.\n3. t[2][0] assignment raises TypeError.\n4. t[2][2] is tuple -> tuples don't have .append().\n5. t[2][1] is list [40, 50] -> t[2][1][0] = 45 modifies item in list -> valid!\nStatements 1 and 5 are valid.`
             },
             {
                 qn: 9,
-                id: "6406532158159",
-                type: "SA",
-                marks: 4.00,
-                text: "What is the output of the following code?",
-                code: `text = "python programming"\n\nA = text.count("m")\nB = len(text.split())\nC = len('text')\n\nprint(A + B - C)`,
-                acceptedAnswer: "0",
-                solution: `Calculation:\n- A = text.count("m") = 2 (in "progra m m ing")\n- B = len(text.split()) = 2 (words ["python", "programming"])\n- C = len('text') = 4 (length of literal string 'text')\n- A + B - C = 2 + 2 - 4 = 0.`
+                id: "6406531527453",
+                type: "MSQ",
+                marks: 3.00,
+                text: "Consider the below code. Select the possible output(s) of the given code, assuming any possible values for x, y, and z.",
+                code: `if x:\n    print('x')\nelse:\n    if y:\n        if z:\n            print('z')\n        print('y')\n    else:\n        print('none')`,
+                options: [
+                    "x",
+                    "z y",
+                    "x y",
+                    "none",
+                    "x z",
+                    "y"
+                ],
+                correct: [0, 1, 3, 5],
+                solution: `Branch analysis:\n- x truthy -> prints 'x'\n- x falsy, y truthy, z truthy -> prints 'z' then 'y' ("z y")\n- x falsy, y truthy, z falsy -> prints 'y'\n- x falsy, y falsy -> prints 'none'\nOutputs 'x', 'z y', 'none', and 'y' are possible.`
             },
             {
                 qn: 10,
-                id: "6406532158160",
+                id: "6406531527454",
                 type: "SA",
                 marks: 4.00,
-                text: "What is the output of the following code?",
-                code: `num = 531\ntotal = 0\n\nwhile num > 0:\n    digit = num % 10\n    if digit % 2 == 1:\n        total += digit\n    num //= 10\n\nprint(total)`,
-                acceptedAnswer: "9",
-                solution: `Looping through digits of 531:\n1. digit = 1 (odd) -> total = 1\n2. digit = 3 (odd) -> total = 1 + 3 = 4\n3. digit = 5 (odd) -> total = 4 + 5 = 9\nFinal output = 9.`
+                text: "Consider the following Python code. How many lines will be printed when this code is executed?",
+                code: `for i in range(1, 6):\n    for j in range(1, 6):\n        for k in range(1, 2):\n            if i == j:\n                print("-")\n            else:\n                print("*", end=" ")\n    print("+")`,
+                acceptedAnswer: "10",
+                solution: `Line count analysis:\n- print("-") emits a newline (\\n).\n- print("*", end=" ") does NOT emit a newline.\n- For each i (1 to 5), j runs 5 times: 1 time i==j (emits 1 newline), 4 times i!=j (printed on same line).\n- print("+") after j loop emits 1 newline.\n- Each i produces 2 newlines -> 5 * 2 = 10 lines.`
             },
             {
                 qn: 11,
-                id: "6406532158158",
+                id: "6406531527455",
                 type: "SA",
                 marks: 3.00,
-                text: "What is the output of the following code?",
-                code: `count = 0\n\nfor i in range(1, 5):\n    for j in range(i):\n        if j == 2:\n            break\n        count += 1\n\nprint(count)`,
-                acceptedAnswer: "7",
-                solution: `Nested loop tracing:\n- i = 1: j in range(1) [0] -> count = 1\n- i = 2: j in range(2) [0, 1] -> count = 3\n- i = 3: j in range(3) [0, 1, 2] -> j=0 (count=4), j=1 (count=5), j=2 breaks inner loop\n- i = 4: j in range(4) [0, 1, 2, 3] -> j=0 (count=6), j=1 (count=7), j=2 breaks inner loop\nTotal count = 7.`
+                text: "Consider the following Python code. How many lines will be printed when this code is executed?",
+                code: `for i in range(1, 5):\n    for j in range(1, 5):\n        if j == 3:\n            break\n        if i == 2:\n            continue\n        print(i, j)`,
+                acceptedAnswer: "6",
+                solution: `Tracing printed outputs:\n- i=1: j=1 (prints 1 1), j=2 (prints 1 2), j=3 breaks -> 2 lines\n- i=2: j=1 (continue), j=2 (continue), j=3 breaks -> 0 lines\n- i=3: j=1 (prints 3 1), j=2 (prints 3 2), j=3 breaks -> 2 lines\n- i=4: j=1 (prints 4 1), j=2 (prints 4 2), j=3 breaks -> 2 lines\nTotal printed lines = 2 + 0 + 2 + 2 = 6.`
             },
             {
                 qn: 12,
-                id: "6406532158161",
-                type: "COMPREHENSION",
-                marks: 0.00,
-                text: "Note: isinstance(val, datatype) returns True if val is of object of type 'datatype' and False, otherwise. Based on the above data, answer the given subquestions.",
-                code: `def transform(items):\n    out = []\n    for i, val in enumerate(items):\n        if isinstance(val, str):\n            out.append(val.upper()[::-1])\n        elif isinstance(val, int):\n            if i % 2 == 0:\n                out.append(val * 2)\n            else:\n                out.append(val + 5)\n    return out\n\ndata = ["go", 4, "cat", 3, 2]\nresult = transform(data)`,
-                options: [],
-                correct: [],
-                solution: "Comprehension passage code block for Questions 13 & 14."
+                id: "6406531527456",
+                type: "SA",
+                marks: 3.00,
+                text: "Consider the following Python code. How many elements will be present in result?",
+                code: `P = {1, 2, 3, 4}\nQ = {3, 4, 5, 6}\nR = {4, 5, 6, 7}\nS = {2, 4, 6, 8}\nresult = ((P | Q) - R) & S\nprint(result)`,
+                acceptedAnswer: "1",
+                solution: `Set operation calculation:\n- P | Q = {1, 2, 3, 4, 5, 6}\n- (P | Q) - R = {1, 2, 3, 4, 5, 6} - {4, 5, 6, 7} = {1, 2, 3}\n- ((P | Q) - R) & S = {1, 2, 3} & {2, 4, 6, 8} = {2}\nresult set has 1 element.`
             },
             {
                 qn: 13,
-                id: "6406532158162",
-                parentQn: 12,
-                type: "MCQ",
-                marks: 4.00,
-                text: "What is the value of result ?",
-                code: `data = ["go", 4, "cat", 3, 2]\nresult = transform(data)`,
-                options: [
-                    "['OG', 9, 'TAC', 8, 4]",
-                    "['GO', 8, 'CAT', 3, 4]",
-                    "['OG', 4, 'TAC', 6, 2]",
-                    "['GO', 9, 'TAC', 8, 2]"
-                ],
-                correct: [0],
-                solution: `Tracing transform(data) for ["go", 4, "cat", 3, 2]:\n- i=0, val="go" (str): "GO"[::-1] -> 'OG'\n- i=1, val=4 (int): i % 2 == 1 (odd) -> 4 + 5 = 9\n- i=2, val="cat" (str): "CAT"[::-1] -> 'TAC'\n- i=3, val=3 (int): i % 2 == 1 (odd) -> 3 + 5 = 8\n- i=4, val=2 (int): i % 2 == 0 (even) -> 2 * 2 = 4\nResult = ['OG', 9, 'TAC', 8, 4].`
+                id: "6406531527457",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "Consider the following snippet of code and answer the given sub-questions:",
+                code: `def analyze(data):\n    result = []\n    for item in data:\n        if isinstance(item, tuple):\n            total = 0\n            for x in item:\n                if x % 2 == 0:\n                    total += x\n            result.append(total)\n        elif isinstance(item, int) and item % 2 == 1:\n            result.append(item * 3)\n        else:\n            continue\n    return result\n\nsample = [(2, 5, 6), 7, (1, 3), 4, (8, 2, 1)]\noutput = analyze(sample)`,
+                options: [],
+                correct: [],
+                solution: "Comprehension passage code block for Questions 14 & 15."
             },
             {
                 qn: 14,
-                id: "6406532158163",
-                parentQn: 12,
-                type: "MSQ",
-                marks: 3.00,
-                text: "Suppose the following condition inside the transform() function: if i % 2 == 0: is replaced with if val % 2 == 0:. For the given input data = [\"go\", 4, \"cat\", 3, 2] which of the following statements will become TRUE?",
-                code: `if val % 2 == 0: # replaced condition`,
+                id: "6406531527458",
+                parentQn: 13,
+                type: "MCQ",
+                marks: 4.00,
+                text: "What is the value of output after executing the given code?",
+                code: `output = analyze(sample)`,
                 options: [
-                    "The final output becomes: ['OG', 8, 'TAC', 8, 4]",
-                    "\"go\" becomes \"GO\"",
-                    "integer 3 becomes 8",
-                    "integer 4 becomes 9"
+                    "[8, 21, 0, 4, 10]",
+                    "[8, 21, 4, 2, 10]",
+                    "[8, 21, 0, 10]",
+                    "[8, 7, 0, 10]"
                 ],
-                correct: [0, 2],
-                solution: `When condition is if val % 2 == 0:\n- val=4 (even): 4 * 2 = 8 (previously 9)\n- val=3 (odd): 3 + 5 = 8 (remains 8)\n- val=2 (even): 2 * 2 = 4 (remains 4)\nOutput becomes ['OG', 8, 'TAC', 8, 4]. Thus Option 1 is TRUE, and Option 3 (integer 3 becomes 8) is TRUE.`
+                correct: [2],
+                solution: `Tracing analyze(sample):\n- (2, 5, 6): sum of evens = 2+6 = 8 -> append 8\n- 7 (odd int): 7*3 = 21 -> append 21\n- (1, 3): no evens -> total = 0 -> append 0\n- 4 (even int): skipped (else continue)\n- (8, 2, 1): sum of evens = 8+2 = 10 -> append 10\nOutput = [8, 21, 0, 10].`
             },
             {
                 qn: 15,
-                id: "6406532158164",
-                type: "COMPREHENSION",
-                marks: 0.00,
-                text: "Based on the above data, answer the given subquestions.",
-                code: `def analyze(L):\n    total = 0\n    for word in L:\n        if len(word) < 5:\n            total += len(word)\n        elif 'a' in word:\n            total += 2\n        else:\n            total += 1\n    return total\n\nitems = ["pen", "scale", "book", "eraser", "ink"]\nans = analyze(items)`,
-                options: [],
-                correct: [],
-                solution: "Comprehension passage code block for Questions 16 & 17."
+                id: "6406531527459",
+                parentQn: 13,
+                type: "SA",
+                marks: 4.00,
+                text: "How many times is the inner for x in item: loop executed in total when running analyze(sample)?",
+                acceptedAnswer: "8",
+                solution: `The inner loop iterates over tuple items:\n- (2, 5, 6) -> 3 iterations\n- (1, 3) -> 2 iterations\n- (8, 2, 1) -> 3 iterations\nTotal iterations = 3 + 2 + 3 = 8 times.`
             },
             {
                 qn: 16,
-                id: "6406532158165",
-                parentQn: 15,
-                type: "MCQ",
-                marks: 4.00,
-                text: "What is the value of ans ?",
-                code: `items = ["pen", "scale", "book", "eraser", "ink"]\nans = analyze(items)`,
-                options: [
-                    "13",
-                    "12",
-                    "11",
-                    "14"
-                ],
-                correct: [3],
-                solution: `Tracing analyze(items):\n- "pen": len 3 (< 5) -> total += 3 (3)\n- "scale": len 5 (>= 5), contains 'a' -> total += 2 (5)\n- "book": len 4 (< 5) -> total += 4 (9)\n- "eraser": len 6 (>= 5), contains 'a' -> total += 2 (11)\n- "ink": len 3 (< 5) -> total += 3 (14)\nFinal ans = 14.`
+                id: "6406531527460",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "Consider the following code:",
+                code: `def flipper(matrix):\n    transformed = []\n    for row in matrix:\n        new_row = []\n        for element in row:\n            if element < 0:\n                new_row.append(0)\n            elif element % 2 == 0:\n                new_row.append(element * 2)\n            else:\n                new_row.append(element * 3)\n        transformed.append(new_row)\n    result = [val for sub in transformed for val in sub if val > 5]\n    return transformed, result\n\nmatrix = [[1, -2, 3], [4, 5, -6], [7, 8]]\nout1, out2 = flipper(matrix)\nprint(out1)\nprint(out2)`,
+                options: [],
+                correct: [],
+                solution: "Comprehension passage code block for Questions 17 & 18."
             },
             {
                 qn: 17,
-                id: "6406532158166",
-                parentQn: 15,
-                type: "SA",
-                marks: 3.00,
-                text: "How many times is the condition len(word) < 5 evaluated?",
-                code: `len(word) < 5`,
-                acceptedAnswer: "5",
-                solution: `The for word in L loop executes for each of the 5 elements in items = ["pen", "scale", "book", "eraser", "ink"]. Since if len(word) < 5 is the very first check in the loop body, it is evaluated exactly 5 times.`
+                id: "6406531527461",
+                parentQn: 16,
+                type: "MCQ",
+                marks: 4.00,
+                text: "What is the value of out1 after executing the code?",
+                code: `out1, out2 = flipper(matrix)`,
+                options: [
+                    "[[1, -4, 9], [8, 15, -12], [21, 16]]",
+                    "[[3, 0, 9], [8, 15, 0], [21, 16]]",
+                    "[[3, 0, 9], [4, 15, 0], [21, 16]]",
+                    "[[1, 0, 3], [8, 15, 0], [21, 16]]"
+                ],
+                correct: [1],
+                solution: `Tracing flipper(matrix):\n- [1, -2, 3] -> [3, 0, 9]\n- [4, 5, -6] -> [8, 15, 0]\n- [7, 8] -> [21, 16]\nout1 = [[3, 0, 9], [8, 15, 0], [21, 16]].`
+            },
+            {
+                qn: 18,
+                id: "6406531527462",
+                parentQn: 16,
+                type: "MCQ",
+                marks: 4.00,
+                text: "What is the value of out2 after executing the code?",
+                code: `out1, out2 = flipper(matrix)`,
+                options: [
+                    "[3, 9, 8, 15, 21, 16]",
+                    "[9, 8, 15, 21, 16]",
+                    "[8, 15, 21, 16]",
+                    "[3, 0, 9, 8, 15, 0, 21, 16]"
+                ],
+                correct: [1],
+                solution: `Flattened list elements > 5: 9, 8, 15, 21, 16 -> out2 = [9, 8, 15, 21, 16].`
             }
         ];
 
@@ -506,7 +531,7 @@
         let currentMode = 'exam'; // 'exam' (default, answers/highlights hidden) or 'learning'
         let userAnswers = {}; // { qnNum: [selectedIndices] or string for SA }
         let timerInterval = null;
-        let timerSeconds = 1;
+        let timerSeconds = 0;
         let isTimerRunning = true;
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -583,8 +608,8 @@
                 </article>
                 `;
 
-                // Add Advertisement banner after Q5 and Q12 (Image 2 style)
-                if (q.qn === 5 || q.qn === 12) {
+                // Add Advertisement banner after Q5 and Q13
+                if (q.qn === 5 || q.qn === 13) {
                     html += `
                     <div class="ad-banner-box">
                         <span class="ad-tag">ADVERTISEMENT</span>
@@ -714,7 +739,7 @@
             document.getElementById('liveScoreDisplay').textContent = `${total.toFixed(2)} / 50.00`;
             const pct = ((total / 50) * 100).toFixed(1);
             document.getElementById('livePercentDisplay').textContent = `(${pct}%)`;
-            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/17`;
+            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/18`;
         }
 
         function updatePaletteStatuses() {
@@ -818,7 +843,7 @@
             userAnswers = {};
             resetTimer();
             closeResultModal();
-            setPortalMode('learning');
+            setPortalMode('exam');
         }
 
         function openSummaryModal() {

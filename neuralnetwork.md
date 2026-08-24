@@ -48,6 +48,10 @@ graph TD
 | File Path | Description & Key Responsibilities | Key Symbols / JS Objects |
 | :--- | :--- | :--- |
 | [`python/quiz_1_python_16jul26.html`](file:///c:/Users/Atanu%20Das/OneDrive/Desktop/self%20project/bsh/python/quiz_1_python_16jul26.html) | Interactive Exam Viewer for Python Quiz 1 (16 Jul 2026). Exam & Learning modes, live score calculator, modal summaries, timer. | `QUESTIONS`, `userAnswers`, `setPortalMode()`, `openSummaryModal()`, `submitExam()` |
+| [`python/quiz_1_python_15mar26.html`](file:///c:/Users/Atanu%20Das/OneDrive/Desktop/self%20project/bsh/python/quiz_1_python_15mar26.html) | Interactive Exam Viewer for Python Quiz 1 (15 Mar 2026). Exam & Learning modes, 32 questions, 100 marks total. | `QUESTIONS_DATA`, `userAnswers`, `setPortalMode()`, `submitExam()` |
+| [`python/quiz_1_python_26oct25.html`](file:///c:/Users/Atanu%20Das/OneDrive/Desktop/self%20project/bsh/python/quiz_1_python_26oct25.html) | Interactive Exam Viewer for Python Quiz 1 (26 Oct 2025). Exam & Learning modes, 18 questions, 50 marks total. | `QUESTIONS_DATA`, `userAnswers`, `setPortalMode()`, `submitExam()` |
+| [`python/quiz_1_python_13jul25.html`](file:///c:/Users/Atanu%20Das/OneDrive/Desktop/self%20project/bsh/python/quiz_1_python_13jul25.html) | Interactive Exam Viewer for Python Quiz 1 (13 Jul 2025). Exam & Learning modes, 18 questions, 50 marks total. | `QUESTIONS_DATA`, `userAnswers`, `setPortalMode()`, `submitExam()` |
+| [`python/quiz_1_python_23feb25.html`](file:///c:/Users/Atanu%20Das/OneDrive/Desktop/self%20project/bsh/python/quiz_1_python_23feb25.html) | Interactive Exam Viewer for Python Quiz 1 (23 Feb 2025). Exam & Learning modes, 23 questions, 45 marks total. | `QUESTIONS_DATA`, `userAnswers`, `setPortalMode()`, `submitExam()` |
 | [`python/index.html`](file:///c:/Users/Atanu%20Das/OneDrive/Desktop/self%20project/bsh/python/index.html) | Redirect / index helper for Python papers directory. | Directory index |
 
 ### 🎨 Styles & JavaScript (`/assets/`)
