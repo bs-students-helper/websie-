@@ -10,6 +10,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     initThemeToggle();
     initCleanURLRouting();
+    initPageTransitions();
     initAnnouncementBar();
     initNavigation();
     initQuizEngine();
@@ -663,5 +664,102 @@ function initInspectProtection() {
         }
     }, true);
 }
+
+/* --------------------------------------------------------------------------
+   Smooth Page Transition & Route Loading Engine
+   -------------------------------------------------------------------------- */
+function initPageTransitions() {
+    let loaderBar = document.getElementById('bshPageLoaderBar');
+    if (!loaderBar && document.body) {
+        loaderBar = document.createElement('div');
+        loaderBar.id = 'bshPageLoaderBar';
+        document.body.appendChild(loaderBar);
+    }
+
+    if (document.body) {
+        document.body.classList.remove('page-transitioning-out');
+        document.body.classList.add('page-entry-animate');
+    }
+
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (!link) return;
+
+        const href = link.getAttribute('href');
+        if (!href) return;
+
+        // Ignore anchors, javascript, mailto, tel, target="_blank", downloads, coming soon buttons
+        if (
+            href === '#' ||
+            href.startsWith('#') ||
+            href.startsWith('javascript:') ||
+            href.startsWith('mailto:') ||
+            href.startsWith('tel:') ||
+            link.getAttribute('target') === '_blank' ||
+            link.hasAttribute('download') ||
+            link.hasAttribute('data-coming-soon') ||
+            link.hasAttribute('data-no-transition') ||
+            e.metaKey || e.ctrlKey || e.shiftKey || e.altKey
+        ) {
+            return;
+        }
+
+        let targetUrl;
+        try {
+            targetUrl = new URL(link.href, window.location.href);
+        } catch (err) {
+            return;
+        }
+
+        if (targetUrl.origin !== window.location.origin) return;
+
+        const currentCleanPath = window.location.pathname.replace(/\/$/, '');
+        const targetCleanPath = targetUrl.pathname.replace(/\/$/, '');
+
+        // If clicking a link pointing to an anchor on the same page
+        if (currentCleanPath === targetCleanPath && targetUrl.search === window.location.search && targetUrl.hash) {
+            return;
+        }
+
+        e.preventDefault();
+
+        if (!loaderBar && document.body) {
+            loaderBar = document.createElement('div');
+            loaderBar.id = 'bshPageLoaderBar';
+            document.body.appendChild(loaderBar);
+        }
+
+        if (loaderBar) {
+            loaderBar.style.width = '0%';
+            loaderBar.classList.add('active');
+            requestAnimationFrame(() => {
+                loaderBar.style.width = '75%';
+            });
+        }
+
+        document.body.classList.remove('page-entry-animate');
+        document.body.classList.add('page-transitioning-out');
+
+        setTimeout(() => {
+            if (loaderBar) loaderBar.style.width = '100%';
+            window.location.href = targetUrl.href;
+        }, 200);
+    });
+
+    window.addEventListener('pageshow', () => {
+        if (document.body) {
+            document.body.classList.remove('page-transitioning-out');
+            document.body.classList.add('page-entry-animate');
+        }
+        if (loaderBar) {
+            loaderBar.style.width = '100%';
+            setTimeout(() => {
+                loaderBar.classList.remove('active');
+                loaderBar.style.width = '0%';
+            }, 300);
+        }
+    });
+}
+
 
 

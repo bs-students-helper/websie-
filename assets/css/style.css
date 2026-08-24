@@ -258,6 +258,41 @@ html {
     font-size: 16px;
 }
 
+/* Cross-Document View Transitions API (Modern Browsers) */
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-old(root) {
+    animation: bshViewFadeOut 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+::view-transition-new(root) {
+    animation: bshViewFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes bshViewFadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.995);
+    }
+}
+
+@keyframes bshViewFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 body {
     background-color: var(--bg-main);
     color: var(--text-primary);
@@ -266,6 +301,67 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    will-change: opacity, transform;
+    transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.page-entry-animate {
+    animation: bshPageSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) ease-out forwards;
+}
+
+body.page-transitioning-out {
+    opacity: 0 !important;
+    transform: translateY(-5px) scale(0.995) !important;
+    pointer-events: none !important;
+}
+
+@keyframes bshPageSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Top Route Progress Loader Bar */
+#bshPageLoaderBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, #D97706, #059669, #38BDF8);
+    z-index: 9999999;
+    pointer-events: none;
+    opacity: 0;
+    transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+    box-shadow: 0 0 10px rgba(217, 119, 6, 0.6);
+}
+
+[data-theme="dark"] #bshPageLoaderBar {
+    background: linear-gradient(90deg, #F59E0B, #10B981, #38BDF8, #A78BFA);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.7);
+}
+
+#bshPageLoaderBar.active {
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body {
+        transition: none !important;
+        will-change: auto !important;
+    }
+    body.page-transitioning-out {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    body.page-entry-animate {
+        animation: none !important;
+    }
 }
 
 a {
