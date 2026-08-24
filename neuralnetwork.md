@@ -54,6 +54,7 @@ graph TD
 | File Path | Description & Key Responsibilities | Key Symbols / JS Objects |
 | :--- | :--- | :--- |
 | [`assets/css/style.css`](file:///c:/Users/Atanu%20Das/OneDrive/Desktop/self%20project/bsh/assets/css/style.css) | Core Design System. Theme CSS Variables (`--bg-dark`, `--text-primary`, `--border-color`), Navbar, Footer, Modals, Badges. | `:root`, `[data-theme="dark"]`, `.hero-section`, `.modal-overlay` |
+| [`assets/css/quiz-portal.css`](file:///c:/Users/Atanu%20Das/OneDrive/Desktop/self%20project/bsh/assets/css/quiz-portal.css) | Centralized Quiz Portal CSS System. Responsive question cards, mobile collapsible drawer, Image 2 header & pill actions, SA inputs, FAB. | `.portal-layout`, `.qn-card`, `.sa-input`, `.btn-solution-pill`, `.fab-back-to-top` |
 | [`assets/css/calculator.css`](file:///c:/Users/Atanu%20Das/OneDrive/Desktop/self%20project/bsh/assets/css/calculator.css) | Calculator-specific styling and form input layouts. | `.calc-card`, `.grade-result` |
 | [`assets/js/main.js`](file:///c:/Users/Atanu%20Das/OneDrive/Desktop/self%20project/bsh/assets/js/main.js) | Global site logic. Dark/light theme toggle, mobile navbar drawer, header sticky observer, and `[data-coming-soon]` click handler. | `toggleTheme()`, `initComingSoonModal()` |
 | [`assets/js/calculator.js`](file:///c:/Users/Atanu%20Das/OneDrive/Desktop/self%20project/bsh/assets/js/calculator.js) | Formula engine and course grade calculations. | `COURSES_DATA`, `computeSEC()` |
