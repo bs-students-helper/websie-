@@ -2389,7 +2389,29 @@ img {
     }
 
     .papers-grid {
-        grid-template-columns: 1fr !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.65rem !important;
+    }
+
+    .paper-card {
+        padding: 0.75rem 0.65rem !important;
+        gap: 0.4rem !important;
+    }
+
+    .paper-icon {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 0.82rem !important;
+    }
+
+    .paper-title {
+        font-size: 0.78rem !important;
+        line-height: 1.25 !important;
+    }
+
+    .paper-tag {
+        font-size: 0.64rem !important;
+        padding: 0.15rem 0.38rem !important;
     }
 
     .empty-state {
