@@ -6,7 +6,7 @@
     <!-- Main Landing Page -->
     <url>
         <loc>https://bsstudentshelper.vercel.app/</loc>
-        <lastmod>2026-08-24</lastmod>
+        <lastmod>2026-08-27</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.00</priority>
     </url>
@@ -14,7 +14,7 @@
     <!-- Quiz Practice Hub Page -->
     <url>
         <loc>https://bsstudentshelper.vercel.app/quiz_practice.html</loc>
-        <lastmod>2026-08-24</lastmod>
+        <lastmod>2026-08-27</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.95</priority>
     </url>
@@ -22,7 +22,7 @@
     <!-- Quiz 1 Question Papers Library Hub -->
     <url>
         <loc>https://bsstudentshelper.vercel.app/quiz_1_practice.html</loc>
-        <lastmod>2026-08-24</lastmod>
+        <lastmod>2026-08-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
@@ -30,7 +30,7 @@
     <!-- Quiz 2 Question Papers Library Hub -->
     <url>
         <loc>https://bsstudentshelper.vercel.app/quiz_2_practice.html</loc>
-        <lastmod>2026-08-24</lastmod>
+        <lastmod>2026-08-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
@@ -38,7 +38,7 @@
     <!-- End Term Question Papers Library Hub -->
     <url>
         <loc>https://bsstudentshelper.vercel.app/end_term_practice.html</loc>
-        <lastmod>2026-08-24</lastmod>
+        <lastmod>2026-08-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
@@ -46,7 +46,7 @@
     <!-- PYQ Archives & OPP Library Hub -->
     <url>
         <loc>https://bsstudentshelper.vercel.app/pyq_practice.html</loc>
-        <lastmod>2026-08-24</lastmod>
+        <lastmod>2026-08-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
@@ -54,7 +54,7 @@
     <!-- SEC Grade Calculator Page -->
     <url>
         <loc>https://bsstudentshelper.vercel.app/calculator.html</loc>
-        <lastmod>2026-08-24</lastmod>
+        <lastmod>2026-08-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
@@ -62,7 +62,7 @@
     <!-- About Us Page -->
     <url>
         <loc>https://bsstudentshelper.vercel.app/about.html</loc>
-        <lastmod>2026-08-24</lastmod>
+        <lastmod>2026-08-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.80</priority>
     </url>
@@ -70,7 +70,7 @@
     <!-- Contact & Feedback Page -->
     <url>
         <loc>https://bsstudentshelper.vercel.app/contact_us.html</loc>
-        <lastmod>2026-08-24</lastmod>
+        <lastmod>2026-08-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.70</priority>
     </url>
