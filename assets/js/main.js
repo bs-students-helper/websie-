@@ -7,7 +7,7 @@
    4. FAQ Accordions & Mobile Navigation
    ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initAllBSHModules() {
     initThemeToggle();
     initCleanURLRouting();
     initPageTransitions();
@@ -20,7 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
     initStatsCounter();
     initComingSoonModal();
     initInspectProtection();
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAllBSHModules);
+} else {
+    initAllBSHModules();
+}
 
 /* --------------------------------------------------------------------------
    0. Dark / Light Theme Toggle Engine
@@ -318,7 +324,7 @@ function initSECGradeCalculator() {
         const option1 = 0.6 * q1 + 0.4 * et;
         const option2 = 0.2 * q1 + 0.3 * q2 + 0.4 * et;
         const option3 = 0.25 * q1 + 0.35 * q2 + 0.4 * et;
-        
+
         const maxExamScore = Math.max(option1, option2, option3);
         const totalScore = (0.1 * ga) + (0.9 * (maxExamScore / 100) * 100);
 
@@ -466,7 +472,7 @@ function initReviewSystem() {
 }
 
 function escapeHTML(str) {
-    return str.replace(/[&<>'"]/g, 
+    return str.replace(/[&<>'"]/g,
         tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
     );
 }
@@ -511,7 +517,7 @@ function initStatsCounter() {
                         const elapsed = currentTime - startTime;
                         const progress = Math.min(elapsed / duration, 1);
                         const currentVal = Math.floor(progress * target);
-                        
+
                         if (target > 1000) {
                             num.textContent = currentVal.toLocaleString() + '+';
                         } else {
@@ -534,88 +540,82 @@ function initStatsCounter() {
 }
 
 /* --------------------------------------------------------------------------
-   7. Feature "Coming Soon / Stay Tuned" Modal Handler
+   7. Feature "Coming Soon / Stay Tuned" Modal & Toast Handler
    -------------------------------------------------------------------------- */
+function showBSHToast(title, message) {
+    let container = document.querySelector('.bsh-toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.className = 'bsh-toast-container';
+        document.body.appendChild(container);
+    }
+
+    const toast = document.createElement('div');
+    toast.className = 'bsh-toast';
+    toast.innerHTML = `
+        <div class="bsh-toast-icon"><i class="fa-solid fa-rocket"></i></div>
+        <div class="bsh-toast-content">
+            <div class="bsh-toast-title">${title || 'Launching Soon!'}</div>
+            <div class="bsh-toast-desc">${message || 'This feature is currently under active development.'}</div>
+        </div>
+        <button class="bsh-toast-close" aria-label="Close Toast"><i class="fa-solid fa-xmark"></i></button>
+    `;
+
+    container.appendChild(toast);
+
+    const closeBtn = toast.querySelector('.bsh-toast-close');
+    const removeToast = () => {
+        toast.classList.add('toast-hiding');
+        setTimeout(() => toast.remove(), 300);
+    };
+
+    if (closeBtn) closeBtn.addEventListener('click', removeToast);
+    setTimeout(removeToast, 4200);
+}
+
 function initComingSoonModal() {
-    const modal = document.getElementById('comingSoonModal');
-    const closeIconBtn = document.getElementById('closeComingSoonModal');
-    const closeBtn = document.getElementById('closeComingSoonBtn');
-    const notifyForm = document.getElementById('comingSoonNotifyForm');
-    const notifyEmail = document.getElementById('notifyEmail');
-    const successMsg = document.getElementById('notifySuccessMsg');
-    const comingSoonTitle = document.getElementById('comingSoonTitle');
-
-    if (!modal) return;
-
-    const openModal = (featureName) => {
-        if (comingSoonTitle) {
-            comingSoonTitle.textContent = featureName ? `${featureName}` : 'Feature Under Development';
-        }
-        if (successMsg) successMsg.style.display = 'none';
-        if (notifyForm) notifyForm.style.display = 'block';
-        if (notifyEmail) notifyEmail.value = '';
-
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Lock background scrolling
+    window.openComingSoonDirect = (featureName) => {
+        const titleText = featureName ? `${featureName}` : 'Feature Under Development';
+        showBSHToast("Launching Soon 🚀", `${titleText} is actively being built. Stay tuned!`);
     };
 
-    const closeModal = () => {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-    };
-
-    // Attach click listeners to all data-coming-soon elements & placeholder links
+    // Attach click listeners to all data-coming-soon & tag-coming-soon elements & placeholder links
     document.addEventListener('click', (e) => {
-        const comingSoonTarget = e.target.closest('[data-coming-soon]');
+        const comingSoonTarget = e.target.closest('[data-coming-soon], .tag-coming-soon, .badge-coming-soon');
         if (comingSoonTarget) {
+            const anchor = comingSoonTarget.closest('a');
+            if (anchor && anchor.getAttribute('href') && anchor.getAttribute('href') !== '#' && !comingSoonTarget.hasAttribute('data-coming-soon')) {
+                return;
+            }
+
             e.preventDefault();
-            const featureName = comingSoonTarget.getAttribute('data-coming-soon');
-            openModal(featureName);
+            e.stopPropagation();
+            let featureName = comingSoonTarget.getAttribute('data-coming-soon');
+            if (!featureName) {
+                const parentCard = comingSoonTarget.closest('.feature-card, .quiz-mode-card, .paper-card');
+                if (parentCard) {
+                    const titleEl = parentCard.querySelector('.feature-title, .quiz-mode-title, .paper-title, h3, h4');
+                    if (titleEl) featureName = titleEl.textContent.trim();
+                }
+            }
+            window.openComingSoonDirect(featureName || 'Launching Soon');
             return;
         }
 
         const anchor = e.target.closest('a');
         if (anchor) {
             const href = anchor.getAttribute('href');
-            // If it's a dummy anchor # or empty, open coming soon modal (unless handled by other logic)
-            if ((href === '#' || href === '') && !anchor.classList.contains('brand-logo') && !anchor.hasAttribute('data-filter')) {
+            // If it's a dummy anchor # or empty, trigger notification
+            if ((href === '#' || href === '') &&
+                !anchor.classList.contains('brand-logo') &&
+                !anchor.hasAttribute('data-filter') &&
+                !anchor.classList.contains('hero-scroll-indicator')) {
                 e.preventDefault();
                 const featureText = anchor.textContent.trim() || 'Portal Feature';
-                openModal(featureText);
+                window.openComingSoonDirect(featureText);
             }
         }
     });
-
-    // Close Modal Events
-    if (closeIconBtn) closeIconBtn.addEventListener('click', closeModal);
-    if (closeBtn) closeBtn.addEventListener('click', closeModal);
-
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            closeModal();
-        }
-    });
-
-    // Handle email subscription
-    if (notifyForm) {
-        notifyForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = notifyEmail.value.trim();
-            if (email) {
-                // Store subscriber email locally for demo
-                const subscribers = JSON.parse(localStorage.getItem('bsh_subscribers') || '[]');
-                subscribers.push({ email, date: new Date().toISOString() });
-                localStorage.setItem('bsh_subscribers', JSON.stringify(subscribers));
-
-                notifyForm.style.display = 'none';
-                if (successMsg) successMsg.style.display = 'block';
-            }
-        });
-    }
 }
 
 /* --------------------------------------------------------------------------
@@ -643,7 +643,7 @@ function initInspectProtection() {
 
         // F12 key (Key code 123)
         const isF12 = key === 'F12' || keyCode === 123;
-        
+
         // Ctrl+Shift+I / Cmd+Opt+I (Inspect element)
         // Ctrl+Shift+J / Cmd+Opt+J (Console)
         // Ctrl+Shift+C / Cmd+Opt+C (Element picker)
@@ -760,6 +760,5 @@ function initPageTransitions() {
         }
     });
 }
-
 
 

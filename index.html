@@ -276,7 +276,10 @@
 
             <!-- Desktop Header Actions -->
             <div class="header-actions">
-                <a href="quiz_practice.html" class="btn btn-secondary nav-btn-desktop">Practice Quiz</a>
+                <a href="quiz_practice.html" class="btn btn-secondary nav-btn-desktop">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span>Practice Quiz</span>
+                </a>
                 <a href="calculator.html" class="btn btn-primary nav-btn-desktop">
                     <span>Calculate SEC Grade</span>
                     <i class="fa-solid fa-calculator"></i>
@@ -302,7 +305,7 @@
                 <div class="hero-badge-wrapper">
                     <div class="pill-badge">
                         <span class="badge-dot"></span>
-                        <span class="badge-text">Built by IITM BS Students, for IITM BS Students</span>
+                        <span class="badge-text">Built by IITM BS Student, for IITM BS Students</span>
                     </div>
                 </div>
 
@@ -595,14 +598,13 @@
                 </div>
 
                 <div class="features-grid">
-                    <div class="feature-card">
+                    <a href="quiz_practice.html" class="feature-card clickable-card">
                         <div class="feature-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
                         <h3 class="feature-title">Adaptive Quiz Practice Engine</h3>
                         <p class="feature-desc">Searchable term-wise archive of solved past quiz papers, mock tests, and
                             graded assignment solutions with verified keys.</p>
-                        <span class="feature-tag tag-coming-soon">Launching Soon <i
-                                class="fa-solid fa-arrow-right"></i></span>
-                    </div>
+                        <span class="feature-tag">Practice Now <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
 
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fa-solid fa-calculator"></i></div>
@@ -612,7 +614,8 @@
                         <a href="calculator.html" class="feature-tag">Updated Term 2 Formula</a>
                     </div>
 
-                    <div class="feature-card clickable-card" data-coming-soon="PYQ Vault & Solved Papers">
+                    <div class="feature-card clickable-card" data-coming-soon="PYQ Vault & Solved Papers"
+                        onclick="openComingSoonDirect('PYQ Vault & Solved Papers', event)">
                         <div class="feature-icon"><i class="fa-solid fa-vault"></i></div>
                         <h3 class="feature-title">Previous Year Question Vault</h3>
                         <p class="feature-desc">Searchable term-wise archive of solved past quiz papers, mock tests, and
@@ -621,7 +624,8 @@
                                 class="fa-solid fa-arrow-right"></i></span>
                     </div>
 
-                    <div class="feature-card clickable-card" data-coming-soon="Peer Notes & Formula Sheets">
+                    <div class="feature-card clickable-card" data-coming-soon="Peer Notes & Formula Sheets"
+                        onclick="openComingSoonDirect('Peer Notes & Formula Sheets', event)">
                         <div class="feature-icon"><i class="fa-solid fa-book-open"></i></div>
                         <h3 class="feature-title">Peer Notes & Formula Sheets</h3>
                         <p class="feature-desc">High-yield summary cheatsheets for Maths, Stats, Computational Thinking,
@@ -630,7 +634,8 @@
                                 class="fa-solid fa-arrow-right"></i></span>
                     </div>
 
-                    <div class="feature-card clickable-card" data-coming-soon="IITM BS Student Discord & Study Hub">
+                    <div class="feature-card clickable-card" data-coming-soon="IITM BS Student Discord & Study Hub"
+                        onclick="openComingSoonDirect('IITM BS Student Discord & Study Hub', event)">
                         <div class="feature-icon"><i class="fa-solid fa-users"></i></div>
                         <h3 class="feature-title">Discord & Study Group Hub</h3>
                         <p class="feature-desc">Connect with course study partners, find assignment discussion threads,
@@ -1004,40 +1009,7 @@
         </div>
     </div>
 
-    <!-- Feature Coming Soon Modal Dialog -->
-    <div class="modal-overlay" id="comingSoonModal">
-        <div class="modal-card coming-soon-card">
-            <div class="modal-header">
-                <span class="badge badge-gold"><i class="fa-solid fa-clock-rotate-left"></i> STAY TUNED</span>
-                <button class="modal-close" id="closeComingSoonModal" aria-label="Close Modal"><i
-                        class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="modal-body coming-soon-body">
-                <div class="coming-soon-icon-wrap">
-                    <i class="fa-solid fa-rocket coming-soon-icon"></i>
-                </div>
-                <h3 id="comingSoonTitle" class="coming-soon-heading">Feature Under Development</h3>
-                <p id="comingSoonDesc" class="coming-soon-text">
-                    We are actively building this feature for IIT Madras BS Students. Stay tuned for early access &
-                    updates!
-                </p>
-                <form id="comingSoonNotifyForm" class="coming-soon-form">
-                    <div class="notify-input-group">
-                        <input type="email" id="notifyEmail" placeholder="Enter your student email..." required>
-                        <button type="submit" class="btn btn-primary">Notify Me <i
-                                class="fa-solid fa-bell"></i></button>
-                    </div>
-                    <span class="form-hint"><i class="fa-solid fa-shield-halved"></i> No spam. Only IITM BS
-                        updates.</span>
-                </form>
-                <div id="notifySuccessMsg" class="notify-success" style="display: none;">
-                    <i class="fa-solid fa-circle-check"></i> You're on the priority list! We'll notify you soon.
-                </div>
-                <button type="button" class="btn btn-secondary btn-full" id="closeComingSoonBtn">Got It <i
-                        class="fa-solid fa-check"></i></button>
-            </div>
-        </div>
-    </div>
+
 
     <!-- JavaScript -->
     <script src="assets/js/main.js"></script>

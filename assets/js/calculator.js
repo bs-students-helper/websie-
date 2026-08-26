@@ -1107,13 +1107,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     </select>
                 </td>
                 <td>
-                    <input type="number" min="0" max="100" class="cgpa-score-input" value="${course.score}" data-index="${index}" style="width: 80px;">
+                    <input type="number" min="0" max="100" class="cgpa-score-input" value="${course.score !== null && course.score !== undefined ? course.score : ''}" data-index="${index}" style="width: 80px;">
                 </td>
                 <td>
-                    <strong class="cgpa-grade-display" style="color: ${getGradeColor(course.grade)}">${course.grade} (${course.points} pts)</strong>
+                    <strong class="cgpa-grade-display" id="cgpa-grade-badge-${index}" style="color: ${getGradeColor(course.grade)}">${course.grade} (${course.points} pts)</strong>
                 </td>
                 <td>
-                    <button class="btn btn-outline remove-cgpa-row" data-index="${index}" style="padding: 4px 10px; font-size: 0.8rem; border-color: var(--accent-red); color: var(--accent-red);">
+                    <button class="btn btn-outline remove-cgpa-row" data-index="${index}" style="padding: 4px 10px; font-size: 0.8rem; border-color: var(--accent-red); color: var(--accent-red);" aria-label="Remove Course">
                         <i class="fa-solid fa-trash"></i>
                     </button>
                 </td>
@@ -1128,12 +1128,21 @@ document.addEventListener('DOMContentLoaded', () => {
         let totalWeightedPoints = 0;
         let totalCredits = 0;
 
-        cgpaCourses.forEach(c => {
-            const { grade, gpa } = getGradeLetterAndPoints(c.score, true);
+        cgpaCourses.forEach((c, index) => {
+            const numScore = (c.score === "" || c.score === null || c.score === undefined) ? 0 : parseFloat(c.score);
+            const validScore = isNaN(numScore) ? 0 : numScore;
+            const { grade, gpa } = getGradeLetterAndPoints(validScore, true);
             c.grade = grade;
             c.points = gpa;
             totalWeightedPoints += c.points * c.credits;
             totalCredits += c.credits;
+
+            // Update row grade display badge if element exists
+            const badgeEl = document.getElementById(`cgpa-grade-badge-${index}`);
+            if (badgeEl) {
+                badgeEl.style.color = getGradeColor(grade);
+                badgeEl.textContent = `${grade} (${gpa} pts)`;
+            }
         });
 
         const overallCGPA = totalCredits > 0 ? (totalWeightedPoints / totalCredits) : 0;
@@ -1156,35 +1165,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // CGPA Event Delegation
+    // CGPA Event Delegation (In-place updates without DOM destruction for smooth editing)
     cgpaTableBody.addEventListener('input', (e) => {
-        const index = e.target.getAttribute('data-index');
-        if (index === null) return;
+        const indexStr = e.target.getAttribute('data-index');
+        if (indexStr === null || indexStr === undefined) return;
+        const idx = parseInt(indexStr, 10);
+        if (isNaN(idx) || !cgpaCourses[idx]) return;
+
         if (e.target.classList.contains('cgpa-name-input')) {
-            cgpaCourses[index].name = e.target.value;
+            cgpaCourses[idx].name = e.target.value;
         } else if (e.target.classList.contains('cgpa-credit-select')) {
-            cgpaCourses[index].credits = parseInt(e.target.value) || 4;
+            cgpaCourses[idx].credits = parseInt(e.target.value, 10) || 4;
+            calculateCgpaOverall();
         } else if (e.target.classList.contains('cgpa-score-input')) {
-            cgpaCourses[index].score = parseFloat(e.target.value) || 0;
+            const raw = e.target.value;
+            cgpaCourses[idx].score = raw === "" ? "" : Math.min(100, Math.max(0, parseFloat(raw) || 0));
+            calculateCgpaOverall();
         }
-        renderCgpaTable();
     });
 
     cgpaTableBody.addEventListener('change', (e) => {
-        const index = e.target.getAttribute('data-index');
-        if (index === null) return;
+        const indexStr = e.target.getAttribute('data-index');
+        if (indexStr === null || indexStr === undefined) return;
+        const idx = parseInt(indexStr, 10);
+        if (isNaN(idx) || !cgpaCourses[idx]) return;
+
         if (e.target.classList.contains('cgpa-credit-select')) {
-            cgpaCourses[index].credits = parseInt(e.target.value) || 4;
-            renderCgpaTable();
+            cgpaCourses[idx].credits = parseInt(e.target.value, 10) || 4;
+            calculateCgpaOverall();
         }
     });
 
     cgpaTableBody.addEventListener('click', (e) => {
         const btn = e.target.closest('.remove-cgpa-row');
         if (btn) {
-            const index = parseInt(btn.getAttribute('data-index'));
-            cgpaCourses.splice(index, 1);
-            renderCgpaTable();
+            const index = parseInt(btn.getAttribute('data-index'), 10);
+            if (!isNaN(index)) {
+                cgpaCourses.splice(index, 1);
+                renderCgpaTable();
+            }
         }
     });
 

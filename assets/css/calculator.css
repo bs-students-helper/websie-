@@ -11,14 +11,18 @@
 .calc-hero {
     position: relative;
     padding: 3.5rem 0 2rem;
-    background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.12) 0%, rgba(15, 23, 42, 0) 70%);
+    background: linear-gradient(180deg, rgba(248, 239, 230, 0.95) 0%, rgba(255, 249, 245, 0.5) 100%);
     text-align: center;
 }
 
+[data-theme="dark"] .calc-hero {
+    background: linear-gradient(180deg, rgba(15, 13, 19, 0.96) 0%, rgba(23, 20, 30, 0.5) 100%);
+}
+
 .calc-hero-title {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
+    font-weight: 800;
     color: var(--text-primary);
     margin-bottom: 0.8rem;
     line-height: 1.2;
@@ -40,11 +44,16 @@
 
 .mode-tabs {
     display: inline-flex;
-    background: rgba(30, 41, 59, 0.7);
-    border: 1px solid var(--border-color);
-    padding: 4px;
+    background: #FFF9F5;
+    border: 1.5px solid #EADACD;
+    padding: 6px;
     border-radius: var(--radius-full);
-    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] .mode-tabs {
+    background: #17141E;
+    border-color: rgba(255, 255, 255, 0.14);
 }
 
 .tab-btn {
@@ -55,21 +64,21 @@
     border-radius: var(--radius-full);
     border: none;
     background: transparent;
-    color: var(--text-muted);
-    font-weight: 600;
+    color: var(--text-secondary);
+    font-weight: 700;
     font-size: 0.95rem;
     cursor: pointer;
-    transition: all var(--transition-normal);
+    transition: all var(--transition-fast);
 }
 
 .tab-btn:hover {
-    color: var(--text-primary);
+    color: var(--accent-terracotta);
 }
 
 .tab-btn.active {
     background: var(--primary-gradient);
     color: #ffffff;
-    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+    box-shadow: 0 6px 18px rgba(216, 76, 30, 0.4);
 }
 
 /* --------------------------------------------------------------------------
@@ -280,6 +289,12 @@
     box-shadow: var(--shadow-card);
     display: flex;
     flex-direction: column;
+    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.calc-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-light);
 }
 
 .card-title-bar {
@@ -292,9 +307,9 @@
 }
 
 .card-title-bar h3 {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text-primary);
     display: flex;
     align-items: center;
@@ -320,27 +335,35 @@
 }
 
 .input-label-row label {
-    font-weight: 500;
+    font-weight: 600;
     font-size: 0.92rem;
     color: var(--text-secondary);
 }
 
 .input-val-badge {
     font-family: var(--font-mono);
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.9rem;
-    color: var(--accent-cyan);
+    color: var(--accent-terracotta);
+}
+
+[data-theme="dark"] .input-val-badge {
+    color: #FF7E54;
 }
 
 /* Custom Range Slider */
 .range-slider {
     width: 100%;
-    height: 6px;
+    height: 8px;
     border-radius: var(--radius-full);
-    background: var(--bg-surface);
+    background: var(--bg-subtle);
     outline: none;
-    accent-color: var(--accent-indigo);
+    accent-color: var(--accent-terracotta);
     cursor: pointer;
+}
+
+[data-theme="dark"] .range-slider {
+    accent-color: #FF6B3B;
 }
 
 /* Checkbox Toggle Group */
