@@ -46,6 +46,16 @@
     --font-pixel: 'Pixelify Sans', cursive, monospace;
     --font-mono: 'JetBrains Mono', monospace;
 
+    /* Typographic Scale System (Standardized 8-level modular scale) */
+    --fs-xs: 0.75rem;     /* 12px - Badges & micro text */
+    --fs-sm: 0.875rem;    /* 14px - Subtext, meta, tags */
+    --fs-base: 1rem;      /* 16px - Base body copy */
+    --fs-md: 1.125rem;    /* 18px - Lead copy, subtitles */
+    --fs-lg: 1.25rem;     /* 20px - Card titles, subheadings */
+    --fs-xl: 1.5rem;      /* 24px - H3 Headings */
+    --fs-2xl: 2rem;       /* 32px - H2 Section titles */
+    --fs-3xl: 2.75rem;    /* 44px - H1 Hero title */
+
     /* Spacing & Layout */
     --container-max: 1240px;
     --radius-sm: 8px;
@@ -1719,13 +1729,50 @@ h4 {
 }
 
 .range-slider {
+    -webkit-appearance: none;
+    appearance: none;
     width: 100%;
     height: 8px;
-    background: var(--border-light);
-    border-radius: var(--radius-full);
+    background: var(--bg-subtle, #F3EAE1);
+    border: 1px solid var(--border-color, #EADACD);
+    border-radius: var(--radius-full, 9999px);
     outline: none;
-    accent-color: var(--bg-dark);
     cursor: pointer;
+    margin-block: 6px 4px;
+    transition: background var(--transition-fast);
+}
+
+.range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--accent-orange, #E65527);
+    border: 3px solid #FFFFFF;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(230, 85, 39, 0.3);
+    cursor: grab;
+    transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.range-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.18);
+    background: var(--accent-terracotta, #D84C1E);
+}
+
+.range-slider::-webkit-slider-thumb:active {
+    cursor: grabbing;
+    transform: scale(1.08);
+}
+
+.range-slider::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--accent-orange, #E65527);
+    border: 3px solid #FFFFFF;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+    cursor: grab;
 }
 
 /* Calc Result Card */
@@ -1912,6 +1959,16 @@ svg.grade-ring-svg {
     border-radius: var(--radius-sm);
 }
 
+.feature-tag.tag-coming-soon,
+.tag-coming-soon {
+    background: var(--bg-subtle) !important;
+    color: var(--text-secondary) !important;
+    border: 1.5px dashed var(--border-color) !important;
+    box-shadow: none !important;
+    cursor: default !important;
+    opacity: 0.85;
+}
+
 /* --------------------------------------------------------------------------
    11. Testimonials & Wall of Love
    -------------------------------------------------------------------------- */
@@ -1927,6 +1984,11 @@ svg.grade-ring-svg {
     gap: 12px;
     margin-top: 30px;
     flex-wrap: wrap;
+}
+
+.testimonial-actions {
+    margin-block: 36px 32px;
+    padding-block: 4px;
 }
 
 .filter-tab {
@@ -1957,9 +2019,7 @@ svg.grade-ring-svg {
     width: 100%;
     position: relative;
     overflow: hidden;
-    padding: 16px 0 30px 0;
-    mask-image: linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
+    padding: 20px 0 32px 0;
 }
 
 .testimonials-marquee-track {
