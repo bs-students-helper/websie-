@@ -43,14 +43,6 @@
         <priority>0.90</priority>
     </url>
 
-    <!-- PYQ Archives & OPP Library Hub -->
-    <url>
-        <loc>https://bsstudentshelper.vercel.app/pyq_practice.html</loc>
-        <lastmod>2026-08-27</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.90</priority>
-    </url>
-
     <!-- SEC Grade Calculator Page -->
     <url>
         <loc>https://bsstudentshelper.vercel.app/calculator.html</loc>
