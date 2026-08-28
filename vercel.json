@@ -16,7 +16,15 @@
   ],
   "rewrites": [
     {
-      "source": "/oppe/:path*",
+      "source": "/oppe",
+      "destination": "/oppe/index.html"
+    },
+    {
+      "source": "/oppe/",
+      "destination": "/oppe/index.html"
+    },
+    {
+      "source": "/oppe/(.*)",
       "destination": "/oppe/index.html"
     }
   ],
