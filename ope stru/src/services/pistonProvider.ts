@@ -30,21 +30,41 @@ export async function executeWithPiston(
     stdin: request.stdin || '',
   };
 
+  const endpointsToTry = [
+    apiUrl,
+    'https://piston.engineering/api/v2/piston/execute',
+  ];
+
+  let lastError: Error | null = null;
+  let response: Response | null = null;
   const startTime = performance.now();
 
-  const response = await fetch(apiUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(payload),
-  });
+  for (const endpoint of endpointsToTry) {
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.ok) {
+        response = res;
+        break;
+      } else {
+        lastError = new Error(`Piston API HTTP Error (${endpoint}): ${res.status} ${res.statusText}`);
+      }
+    } catch (err: any) {
+      lastError = err;
+    }
+  }
 
   const endTime = performance.now();
   const executionTimeMs = Math.round(endTime - startTime) / 1000;
 
-  if (!response.ok) {
-    throw new Error(`Piston API HTTP Error: ${response.status} ${response.statusText}`);
+  if (!response || !response.ok) {
+    throw lastError || new Error('All Piston API execution endpoints failed');
   }
 
   const data = await response.json();
