@@ -9,6 +9,15 @@ export default defineConfig({
   build: {
     outDir: '../oppe',
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          monaco: ['@monaco-editor/react'],
+          icons: ['lucide-react'],
+        },
+      },
+    },
   },
   resolve: {
     alias: {
