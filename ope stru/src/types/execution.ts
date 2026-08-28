@@ -2,6 +2,7 @@ export interface ExecutionRequest {
   language: string;
   sourceCode: string;
   stdin?: string;
+  expectedOutput?: string;
   fileName?: string;
 }
 

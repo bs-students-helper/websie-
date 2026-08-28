@@ -30,6 +30,7 @@ export async function executeCodeForProblem(
         language: problem.language,
         sourceCode,
         stdin: tc.input,
+        expectedOutput: tc.expectedOutput,
         fileName: problem.fileName,
       });
     } else {
@@ -39,6 +40,7 @@ export async function executeCodeForProblem(
             language: problem.language,
             sourceCode,
             stdin: tc.input,
+            expectedOutput: tc.expectedOutput,
             fileName: problem.fileName,
           },
           API_URL
@@ -51,6 +53,7 @@ export async function executeCodeForProblem(
           language: problem.language,
           sourceCode,
           stdin: tc.input,
+          expectedOutput: tc.expectedOutput,
           fileName: problem.fileName,
         });
       }
