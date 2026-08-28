@@ -74,6 +74,7 @@
             gap: 1.5rem;
             margin-bottom: 3rem;
         }
+
         .quiz-mode-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -85,11 +86,13 @@
             color: inherit;
             display: block;
         }
+
         .quiz-mode-card:hover {
             transform: translateY(-4px);
             border-color: var(--accent-purple);
             box-shadow: none;
         }
+
         .quiz-mode-icon {
             width: 52px;
             height: 52px;
@@ -101,22 +104,37 @@
             color: white;
             margin-bottom: 1rem;
         }
-        .icon-q1 { background: linear-gradient(135deg, #38bdf8, #2563eb); }
-        .icon-q2 { background: linear-gradient(135deg, #a78bfa, #7c3aed); }
-        .icon-et { background: linear-gradient(135deg, #34d399, #059669); }
-        .icon-pyq { background: linear-gradient(135deg, #fbbf24, #d97706); }
+
+        .icon-q1 {
+            background: linear-gradient(135deg, #38bdf8, #2563eb);
+        }
+
+        .icon-q2 {
+            background: linear-gradient(135deg, #a78bfa, #7c3aed);
+        }
+
+        .icon-et {
+            background: linear-gradient(135deg, #34d399, #059669);
+        }
+
+        .icon-pyq {
+            background: linear-gradient(135deg, #fbbf24, #d97706);
+        }
+
         .quiz-mode-title {
             font-family: var(--font-display);
             font-size: 1.25rem;
             margin-bottom: 0.4rem;
             color: var(--text-primary);
         }
+
         .quiz-mode-desc {
             color: var(--text-muted);
             font-size: 0.9rem;
             line-height: 1.5;
             margin-bottom: 1rem;
         }
+
         .quiz-mode-tag {
             display: inline-block;
             font-size: 0.75rem;
@@ -127,7 +145,11 @@
             color: var(--text-secondary);
             border: 1px solid var(--border-color);
         }
-        .quiz-demo-wrap { max-width: 900px; margin: 0 auto; }
+
+        .quiz-demo-wrap {
+            max-width: 900px;
+            margin: 0 auto;
+        }
     </style>
 </head>
 
@@ -141,6 +163,7 @@
             <nav class="nav-menu" id="navMenu">
                 <a href="index.html#features" class="nav-link">Features</a>
                 <a href="quiz_practice.html" class="nav-link active">Quiz Practice</a>
+                <a href="oppe/" class="nav-link">OPPE Lab</a>
                 <a href="calculator.html" class="nav-link">SEC Calculator</a>
                 <a href="about.html" class="nav-link">About Us</a>
                 <a href="index.html#testimonials" class="nav-link">Reviews</a>
@@ -148,6 +171,7 @@
                 <a href="index.html#faq" class="nav-link">FAQ</a>
                 <div class="mobile-menu-actions">
                     <a href="quiz_practice.html" class="btn btn-secondary btn-full">Practice Quiz</a>
+                    <a href="oppe/" class="btn btn-outline btn-full">OPPE Practice Lab</a>
                     <a href="calculator.html" class="btn btn-primary btn-full">Calculate SEC Grade</a>
                 </div>
             </nav>
@@ -211,26 +235,34 @@
                     <a href="quiz_1_practice.html" class="quiz-mode-card">
                         <div class="quiz-mode-icon icon-q1"><i class="fa-solid fa-clipboard-list"></i></div>
                         <h3 class="quiz-mode-title">Quiz 1 Practice</h3>
-                        <p class="quiz-mode-desc">Targeted 30-min sets covering the first half of every Foundational & Diploma course syllabus.</p>
+                        <p class="quiz-mode-desc">Targeted 30-min sets covering the first half of every Foundational &
+                            Diploma course syllabus.</p>
                         <span class="quiz-mode-tag"><i class="fa-solid fa-fire"></i> Recommended first</span>
                     </a>
                     <a href="quiz_2_practice.html" class="quiz-mode-card">
                         <div class="quiz-mode-icon icon-q2"><i class="fa-solid fa-clipboard-question"></i></div>
                         <h3 class="quiz-mode-title">Quiz 2 Practice</h3>
-                        <p class="quiz-mode-desc">High-yield MCQ banks for the second-half syllabus, including best-of-12 GA style questions.</p>
+                        <p class="quiz-mode-desc">High-yield MCQ banks for the second-half syllabus, including
+                            best-of-12 GA style questions.</p>
                         <span class="quiz-mode-tag"><i class="fa-solid fa-bolt"></i> High weightage</span>
                     </a>
                     <a href="end_term_practice.html" class="quiz-mode-card">
                         <div class="quiz-mode-icon icon-et"><i class="fa-solid fa-book-open-reader"></i></div>
                         <h3 class="quiz-mode-title">End Term Practice</h3>
-                        <p class="quiz-mode-desc">Full-length 2-hour mock End-Term papers with syllabus coverage & detailed explanations.</p>
+                        <p class="quiz-mode-desc">Full-length 2-hour mock End-Term papers with syllabus coverage &
+                            detailed explanations.</p>
                         <span class="quiz-mode-tag"><i class="fa-solid fa-trophy"></i> Most important</span>
                     </a>
-                    <a href="pyq_practice.html" class="quiz-mode-card">
-                        <div class="quiz-mode-icon icon-pyq"><i class="fa-solid fa-box-archive"></i></div>
-                        <h3 class="quiz-mode-title">Previous Year (PYQ)</h3>
-                        <p class="quiz-mode-desc">Curated archive of actual IITM BS previous-year quiz & end-term questions with verified keys.</p>
-                        <span class="quiz-mode-tag"><i class="fa-solid fa-history"></i> Repeat alert</span>
+
+                    <a href="oppe/" class="quiz-mode-card" style="border: 1.5px solid #6366f1;">
+                        <div class="quiz-mode-icon icon-oppe"
+                            style="background: rgba(99, 102, 241, 0.15); color: #6366f1;"><i
+                                class="fa-solid fa-code"></i></div>
+                        <h3 class="quiz-mode-title">OPPE Practice Lab</h3>
+                        <p class="quiz-mode-desc">Interactive IDE portal for Online Programming Practice Exams with
+                            Monaco editor & test cases.</p>
+                        <span class="quiz-mode-tag" style="background: rgba(99, 102, 241, 0.1); color: #6366f1;"><i
+                                class="fa-solid fa-laptop-code"></i> Live Coding IDE</span>
                     </a>
                 </div>
 
@@ -238,7 +270,8 @@
                 <div class="section-header text-center" style="margin-top:3rem;">
                     <div class="pill-badge mb-3"><i class="fa-solid fa-play-circle"></i> LIVE DEMO</div>
                     <h2 class="section-title">Try A Quick Demo Right Here</h2>
-                    <p class="section-subtitle">4 options per question, instant feedback, step-by-step formula hints.</p>
+                    <p class="section-subtitle">4 options per question, instant feedback, step-by-step formula hints.
+                    </p>
                 </div>
 
                 <div class="quiz-demo-wrap">
@@ -296,8 +329,10 @@
     <footer class="site-footer">
         <div class="container footer-container">
             <div class="footer-brand">
-                <a href="index.html" class="brand-logo footer-logo"><img src="assets/images/logo.png" alt="BSH" class="logo-img"></a>
-                <p class="footer-desc">The open, student-driven academic companion for IIT Madras BS in Data Science & Electronic Systems.</p>
+                <a href="index.html" class="brand-logo footer-logo"><img src="assets/images/logo.png" alt="BSH"
+                        class="logo-img"></a>
+                <p class="footer-desc">The open, student-driven academic companion for IIT Madras BS in Data Science &
+                    Electronic Systems.</p>
                 <div class="social-links">
                     <a href="#" data-coming-soon="BSH Discord"><i class="fa-brands fa-discord"></i></a>
                     <a href="#" data-coming-soon="BSH GitHub"><i class="fa-brands fa-github"></i></a>
@@ -322,7 +357,6 @@
                         <li><a href="quiz_1_practice.html">Quiz 1 Sets</a></li>
                         <li><a href="quiz_2_practice.html">Quiz 2 Sets</a></li>
                         <li><a href="end_term_practice.html">End Term Mocks</a></li>
-                        <li><a href="pyq_practice.html">Previous Year (PYQ)</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -339,7 +373,8 @@
         <div class="footer-bottom text-center">
             <div class="container">
                 <p>&copy; 2026 BSH (BS Students Helper). Built with passion for IITM BS Students.</p>
-                <p class="disclaimer-text">Disclaimer: BSH is an independent student community initiative and is not officially affiliated with or endorsed by IIT Madras.</p>
+                <p class="disclaimer-text">Disclaimer: BSH is an independent student community initiative and is not
+                    officially affiliated with or endorsed by IIT Madras.</p>
             </div>
         </div>
     </footer>
@@ -348,4 +383,5 @@
 
     <script src="assets/js/main.js"></script>
 </body>
+
 </html>

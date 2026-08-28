@@ -13,6 +13,12 @@
       "permanent": true
     }
   ],
+  "rewrites": [
+    {
+      "source": "/oppe/:path*",
+      "destination": "/oppe/index.html"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

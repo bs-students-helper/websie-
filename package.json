@@ -1,0 +1,10 @@
+{
+  "name": "bsh-portal",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm --prefix \"ope stru\" install",
+    "build": "npm --prefix \"ope stru\" run build",
+    "dev": "npm --prefix \"ope stru\" run dev"
+  }
+}
