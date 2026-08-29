@@ -13,12 +13,13 @@ export default async function handler(req, res) {
   }
 
   const PISTON_ENDPOINTS = [
+    process.env.CUSTOM_EXECUTION_URL,
     'https://emkc.org/api/v2/piston/execute',
     'https://piston.engineering/api/v2/piston/execute',
     'https://piston.emkc.org/api/v2/piston/execute',
     'https://piston.jgscripts.com/api/v2/piston/execute',
     'https://piston-api.tough-dev.com/api/v2/piston/execute',
-  ];
+  ].filter(Boolean);
 
   const body = typeof req.body === 'string' ? req.body : JSON.stringify(req.body || {});
 

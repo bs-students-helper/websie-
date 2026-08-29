@@ -16,6 +16,10 @@
   ],
   "rewrites": [
     {
+      "source": "/oppe/assets/(.*)",
+      "destination": "/oppe/assets/$1"
+    },
+    {
       "source": "/oppe",
       "destination": "/oppe/index.html"
     },
