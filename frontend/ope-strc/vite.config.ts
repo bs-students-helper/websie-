@@ -5,7 +5,17 @@ import path from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/oppe/',
+  base: './',
+  server: {
+    proxy: {
+      '/api/execute': {
+        target: 'https://emkc.org',
+        changeOrigin: true,
+        secure: true,
+        rewrite: () => '/api/v2/piston/execute',
+      },
+    },
+  },
   build: {
     outDir: '../oppe',
     emptyOutDir: true,
@@ -25,4 +35,3 @@ export default defineConfig({
     },
   },
 });
-

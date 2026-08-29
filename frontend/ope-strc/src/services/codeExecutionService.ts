@@ -4,7 +4,9 @@ import { executeWithPiston } from './pistonProvider';
 import { compareOutput } from '../utils/outputComparator';
 import { calculateScore } from '../utils/scoring';
 
-const API_URL = import.meta.env.VITE_CODE_EXECUTION_API_URL || '/api/execute';
+const API_URL = import.meta.env.DEV
+  ? '/api/execute'
+  : import.meta.env.VITE_CODE_EXECUTION_API_URL || '/api/execute';
 
 export async function executeCodeForProblem(
   problem: Problem,
@@ -17,7 +19,6 @@ export async function executeCodeForProblem(
   let hasCompileError = false;
   let hasRuntimeError = false;
   let hasTimeout = false;
-  let serviceError: string | undefined = undefined;
 
   for (const tc of testCasesToRun) {
     let rawResult: ExecutionRawResponse;
@@ -34,22 +35,33 @@ export async function executeCodeForProblem(
         API_URL
       );
     } catch (error: any) {
-      serviceError =
-        (error?.message ? String(error.message) : String(error)) ||
-        'Unable to reach the code execution service. Please check your internet connection and try again.';
-      testResults.push({
-        testCaseId: tc.id,
-        isPublic: tc.isPublic,
-        input: tc.input,
-        expectedOutput: tc.expectedOutput,
-        actualOutput: '',
-        passed: false,
-        stderr: serviceError,
-        errorType: 'wrong_answer',
-        errorMessage: serviceError,
-        weight: tc.weight,
-      });
-      continue;
+      const serviceError =
+        error?.message ||
+        'The real-time code execution service could not be reached.';
+
+      return {
+        totalTests: testCasesToRun.length,
+        passedTests: 0,
+        failedTests: testCasesToRun.length,
+        score: 0,
+        status: 'SERVICE_UNAVAILABLE',
+        testResults: testCasesToRun.map((testCase) => ({
+          testCaseId: testCase.id,
+          isPublic: testCase.isPublic,
+          input: testCase.input,
+          expectedOutput: testCase.expectedOutput,
+          actualOutput: '',
+          passed: false,
+          stderr: serviceError,
+          executionTime: 0,
+          errorMessage: serviceError,
+          weight: testCase.weight,
+        })),
+        executedAt,
+        provider: 'Piston API (Real Execution)',
+        isDemoMode: false,
+        pistonError: serviceError,
+      };
     }
 
     if (rawResult.isCompileError) {
@@ -127,9 +139,7 @@ export async function executeCodeForProblem(
   const score = calculateScore(testResults);
 
   let status: RunSummary['status'] = 'ACCEPTED';
-  if (serviceError && testResults.every((r) => r.stderr === serviceError)) {
-    status = 'SERVICE_UNAVAILABLE';
-  } else if (hasCompileError) {
+  if (hasCompileError) {
     status = 'COMPILATION_ERROR';
   } else if (hasTimeout) {
     status = 'TIME_LIMIT_EXCEEDED';
@@ -150,6 +160,5 @@ export async function executeCodeForProblem(
     executedAt,
     provider: 'Piston API (Real Execution)',
     isDemoMode: false,
-    pistonError: serviceError,
   };
 }

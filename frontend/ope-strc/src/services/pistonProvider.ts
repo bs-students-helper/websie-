@@ -34,17 +34,19 @@ export async function executeWithPiston(
     ? `${apiUrl.replace(/\/+$/, '')}/execute`
     : apiUrl;
 
-  const endpointsToTry = Array.from(
-    new Set([
-      formattedApiUrl,
-      '/api/execute',
-      'https://emkc.org/api/v2/piston/execute',
-      'https://piston.engineering/api/v2/piston/execute',
-      'https://piston.emkc.org/api/v2/piston/execute',
-      'https://piston.jgscripts.com/api/v2/piston/execute',
-      'https://piston-api.tough-dev.com/api/v2/piston/execute',
-    ])
-  );
+  const endpointsToTry = formattedApiUrl.startsWith('/api/')
+    ? [formattedApiUrl]
+    : Array.from(
+        new Set([
+          formattedApiUrl,
+          '/api/execute',
+          'https://emkc.org/api/v2/piston/execute',
+          'https://piston.engineering/api/v2/piston/execute',
+          'https://piston.emkc.org/api/v2/piston/execute',
+          'https://piston.jgscripts.com/api/v2/piston/execute',
+          'https://piston-api.tough-dev.com/api/v2/piston/execute',
+        ])
+      );
 
   let lastError: Error | null = null;
   let response: Response | null = null;

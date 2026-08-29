@@ -61,35 +61,48 @@ export const Header: React.FC<HeaderProps> = ({
     (p) => p.subjectId === currentSubject.id
   );
 
+  React.useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest('.subject-dropdown-container')) {
+        setIsSubjectDropdownOpen(false);
+      }
+      if (!target.closest('.problem-dropdown-container')) {
+        setIsProblemDropdownOpen(false);
+      }
+    };
+    document.addEventListener('click', handleOutsideClick);
+    return () => document.removeEventListener('click', handleOutsideClick);
+  }, []);
+
   return (
-    <header className="h-14 bg-[#FFF9F5] dark:bg-[#17141E] border-b border-[#EADACD] dark:border-white/10 px-4 flex items-center justify-between shadow-sm z-30 select-none transition-colors">
+    <header className="h-14 bg-[#FFF9F5] dark:bg-[#17141E] border-b border-[#EADACD] dark:border-white/10 px-3 sm:px-4 flex items-center justify-between shadow-sm z-30 select-none transition-colors shrink-0">
       {/* Left section: Logo & Subtitle */}
-      <div className="flex items-center gap-4">
-        <Link to="/" className="flex items-center gap-2.5 group">
+      <div className="flex items-center gap-2 sm:gap-4 min-w-0">
+        <Link to="/" className="flex items-center gap-2 group shrink-0">
           <img
             src="/assets/images/logo.png"
             alt="BSH Logo"
-            className="h-8 w-auto object-contain dark:filter dark:brightness-110 group-hover:scale-105 transition-transform"
+            className="h-7 sm:h-8 w-auto object-contain dark:filter dark:brightness-110 group-hover:scale-105 transition-transform"
             onError={(e) => {
-              // fallback if loaded directly without root asset context
               e.currentTarget.onerror = null;
               e.currentTarget.src = '../assets/images/logo.png';
             }}
           />
           <div className="hidden sm:block">
-            <div className="flex items-center gap-1.5 font-bold text-[#231815] dark:text-[#F7F5F8] leading-tight text-sm tracking-tight">
+            <div className="flex items-center gap-1.5 font-bold text-[#231815] dark:text-[#F7F5F8] leading-tight text-xs sm:text-sm tracking-tight whitespace-nowrap">
               OPPE Practice Lab
             </div>
-            <div className="text-[10px] font-bold tracking-wider text-[#E65527] dark:text-[#FF7E54] uppercase">
+            <div className="text-[9px] sm:text-[10px] font-bold tracking-wider text-[#E65527] dark:text-[#FF7E54] uppercase whitespace-nowrap">
               IITM BS Data Science
             </div>
           </div>
         </Link>
 
-        <div className="h-5 w-px bg-[#EADACD] dark:bg-white/10 mx-1 hidden md:block" />
+        <div className="h-5 w-px bg-[#EADACD] dark:bg-white/10 mx-1 hidden md:block shrink-0" />
 
         {/* Navigation shortcut links */}
-        <div className="hidden lg:flex items-center gap-1">
+        <div className="hidden lg:flex items-center gap-1 shrink-0">
           <a
             href="/"
             className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold text-[#D84C1E] dark:text-[#FF7E54] bg-[#E65527]/10 hover:bg-[#E65527]/20 dark:bg-[#FF6B3B]/15 rounded-md transition-colors border border-[#E65527]/30 mr-1"
@@ -109,25 +122,26 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Center section: Subject & Problem Selectors */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
         {/* Subject dropdown */}
-        <div className="relative">
+        <div className="relative subject-dropdown-container">
           <button
-            onClick={() => setIsSubjectDropdownOpen(!isSubjectDropdownOpen)}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 rounded-lg text-xs font-semibold border border-slate-200/80 dark:border-slate-700 transition-colors"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsSubjectDropdownOpen(!isSubjectDropdownOpen);
+              setIsProblemDropdownOpen(false);
+            }}
+            className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 rounded-lg text-xs font-semibold border border-slate-200/80 dark:border-slate-700 transition-colors"
           >
-            <BookOpen className="w-3.5 h-3.5 text-indigo-500" />
-            <span className="max-w-[130px] sm:max-w-[180px] truncate">
+            <BookOpen className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
+            <span className="max-w-[100px] sm:max-w-[160px] truncate">
               {currentSubject.name}
             </span>
-            <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+            <ChevronDown className="w-3.5 h-3.5 text-slate-400 shrink-0" />
           </button>
 
           {isSubjectDropdownOpen && (
-            <div
-              className="absolute left-0 mt-1.5 w-64 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-xl py-1 z-50 text-xs animate-fade-in"
-              onMouseLeave={() => setIsSubjectDropdownOpen(false)}
-            >
+            <div className="absolute left-0 mt-1.5 w-64 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-xl py-1 z-50 text-xs animate-fade-in">
               <div className="px-3 py-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                 Select Subject
               </div>
@@ -159,22 +173,23 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Problem selector dropdown */}
         {currentProblem && (
-          <div className="relative">
+          <div className="relative problem-dropdown-container">
             <button
-              onClick={() => setIsProblemDropdownOpen(!isProblemDropdownOpen)}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 rounded-lg text-xs font-semibold border border-slate-200/80 dark:border-slate-700 transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsProblemDropdownOpen(!isProblemDropdownOpen);
+                setIsSubjectDropdownOpen(false);
+              }}
+              className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 rounded-lg text-xs font-semibold border border-slate-200/80 dark:border-slate-700 transition-colors"
             >
-              <span className="max-w-[140px] sm:max-w-[200px] truncate">
+              <span className="max-w-[110px] sm:max-w-[180px] truncate">
                 {currentProblem.title}
               </span>
-              <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+              <ChevronDown className="w-3.5 h-3.5 text-slate-400 shrink-0" />
             </button>
 
             {isProblemDropdownOpen && (
-              <div
-                className="absolute left-0 mt-1.5 w-72 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-xl py-1 z-50 text-xs max-h-80 overflow-y-auto animate-fade-in"
-                onMouseLeave={() => setIsProblemDropdownOpen(false)}
-              >
+              <div className="absolute left-0 mt-1.5 w-72 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-xl py-1 z-50 text-xs max-h-80 overflow-y-auto animate-fade-in">
                 <div className="px-3 py-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                   Select Problem ({subjectProblems.length})
                 </div>
