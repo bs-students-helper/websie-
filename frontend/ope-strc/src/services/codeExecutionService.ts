@@ -4,7 +4,7 @@ import { executeWithPiston } from './pistonProvider';
 import { compareOutput } from '../utils/outputComparator';
 import { calculateScore } from '../utils/scoring';
 
-const API_URL = import.meta.env.VITE_CODE_EXECUTION_API_URL || 'https://emkc.org/api/v2/piston/execute';
+const API_URL = import.meta.env.VITE_CODE_EXECUTION_API_URL || '/api/execute';
 
 export async function executeCodeForProblem(
   problem: Problem,
