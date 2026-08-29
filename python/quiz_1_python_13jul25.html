@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Quiz 1 - (13 Jul 2025) | BSH</title>
+    <meta name="description"
+        content="Practice Intro to Python Quiz 1 question paper (13 Jul 25) with interactive exam & learning modes, instant score calculation, detailed solutions, and question palette.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+
+    <!-- Master CSS & Centralized Quiz Portal CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/quiz-portal.css">
+
+    <!-- Theme Detection -->
+    <script>
+        (function () {
+            const saved = localStorage.getItem('bsh-theme');
+            if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+            else document.documentElement.setAttribute('data-theme', 'light');
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Site Navigation Header -->
+    <header class="site-header" id="header">
+        <div class="header-container">
+            <a href="../index.html" class="brand-logo" aria-label="BSH Homepage">
+                <img src="../assets/images/logo.png" alt="BSH Logo" class="logo-img">
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="../index.html#features" class="nav-link">Features</a>
+                <a href="../quiz_practice.html" class="nav-link active">Quiz Practice</a>
+                <a href="../calculator.html" class="nav-link">SEC Calculator</a>
+                <a href="../about.html" class="nav-link">About Us</a>
+                <a href="../contact_us.html" class="nav-link">Feedback</a>
+            </nav>
+            <div class="header-actions">
+                <a href="../quiz_1_practice.html" class="btn btn-secondary nav-btn-desktop"><i
+                        class="fa-solid fa-arrow-left"></i><span>Back to Papers</span></a>
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i
+                        class="fa-solid fa-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="portal-layout">
+
+            <!-- Mobile Collapsible Sidebar Toggle Button -->
+            <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()">
+                <span><i class="fa-solid fa-sliders"></i> Exam Controls & Question Menu</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <!-- Left Sidebar: Controls, Menu & Timer -->
+            <aside class="portal-sidebar" id="portalSidebar">
+
+                <!-- Header Info -->
+                <div class="exam-info-header">
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Exam:</span>
+                        <span class="exam-info-val">Quiz 1</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Subject:</span>
+                        <span class="exam-info-val">Intro to python</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Total Marks:</span>
+                        <span class="exam-info-val">50.00</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">QP:</span>
+                        <span class="exam-info-val" style="font-size:0.75rem;">2025 Jul13: IIT M AN EXAM QDD3</span>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher -->
+                <div>
+                    <div class="menu-heading">Portal Mode</div>
+                    <div class="mode-toggle-group">
+                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam
+                            Mode</button>
+                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning
+                            Mode</button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                    <button class="btn-action-pill" style="justify-content:center; padding:0.65rem;"
+                        onclick="openSummaryModal()">
+                        <i class="fa-solid fa-eye"></i> View Question Paper Summary
+                    </button>
+                    <button class="btn-action-pill" style="justify-content:center; padding:0.65rem;"
+                        onclick="window.print()">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </button>
+                </div>
+
+                <!-- Question Menu Grid -->
+                <div>
+                    <div class="menu-heading">
+                        <span>Question Menu</span>
+                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/18</span>
+                    </div>
+                    <div class="palette-grid" id="paletteGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Timer Box -->
+                <div>
+                    <div class="menu-heading">Timer</div>
+                    <div class="timer-box">
+                        <div class="timer-display" id="timerDisplay">00:00</div>
+                        <div class="timer-controls">
+                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i
+                                    class="fa-solid fa-pause"></i></button>
+                            <button class="btn-icon-sm" onclick="resetTimer()"><i
+                                    class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Score Box & Submit Exam Button -->
+                <div>
+                    <div class="menu-heading">Controls</div>
+                    <button class="btn-submit-exam" onclick="submitExam()">
+                        <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
+                    </button>
+                    <div class="score-card" style="margin-top:1rem;">
+                        <span
+                            style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">Your
+                            Score</span>
+                        <div class="score-num" id="liveScoreDisplay">0.00 / 50.00</div>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);"
+                            id="livePercentDisplay">(0%)</span>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Right Area: Questions List -->
+            <section class="questions-area" id="questionsContainer">
+                <!-- Dynamically Rendered by JS -->
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Floating Back to Top FAB (Image 2 style) -->
+    <button class="fab-back-to-top" id="fabBackToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;">Question Paper Summary</h3>
+                <button class="btn-icon-sm" onclick="closeSummaryModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+                Paper Title: <b>Programming in Python 13 Jul 25</b> (Quiz 1)
+            </p>
+            <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+                <tr style="border-bottom:1px solid var(--border-light); text-align:left;">
+                    <th style="padding:0.6rem;">Question Type</th>
+                    <th style="padding:0.6rem;">Count</th>
+                    <th style="padding:0.6rem;">Total Marks</th>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MCQ (Multiple Choice)</td>
+                    <td style="padding:0.6rem;">9</td>
+                    <td style="padding:0.6rem;">25.00</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MSQ (Multiple Select)</td>
+                    <td style="padding:0.6rem;">3</td>
+                    <td style="padding:0.6rem;">11.00</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">SA (Short Answer / Numeric)</td>
+                    <td style="padding:0.6rem;">4</td>
+                    <td style="padding:0.6rem;">14.00</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">Comprehension Passages</td>
+                    <td style="padding:0.6rem;">2</td>
+                    <td style="padding:0.6rem;">0.00</td>
+                </tr>
+            </table>
+            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close
+                Summary</button>
+        </div>
+    </div>
+
+    <!-- Exam Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-card" style="text-align:center;">
+            <div
+                style="width:64px; height:64px; border-radius:50%; background:rgba(16, 185, 129, 0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 1rem;">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Exam Submitted!</h2>
+            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for Quiz 1 Intro
+                to Python (13 Jul 25)</p>
+
+            <div
+                style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
+                <div style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; font-weight:600;">
+                    Final Score</div>
+                <div style="font-family:var(--font-mono); font-size:2.8rem; font-weight:800; color:var(--accent-green);"
+                    id="modalScoreText">0.00 / 50.00</div>
+                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0%
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem; margin-bottom:1.5rem;">
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Correct</div>
+                    <div style="font-weight:700; color:#10b981; font-size:1.2rem;" id="modalCorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Incorrect</div>
+                    <div style="font-weight:700; color:#ef4444; font-size:1.2rem;" id="modalIncorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Unanswered</div>
+                    <div style="font-weight:700; color:var(--text-secondary); font-size:1.2rem;"
+                        id="modalUnansweredCount">0</div>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:0.75rem;">
+                <button class="btn btn-secondary btn-full"
+                    onclick="closeResultModal(); setPortalMode('learning');">Review Solutions <i
+                        class="fa-solid fa-book-open"></i></button>
+                <button class="btn btn-primary btn-full" onclick="resetExam()">Retake Exam <i
+                        class="fa-solid fa-rotate-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/main.js"></script>
+    <script>
+        // ==========================================================================
+        // QUIZ 1 PYTHON (13 JUL 2025) QUESTION DATA (EXTRACTED FROM PDF)
+        // ==========================================================================
+        const QUESTIONS_DATA = [
+            {
+                qn: 1,
+                id: "6406531298112",
+                type: "MCQ",
+                marks: 0.00,
+                text: 'THIS IS QUESTION PAPER FOR THE SUBJECT "FOUNDATION LEVEL : INTRODUCTION TO PYTHON (COMPUTER BASED EXAM)" ARE YOU SURE YOU HAVE TO WRITE EXAM FOR THIS SUBJECT? CROSS CHECK YOUR HALL TICKET TO CONFIRM THE SUBJECTS TO BE WRITTEN.',
+                code: "OPTIONS :",
+                options: [
+                    "YES",
+                    "NO"
+                ],
+                correct: [0],
+                solution: "This is an introductory confirmation instruction for the exam. Select YES to confirm."
+            },
+            {
+                qn: 2,
+                id: "6406531298113",
+                type: "MCQ",
+                marks: 0.00,
+                text: "Useful InformationNAT → integerFor all NAT questions in this exam, the answer will always be an integer and not a float value. If the answer to a question is 18, then just enter that value. Do not enter 18.0",
+                code: "OPTIONS :",
+                options: [
+                    "Useful Data has been mentioned above.",
+                    "This data attachment is just for a reference & not for an evaluation."
+                ],
+                correct: [0],
+                solution: "Instruction question for integer formatting in NAT questions."
+            },
+            {
+                qn: 3,
+                id: "6406531298114",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the following code: Which of the following is the correct output?",
+                code: `text = ">>> Hello, Python! <<< "\nto_strip = " <>"\n\nA = text.strip(to_strip)\nB = text.lstrip(to_strip)\nC = text.rstrip(to_strip)\nD = text.strip()\n\nprint(A)\nprint(B)\nprint(C)\nprint(D)`,
+                options: [
+                    "Hello, Python!  Hello, Python! <<<   >>> Hello, Python!  >>> Hello, Python! <<<",
+                    "Hello, Python!  Hello, Python! <<<   >>> Hello, Python!  >>> Hello, Python! <<<",
+                    "Hello, Python!.  >>> Hello, Python!  Hello, Python! <<<  >>> Hello, Python! <<<",
+                    ">>> Hello, Python! <<<  Hello, Python! <<<  >>> Hello, Python!  Hello, Python!"
+                ],
+                correct: [1],
+                solution: `Execution Trace:\n- A = text.strip(" <>") -> "Hello, Python!" (strips whitespace and <> from both ends)\n- B = text.lstrip(" <>") -> "Hello, Python! <<< "\n- C = text.rstrip(" <>") -> ">>> Hello, Python!"\n- D = text.strip() -> ">>> Hello, Python! <<<"\nOption 2 is the correct output.`
+            },
+            {
+                qn: 4,
+                id: "6406531298115",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider a Python program that takes a sentence (which may contain both uppercase and lowercase letters, spaces, and punctuation) and prints the number of vowels present. Which of these two snippets is correct?",
+                code: `# Snippet-1\nsentence = input()\ncount = 0\nvowels = set("aeiouAEIOU")\nfor char in sentence:\n    if char in vowels:\n        count += 1\nprint(count)\n\n# Snippet-2\nsentence = input()\ncount = 0\nfor char in sentence.lower():\n    if char in ['a', 'e', 'i', 'o', 'u']:\n        count += 1\nprint(count)`,
+                options: [
+                    "Only snippet-1 is correct",
+                    "Only snippet-2 is correct",
+                    "Both snippets are correct",
+                    "Both snippets are wrong"
+                ],
+                correct: [2],
+                solution: `Analysis:\n- Snippet-1 uses set("aeiouAEIOU") which correctly matches uppercase and lowercase vowels.\n- Snippet-2 converts sentence to lowercase and matches against vowel list.\nBoth snippets correctly count all vowels in the sentence.`
+            },
+            {
+                qn: 5,
+                id: "6406531298116",
+                type: "MCQ",
+                marks: 3.00,
+                text: "What is the output of the following Python code?",
+                code: `data = ["alpha", "beta", "gamma"]\ndata[1] = data[1].replace("e", data[0][1])\ndata[2] = data[2][::-1].replace("a", data[0][3])\nprint(data)`,
+                options: [
+                    "['alpha', 'blta', 'ammag']",
+                    "['alpha', 'blta', 'ghmmh']",
+                    "['alpha', 'blta', 'htlb']",
+                    "['alpha', 'blta', 'hmmh']"
+                ],
+                correct: [3],
+                solution: `Step-by-step Execution:\n1. data[0] = "alpha" -> data[0][1] = 'l', data[0][3] = 'h'\n2. data[1] = "beta".replace("e", "l") -> "blta"\n3. data[2] = "gamma"[::-1].replace("a", "h") = "ammag".replace("a", "h") -> "hmmh"\n4. Output: ['alpha', 'blta', 'hmmh'].`
+            },
+            {
+                qn: 6,
+                id: "6406531298117",
+                type: "MCQ",
+                marks: 4.00,
+                text: "We want to print the following pattern:\n1111\n1001\n1011\n1111\nWhich of these two snippets is correct?",
+                code: `# Snippet-1\nn = 4\nfor i in range(n):\n    for j in range(n):\n        if i == 0 or i == n-1 or j == 0 or j == n-1:\n            print('1', end='')\n        elif i == j:\n            print('1', end='')\n        else:\n            print('0', end='')\n    print()\n\n# Snippet-2\nn = 4\nfor i in range(n):\n    row = ''\n    for j in range(n):\n        if i in [0, n-1] or j in [0, n-1]:\n            row += '1'\n        elif i == j:\n            row += '0'\n        else:\n            row += '1'\n    print(row)`,
+                options: [
+                    "Only Snippet-1 prints the pattern correctly",
+                    "Only Snippet-2 prints the pattern correctly",
+                    "Both snippets print the pattern correctly",
+                    "Both snippets print incorrect patterns"
+                ],
+                correct: [3],
+                solution: `Pattern analysis for n=4:\n- Snippet-1 produces 1101 on row 1 (fails target 1001).\n- Snippet-2 produces 1011 on row 1 and 1101 on row 2.\nNeither snippet matches the required pattern. Thus, both snippets print incorrect patterns.`
+            },
+            {
+                qn: 7,
+                id: "6406531298118",
+                type: "MSQ",
+                marks: 4.00,
+                text: "P is a non-empty list of distinct integers that has already been defined. Which of the following statements are true at the end of execution of the code given below?",
+                code: `Q, R = [], []\nfor x in P:\n    Q.append(-x)\nQ.sort()\nfor x in Q:\n    R.append(-x)`,
+                options: [
+                    "P is always equal to R, i.e., P == R returns the value True",
+                    "Every element in P is present in R, but not necessarily in the same sequence.",
+                    "R is a list of integers sorted in descending order.",
+                    "Q is a list of integers sorted in ascending order."
+                ],
+                correct: [1, 2, 3],
+                solution: `Evaluating statements:\n1. Q.sort() sorts Q in ascending order -> Q is sorted ascending.\n2. R takes -x from Q in ascending order -> R is sorted in descending order!\n3. All elements from P exist in R sorted in descending order.\nStatements 2, 3, and 4 are TRUE.`
+            },
+            {
+                qn: 8,
+                id: "6406531298119",
+                type: "MSQ",
+                marks: 4.00,
+                text: "Consider the following Python code. Which of the following statements is/are true?",
+                code: `def process(x, y):\n    if x > y:\n        return x - y\n    elif x < y:\n        return y - x\n    else:\n        return x + y\n\ndef compute(a, b):\n    result = process(a, b)\n    if result % 2 == 0:\n        return \"Even\"\n    else:\n        return \"Odd\"`,
+                options: [
+                    "If x = 5 and y = 2, then output will be Odd",
+                    "If x = 4 and y = 8, then output will be Even",
+                    "If x = 3 and y = 3, then output will be Odd",
+                    "If x = 10 and y = 5, then output will be Even"
+                ],
+                correct: [0, 1],
+                solution: `Evaluating calls:\n1. process(5, 2) = 3 -> compute(5, 2) returns "Odd" (True).\n2. process(4, 8) = 4 -> compute(4, 8) returns "Even" (True).\n3. process(3, 3) = 6 -> compute(3, 3) returns "Even" (not Odd).\n4. process(10, 5) = 5 -> compute(10, 5) returns "Odd" (not Even).\nStatements 1 and 2 are TRUE.`
+            },
+            {
+                qn: 9,
+                id: "6406531298120",
+                type: "SA",
+                marks: 3.00,
+                text: "Consider the following snippet of code. What will the output be?",
+                code: `result = 0\nfor i in range(1, 4):\n    for j in range(1, 4):\n        if i == j:\n            continue\n        if i + j > 4:\n            break\n        result += i + j\nprint(result)`,
+                acceptedAnswer: "14",
+                solution: `Tracing loop:\n- i=1: j=2 (+=3), j=3 (+=4) -> 7\n- i=2: j=1 (+=3) -> 10, j=3 (break)\n- i=3: j=1 (+=4) -> 14, j=2 (break)\nTotal result = 14.`
+            },
+            {
+                qn: 10,
+                id: "6406531298121",
+                type: "SA",
+                marks: 4.00,
+                text: "What is the output of the following snippet of code? Enter an integer as your answer.",
+                code: `lst = ['IIT', ['Madras', '2025'], 'exam']\nprint(len(lst[0]) + len(lst[1][1]) + len(lst[2]))`,
+                acceptedAnswer: "11",
+                solution: `Calculation:\n- len(lst[0]) = len('IIT') = 3\n- len(lst[1][1]) = len('2025') = 4\n- len(lst[2]) = len('exam') = 4\n- Sum = 3 + 4 + 4 = 11.`
+            },
+            {
+                qn: 11,
+                id: "6406531298122",
+                type: "SA",
+                marks: 4.00,
+                text: "What is the output of the following snippet of code? Enter an integer as your answer.",
+                code: `lst = [x for x in [1, 0, -2]]\nresult = 0\nfor val in lst:\n    if val == 0:\n        result += 10\n    elif val < 0:\n        result += 5\n    elif val % 2 == 1:\n        result += 3\n    else:\n        result += 1\nprint(result)`,
+                acceptedAnswer: "18",
+                solution: `Tracing lst = [1, 0, -2]:\n- val=1: val % 2 == 1 -> result += 3 (3)\n- val=0: val == 0 -> result += 10 (13)\n- val=-2: val < 0 -> result += 5 (18)\nTotal result = 18.`
+            },
+            {
+                qn: 12,
+                id: "6406531298123",
+                type: "SA",
+                marks: 4.00,
+                text: "Consider the following snippet of code. What will the output be?",
+                code: `names = ["alice", "bob", "charlie", "david", "eve"]\nresult = 0\nshort = []\n\nfor name in names:\n    if len(name) < 4:\n        short.append(name)\n    elif len(name) == 5:\n        result += 1\n    elif 'a' in name:\n        result += 2\n\nprint(len(short) + result)`,
+                acceptedAnswer: "6",
+                solution: `Tracing loop:\n- "alice": len 5 -> result += 1 (1)\n- "bob": len 3 (< 4) -> short = ["bob"]\n- "charlie": len 7, 'a' in name -> result += 2 (3)\n- "david": len 5 -> result += 1 (4)\n- "eve": len 3 (< 4) -> short = ["bob", "eve"]\nlen(short) = 2, result = 4. Total = 6.`
+            },
+            {
+                qn: 13,
+                id: "6406531298124",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "Consider the following snippet of code and answer the given sub-questions.",
+                code: `def transform(data):\n    result = []\n    for item in data:\n        if isinstance(item, str) and len(item) % 2 == 0:\n            result.append(item.upper())\n        elif isinstance(item, int) and item % 2 == 1:\n            result.append(item * item)\n        else:\n            continue\n    return result\n\nsample = ['ai', 5, 'sql', 4, 'ml', 8, 9]\noutput = transform(sample)`,
+                options: [],
+                correct: [],
+                solution: "Comprehension passage code block for Questions 14 & 15."
+            },
+            {
+                qn: 14,
+                id: "6406531298125",
+                parentQn: 13,
+                type: "MCQ",
+                marks: 4.00,
+                text: "What is the value of output after executing the given code?",
+                code: `output = transform(sample)`,
+                options: [
+                    "['AI', 25, 'ML']",
+                    "['AI', 25, 'ML', 64]",
+                    "['AI', 25, 'ML', 81]",
+                    "['AI', 16, 'ML', 64]"
+                ],
+                correct: [2],
+                solution: `Tracing transform(sample):\n- 'ai': str, len 2 -> "AI"\n- 5: int, odd -> 25\n- 'sql': len 3 -> skipped\n- 4: even -> skipped\n- 'ml': str, len 2 -> "ML"\n- 8: even -> skipped\n- 9: int, odd -> 81\nOutput = ['AI', 25, 'ML', 81].`
+            },
+            {
+                qn: 15,
+                id: "6406531298126",
+                parentQn: 13,
+                type: "MSQ",
+                marks: 3.00,
+                text: "Which of the following changes would also include SQL in the final result?",
+                code: `len(item) % 2 == 0`,
+                options: [
+                    "Make the length condition len(item) % 2 == 1 instead of == 0.",
+                    "Remove the condition len(item) % 2 == 0.",
+                    "Ensure 'sql' is written as 'SQL' in the original list.",
+                    "Remove the condition isinstance(item, str)."
+                ],
+                correct: [0, 1],
+                solution: `'sql' has length 3 (odd). Changing condition to len % 2 == 1 or removing length check allows 'sql' to pass -> includes 'SQL' in output. Statements 1 and 2 are TRUE.`
+            },
+            {
+                qn: 16,
+                id: "6406531298127",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "Consider the following snippet of code and answer the given sub-questions.",
+                code: `def matrix_transform(matrix):\n    result = []\n    i = 0\n    while i < len(matrix):\n        row = matrix[i]\n        for element in row:\n            if element % 2 == 1:\n                result.append(element * 2)\n        i += 1\n    return result\n\nmatrix = [[1, 2, 3], [4, 5], [6]]\noutput = matrix_transform(matrix)\nprint(output)`,
+                options: [],
+                correct: [],
+                solution: "Comprehension passage code block for Questions 17 & 18."
+            },
+            {
+                qn: 17,
+                id: "6406531298128",
+                parentQn: 16,
+                type: "MCQ",
+                marks: 4.00,
+                text: "What is the value of output after executing the given code snippet?",
+                code: `output = matrix_transform(matrix)`,
+                options: [
+                    "[2, 6, 10, 14]",
+                    "[2, 6, 10]",
+                    "[2, 8, 10]",
+                    "[2, 6, 14]"
+                ],
+                correct: [1],
+                solution: `Tracing odd elements in matrix = [[1, 2, 3], [4, 5], [6]]:\n- 1 -> 2\n- 3 -> 6\n- 5 -> 10\nOutput = [2, 6, 10].`
+            },
+            {
+                qn: 18,
+                id: "6406531298129",
+                parentQn: 16,
+                type: "MCQ",
+                marks: 3.00,
+                text: "In the given code, if we change the condition to if element % 2 == 0 at line 7, then what is the value of output after executing it?",
+                code: `if element % 2 == 0: # replaced condition`,
+                options: [
+                    "[4, 8, 12]",
+                    "[4, 8, 10]",
+                    "[9, 10]",
+                    "[6, 8, 12]"
+                ],
+                correct: [0],
+                solution: `Tracing even elements in matrix = [[1, 2, 3], [4, 5], [6]]:\n- 2 -> 4\n- 4 -> 8\n- 6 -> 12\nOutput = [4, 8, 12].`
+            }
+        ];
+
+        // Global State
+        let currentMode = 'exam'; // 'exam' (default, answers/highlights hidden) or 'learning'
+        let userAnswers = {}; // { qnNum: [selectedIndices] or string for SA }
+        let timerInterval = null;
+        let timerSeconds = 0;
+        let isTimerRunning = true;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuestionPalette();
+            renderQuestions();
+            startTimer();
+            updateScoreDisplay();
+        });
+
+        function setPortalMode(mode) {
+            currentMode = mode;
+            document.getElementById('btnExamMode').classList.toggle('active', mode === 'exam');
+            document.getElementById('btnLearningMode').classList.toggle('active', mode === 'learning');
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function renderQuestionPalette() {
+            const grid = document.getElementById('paletteGrid');
+            grid.innerHTML = QUESTIONS_DATA.map(q => `
+                <button class="palette-btn" id="paletteBtn_${q.qn}" onclick="scrollToQuestion(${q.qn})">${q.qn}</button>
+            `).join('');
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            let html = '';
+
+            QUESTIONS_DATA.forEach((q) => {
+                const userAns = userAnswers[q.qn];
+
+                html += `
+                <article class="qn-card" id="qnCard_${q.qn}">
+                    <div class="qn-header-container">
+                        <div class="qn-header-top">
+                            <div class="qn-title-main">
+                                Question ${q.qn} :
+                                ${q.parentQn ? `<span class="badge-type" style="background:rgba(167, 139, 250, 0.15); color:#7c3aed; font-size:0.75rem; padding:0.2rem 0.5rem;"><i class="fa-solid fa-diagram-project"></i> Parent Q${q.parentQn}</span>` : ''}
+                            </div>
+                            <button class="btn-solution-pill" onclick="toggleSolution(${q.qn})">
+                                <i class="fa-regular fa-circle-check"></i> View Solutions (0)
+                            </button>
+                        </div>
+                        <div class="qn-header-sub">
+                            <span class="qn-id-tag">${q.id}</span>
+                            <span class="qn-meta-info">Total Mark : ${q.marks.toFixed(2)} | Type : ${q.type}</span>
+                        </div>
+                    </div>
+
+                    <div class="qn-text">${q.text}</div>
+
+                    ${q.code ? `
+                    <div class="code-snippet-wrap">
+                        <code>${escapeHtml(q.code)}</code>
+                    </div>` : ''}
+
+                    <!-- Options / Inputs -->
+                    ${renderQuestionInputs(q)}
+
+                    <!-- Footer Action Toolbar (Image 2 style) -->
+                    <div class="qn-footer-toolbar">
+                        <div class="qn-actions-group">
+                            <button class="btn-action-pill btn-discuss" onclick="alert('Discussion forum loading...')"><i class="fa-regular fa-comments"></i> Discussions (0)</button>
+                            <button class="btn-action-pill btn-correct" onclick="alert('Correction reported. Thank you!')"><i class="fa-regular fa-pen-to-square"></i> Suggest Correction</button>
+                            <button class="btn-action-pill btn-broken" onclick="alert('Format flag recorded.')"><i class="fa-solid fa-wrench"></i> Broken Format?</button>
+                        </div>
+                    </div>
+
+                    <!-- Solution Accordion -->
+                    <div class="solution-box" id="solution_${q.qn}">
+                        <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution & Code Trace</div>
+                        <div class="solution-text">${q.solution}</div>
+                    </div>
+                </article>
+                `;
+
+                // Add Advertisement banner after Q5 and Q13
+                if (q.qn === 5 || q.qn === 13) {
+                    html += `
+                    <div class="ad-banner-box">
+                        <span class="ad-tag">ADVERTISEMENT</span>
+                        <div class="ad-actions">
+                            <button class="btn-remove-ads" onclick="alert('Ad-free experience enabled.')"><i class="fa-solid fa-bolt"></i> Remove Ads</button>
+                            <button class="btn-close-ad" onclick="this.parentElement.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    `;
+                }
+            });
+
+            container.innerHTML = html;
+            updatePaletteStatuses();
+        }
+
+        function renderQuestionInputs(q) {
+            if (q.type === 'COMPREHENSION') {
+                return `<div style="font-size:0.88rem; color:var(--text-muted); font-style:italic; margin-bottom:1.25rem;">[Comprehension Passage Block - Subquestions are listed below]</div>`;
+            }
+
+            if (q.type === 'SA') {
+                const userVal = userAnswers[q.qn] || '';
+                const showGreen = currentMode === 'learning';
+
+                return `
+                <div class="sa-input-wrap">
+                    <label for="sa_${q.qn}">Answer (Numeric):</label>
+                    <input type="text" id="sa_${q.qn}" class="sa-input" value="${userVal}" placeholder="Answer" oninput="handleSAInput(${q.qn}, this.value)">
+                    <div class="accepted-ans-box" style="display:${showGreen ? 'block' : 'none'};">
+                        <i class="fa-solid fa-circle-check"></i> Accepted Answer : ${q.acceptedAnswer}
+                    </div>
+                </div>
+                `;
+            }
+
+            // MCQ / MSQ
+            const isMSQ = q.type === 'MSQ';
+            const userArr = userAnswers[q.qn] || [];
+
+            return `
+            <div class="options-list">
+                ${q.options.map((optText, idx) => {
+                const isChecked = userArr.includes(idx);
+                const isCorrect = q.correct.includes(idx);
+                let highlightClass = '';
+
+                if (currentMode === 'learning') {
+                    if (isCorrect) highlightClass = 'correct-highlight';
+                    else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                }
+
+                return `
+                    <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <span class="option-text">${escapeHtml(optText)}</span>
+                    </label>
+                    `;
+            }).join('')}
+            </div>
+            `;
+        }
+
+        function handleOptionSelect(qnNum, optIdx, qnType) {
+            if (qnType === 'MCQ') {
+                userAnswers[qnNum] = [optIdx];
+            } else if (qnType === 'MSQ') {
+                if (!userAnswers[qnNum]) userAnswers[qnNum] = [];
+                const pos = userAnswers[qnNum].indexOf(optIdx);
+                if (pos >= 0) userAnswers[qnNum].splice(pos, 1);
+                else userAnswers[qnNum].push(optIdx);
+            }
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function handleSAInput(qnNum, val) {
+            userAnswers[qnNum] = val.trim();
+            updatePaletteStatuses();
+            updateScoreDisplay();
+            const scoreEl = document.getElementById(`qnScore_${qnNum}`);
+            if (scoreEl) {
+                const q = QUESTIONS_DATA.find(x => x.qn === qnNum);
+                scoreEl.textContent = calculateQuestionScore(q);
+            }
+        }
+
+        function calculateQuestionScore(q) {
+            if (q.type === 'COMPREHENSION') return "0";
+            const userAns = userAnswers[q.qn];
+            if (!userAns) return "0";
+
+            if (q.type === 'SA') {
+                return (userAns === q.acceptedAnswer) ? q.marks.toFixed(2) : "0";
+            }
+
+            // MCQ / MSQ
+            if (!Array.isArray(userAns) || userAns.length === 0) return "0";
+
+            if (q.type === 'MCQ') {
+                return (userAns[0] === q.correct[0]) ? q.marks.toFixed(2) : "0";
+            }
+
+            if (q.type === 'MSQ') {
+                const sortedUser = [...userAns].sort().join(',');
+                const sortedCorrect = [...q.correct].sort().join(',');
+                return (sortedUser === sortedCorrect) ? q.marks.toFixed(2) : "0";
+            }
+
+            return "0";
+        }
+
+        function updateScoreDisplay() {
+            let total = 0;
+            let answeredCount = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const score = parseFloat(calculateQuestionScore(q));
+                total += score;
+
+                const ans = userAnswers[q.qn];
+                if (ans && (Array.isArray(ans) ? ans.length > 0 : ans !== '')) {
+                    answeredCount++;
+                }
+            });
+
+            document.getElementById('liveScoreDisplay').textContent = `${total.toFixed(2)} / 50.00`;
+            const pct = ((total / 50) * 100).toFixed(1);
+            document.getElementById('livePercentDisplay').textContent = `(${pct}%)`;
+            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/18`;
+        }
+
+        function updatePaletteStatuses() {
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.getElementById(`paletteBtn_${q.qn}`);
+                if (!btn) return;
+
+                btn.className = 'palette-btn';
+
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && (Array.isArray(ans) ? ans.length > 0 : ans !== '');
+
+                if (hasAns) {
+                    btn.classList.add('answered');
+                    if (currentMode === 'learning') {
+                        const score = parseFloat(calculateQuestionScore(q));
+                        if (score > 0) btn.classList.add('correct');
+                        else btn.classList.add('incorrect');
+                    }
+                }
+            });
+        }
+
+        function toggleSolution(qnNum) {
+            const box = document.getElementById(`solution_${qnNum}`);
+            if (box) box.classList.toggle('open');
+        }
+
+        function scrollToQuestion(qnNum) {
+            const card = document.getElementById(`qnCard_${qnNum}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                document.querySelectorAll('.palette-btn').forEach(b => b.classList.remove('active-qn'));
+                const btn = document.getElementById(`paletteBtn_${qnNum}`);
+                if (btn) btn.classList.add('active-qn');
+            }
+        }
+
+        // Timer Logic
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (isTimerRunning) {
+                    timerSeconds++;
+                    updateTimerUI();
+                }
+            }, 1000);
+        }
+
+        function toggleTimer() {
+            isTimerRunning = !isTimerRunning;
+            const btn = document.getElementById('btnPauseTimer');
+            if (btn) btn.innerHTML = isTimerRunning ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+        }
+
+        function resetTimer() {
+            timerSeconds = 0;
+            updateTimerUI();
+        }
+
+        function updateTimerUI() {
+            const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const secs = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+        }
+
+        // Exam Submission & Modals
+        function submitExam() {
+            setPortalMode('learning');
+
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+            let totalScore = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                if (q.type === 'COMPREHENSION') return;
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && (Array.isArray(ans) ? ans.length > 0 : ans !== '');
+
+                if (!hasAns) {
+                    unansweredCount++;
+                } else {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    totalScore += score;
+                    if (score > 0) correctCount++;
+                    else incorrectCount++;
+                }
+            });
+
+            document.getElementById('modalScoreText').textContent = `${totalScore.toFixed(2)} / 50.00`;
+            document.getElementById('modalPercentText').textContent = `${((totalScore / 50) * 100).toFixed(1)}% Accuracy`;
+            document.getElementById('modalCorrectCount').textContent = correctCount;
+            document.getElementById('modalIncorrectCount').textContent = incorrectCount;
+            document.getElementById('modalUnansweredCount').textContent = unansweredCount;
+
+            document.getElementById('resultModal').classList.add('active');
+        }
+
+        function resetExam() {
+            userAnswers = {};
+            resetTimer();
+            closeResultModal();
+            setPortalMode('exam');
+        }
+
+        function openSummaryModal() {
+            document.getElementById('summaryModal').classList.add('active');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.remove('active');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.remove('active');
+        }
+
+        function escapeHtml(str) {
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // Mobile Sidebar Accordion Toggle
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('portalSidebar');
+            const toggleBtn = document.getElementById('mobileSidebarToggle');
+            if (sidebar && toggleBtn) {
+                sidebar.classList.toggle('open');
+                toggleBtn.classList.toggle('active');
+            }
+        }
+
+        // Floating Back to Top FAB
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const fab = document.getElementById('fabBackToTop');
+            if (fab) {
+                if (window.scrollY > 300) fab.classList.add('visible');
+                else fab.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+
+</html>

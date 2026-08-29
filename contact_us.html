@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Feedback & Review | BSH - IIT Madras BS Student Portal</title>
+    <meta name="description"
+        content="Share your BSH experience, submit reviews, report bugs, or suggest new features for IIT Madras BS Data Science & Electronic Systems students.">
+
+    <!-- App & Site Name Meta Tags -->
+    <meta name="application-name" content="BS Students Helper">
+    <meta name="apple-mobile-web-app-title" content="BS Students Helper">
+    <link rel="canonical" href="https://bsstudentshelper.vercel.app/contact_us.html">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bsstudentshelper.vercel.app/contact_us">
+
+    <!-- Search Engine & Robots Meta -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="keywords" content="BSH Feedback, IITM BS Review, BS Students Helper Contact, IIT Madras BS Student Survey, BSH Suggestions">
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Submit Feedback & Review | BSH - IIT Madras BS Student Portal">
+    <meta property="og:description" content="Share your BSH experience, submit reviews, or suggest features. Help us improve for every IITM BS student!">
+    <meta property="og:url" content="https://bsstudentshelper.vercel.app/contact_us">
+    <meta property="og:site_name" content="BS Students Helper">
+    <meta property="og:image" content="https://bsstudentshelper.vercel.app/assets/images/logo.png">
+
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Submit Feedback & Review | BSH - IIT Madras BS Student Portal">
+    <meta name="twitter:description" content="Share your BSH experience, submit reviews, or suggest features.">
+    <meta name="twitter:image" content="https://bsstudentshelper.vercel.app/assets/images/logo.png">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ContactPage",
+          "@id": "https://bsstudentshelper.vercel.app/contact_us#webpage",
+          "url": "https://bsstudentshelper.vercel.app/contact_us",
+          "name": "BSH Feedback & Review Submission",
+          "description": "Submit reviews, feedback, bug reports, and feature suggestions for BSH (BS Students Helper) portal.",
+          "inLanguage": "en"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://bsstudentshelper.vercel.app/contact_us#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://bsstudentshelper.vercel.app/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Submit Feedback",
+              "item": "https://bsstudentshelper.vercel.app/contact_us"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Anti-Flash Theme Script -->
+    <script>
+        (function () {
+            const saved = localStorage.getItem('bsh-theme');
+            if (saved === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+
+    <style>
+        .form-embed-wrapper {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 1rem;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .form-embed-wrapper iframe {
+            width: 100%;
+            min-height: 1550px;
+            border: none;
+            border-radius: var(--radius-lg);
+            display: block;
+        }
+        .feedback-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+            max-width: 800px;
+            margin: 2rem auto 0;
+        }
+        .benefit-pill {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-align: left;
+            transition: all 0.2s ease;
+        }
+        .benefit-pill:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-purple);
+        }
+        .benefit-pill i {
+            font-size: 1.2rem;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            color: white;
+            flex-shrink: 0;
+        }
+        .benefit-pill span {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Header -->
+    <header class="site-header" id="header">
+        <div class="header-container">
+            <!-- BSH Brand Logo -->
+            <a href="index.html" class="brand-logo" aria-label="BSH Homepage">
+                <img src="assets/images/logo.png" alt="BSH - Portal for IIT Madras BS Students" class="logo-img">
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#features" class="nav-link">Features</a>
+                <a href="quiz_practice.html" class="nav-link">Quiz Practice</a>
+                <a href="oppe/" class="nav-link">OPPE Lab</a>
+                <a href="calculator.html" class="nav-link">SEC Calculator</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="contact_us.html" class="nav-link active">Feedback</a>
+                <a href="index.html#faq" class="nav-link">FAQ</a>
+                <div class="mobile-menu-actions">
+                    <a href="index.html#quiz-preview" class="btn btn-secondary btn-full">Practice Quiz</a>
+                    <a href="calculator.html" class="btn btn-primary btn-full">Calculate SEC Grade</a>
+                </div>
+            </nav>
+
+            <!-- Header Actions -->
+            <div class="header-actions">
+                <a href="index.html#quiz-preview" class="btn btn-secondary nav-btn-desktop">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span>Practice Quiz</span>
+                </a>
+                <a href="calculator.html" class="btn btn-primary nav-btn-desktop">
+                    <i class="fa-solid fa-calculator"></i>
+                    <span>SEC Calculator</span>
+                </a>
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Light/Dark Theme" title="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-bg-grid"></div>
+            <div class="hero-glow-blob"></div>
+
+            <div class="container hero-container text-center">
+                <div class="hero-badge-wrapper" style="justify-content: center;">
+                    <div class="pill-badge">
+                        <i class="fa-solid fa-star" style="color: var(--accent-gold);"></i>
+                        <span class="badge-text">Your voice shapes BSH's future</span>
+                    </div>
+                </div>
+
+                <h1 class="hero-title" style="font-size: 3rem; margin-bottom: 1rem;">
+                    Share Your BSH Story. <br>
+                    <span class="title-highlight">Help Fellow Students Thrive.</span>
+                </h1>
+
+                <p class="hero-subtitle" style="margin: 0 auto; max-width: 750px;">
+                    Submit your review, feedback, bug report, or feature suggestion below. Every single response is read
+                    by the BSH team and helps improve the portal for <strong>4,800+ IITM BS students</strong>.
+                </p>
+            </div>
+        </section>
+
+        <!-- Feedback Form Section -->
+        <section class="section" style="padding: 3rem 0 4rem;">
+            <div class="container">
+                <div class="section-header text-center mb-5">
+                    <div class="pill-badge mb-3">
+                        <i class="fa-solid fa-paper-plane"></i> BSH FEEDBACK FORM
+                    </div>
+                    <h2 class="section-title">Fill Out The Form Below</h2>
+                    <p class="section-subtitle">
+                        Takes under 2 minutes. Your submission is anonymous unless you choose to share your name.
+                    </p>
+                </div>
+
+                <!-- Google Form Embed -->
+                <div class="form-embed-wrapper">
+                    <iframe
+                        src="https://docs.google.com/forms/d/e/1FAIpQLSdh00mir3f8M7qpkBWVUfCUpCEs9VnCd9ULsBpq-7gm2Mlz8A/viewform?embedded=true"
+                        title="BSH Feedback & Review Form"
+                        loading="lazy"
+                        marginheight="0"
+                        marginwidth="0">
+                        Loading feedback form...
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdh00mir3f8M7qpkBWVUfCUpCEs9VnCd9ULsBpq-7gm2Mlz8A/viewform"
+                           target="_blank" rel="noopener noreferrer">
+                            Open form in new tab <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </iframe>
+                </div>
+
+                <!-- What Happens After You Submit -->
+                <div class="feedback-benefits">
+                    <div class="benefit-pill">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>Team reviews every submission within 48 hours</span>
+                    </div>
+                    <div class="benefit-pill">
+                        <i class="fa-solid fa-bug-slash"></i>
+                        <span>Bugs get prioritized & fixed in the next patch</span>
+                    </div>
+                    <div class="benefit-pill">
+                        <i class="fa-solid fa-gem"></i>
+                        <span>Top reviews are featured on the Wall of Love</span>
+                    </div>
+                    <div class="benefit-pill">
+                        <i class="fa-solid fa-rocket"></i>
+                        <span>Great ideas ship as features in the next update</span>
+                    </div>
+                </div>
+
+                <!-- Fallback Link -->
+                <div class="text-center mt-6" style="margin-top: 3rem;">
+                    <p class="form-hint" style="margin-bottom: 0.75rem;">
+                        <i class="fa-solid fa-circle-info"></i> Form not loading? No problem, use the direct link:
+                    </p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdh00mir3f8M7qpkBWVUfCUpCEs9VnCd9ULsBpq-7gm2Mlz8A/viewform"
+                       target="_blank" rel="noopener noreferrer"
+                       class="btn btn-secondary btn-lg">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        <span>Open Google Form in New Tab</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="brand-logo footer-logo" aria-label="BSH Homepage">
+                    <img src="assets/images/logo.png" alt="BSH - Portal for IIT Madras BS Students" class="logo-img">
+                </a>
+                <p class="footer-desc">
+                    The open, student-driven academic companion for IIT Madras BS in Data Science & Electronic Systems.
+                </p>
+                <div class="social-links">
+                    <a href="#" data-coming-soon="BSH Discord Community" aria-label="Discord"><i
+                            class="fa-brands fa-discord"></i></a>
+                    <a href="#" data-coming-soon="BSH GitHub Repository" aria-label="GitHub"><i
+                            class="fa-brands fa-github"></i></a>
+                    <a href="#" data-coming-soon="BSH LinkedIn Network" aria-label="LinkedIn"><i
+                            class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" data-coming-soon="BSH YouTube Tutorials" aria-label="YouTube"><i
+                            class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links-group">
+                <div class="footer-col">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Portal Home</a></li>
+                        <li><a href="calculator.html">SEC Grade Calculator</a></li>
+                        <li><a href="quiz_practice.html">Quiz Engine</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact_us.html">Submit Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-heading">Community</h4>
+                    <ul>
+                        <li><a href="index.html#testimonials">Wall of Love</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                        <li><a href="#" data-coming-soon="BSH Discord Server">Discord Server</a></li>
+                        <li><a href="#" data-coming-soon="BSH Open Source Repo">Open Source</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <p>&copy; 2026 BSH (BS Students Helper). Built with passion for IITM BS Students.</p>
+                <p class="disclaimer-text">Disclaimer: BSH is an independent student community initiative and is not
+                    officially affiliated with or endorsed by IIT Madras.</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
