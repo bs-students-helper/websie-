@@ -6,9 +6,9 @@ import {
   AlertTriangle,
   Copy,
   Check,
-  Terminal,
   ShieldCheck,
-  Zap,
+  ServerCrash,
+  RefreshCw,
 } from 'lucide-react';
 import { Problem, TestCase } from '../../types/problem';
 import { RunSummary, TestCaseResult } from '../../types/execution';
@@ -18,12 +18,16 @@ interface TestCasePanelProps {
   problem: Problem;
   summary: RunSummary | null;
   isRunning: boolean;
+  error?: string | null;
+  onRetryRun?: () => void;
 }
 
 export const TestCasePanel: React.FC<TestCasePanelProps> = ({
   problem,
   summary,
   isRunning,
+  error = null,
+  onRetryRun,
 }) => {
   const [selectedCaseId, setSelectedCaseId] = useState<number | string>(
     problem.testCases[0]?.id || 1
@@ -38,6 +42,14 @@ export const TestCasePanel: React.FC<TestCasePanelProps> = ({
   const currentResult = testResults.find((r) => r.testCaseId === selectedCaseId);
   const currentTestCase = problem.testCases.find((tc) => tc.id === selectedCaseId);
 
+  const isServiceDown =
+    summary?.status === 'SERVICE_UNAVAILABLE' || Boolean(error);
+
+  const serviceErrorMessage =
+    error ||
+    summary?.pistonError ||
+    'Unable to reach the real-time code execution service. Please check your internet connection and try again.';
+
   const handleCopy = (text: string, field: string) => {
     navigator.clipboard.writeText(text);
     setCopiedField(field);
@@ -50,16 +62,66 @@ export const TestCasePanel: React.FC<TestCasePanelProps> = ({
 
   return (
     <div className="h-full flex flex-col bg-[#FFF9F5] dark:bg-[#17141E] overflow-hidden">
+      {/* SERVICE UNAVAILABLE — critical error banner (no mock fallback, just real error + retry) */}
+      {isServiceDown && (
+        <div className="border-y-4 border-rose-600 dark:border-rose-500">
+          <div className="bg-gradient-to-r from-rose-600 via-rose-500 to-rose-600 dark:from-rose-700 dark:via-rose-600 dark:to-rose-700 text-white px-5 py-4 space-y-3 shadow-inner">
+            <div className="flex items-center gap-3">
+              <ServerCrash className="w-8 h-8 flex-shrink-0" />
+              <div className="flex-1 space-y-1">
+                <div className="text-base font-black uppercase tracking-widest drop-shadow">
+                  Code Execution Service Unavailable
+                </div>
+                <div className="text-xs font-semibold text-rose-100 dark:text-rose-200">
+                  All test grading uses real, server-side compilation via the Piston execution API.
+                  Your code was NOT graded because the service could not be reached.
+                </div>
+              </div>
+              {onRetryRun && (
+                <button
+                  onClick={onRetryRun}
+                  disabled={isRunning}
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/95 hover:bg-white text-rose-700 text-xs font-black uppercase tracking-wider shadow hover:shadow-md transition-all disabled:opacity-60 disabled:cursor-not-allowed flex-shrink-0"
+                >
+                  <RefreshCw className={`w-4 h-4 ${isRunning ? 'animate-spin' : ''}`} />
+                  {isRunning ? 'Running…' : 'Retry Run'}
+                </button>
+              )}
+            </div>
+            <div className="bg-black/30 dark:bg-black/40 rounded-lg p-3 border border-rose-300/40 space-y-1">
+              <div className="text-[11px] font-bold uppercase tracking-wider text-rose-100">
+                Error details:
+              </div>
+              <div className="text-[11px] font-mono text-rose-50 break-words whitespace-pre-wrap">
+                {serviceErrorMessage}
+              </div>
+            </div>
+            <div className="text-xs text-yellow-100 space-y-1">
+              <div className="font-bold">Troubleshooting:</div>
+              <ul className="list-disc ml-5 space-y-0.5 font-medium">
+                <li>Check your internet connection.</li>
+                <li>
+                  If emkc.org is blocked on your network, set{' '}
+                  <code className="bg-black/30 px-1 py-0.5 rounded">VITE_CODE_EXECUTION_API_URL</code>{' '}
+                  to a self-hosted Piston endpoint in your <code className="bg-black/30 px-1 py-0.5 rounded">.env</code>.
+                </li>
+                <li>Try again in a few minutes — Piston public API may be rate-limiting this IP.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Top Banner: Public Tests Summary */}
       <div className="p-4 border-b border-[#EADACD] dark:border-white/10 space-y-3 bg-[#F3EAE1]/50 dark:bg-[#252033]/50">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-2 flex-wrap">
           <div className="flex items-center gap-2 font-bold text-xs text-[#231815] dark:text-[#F7F5F8] uppercase tracking-wider">
             <GlobeIcon />
             <span>Public Test Cases</span>
           </div>
 
           {summary ? (
-            <div className="flex items-center gap-3 text-xs font-bold">
+            <div className="flex items-center gap-3 text-xs font-bold flex-wrap">
               <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400">
                 <CheckCircle2 className="w-4 h-4" />
                 {summary.passedTests} Passed
@@ -68,19 +130,18 @@ export const TestCasePanel: React.FC<TestCasePanelProps> = ({
                 <XCircle className="w-4 h-4" />
                 {summary.failedTests} Failed
               </span>
+              {!isServiceDown && (
+                <span className="flex items-center gap-1 px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 uppercase text-[10px] tracking-wider font-black">
+                  SCORE: {summary.score}%
+                </span>
+              )}
             </div>
           ) : (
-            <span className="text-xs text-slate-400 font-medium">Ready to run</span>
+            <span className="text-xs text-slate-400 font-medium">
+              {isRunning ? 'Running tests…' : 'Ready to run'}
+            </span>
           )}
         </div>
-
-        {/* Demo Mode Notice if active */}
-        {summary?.isDemoMode && (
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 text-xs font-medium rounded-lg border border-amber-200 dark:border-amber-800">
-            <Zap className="w-3.5 h-3.5 text-amber-500" />
-            <span>Demo Mode — Offline or mock execution active</span>
-          </div>
-        )}
 
         {/* Case pills navigation */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1">
@@ -88,12 +149,15 @@ export const TestCasePanel: React.FC<TestCasePanelProps> = ({
             const res = getResultForCase(tc.id);
             const isSelected = selectedCaseId === tc.id;
 
-            let badgeColor = 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700';
-            if (res) {
+            let badgeColor =
+              'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700';
+            if (res && !isServiceDown) {
               if (res.passed) {
-                badgeColor = 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400 border-emerald-300 dark:border-emerald-800';
+                badgeColor =
+                  'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400 border-emerald-300 dark:border-emerald-800';
               } else {
-                badgeColor = 'bg-rose-50 text-rose-700 dark:bg-rose-950/60 dark:text-rose-400 border-rose-300 dark:border-rose-800';
+                badgeColor =
+                  'bg-rose-50 text-rose-700 dark:bg-rose-950/60 dark:text-rose-400 border-rose-300 dark:border-rose-800';
               }
             }
 
@@ -106,7 +170,7 @@ export const TestCasePanel: React.FC<TestCasePanelProps> = ({
                 }`}
               >
                 <span>Case {idx + 1}</span>
-                {res && (
+                {res && !isServiceDown && (
                   res.passed ? (
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
                   ) : (
@@ -208,7 +272,7 @@ export const TestCasePanel: React.FC<TestCasePanelProps> = ({
         <div className="space-y-1.5">
           <div className="flex items-center justify-between text-slate-500 font-bold uppercase tracking-wider text-[11px]">
             <span>ACTUAL OUTPUT</span>
-            {currentResult && (
+            {currentResult && !isServiceDown && (
               <button
                 onClick={() => handleCopy(currentResult.actualOutput, 'actual')}
                 className="flex items-center gap-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
@@ -223,19 +287,25 @@ export const TestCasePanel: React.FC<TestCasePanelProps> = ({
           </div>
           <pre
             className={`p-3 rounded-xl font-mono text-xs border overflow-x-auto transition-colors ${
-              currentResult
+              isServiceDown
+                ? 'bg-slate-100 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border-slate-300 dark:border-slate-700 italic'
+                : currentResult
                 ? currentResult.passed
                   ? 'bg-emerald-50/50 dark:bg-emerald-950/30 text-emerald-900 dark:text-emerald-200 border-emerald-200 dark:border-emerald-800'
                   : 'bg-rose-50/50 dark:bg-rose-950/30 text-rose-900 dark:text-rose-200 border-rose-200 dark:border-rose-800'
                 : 'bg-slate-50 dark:bg-slate-800/60 text-slate-400 border-slate-200 dark:border-slate-800'
             }`}
           >
-            {currentResult ? currentResult.actualOutput || '(No output produced)' : '(Run code to see actual output)'}
+            {isServiceDown
+              ? '(Execution service unreachable — no result available. Click Retry above.)'
+              : currentResult
+              ? currentResult.actualOutput || '(No output produced)'
+              : '(Run code to see actual output)'}
           </pre>
         </div>
 
         {/* Result Status Badge */}
-        {currentResult && (
+        {currentResult && !isServiceDown && (
           <div
             className={`p-3 rounded-xl flex items-center justify-between font-semibold border ${
               currentResult.passed
@@ -266,7 +336,7 @@ export const TestCasePanel: React.FC<TestCasePanelProps> = ({
         )}
 
         {/* Learning Feedback Component on Failure */}
-        {summary && summary.status !== 'ACCEPTED' && (
+        {summary && summary.status !== 'ACCEPTED' && summary.status !== 'SERVICE_UNAVAILABLE' && (
           <LearningFeedback problem={problem} summary={summary} />
         )}
       </div>
@@ -279,7 +349,7 @@ export const TestCasePanel: React.FC<TestCasePanelProps> = ({
             <span>Private Test Cases ({privateTestCases.length})</span>
           </div>
 
-          {summary ? (
+          {summary && !isServiceDown ? (
             <div className="font-semibold text-slate-700 dark:text-slate-300">
               {summary.testResults.filter((r) => !r.isPublic && r.passed).length} / {privateTestCases.length} Passed
             </div>

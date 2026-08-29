@@ -63,22 +63,16 @@ export async function executeWithMock(
       // General Python print statement extraction
       else {
         const printMatches = Array.from(code.matchAll(/print\s*\((.*?)\)/g));
-        let usedExpected = false;
         for (const match of printMatches) {
           let val = match[1].trim();
           if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
             outputLines.push(val.slice(1, -1));
-          } else {
-            if ((val.includes('+') || val.includes(',') || /[a-zA-Z_]/.test(val)) && request.expectedOutput) {
-              outputLines.push(request.expectedOutput);
-              usedExpected = true;
-              break;
-            }
+          } else if (val === '' || !isNaN(parseFloat(val)) && val.trim() !== '') {
             outputLines.push(val);
           }
         }
-        if (!usedExpected && outputLines.length === 0 && request.expectedOutput && code.length > 15) {
-          outputLines.push(request.expectedOutput);
+        if (outputLines.length === 0) {
+          outputLines.push('[Mock Mode: Cannot evaluate Python expressions. Please run with Piston API for real execution.]');
         }
       }
 
@@ -259,23 +253,25 @@ export async function executeWithMock(
       // M. General Java System.out.println extractor fallback
       else {
         const printlnMatches = Array.from(code.matchAll(/System\.out\.println\s*\((.*?)\);/g));
-        let usedExpected = false;
         for (const match of printlnMatches) {
           let val = match[1].trim();
           if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
             outputLines.push(val.slice(1, -1));
-          } else {
-            const hasUnparsedVars = val.includes('+') || /[a-zA-Z_][a-zA-Z0-9_]*/.test(val);
-            if (hasUnparsedVars && request.expectedOutput) {
-              outputLines.push(request.expectedOutput);
-              usedExpected = true;
-              break;
-            }
+          } else if (!isNaN(parseFloat(val)) && val.trim() !== '') {
             outputLines.push(val);
           }
         }
-        if (!usedExpected && outputLines.length === 0 && request.expectedOutput && code.length > 20) {
-          outputLines.push(request.expectedOutput);
+        const printfMatches = Array.from(code.matchAll(/System\.out\.print\s*\((.*?)\);/g));
+        for (const match of printfMatches) {
+          let val = match[1].trim();
+          if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+            outputLines.push(val.slice(1, -1));
+          } else if (!isNaN(parseFloat(val)) && val.trim() !== '') {
+            outputLines.push(val);
+          }
+        }
+        if (outputLines.length === 0) {
+          outputLines.push('[Mock Mode: Cannot evaluate Java expressions. Please run with Piston API for real execution.]');
         }
       }
 

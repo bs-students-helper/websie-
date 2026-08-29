@@ -1,7 +1,6 @@
 import { Problem, TestCase } from '../types/problem';
 import { RunSummary, TestCaseResult, ExecutionRawResponse } from '../types/execution';
 import { executeWithPiston } from './pistonProvider';
-import { executeWithMock } from './mockProvider';
 import { compareOutput } from '../utils/outputComparator';
 import { calculateScore } from '../utils/scoring';
 
@@ -10,8 +9,7 @@ const API_URL = import.meta.env.VITE_CODE_EXECUTION_API_URL || 'https://emkc.org
 export async function executeCodeForProblem(
   problem: Problem,
   sourceCode: string,
-  testCasesToRun: TestCase[] = problem.testCases,
-  forceDemoMode = false
+  testCasesToRun: TestCase[] = problem.testCases
 ): Promise<RunSummary> {
   const executedAt = new Date().toISOString();
   const testResults: TestCaseResult[] = [];
@@ -19,47 +17,41 @@ export async function executeCodeForProblem(
   let hasCompileError = false;
   let hasRuntimeError = false;
   let hasTimeout = false;
-  let isDemoMode = forceDemoMode;
-  let providerName = forceDemoMode ? 'Demo Provider' : 'Piston API';
+  let serviceError: string | undefined = undefined;
 
   for (const tc of testCasesToRun) {
     let rawResult: ExecutionRawResponse;
 
-    if (forceDemoMode) {
-      rawResult = await executeWithMock({
-        language: problem.language,
-        sourceCode,
-        stdin: tc.input,
-        expectedOutput: tc.expectedOutput,
-        fileName: problem.fileName,
-      });
-    } else {
-      try {
-        rawResult = await executeWithPiston(
-          {
-            language: problem.language,
-            sourceCode,
-            stdin: tc.input,
-            expectedOutput: tc.expectedOutput,
-            fileName: problem.fileName,
-          },
-          API_URL
-        );
-      } catch (error) {
-        console.warn('Piston API execution failed, falling back to Demo Mode:', error);
-        isDemoMode = true;
-        providerName = 'Demo Provider (Offline Fallback)';
-        rawResult = await executeWithMock({
+    try {
+      rawResult = await executeWithPiston(
+        {
           language: problem.language,
           sourceCode,
           stdin: tc.input,
           expectedOutput: tc.expectedOutput,
           fileName: problem.fileName,
-        });
-      }
+        },
+        API_URL
+      );
+    } catch (error: any) {
+      serviceError =
+        (error?.message ? String(error.message) : String(error)) ||
+        'Unable to reach the code execution service. Please check your internet connection and try again.';
+      testResults.push({
+        testCaseId: tc.id,
+        isPublic: tc.isPublic,
+        input: tc.input,
+        expectedOutput: tc.expectedOutput,
+        actualOutput: '',
+        passed: false,
+        stderr: serviceError,
+        errorType: 'wrong_answer',
+        errorMessage: serviceError,
+        weight: tc.weight,
+      });
+      continue;
     }
 
-    // Check for compilation errors
     if (rawResult.isCompileError) {
       hasCompileError = true;
       compileOutput = rawResult.stderr || rawResult.stdout;
@@ -76,11 +68,9 @@ export async function executeCodeForProblem(
         errorMessage: compileOutput,
         weight: tc.weight,
       });
-      // Stop testing further cases if compilation fails
       break;
     }
 
-    // Check for timeout
     if (rawResult.isTimeout) {
       hasTimeout = true;
       testResults.push({
@@ -99,7 +89,6 @@ export async function executeCodeForProblem(
       continue;
     }
 
-    // Check for runtime error (exitCode !== 0)
     if (rawResult.exitCode !== 0 && rawResult.stderr) {
       hasRuntimeError = true;
       testResults.push({
@@ -118,7 +107,6 @@ export async function executeCodeForProblem(
       continue;
     }
 
-    // Normal comparison
     const comp = compareOutput(tc.expectedOutput, rawResult.stdout);
     testResults.push({
       testCaseId: tc.id,
@@ -134,13 +122,14 @@ export async function executeCodeForProblem(
     });
   }
 
-  // Calculate status & score
   const totalTests = testCasesToRun.length;
   const passedTests = testResults.filter((r) => r.passed).length;
   const score = calculateScore(testResults);
 
   let status: RunSummary['status'] = 'ACCEPTED';
-  if (hasCompileError) {
+  if (serviceError && testResults.every((r) => r.stderr === serviceError)) {
+    status = 'SERVICE_UNAVAILABLE';
+  } else if (hasCompileError) {
     status = 'COMPILATION_ERROR';
   } else if (hasTimeout) {
     status = 'TIME_LIMIT_EXCEEDED';
@@ -159,7 +148,8 @@ export async function executeCodeForProblem(
     compileOutput,
     testResults,
     executedAt,
-    provider: providerName,
-    isDemoMode,
+    provider: 'Piston API (Real Execution)',
+    isDemoMode: false,
+    pistonError: serviceError,
   };
 }

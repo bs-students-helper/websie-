@@ -50,7 +50,7 @@ export const PracticePage: React.FC = () => {
   const isBookmarked = bookmarks.includes(currentProblem.id);
 
   // Test Runner hook
-  const { isRunning, summary, runCode, clearResults } = useTestRunner(currentProblem);
+  const { isRunning, summary, error, runCode, clearResults } = useTestRunner(currentProblem);
 
   // When problemId changes, reload saved code or starter code
   useEffect(() => {
@@ -155,6 +155,8 @@ export const PracticePage: React.FC = () => {
                 problem={currentProblem}
                 summary={summary}
                 isRunning={isRunning}
+                error={error}
+                onRetryRun={handleRun}
               />
             }
           />

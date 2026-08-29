@@ -33,6 +33,11 @@ export async function executeWithPiston(
   const endpointsToTry = [
     apiUrl,
     'https://piston.engineering/api/v2/piston/execute',
+    'https://piston.emkc.org/api/v2/piston/execute',
+    'https://piston.jgscripts.com/api/v2/piston/execute',
+    'https://piston-api.tough-dev.com/api/v2/piston/execute',
+    'https://emkc.emmy-js.cyou/api/v2/piston/execute',
+    'https://piston.learn-hub.co.zw/api/v2/piston/execute',
   ];
 
   let lastError: Error | null = null;

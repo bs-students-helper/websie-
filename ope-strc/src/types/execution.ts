@@ -42,4 +42,5 @@ export interface RunSummary {
   executedAt: string;
   provider: string;
   isDemoMode?: boolean;
+  pistonError?: string;
 }

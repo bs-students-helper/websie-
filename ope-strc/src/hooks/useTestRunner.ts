@@ -9,24 +9,32 @@ export function useTestRunner(problem: Problem) {
   const [summary, setSummary] = useState<RunSummary | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const runCode = async (code: string, forceDemo = false) => {
+  const runCode = async (code: string) => {
     setIsRunning(true);
     setError(null);
 
     try {
-      const result = await executeCodeForProblem(problem, code, problem.testCases, forceDemo);
+      const result = await executeCodeForProblem(problem, code, problem.testCases);
       setSummary(result);
 
-      // Save progress to local storage
-      updateProblemProgress(problem.id, {
-        solved: result.status === 'ACCEPTED',
-        bestScore: result.score,
-        savedCode: code,
-      });
+      if (result.status === 'SERVICE_UNAVAILABLE') {
+        setError(
+          result.pistonError ||
+            'The code execution service is currently unreachable. Please check your internet connection and try again.'
+        );
+      } else {
+        updateProblemProgress(problem.id, {
+          solved: result.status === 'ACCEPTED',
+          bestScore: result.score,
+          savedCode: code,
+        });
+      }
 
       return result;
     } catch (err: any) {
-      const errMsg = err?.message || 'Code execution service is currently unavailable. Please try again.';
+      const errMsg =
+        err?.message ||
+        'Code execution service is currently unavailable. Please try again later.';
       setError(errMsg);
       return null;
     } finally {

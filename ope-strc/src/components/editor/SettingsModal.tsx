@@ -92,7 +92,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             <span>Code Execution Engine</span>
           </div>
           <p className="text-slate-500 text-[11px] leading-relaxed">
-            Connected to <strong>Piston Public Execution Engine</strong> (https://emkc.org/api/v2/piston). Supports Java 15+, Python 3.10+, and SQL. Fallbacks gracefully to Demo Mode if offline.
+            Connected to <strong>Piston Public Execution Engine</strong> (https://emkc.org/api/v2/piston). Supports Java 15+, Python 3.10+, and SQL.
+            All test runs use real, server-side compilation — no offline mocking. If the service is unreachable, please check your connection and click Run again.
           </p>
         </div>
       </div>
