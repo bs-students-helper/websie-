@@ -30,15 +30,22 @@ export async function executeWithPiston(
     stdin: request.stdin || '',
   };
 
-  const endpointsToTry = [
-    apiUrl,
-    'https://piston.engineering/api/v2/piston/execute',
-    'https://piston.emkc.org/api/v2/piston/execute',
-    'https://piston.jgscripts.com/api/v2/piston/execute',
-    'https://piston-api.tough-dev.com/api/v2/piston/execute',
-    'https://emkc.emmy-js.cyou/api/v2/piston/execute',
-    'https://piston.learn-hub.co.zw/api/v2/piston/execute',
-  ];
+  const formattedApiUrl = apiUrl.endsWith('/execute')
+    ? apiUrl
+    : `${apiUrl.replace(/\/+$/, '')}/execute`;
+
+  const endpointsToTry = Array.from(
+    new Set([
+      formattedApiUrl,
+      'https://emkc.org/api/v2/piston/execute',
+      'https://piston.engineering/api/v2/piston/execute',
+      'https://piston.emkc.org/api/v2/piston/execute',
+      'https://piston.jgscripts.com/api/v2/piston/execute',
+      'https://piston-api.tough-dev.com/api/v2/piston/execute',
+      'https://emkc.emmy-js.cyou/api/v2/piston/execute',
+      'https://piston.learn-hub.co.zw/api/v2/piston/execute',
+    ])
+  );
 
   let lastError: Error | null = null;
   let response: Response | null = null;
