@@ -15,11 +15,12 @@
     padding: 2rem 1.5rem 4rem;
 }
 
-/* Sidebar Control Panel */
+/* Sidebar Control Panel (Independent Scrolling) */
 .portal-sidebar {
     position: sticky;
     top: 90px;
-    height: fit-content;
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
@@ -29,6 +30,25 @@
     padding: 1.5rem;
     box-shadow: var(--shadow-sm);
     transition: all 0.3s ease;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-purple) transparent;
+}
+
+.portal-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.portal-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.portal-sidebar::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 999px;
+}
+
+.portal-sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-purple);
 }
 
 /* Mobile Sidebar Collapsible Header Toggle */
@@ -872,6 +892,8 @@
 
     .portal-sidebar {
         position: static;
+        max-height: none;
+        overflow-y: visible;
         padding: 1rem;
         border-radius: var(--radius-lg);
         gap: 1rem;

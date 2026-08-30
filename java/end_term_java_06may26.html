@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Java questions : Programming Concepts Using Java 06 May 26 - QuizPractice | BSH</title>
+    <meta name="description"
+        content="Practice Programming Concepts Using Java End Term question paper (06 May 26) with interactive exam & learning modes, instant score calculation, detailed solutions, and question palette.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+
+    <!-- Master CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/quiz-portal.css">
+
+    <!-- Theme Detection -->
+    <script>
+        (function () {
+            const saved = localStorage.getItem('bsh-theme');
+            if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+            else document.documentElement.setAttribute('data-theme', 'light');
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Site Navigation Header -->
+    <header class="site-header" id="header">
+        <div class="header-container">
+            <a href="../index.html" class="brand-logo" aria-label="BSH Homepage">
+                <img src="../assets/images/logo.png" alt="BSH Logo" class="logo-img">
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="../index.html#features" class="nav-link">Features</a>
+                <a href="../quiz_practice.html" class="nav-link active">Quiz Practice</a>
+                <a href="../calculator.html" class="nav-link">SEC Calculator</a>
+                <a href="../about.html" class="nav-link">About Us</a>
+                <a href="../contact_us.html" class="nav-link">Feedback</a>
+            </nav>
+            <div class="header-actions">
+                <a href="../end_term_practice.html" class="btn btn-secondary nav-btn-desktop"><i
+                        class="fa-solid fa-arrow-left"></i><span>Back to Papers</span></a>
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i
+                        class="fa-solid fa-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="portal-layout">
+
+            <!-- Mobile Collapsible Sidebar Toggle Button -->
+            <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()">
+                <span><i class="fa-solid fa-sliders"></i> Exam Controls & Question Menu</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <!-- Left Sidebar: Controls, Menu & Timer -->
+            <aside class="portal-sidebar" id="portalSidebar">
+
+                <!-- Header Info -->
+                <div class="exam-info-header">
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Exam :</span>
+                        <span class="exam-info-val">End Term Quiz</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Subject :</span>
+                        <span class="exam-info-val">Java</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Total Marks :</span>
+                        <span class="exam-info-val">100.00</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">QP :</span>
+                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">Programming Concepts Using Java 06 May 26</span>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher -->
+                <div>
+                    <div class="menu-heading">Portal Mode</div>
+                    <div class="mode-toggle-group">
+                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam Mode</button>
+                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning Mode</button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                        onclick="openSummaryModal()">
+                        <i class="fa-solid fa-eye"></i> View Question Paper Summary
+                    </button>
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                        onclick="window.print()">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </button>
+                </div>
+
+                <!-- Question Menu Grid -->
+                <div>
+                    <div class="menu-heading">
+                        <span>QUESTION MENU</span>
+                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/23</span>
+                    </div>
+                    <div class="palette-grid" id="paletteGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Timer Box -->
+                <div>
+                    <div class="menu-heading">TIMER</div>
+                    <div class="timer-box">
+                        <div class="timer-display" id="timerDisplay">00:03</div>
+                        <div class="timer-controls">
+                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i
+                                    class="fa-solid fa-pause"></i></button>
+                            <button class="btn-icon-sm" onclick="resetTimer()"><i
+                                    class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls & Score Box -->
+                <div>
+                    <div class="menu-heading">CONTROLS</div>
+                    <button class="btn-submit-exam" onclick="submitExam()">
+                        <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
+                    </button>
+                    <div class="score-card" style="margin-top:1rem;">
+                        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">YOUR SCORE</span>
+                        <div class="score-num" id="liveScoreDisplay">0.00 / 100.00</div>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);"
+                            id="livePercentDisplay">(0.0%)</span>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Right Area: Questions List -->
+            <section class="questions-area" id="questionsContainer">
+                <!-- Dynamically Rendered by JS -->
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Floating Back to Top FAB -->
+    <button class="fab-back-to-top" id="fabBackToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;">Question Paper Summary</h3>
+                <button class="btn-icon-sm" onclick="closeSummaryModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+                Paper Title: <b>Programming Concepts Using Java 06 May 26</b> (End Term Quiz)
+            </p>
+            <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+                <tr style="border-bottom:1px solid var(--border-light); text-align:left;">
+                    <th style="padding:0.6rem;">Question Type</th>
+                    <th style="padding:0.6rem;">Count</th>
+                    <th style="padding:0.6rem;">Total Marks</th>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MCQ (Multiple Choice)</td>
+                    <td style="padding:0.6rem;">21</td>
+                    <td style="padding:0.6rem;">90.00</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MSQ (Multiple Select)</td>
+                    <td style="padding:0.6rem;">2</td>
+                    <td style="padding:0.6rem;">10.00</td>
+                </tr>
+            </table>
+            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close Summary</button>
+        </div>
+    </div>
+
+    <!-- Exam Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-card" style="text-align:center;">
+            <div
+                style="width:64px; height:64px; border-radius:50%; background:rgba(16, 185, 129, 0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 1rem;">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Exam Submitted!</h2>
+            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for Java End Term Quiz (06 May 26)</p>
+
+            <div
+                style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
+                <div style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; font-weight:600;">
+                    Final Score</div>
+                <div style="font-family:var(--font-mono); font-size:2.8rem; font-weight:800; color:var(--accent-green);"
+                    id="modalScoreText">0.00 / 100.00</div>
+                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0% Accuracy
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem; margin-bottom:1.5rem;">
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Correct</div>
+                    <div style="font-weight:700; color:#10b981; font-size:1.2rem;" id="modalCorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Incorrect</div>
+                    <div style="font-weight:700; color:#ef4444; font-size:1.2rem;" id="modalIncorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Unanswered</div>
+                    <div style="font-weight:700; color:var(--text-secondary); font-size:1.2rem;"
+                        id="modalUnansweredCount">0</div>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:0.75rem;">
+                <button class="btn btn-secondary btn-full"
+                    onclick="closeResultModal(); setPortalMode('learning');">Review Solutions <i
+                        class="fa-solid fa-book-open"></i></button>
+                <button class="btn btn-primary btn-full" onclick="resetExam()">Retake Exam <i
+                        class="fa-solid fa-rotate-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/main.js"></script>
+    <script>
+        // ==========================================================================
+        // JAVA END TERM QUIZ (06 MAY 2026) QUESTION DATA
+        // ==========================================================================
+        const QUESTIONS_DATA = [
+            {
+                qn: 1,
+                id: "6406532128263",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the Java code given below.",
+                code: `class Vehicle{
+    String model;
+    public Vehicle(String m) {
+        this.model = m;
+    }
+    public String toString() {
+        return "model = " + model;
+    }
+}
+class Car extends Vehicle{
+    int seat_count;
+    public Car(String m, int s) {
+        super(m);
+        seat_count = s;
+    }
+    public Car(Car c) {
+        super(c.model);
+        seat_count = c.seat_count;
+    }
+    public String toString() {
+        return super.toString() + ", " + "seat_count = " + seat_count;
+    }
+}
+public class Showroom{
+    public static void main(String args[]){
+        Vehicle v1 = new Car("Sedan", 5);
+        Vehicle v2 = new Car((Car)v1);
+        v2.model = "SUV";
+        System.out.println(v1 + "\\n" + v2);
+    }
+}`,
+                qnSubText: "What will the output be?",
+                options: [
+                    "model = SUV\nmodel = SUV",
+                    "model = SUV, seat_count = 5\nmodel = SUV, seat_count = 5",
+                    "model = Sedan, seat_count = 5\nmodel = SUV, seat_count = 5",
+                    "model = Sedan\nmodel = SUV"
+                ],
+                correct: [2],
+                solution: `Step-by-step trace:
+1. v1 is initialized as Car("Sedan", 5).
+2. v2 is created via the copy constructor Car((Car)v1), which copies model ("Sedan") and seat_count (5) into a distinct Car object.
+3. Assigning v2.model = "SUV" updates only v2's model property. v1.model remains "Sedan".
+4. v1.toString() invokes Car.toString(), returning "model = Sedan, seat_count = 5".
+5. v2.toString() returns "model = SUV, seat_count = 5".`
+            },
+            {
+                qn: 2,
+                id: "6406532128265",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the Java code given below.",
+                code: `import java.util.*;
+public class Test{
+    public static void main(String[] args) {
+        ArrayDeque<String> topics = new ArrayDeque<String>();
+        topics.add("Algebra");
+        topics.addFirst("Physics");
+        topics.add("Chemistry");
+        topics.addFirst("Mathematics");
+        topics.add("Physics");
+        System.out.println(topics);
+        TreeSet<String> set = new TreeSet<String>(topics);
+        System.out.println(set);
+    }
+}`,
+                qnSubText: "What will the output be?",
+                options: [
+                    "[Mathematics, Physics, Algebra, Chemistry, Physics]\n[Algebra, Chemistry, Mathematics, Physics]",
+                    "[Algebra, Chemistry, Mathematics, Physics]\n[Mathematics, Physics, Algebra, Chemistry, Physics]",
+                    "[Algebra, Chemistry, Mathematics, Physics]\n[Algebra, Chemistry, Mathematics, Physics]",
+                    "[Mathematics, Physics, Algebra, Chemistry, Physics]\n[Mathematics, Physics, Algebra, Chemistry, Physics]"
+                ],
+                correct: [0],
+                solution: `Step-by-step trace of ArrayDeque modifications:
+- add("Algebra") -> [Algebra]
+- addFirst("Physics") -> [Physics, Algebra]
+- add("Chemistry") -> [Physics, Algebra, Chemistry]
+- addFirst("Mathematics") -> [Mathematics, Physics, Algebra, Chemistry]
+- add("Physics") -> [Mathematics, Physics, Algebra, Chemistry, Physics]
+
+TreeSet eliminates duplicates ("Physics") and sorts elements in natural lexicographical order:
+[Algebra, Chemistry, Mathematics, Physics].`
+            },
+            {
+                qn: 3,
+                id: "6406532128266",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the Java code given below.",
+                code: `interface Iterator{
+    public boolean has_next();
+    public Object get_next();
+}
+abstract class Printable{
+    public abstract void print();
+}
+class BookList{
+    private final int limit = 3;
+    private Book[] list = { new Book("Data Structures", "B1001"),
+                            new Book("Operating Systems", "B1002"),
+                            new Book("Computer Networks", "B1003")
+                          };
+    private class Book extends Printable{
+        private String title, bookId;
+        //Constructor to initialize instance variables
+        public void print() {
+            System.out.println(bookId + ", " + title);
+        }
+    }
+    private class BookIter implements Iterator{
+        private int indx;
+        public BookIter() {
+            //constructor
+        }
+        public boolean has_next() {
+            //if next element available in list return true; else false
+        }
+        public Object get_next() {
+            //return next element from list
+        }
+    }
+    public Iterator getIterator() {
+        return new BookIter();
+    }
+}
+public class IterTest {
+    public static void main(String[] args) {
+        BookList plist = new BookList();
+        Iterator iter = plist.getIterator();
+        while(iter.has_next()) {
+            ------------------------------------; //LINE 1
+        }
+    }
+}`,
+                qnSubText: `Identify the appropriate statement to fill in the blank at LINE 1, such that the output is:\nB1001, Data Structures\nB1002, Operating Systems\nB1003, Computer Networks`,
+                options: [
+                    "((Printable)iter.get_next()).print();",
+                    "((Book)iter.get_next()).print();",
+                    "((BookList)iter.get_next()).print();",
+                    "iter.get_next().print();"
+                ],
+                correct: [0],
+                solution: `iter.get_next() returns an Object. The class Book is private within BookList, so casting to (Book) outside BookList causes a compilation error. However, Book extends the public abstract class Printable, so casting to ((Printable)iter.get_next()).print(); is valid and invokes the print() method.`
+            },
+            {
+                qn: 4,
+                id: "6406532128267",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the following block of code.",
+                code: `// ...
+Server server = network.getActiveServer();
+if(server == null)
+    throw new RuntimeException("Server not available");
+// ...`,
+                qnSubText: `Which among the following code blocks can replace the given code in order to generate a customized assertion error as shown below?\nException in thread "main" java.lang.AssertionError: Server not available\n    at NetworkAssert.main(NetworkAssert.java:<line number>)`,
+                options: [
+                    "Server server = network.getActiveServer();\nassert server != null : \"Server not available\";",
+                    "try {\n    Server server = network.getActiveServer();\n    assert server != null;\n} catch(RuntimeException e) {\n    System.out.println(\"Server not available\");\n}",
+                    "Server server = network.getActiveServer();\nassert server != null;\nif (server == null)\n    System.out.println(\"Server not available\");",
+                    "Server server = network.getActiveServer();\ntry {\n    assert server != null;\n} catch (AssertionError e) {\n    System.out.println(\"Server not available\");\n}"
+                ],
+                correct: [0],
+                solution: `The syntax 'assert expression1 : expression2;' evaluates expression1. If false, an AssertionError is thrown with detail message specified by expression2 ("Server not available").`
+            },
+            {
+                qn: 5,
+                id: "6406532128268",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the Java code given below.",
+                code: `class Dataset {
+    public void load() {
+        System.out.println("Loading a generic dataset");
+    }
+    public void summarize() {
+        System.out.println("Summarizing dataset");
+    }
+}
+class CSVFile extends Dataset {
+    public void load() {
+        System.out.println("Loading CSV file");
+    }
+}
+class ExcelFile extends Dataset {
+    public void load() {
+        System.out.println("Loading Excel file");
+    }
+}
+public class DatasetApp {
+    static void describe(Dataset d) {
+        d.load();
+        d.summarize();
+    }
+    public static void main(String[] args) {
+        Dataset csv = new CSVFile();
+        Dataset excel = new ExcelFile();
+        describe(csv);
+        describe(excel);
+    }
+}`,
+                qnSubText: "Choose the correct option.",
+                options: [
+                    "Loading a generic dataset\nSummarizing dataset\nLoading a generic dataset\nSummarizing dataset",
+                    "Compilation fails because CSVFile and ExcelFile cannot be converted to Dataset",
+                    "Compilation fails because summarize() method has not been defined in classes CSVFile and ExcelFile",
+                    "Loading CSV file\nSummarizing dataset\nLoading Excel file\nSummarizing dataset"
+                ],
+                correct: [3],
+                solution: `CSVFile and ExcelFile override load() while inheriting summarize() from Dataset. Dynamic method dispatch ensures d.load() calls CSVFile.load() for csv and ExcelFile.load() for excel, while both invoke the inherited Dataset.summarize().`
+            },
+            {
+                qn: 6,
+                id: "6406532128269",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the Java code given below.",
+                code: `interface Payment {
+    void process();
+}
+class PaymentGateway {
+    public CreditCard getCreditCard() {
+        return new CreditCard();
+    }
+    public UPI getUPI() {
+        return new UPI();
+    }
+    private class CreditCard implements Payment {
+        public void process() {
+            System.out.println("Processing credit card payment");
+        }
+    }
+    private class UPI implements Payment {
+        public void process() {
+            System.out.println("Processing UPI payment");
+        }
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        PaymentGateway m = new PaymentGateway();
+        //CODE BLOCK
+        obj1.process();
+        obj2.process();
+    }
+}`,
+                qnSubText: `Choose the correct option to fill in place of CODE BLOCK so that the output is:\nProcessing credit card payment\nProcessing UPI payment`,
+                options: [
+                    "CreditCard obj1 = new CreditCard();\nUPI obj2 = new UPI();",
+                    "Payment obj1 = m.getCreditCard();\nPayment obj2 = m.getUPI();",
+                    "CreditCard obj1 = m.getCreditCard();\nUPI obj2 = m.getUPI();",
+                    "Payment obj1 = new CreditCard();\nPayment obj2 = new UPI();"
+                ],
+                correct: [1],
+                solution: `CreditCard and UPI are private inner classes within PaymentGateway, so their class names cannot be referenced outside PaymentGateway. However, both implement interface Payment. Therefore, variables obj1 and obj2 must be of interface type Payment, initialized via factory methods m.getCreditCard() and m.getUPI().`
+            },
+            {
+                qn: 7,
+                id: "6406532128270",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the Java code given below.",
+                code: `import java.util.*;
+import java.util.stream.*;
+class Student {
+    private String name;
+    private double marks;
+    //Constructor to initialize instance variables
+    public double getMarks() {
+        return marks;
+    }
+    public String toString() {
+        return name;
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        var studentArr = new ArrayList<Student>();
+        studentArr.add(new Student("Asha", 65.5));
+        studentArr.add(new Student("Ravi", 82.3));
+        studentArr.add(new Student("Neha", 58.9));
+        studentArr.add(new Student("Kiran", 75.0));
+        Map<Boolean, List<Student>> marksMap;
+        marksMap = studentArr.stream()
+                .collect(Collectors.partitioningBy(s -> s.getMarks() >= 75.0));
+        System.out.println(marksMap.get(false));
+    }
+}`,
+                qnSubText: "Choose the correct option.",
+                options: [
+                    "This program generates the output: [Ravi, Kiran]",
+                    "This program generates the output: [Ravi]",
+                    "This program generates the output: [Asha, Neha]",
+                    "This program generates the output: [Asha, Neha, Kiran]"
+                ],
+                correct: [2],
+                solution: `Collectors.partitioningBy partitions elements into a Map<Boolean, List<Student>> based on the predicate s.getMarks() >= 75.0:
+- true: [Ravi (82.3), Kiran (75.0)]
+- false: [Asha (65.5), Neha (58.9)]
+marksMap.get(false) retrieves the false key list: [Asha, Neha].`
+            },
+            {
+                qn: 8,
+                id: "6406532128272",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the Java code given below.",
+                code: `interface Step1{
+    public void selectItems();
+}
+interface Step2{
+    public void makePayment();
+}
+interface Step3 extends Step1, Step2{
+    public void confirmOrder();
+}
+class OnlineOrder implements Step3{
+    public void selectItems() {
+        System.out.println("Selecting items.");
+    }
+    public void makePayment() {
+        System.out.println("Making payment.");
+    }
+    public void confirmOrder() {
+        System.out.println("Confirming order.");
+    }
+}
+class Executor {
+    public void execute(________) { //LINE-1
+        obj.selectItems();
+        obj.makePayment();
+        obj.confirmOrder();
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Executor ex = new Executor();
+        ex.execute(new OnlineOrder());
+    }
+}`,
+                qnSubText: `Choose the correct option to fill in the blank at LINE-1 such that the program generates the following output:\nSelecting items.\nMaking payment.\nConfirming order.`,
+                options: [
+                    "Step1 obj",
+                    "Step2 obj",
+                    "Step3 obj",
+                    "All of these."
+                ],
+                correct: [2],
+                solution: `Method execute calls selectItems(), makePayment(), and confirmOrder() on obj. Interface Step3 extends both Step1 and Step2, containing all three method declarations. Step1 and Step2 individually do not declare confirmOrder(). Thus, Step3 obj is required.`
+            },
+            {
+                qn: 9,
+                id: "6406532128273",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the Java code given below.",
+                code: `import java.util.*;
+public class MathCompetition {
+    public static void main(String[] args) {
+        var national = new LinkedHashMap<String,String>();
+        var regional = new LinkedHashMap<String,String>();
+
+        var schoolA = new LinkedHashMap<String,String>();
+        schoolA.put("A NAT", "Twice");
+        regional.put("A REG", schoolA.getOrDefault("A REG", "N/A"));
+        national.put("A NAT", schoolA.getOrDefault("A NAT", "N/A"));
+
+        var schoolB = new LinkedHashMap<String,String>();
+        schoolB.put("B REG", "Once");
+        national.put("B NAT", schoolB.getOrDefault("B NAT", "N/A"));
+        regional.put("B REG", schoolB.getOrDefault("B REG", "N/A"));
+
+        for(Map.Entry<String, String> obj1:national.entrySet())
+            System.out.println(obj1.getKey()+" "+obj1.getValue());
+        for(Map.Entry<String, String> obj2:regional.entrySet())
+            System.out.println(obj2.getKey()+" "+obj2.getValue());
+    }
+}`,
+                qnSubText: "Choose the correct option.",
+                options: [
+                    "A NAT Twice\nB REG Once",
+                    "A NAT Twice\nB NAT N/A\nA REG N/A\nB REG Once",
+                    "B NAT N/A\nA REG N/A",
+                    "This program terminates abnormally due to unhandled exception(s)."
+                ],
+                correct: [1],
+                solution: `Tracing LinkedHashMap insertions:
+1. regional gets ("A REG", "N/A") because "A REG" is not in schoolA.
+2. national gets ("A NAT", "Twice") because "A NAT" is in schoolA.
+3. national gets ("B NAT", "N/A") because "B NAT" is not in schoolB.
+4. regional gets ("B REG", "Once") because "B REG" is in schoolB.
+
+Iterating national prints:
+A NAT Twice
+B NAT N/A
+
+Iterating regional prints:
+A REG N/A
+B REG Once`
+            },
+            {
+                qn: 10,
+                id: "6406532128274",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the Java code given below.",
+                code: `import java.util.*;
+import java.util.stream.Stream;
+public class DeliveryAnalysis {
+    public static void main(String[] args) {
+        var deliveryTimes = new ArrayList<Double>();
+        deliveryTimes.add(45.5);
+        deliveryTimes.add(60.2);
+        deliveryTimes.add(39.8);
+        deliveryTimes.add(72.4);
+        Stream<Double> s = deliveryTimes.stream();
+        Optional<Double> value = s.filter(n -> n < 50).max(Double::compareTo);
+        value.ifPresentOrElse(v -> System.out.println(v),
+                () -> System.out.println("No value found"));
+    }
+}`,
+                qnSubText: "Choose the correct option.",
+                options: [
+                    "It generates the output: No value found",
+                    "It generates the output: 72.4",
+                    "It generates the output: 45.5",
+                    "It generates the output: 39.8"
+                ],
+                correct: [2],
+                solution: `s.filter(n -> n < 50) filters deliveryTimes [45.5, 60.2, 39.8, 72.4] down to [45.5, 39.8].
+.max(Double::compareTo) finds the maximum value among filtered elements, which is 45.5.
+value.ifPresentOrElse prints 45.5.`
+            },
+            {
+                qn: 11,
+                id: "6406532128275",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the Java code given below. Suppose the file notes.txt is written successfully by the program.",
+                code: `import java.io.*;
+import java.util.*;
+
+public class FClass{
+    static boolean writeToFile(String filename) {
+        try {
+            FileOutputStream fos = new FileOutputStream(filename);
+            PrintStream bos = new PrintStream(fos);
+            bos.println("it stores two numbers");
+            bos.println("10 is first");
+            bos.println("20 is second");
+            return true;
+        }catch(IOException e) {
+            return false;
+        }
+    }
+    static boolean readFromFile(String filename) {
+        try {
+            FileInputStream fis = new FileInputStream(filename);
+            Scanner sc = new Scanner(fis);
+            System.out.println(sc.next());
+            System.out.println(sc.nextLine());
+            System.out.println(sc.nextInt());
+            System.out.println(sc.nextLine());
+            return true;
+        }catch(IOException e) {
+            return false;
+        }
+    }
+    public static void main(String[] args) throws IOException{
+        if(writeToFile("notes.txt") == false)
+            System.out.println("write failed");
+        if(readFromFile("notes.txt") == false)
+            System.out.println("read failed");
+    }
+}`,
+                qnSubText: "What will the output be?",
+                options: [
+                    "read failed",
+                    "it\nit stores two numbers\n20\n20 is second",
+                    "it\n stores two numbers\n10\n is first",
+                    "it\n10 is first\n20\n20 is second"
+                ],
+                correct: [2],
+                solution: `File text lines:
+Line 1: "it stores two numbers\\n"
+Line 2: "10 is first\\n"
+Line 3: "20 is second\\n"
+
+1. sc.next() reads token "it". Output: it
+2. sc.nextLine() reads rest of Line 1: " stores two numbers". Output:  stores two numbers
+3. sc.nextInt() reads integer 10. Output: 10
+4. sc.nextLine() reads rest of Line 2: " is first". Output:  is first`
+            },
+            {
+                qn: 12,
+                id: "6406532128278",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the code given below that checks whether two normal distributions are identical. Method equals is overridden to compare two NormalDistribution objects as follows. If two distributions have the same mean and variance, then both are considered identical. Based on the given information, answer the question that follows.",
+                code: `class NormalDistribution{
+    private String name;
+    private double mean;
+    private double variance;
+
+    //Constructor to initialize instance variables
+
+    public String toString() {
+        return name;
+    }
+    public boolean equals(Object obj) {
+        // CODE BLOCK
+    }
+}
+public class EqualsTest {
+    public static void main(String[] args) {
+        NormalDistribution s1 =
+                new NormalDistribution("DistA", 0.0, 1.0);
+        NormalDistribution s2 =
+                new NormalDistribution("DistB", 5.0, 2.0);
+        NormalDistribution s3 =
+                new NormalDistribution("DistC", 5.0, 2.0);
+
+        if(s1.equals(s3))
+            System.out.println(s1+", "+s3+" are identical distributions");
+        if(s2.equals(s3))
+            System.out.println(s2+", "+s3+" are identical distributions");
+    }
+}`,
+                qnSubText: `Choose the correct option to fill in place of CODE BLOCK so that the output is:\nDistB, DistC are identical distributions`,
+                options: [
+                    "if(obj instanceof NormalDistribution)\n    if(this.mean == s.mean && this.variance == s.variance)\n        return true;\nreturn false;",
+                    "if(obj instanceof NormalDistribution) {\n    NormalDistribution s = obj;\n    if(this.mean == obj.mean && this.variance == obj.variance)\n        return true;\n}\nreturn false;",
+                    "if(obj instanceof NormalDistribution) {\n    NormalDistribution s = obj;\n    if(this.mean == obj.mean && this.variance == obj.variance)\n        return false;\n}\nreturn true;",
+                    "if(obj instanceof NormalDistribution) {\n    NormalDistribution s = (NormalDistribution) obj;\n    if(this.mean == s.mean && this.variance == s.variance)\n        return true;\n}\nreturn false;"
+                ],
+                correct: [3],
+                solution: `Option 4 correctly performs type checking with instanceof, casts obj to NormalDistribution s, and checks both mean and variance equality before returning true.`
+            },
+            {
+                qn: 13,
+                id: "6406532128279",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the following Java code that uses chained exceptions.",
+                code: `class DataStorageException extends Exception {
+    public DataStorageException(String message) {
+        super(message);
+    }
+}
+class DataProcessingException extends Exception {
+    public DataProcessingException(String message) {
+        super(message);
+    }
+}
+class DataService {
+    public void processData(String dataset) throws DataProcessingException {
+        try {
+            // if(not enough memory to store processed results)
+            throw new DataStorageException(
+                    "Insufficient memory for dataset");
+
+            // else process the dataset
+        } catch (DataStorageException e) {
+            DataProcessingException dpe = new DataProcessingException(
+                    "Failed to process dataset");
+
+            dpe.initCause(e);
+            throw dpe;
+        }
+    }
+}
+public class DataApp {
+    public static void main(String[] args) {
+        DataService dataService = new DataService();
+        try {
+            dataService.processData("survey.csv");
+        } catch (DataProcessingException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Reason: " + e.getCause().getMessage());
+        }
+    }
+}`,
+                qnSubText: "What can be the output of this code?",
+                options: [
+                    "Failed to process dataset\nReason: Insufficient memory for dataset",
+                    "Insufficient memory for dataset\nReason: Failed to process dataset",
+                    "Reason: Insufficient memory for dataset",
+                    "Reason: Failed to process dataset"
+                ],
+                correct: [0],
+                solution: `DataService throws DataProcessingException ("Failed to process dataset") with cause DataStorageException ("Insufficient memory for dataset").
+In main catch block:
+- e.getMessage() prints: Failed to process dataset
+- e.getCause().getMessage() prints: Insufficient memory for dataset`
+            },
+            {
+                qn: 14,
+                id: "6406532128280",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Method Stream.iterate(e, f) returns an infinite sequential ordered Stream produced by iterative application of a function f to an initial element e, producing a Stream consisting of e, f(e), f(f(e)), etc. Based on the above information, consider the code given below, and answer the question that follows.",
+                code: `import java.util.stream.Stream;
+public class Test {
+    public static void main(String[] args) {
+        Stream.iterate(1, n -> n + 2)
+                .map(n -> n * n)
+                .filter(n -> n % 4 == 1)
+                .limit(3)
+                .forEach(x -> System.out.print(x + " "));
+    }
+}`,
+                qnSubText: "What will the output be?",
+                options: [
+                    "1 9 25",
+                    "1 4 9",
+                    "9 25 49",
+                    "4 16 36"
+                ],
+                correct: [0],
+                solution: `Stream.iterate(1, n -> n + 2) yields odd numbers: 1, 3, 5, 7, ...
+map(n -> n * n) calculates squares of odd numbers: 1, 9, 25, 49, ...
+All odd squares modulo 4 yield remainder 1, passing filter(n -> n % 4 == 1).
+limit(3) takes the first 3 values: 1, 9, 25.
+forEach prints: 1 9 25 `
+            },
+            {
+                qn: 15,
+                id: "6406532128281",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the code given below.",
+                code: `class Experiment {
+    static int totalObservations = 0;
+}
+class Observer extends Thread {
+    public void run() {
+        for(int i=0; i<1000; i++) {
+            Experiment.totalObservations++;
+        }
+    }
+}
+public class Test {
+    public static void main(String[] args) throws InterruptedException {
+        Thread t1 = new Observer();
+        Thread t2 = new Observer();
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+        System.out.print(Experiment.totalObservations);
+    }
+}`,
+                qnSubText: "Choose the correct option.",
+                options: [
+                    "The code always prints 2000.",
+                    "The code prints any number in the range 1000 to 2000",
+                    "The code prints any number in the range 0 to 1000",
+                    "The code always prints 1000."
+                ],
+                correct: [1],
+                solution: `Because totalObservations++ is a non-atomic read-modify-write operation on shared unsynchronized state, concurrent execution by t1 and t2 leads to race conditions and lost updates. The final value can range anywhere between 1000 and 2000.`
+            },
+            {
+                qn: 16,
+                id: "6406532128282",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the Java code given below.",
+                code: `class Author {
+    String name;
+    public Author(String n) {
+        name = n;
+    }
+}
+class ResearchPaper implements Cloneable {
+    String title;
+    Author[] authors;
+    public ResearchPaper(String t, Author[] aList) {
+        title = t;
+        this.authors = aList;
+    }
+    public ResearchPaper clone() throws CloneNotSupportedException {
+        ResearchPaper r = (ResearchPaper) super.clone();
+        r.authors = this.authors.clone();
+        return r;
+    }
+}
+public class Test {
+    public static void main(String[] args) throws CloneNotSupportedException {
+        Author[] authors1 = { new Author("Dr. Rao"), new Author("Dr. Sen") };
+        ResearchPaper r1 = new ResearchPaper("Regression Study", authors1);
+        ResearchPaper r2 = r1.clone();
+        Author[] authors2 = r2.authors;
+        authors2[0].name = "Dr. Mehta";
+        r2.title = "Time Series Study";
+
+        System.out.println(r1.title + " : " + r1.authors[0].name);
+        System.out.println(r2.title + " : " + r2.authors[0].name);
+    }
+}`,
+                qnSubText: "What will the output be?",
+                options: [
+                    "Regression Study : Dr. Mehta\nRegression Study : Dr. Mehta",
+                    "Time Series Study : Dr. Mehta\nTime Series Study : Dr. Mehta",
+                    "Regression Study : Dr. Rao\nTime Series Study : Dr. Mehta",
+                    "Regression Study : Dr. Mehta\nTime Series Study : Dr. Mehta"
+                ],
+                correct: [3],
+                solution: `r.authors = this.authors.clone() creates a new array object, but the Author elements inside remain shallow copies pointing to the exact same Author instances.
+Modifying authors2[0].name = "Dr. Mehta" mutates the shared Author object, so r1.authors[0].name and r2.authors[0].name both print "Dr. Mehta".
+Titles are independent: r1.title is "Regression Study", r2.title is "Time Series Study".`
+            },
+            {
+                qn: 17,
+                id: "6406532128283",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the Java code given below.",
+                code: `import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<String>();
+        list.add("Drone");
+        list.add("Droid");
+        list.add("Arm");
+        list.add("Motor");
+        list.add("Driver");
+
+        list.stream().takeWhile(s -> s.startsWith("D"))
+                .forEach(s -> System.out.print(s + " "));
+
+        System.out.println();
+
+        list.stream().dropWhile(s -> s.startsWith("D"))
+                .forEach(s -> System.out.print(s + " "));
+    }
+}`,
+                qnSubText: "What will the output be?",
+                options: [
+                    "Drone Droid Driver\nArm Motor",
+                    "Drone Droid\nArm Motor",
+                    "Drone Droid\nArm Motor Driver",
+                    "Drone Droid\nDriver"
+                ],
+                correct: [2],
+                solution: `takeWhile takes elements matching predicate until first mismatch ("Arm"): "Drone Droid ".
+dropWhile drops initial elements matching predicate ("Drone", "Droid") and emits all remaining elements: "Arm Motor Driver ".`
+            },
+            {
+                qn: 18,
+                id: "6406532128264",
+                type: "MSQ",
+                marks: 4.00,
+                text: "From among the options, identify the appropriate function header(s) for function printSalary that takes as input an array of Payable objects and prints the highest salary among them.",
+                code: `import java.util.*;
+abstract class Payable {
+    int basePay;
+    public abstract double salary();
+}
+class FullTime extends Payable{
+    // Constructor
+    // method salary() that returns salary of full-time employee
+}
+class PartTime extends Payable{
+    // Constructor
+    // method salary() that returns salary of part-time employee
+}
+public class Payroll{
+    // LINE 1: FUNCTION HEADER
+    {
+        // invokes method salary()
+        // to print the value of highest salary
+    }
+    public static void main(String[] args) {
+        Payable[] p = {new FullTime(50000), new PartTime(20000)};
+        printSalary(p);
+    }
+}`,
+                qnSubText: "Choose the correct option(s).",
+                options: [
+                    "public static void printSalary(<?> p)",
+                    "public static void printSalary(T[] p)",
+                    "public static <T extends Payable> void printSalary(T[] p)",
+                    "public static void printSalary(Payable[] p)"
+                ],
+                correct: [2, 3],
+                solution: `Both Option 3 and Option 4 are valid function headers:
+- Option 3: public static <T extends Payable> void printSalary(T[] p) is a bounded generic method header accepting an array of any type T that extends Payable.
+- Option 4: public static void printSalary(Payable[] p) accepts an array of Payable directly.`
+            },
+            {
+                qn: 19,
+                id: "6406532128271",
+                type: "MCQ",
+                marks: 6.00,
+                text: "Consider the Java code given below.",
+                code: `import java.util.*;
+import java.util.concurrent.*;
+class SquareMapUpdater extends Thread {
+    Map squareMap;
+    SquareMapUpdater(Map m) {
+        this.squareMap = m;
+    }
+    public void run() {
+        squareMap.put("4", "Sixteen");
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Map<Integer, String> squareMap = new ConcurrentHashMap();
+        Integer[] iarr = {1, 2, 3};
+        String[] arr = {"One", "Four", "Nine"};
+        for(int i = 0; i < iarr.length; i++) {
+            squareMap.put(iarr[i], arr[i]);
+        }
+        SquareMapUpdater t = new SquareMapUpdater(squareMap);
+        t.start();
+        Set s = squareMap.entrySet();
+        Iterator itr = s.iterator();
+        while(itr.hasNext()) {
+            Map.Entry m = (Map.Entry)itr.next();
+            System.out.println(m.getKey() + " => " + m.getValue());
+        }
+    }
+}`,
+                qnSubText: "Which of the following is NOT true about the given code?",
+                options: [
+                    "This program may generate ConcurrentModificationException.",
+                    "1 => One\n2 => Four\n3 => Nine\n4 => Sixteen",
+                    "4 => Sixteen\n1 => One\n2 => Four\n3 => Nine",
+                    "1 => One\n2 => Four\n3 => Nine"
+                ],
+                correct: [0],
+                solution: `ConcurrentHashMap supports full concurrency for retrieval and updates without throwing ConcurrentModificationException. Thus, claiming "This program may generate ConcurrentModificationException" is NOT true.`
+            },
+            {
+                qn: 20,
+                id: "6406532128285",
+                type: "MCQ",
+                marks: 6.00,
+                text: "Consider the Java code given below.",
+                code: `import javax.swing.*;
+import java.awt.*;
+public class GUITest extends JFrame {
+    JPanel pnlLbl, pnlTxt, pnlBtn;
+    JLabel lblFrom, lblTo;
+    JTextField txtFrom, txtTo;
+    JButton btn;
+    public GUITest() {
+        lblFrom = new JLabel("From:");
+        lblTo = new JLabel("To:");
+        txtFrom = new JTextField(10);
+        txtTo = new JTextField(10);
+        btn = new JButton("Book Ticket");
+        pnlLbl = new JPanel();
+        //add lblFrom and txtFrom to pnlLbl
+        pnlTxt = new JPanel();
+        //add lblTo and txtTo to pnlTxt
+        pnlBtn = new JPanel();
+        //add btn to pnlBtn
+
+        //CODE BLOCK
+
+        setVisible(true);
+        setSize(300,200);
+    }
+    public static void main(String[] args) {
+        new GUITest();
+    }
+}`,
+                qnSubText: "Choose the correct option to be filled in place of CODE BLOCK such that the above program produces the GUI given below.",
+                options: [
+                    "add(pnlLbl, \"Center\");\nadd(pnlTxt, \"North\");\nadd(pnlBtn, \"South\");",
+                    "add(pnlLbl, \"North\");\nadd(pnlTxt, \"South\");\nadd(pnlBtn, \"Center\");",
+                    "add(pnlLbl, \"North\");\nadd(pnlTxt, \"Center\");\nadd(pnlBtn, \"South\");",
+                    "add(pnlLbl, \"South\");\nadd(pnlTxt, \"Center\");\nadd(pnlBtn, \"North\");"
+                ],
+                correct: [2],
+                solution: `Option 3 adds pnlLbl to North, pnlTxt to Center, and pnlBtn to South as per the question paper solution key.`
+            },
+            {
+                qn: 21,
+                id: "6406532128276",
+                type: "MCQ",
+                marks: 5.00,
+                text: "Consider the code given below.",
+                code: `import java.io.*;
+class Satellite implements Serializable {
+    private double orbitHeight;
+    private transient String missionType;
+    private transient int satelliteId;
+    // Constructor to initialize instance variables
+    public String toString() {
+        return "orbitHeight=" + orbitHeight + ", missionType=" +
+                missionType + ", satelliteId=" + satelliteId;
+    }
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+        out.writeInt(satelliteId * 10);
+    }
+    private void readObject(ObjectInputStream in) throws IOException,
+            ClassNotFoundException {
+        in.defaultReadObject();
+        satelliteId = in.readInt() / 10;
+    }
+}
+public class Test {
+    public static void main(String[] args) throws Exception {
+        var fos = new FileOutputStream("SatelliteData.txt");
+        var oos = new ObjectOutputStream(fos);
+
+        Satellite sat = new Satellite(35786.0, "COMMUNICATION", 42);
+        oos.writeObject(sat);
+        oos.close();
+        fos.close();
+
+        var fis = new FileInputStream("SatelliteData.txt");
+        var ois = new ObjectInputStream(fis);
+
+        Satellite obj = (Satellite) ois.readObject();
+        ois.close();
+        fis.close();
+
+        System.out.println(obj);
+    }
+}`,
+                qnSubText: "What will the output be?",
+                options: [
+                    "orbitHeight=35786.0, missionType=null, satelliteId=0",
+                    "orbitHeight=0.0, missionType=COMMUNICATION, satelliteId=42",
+                    "orbitHeight=35786.0, missionType=null, satelliteId=42",
+                    "orbitHeight=35786.0, missionType=COMMUNICATION, satelliteId=0"
+                ],
+                correct: [2],
+                solution: `1. orbitHeight is non-transient, serialized normally as 35786.0.
+2. missionType is transient and not handled in custom writeObject, so it deserializes as null.
+3. satelliteId is transient, but custom writeObject writes satelliteId * 10 (420), and custom readObject reads 420 / 10 = 42.
+Result: orbitHeight=35786.0, missionType=null, satelliteId=42.`
+            },
+            {
+                qn: 22,
+                id: "6406532128284",
+                type: "MCQ",
+                marks: 5.00,
+                text: "Method Optional.ofNullable(T value) returns an Optional that describes the specific value, if non-null; otherwise returns an empty Optional. Based on this description, consider the code given below, and answer the question that follows.",
+                code: `import java.util.*;
+
+class TransportService {
+    HashMap<String, String> drivers = new HashMap<>();
+    public TransportService() {
+        drivers.put("RouteA", "Suresh");
+        drivers.put("RouteB", "Mahesh");
+    }
+    public String getDriver(String route) {
+        return drivers.get(route);
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Optional<String> d1 =
+                Optional.ofNullable(
+                        new TransportService()
+                                .getDriver("RouteA")
+                );
+        Optional<String> d2 =
+                Optional.ofNullable(
+                        new TransportService()
+                                .getDriver("RouteC")
+                );
+        d1.ifPresent(n ->
+                System.out.println(n.toUpperCase()));
+        d2.ifPresent(n ->
+                System.out.println(n.toUpperCase()));
+    }
+}`,
+                qnSubText: "Choose the correct option.",
+                options: [
+                    "SURESH",
+                    "SURESH ",
+                    "SURESH\nnull",
+                    "ROUTEA\nSURESH"
+                ],
+                correct: [0],
+                solution: `d1 holds "Suresh" via getDriver("RouteA"), so d1.ifPresent prints "SURESH".
+d2 holds null via getDriver("RouteC"), returning an empty Optional, so d2.ifPresent does nothing.`
+            },
+            {
+                qn: 23,
+                id: "6406532128277",
+                type: "MSQ",
+                marks: 6.00,
+                text: "Consider the following code which has 4 user-defined threads, two threads would work as stock adders to a warehouse (object) and the other two work as stock removers from the same warehouse.",
+                code: `import java.util.*;
+
+class Warehouse{
+    int stock;
+    public synchronized void remove(int amount) {
+        if(stock > amount){
+            stock = stock - amount;
+            System.out.println("After removing, stock = " +stock);
+        }
+    }
+    public synchronized void add(int amount) {
+        stock = stock + amount;
+        System.out.println("After adding, stock = " +stock);
+    }
+}
+class Threadutil extends Thread{
+    Warehouse wh;
+    public Threadutil(Warehouse obj, String t_name){
+        super(t_name);
+        wh = obj;
+    }
+    public void run() {
+        if(Thread.currentThread().getName().contains("remover"))
+            wh.remove(500);
+        else
+            wh.add(1000);
+    }
+}
+public class TClass{
+    public static void main(String args[]) {
+        Warehouse my_wh = new Warehouse();
+        Threadutil t1 = new Threadutil(my_wh,"adder1");
+        Threadutil t2 = new Threadutil(my_wh,"remover1");
+        Threadutil t3 = new Threadutil(my_wh,"adder2");
+        Threadutil t4 = new Threadutil(my_wh,"remover2");
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+    }
+}`,
+                qnSubText: "Choose all the options that would NEVER occur as a result of execution of this code.",
+                options: [
+                    "After adding, stock = 1000\nAfter removing, stock = 500\nAfter adding, stock = 1000\nAfter removing, stock = 500",
+                    "After removing, stock = -500\nAfter removing, stock = -1000\nAfter adding, stock = 0\nAfter adding, stock = 1000",
+                    "After adding, stock = 1000\nAfter adding, stock = 2000\nAfter removing, stock = 1500\nAfter removing, stock = 1000",
+                    "After adding, stock = 1000\nAfter removing, stock = 500\nAfter adding, stock = 1500\nAfter removing, stock = 1000"
+                ],
+                correct: [0, 1],
+                solution: `Option 1 and Option 2 can NEVER occur:
+- Option 2 shows stock becoming negative (-500, -1000). The check 'if(stock > amount)' inside remove() prevents stock from ever becoming negative.
+- Option 1 shows final stock as 500 despite two +1000 additions and two -500 removals (net stock should be 1000).`
+            }
+        ];
+
+        // ==========================================================================
+        // PORTAL STATE & FUNCTIONS
+        // ==========================================================================
+        let currentMode = 'exam'; // 'exam' or 'learning'
+        let userAnswers = {}; // { qnNum: [optIdx] }
+        let timerSeconds = 3;
+        let timerInterval = null;
+        let isTimerRunning = true;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuestionPalette();
+            renderQuestions();
+            updateScoreDisplay();
+            startTimer();
+        });
+
+        function setPortalMode(mode) {
+            currentMode = mode;
+            document.getElementById('btnExamMode').classList.toggle('active', mode === 'exam');
+            document.getElementById('btnLearningMode').classList.toggle('active', mode === 'learning');
+            renderQuestions();
+            updatePaletteStatuses();
+        }
+
+        function renderQuestionPalette() {
+            const grid = document.getElementById('paletteGrid');
+            grid.innerHTML = QUESTIONS_DATA.map(q => `
+                <button class="palette-btn" id="paletteBtn_${q.qn}" onclick="scrollToQuestion(${q.qn})">${q.qn}</button>
+            `).join('');
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            let html = '';
+
+            QUESTIONS_DATA.forEach((q) => {
+                html += `
+                <article class="qn-card" id="qnCard_${q.qn}">
+                    <div class="qn-header-container">
+                        <div class="qn-header-top">
+                            <div class="qn-title-main">
+                                Question ${q.qn} : ${q.id}
+                            </div>
+                            <button class="btn-solution-pill" onclick="toggleSolution(${q.qn})">
+                                <i class="fa-regular fa-circle-check"></i> View Solutions (0)
+                            </button>
+                        </div>
+                        <div class="qn-header-sub">
+                            <span class="qn-id-tag">Question ${q.qn} : ${q.id}</span>
+                            <span class="qn-meta-info">Total Mark : ${q.marks.toFixed(2)} | Type : ${q.type}</span>
+                        </div>
+                    </div>
+
+                    <div class="qn-text">${q.text}</div>
+
+                    ${q.code ? `
+                    <div class="code-snippet-wrap">
+                        <code>${escapeHtml(q.code)}</code>
+                    </div>` : ''}
+
+                    ${q.qnSubText ? `<div class="qn-text" style="margin-top:0.85rem;">${q.qnSubText}</div>` : ''}
+
+                    <!-- Options / Inputs -->
+                    ${renderQuestionInputs(q)}
+
+                    <!-- Footer Action Toolbar -->
+                    <div class="qn-footer-toolbar">
+                        <div class="qn-actions-group">
+                            <button class="btn-action-pill btn-discuss" onclick="alert('Discussion forum loading...')"><i class="fa-regular fa-comments"></i> Discussions (0)</button>
+                            <button class="btn-action-pill btn-correct" onclick="alert('Correction reported. Thank you!')"><i class="fa-regular fa-pen-to-square"></i> Suggest Correction</button>
+                            <button class="btn-action-pill btn-broken" onclick="alert('Format flag recorded.')"><i class="fa-solid fa-wrench"></i> Broken Format?</button>
+                        </div>
+                    </div>
+
+                    <!-- Solution Accordion -->
+                    <div class="solution-box" id="solution_${q.qn}">
+                        <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution & Code Trace</div>
+                        <div class="solution-text">${q.solution.replace(/\n/g, '<br>')}</div>
+                    </div>
+                </article>
+                `;
+
+                // Add Advertisement banner after Q6 and Q15
+                if (q.qn === 6 || q.qn === 15) {
+                    html += `
+                    <div class="ad-banner-box">
+                        <span class="ad-tag">ADVERTISEMENT</span>
+                        <div class="ad-actions">
+                            <button class="btn-remove-ads" onclick="alert('Ad-free experience enabled.')"><i class="fa-solid fa-bolt"></i> Remove Ads</button>
+                            <button class="btn-close-ad" onclick="this.parentElement.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    `;
+                }
+            });
+
+            container.innerHTML = html;
+            updatePaletteStatuses();
+        }
+
+        function renderQuestionInputs(q) {
+            const isMSQ = q.type === 'MSQ';
+            const userArr = userAnswers[q.qn] || [];
+
+            return `
+            <div class="options-list">
+                ${q.options.map((optText, idx) => {
+                    const isChecked = userArr.includes(idx);
+                    const isCorrect = q.correct.includes(idx);
+                    let highlightClass = '';
+
+                    if (isChecked) highlightClass = 'selected';
+
+                    if (currentMode === 'learning') {
+                        if (isCorrect) highlightClass = 'correct-highlight';
+                        else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                    }
+
+                    const isMultiLine = optText.includes('\n');
+
+                    return `
+                    <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <span class="option-text">${isMultiLine ? `<pre style="margin:0; font-family:var(--font-mono); font-size:0.9rem; line-height:1.5;"><code>${escapeHtml(optText)}</code></pre>` : escapeHtml(optText)}</span>
+                    </label>
+                    `;
+                }).join('')}
+            </div>
+            `;
+        }
+
+        function handleOptionSelect(qnNum, optIdx, qnType) {
+            if (qnType === 'MCQ') {
+                userAnswers[qnNum] = [optIdx];
+            } else if (qnType === 'MSQ') {
+                if (!userAnswers[qnNum]) userAnswers[qnNum] = [];
+                const pos = userAnswers[qnNum].indexOf(optIdx);
+                if (pos >= 0) userAnswers[qnNum].splice(pos, 1);
+                else userAnswers[qnNum].push(optIdx);
+            }
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function calculateQuestionScore(q) {
+            const userAns = userAnswers[q.qn];
+            if (!userAns || !Array.isArray(userAns) || userAns.length === 0) return "0.00";
+
+            if (q.type === 'MCQ') {
+                return (userAns[0] === q.correct[0]) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            if (q.type === 'MSQ') {
+                const sortedUser = [...userAns].sort().join(',');
+                const sortedCorrect = [...q.correct].sort().join(',');
+                return (sortedUser === sortedCorrect) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            return "0.00";
+        }
+
+        function updateScoreDisplay() {
+            let total = 0;
+            let answeredCount = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const score = parseFloat(calculateQuestionScore(q));
+                total += score;
+
+                const ans = userAnswers[q.qn];
+                if (ans && Array.isArray(ans) && ans.length > 0) {
+                    answeredCount++;
+                }
+            });
+
+            document.getElementById('liveScoreDisplay').textContent = `${total.toFixed(2)} / 100.00`;
+            const pct = ((total / 100) * 100).toFixed(1);
+            document.getElementById('livePercentDisplay').textContent = `(${pct}%)`;
+            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/23`;
+        }
+
+        function updatePaletteStatuses() {
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.getElementById(`paletteBtn_${q.qn}`);
+                if (!btn) return;
+
+                btn.className = 'palette-btn';
+
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && Array.isArray(ans) && ans.length > 0;
+
+                if (hasAns) {
+                    btn.classList.add('answered');
+                    if (currentMode === 'learning') {
+                        const score = parseFloat(calculateQuestionScore(q));
+                        if (score > 0) btn.classList.add('correct');
+                        else btn.classList.add('incorrect');
+                    }
+                }
+            });
+        }
+
+        function toggleSolution(qnNum) {
+            const box = document.getElementById(`solution_${qnNum}`);
+            if (box) box.classList.toggle('open');
+        }
+
+        function scrollToQuestion(qnNum) {
+            const card = document.getElementById(`qnCard_${qnNum}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                document.querySelectorAll('.palette-btn').forEach(b => b.classList.remove('active-qn'));
+                const btn = document.getElementById(`paletteBtn_${qnNum}`);
+                if (btn) btn.classList.add('active-qn');
+            }
+        }
+
+        // Timer Logic
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (isTimerRunning) {
+                    timerSeconds++;
+                    updateTimerUI();
+                }
+            }, 1000);
+        }
+
+        function toggleTimer() {
+            isTimerRunning = !isTimerRunning;
+            const btn = document.getElementById('btnPauseTimer');
+            if (btn) btn.innerHTML = isTimerRunning ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+        }
+
+        function resetTimer() {
+            timerSeconds = 0;
+            updateTimerUI();
+        }
+
+        function updateTimerUI() {
+            const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const secs = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+        }
+
+        // Exam Submission & Modals
+        function submitExam() {
+            setPortalMode('learning');
+
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+            let totalScore = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && Array.isArray(ans) && ans.length > 0;
+
+                if (!hasAns) {
+                    unansweredCount++;
+                } else {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    totalScore += score;
+                    if (score > 0) correctCount++;
+                    else incorrectCount++;
+                }
+            });
+
+            document.getElementById('modalScoreText').textContent = `${totalScore.toFixed(2)} / 100.00`;
+            document.getElementById('modalPercentText').textContent = `${((totalScore / 100) * 100).toFixed(1)}% Accuracy`;
+            document.getElementById('modalCorrectCount').textContent = correctCount;
+            document.getElementById('modalIncorrectCount').textContent = incorrectCount;
+            document.getElementById('modalUnansweredCount').textContent = unansweredCount;
+
+            document.getElementById('resultModal').classList.add('active');
+        }
+
+        function resetExam() {
+            userAnswers = {};
+            resetTimer();
+            closeResultModal();
+            setPortalMode('learning');
+        }
+
+        function openSummaryModal() {
+            document.getElementById('summaryModal').classList.add('active');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.remove('active');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.remove('active');
+        }
+
+        function escapeHtml(str) {
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('portalSidebar');
+            const toggleBtn = document.getElementById('mobileSidebarToggle');
+            if (sidebar && toggleBtn) {
+                sidebar.classList.toggle('open');
+                toggleBtn.classList.toggle('active');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const fab = document.getElementById('fabBackToTop');
+            if (fab) {
+                if (window.scrollY > 300) fab.classList.add('visible');
+                else fab.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+
+</html>
