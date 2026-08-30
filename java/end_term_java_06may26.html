@@ -413,7 +413,7 @@ Server server = network.getActiveServer();
 if(server == null)
     throw new RuntimeException("Server not available");
 // ...`,
-                qnSubText: `Which among the following code blocks can replace the given code in order to generate a customized assertion error as shown below?\nException in thread "main" java.lang.AssertionError: Server not available\n    at NetworkAssert.main(NetworkAssert.java:<line number>)`,
+                qnSubText: `Which among the following code blocks can replace the given code in order to generate a customized assertion error as shown below?\nException in thread "main" <mark style="background-color: #fde047; color: #000; padding: 2px 6px; border-radius: 4px; font-weight: 600;">java.lang.AssertionError: Server not available</mark>\n    at NetworkAssert.main(NetworkAssert.java:<line number>)`,
                 options: [
                     "Server server = network.getActiveServer();\nassert server != null : \"Server not available\";",
                     "try {\n    Server server = network.getActiveServer();\n    assert server != null;\n} catch(RuntimeException e) {\n    System.out.println(\"Server not available\");\n}",
@@ -1365,7 +1365,7 @@ public class TClass{
                         <code>${escapeHtml(q.code)}</code>
                     </div>` : ''}
 
-                    ${q.qnSubText ? `<div class="qn-text" style="margin-top:0.85rem;">${q.qnSubText}</div>` : ''}
+                    ${q.qnSubText ? `<div class="qn-text" style="margin-top:0.85rem;">${q.qnSubText.replace(/\n/g, '<br>')}</div>` : ''}
 
                     <!-- Options / Inputs -->
                     ${renderQuestionInputs(q)}
