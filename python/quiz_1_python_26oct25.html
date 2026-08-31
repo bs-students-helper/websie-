@@ -657,16 +657,20 @@
                 const isChecked = userArr.includes(idx);
                 const isCorrect = q.correct.includes(idx);
                 let highlightClass = '';
+                if (isChecked) highlightClass = 'selected';
 
                 if (currentMode === 'learning') {
                     if (isCorrect) highlightClass = 'correct-highlight';
                     else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
                 }
 
+                const cleanOptText = (optText || '').replace(/\\n/g, '\n');
+                const isMultiLine = cleanOptText.includes('\n');
+
                 return `
                     <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
                         <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
-                        <span class="option-text">${escapeHtml(optText)}</span>
+                        <span class="option-text">${isMultiLine ? `<pre style="margin:0; font-family:var(--font-mono); font-size:0.9rem; line-height:1.5;"><code>${escapeHtml(cleanOptText)}</code></pre>` : escapeHtml(cleanOptText)}</span>
                     </label>
                     `;
             }).join('')}
