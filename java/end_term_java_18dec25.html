@@ -1305,14 +1305,14 @@ public class EmployeeTest {
                         </div>
                     </div>
 
-                    <div class="qn-text">${q.text}</div>
+                    <div class="qn-text">${q.text ? q.text.replace(/\\n/g, '<br>').replace(/\n/g, '<br>') : ''}</div>
 
                     ${q.code ? `
                     <div class="code-snippet-wrap">
                         <code>${escapeHtml(q.code)}</code>
                     </div>` : ''}
 
-                    ${q.qnSubText ? `<div class="qn-text" style="margin-top:0.85rem;">${q.qnSubText.replace(/\n/g, '<br>')}</div>` : ''}
+                    ${q.qnSubText ? `<div class="qn-text" style="margin-top:0.85rem;">${q.qnSubText.replace(/\\n/g, '<br>').replace(/\n/g, '<br>')}</div>` : ''}
 
                     <!-- Options / Inputs -->
                     ${renderQuestionInputs(q)}
@@ -1329,7 +1329,7 @@ public class EmployeeTest {
                     <!-- Solution Accordion -->
                     <div class="solution-box" id="solution_${q.qn}">
                         <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution & Code Trace</div>
-                        <div class="solution-text">${q.solution.replace(/\n/g, '<br>')}</div>
+                        <div class="solution-text">${q.solution ? q.solution.replace(/\\n/g, '<br>').replace(/\n/g, '<br>') : ''}</div>
                     </div>
                 </article>
                 `;
@@ -1370,12 +1370,13 @@ public class EmployeeTest {
                         else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
                     }
 
-                    const isMultiLine = optText.includes('\n');
+                    const cleanOptText = (optText || '').replace(/\\n/g, '\n');
+                    const isMultiLine = cleanOptText.includes('\n');
 
                     return `
                     <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
                         <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
-                        <span class="option-text">${isMultiLine ? `<pre style="margin:0; font-family:var(--font-mono); font-size:0.9rem; line-height:1.5;"><code>${escapeHtml(optText)}</code></pre>` : escapeHtml(optText)}</span>
+                        <span class="option-text">${isMultiLine ? `<pre style="margin:0; font-family:var(--font-mono); font-size:0.9rem; line-height:1.5;"><code>${escapeHtml(cleanOptText)}</code></pre>` : escapeHtml(cleanOptText)}</span>
                     </label>
                     `;
                 }).join('')}
