@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice AppDev2 questions : Modern Application Development II 18 Dec 25 - QuizPractice | BSH</title>
+    <meta name="description"
+        content="Practice Modern Application Development II End Term question paper (18 Dec 25) with interactive exam & learning modes, instant score calculation, detailed solutions, and question palette.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+
+    <!-- Master CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/quiz-portal.css">
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('bsh-theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Site Navigation Header -->
+    <header class="site-header" id="header">
+        <div class="header-container">
+            <a href="../index.html" class="brand-logo" aria-label="BSH Homepage">
+                <img src="../assets/images/logo.png" alt="BSH Logo" class="logo-img">
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="../index.html#features" class="nav-link">Features</a>
+                <a href="../quiz_practice.html" class="nav-link active">Quiz Practice</a>
+                <a href="../calculator.html" class="nav-link">SEC Calculator</a>
+                <a href="../about.html" class="nav-link">About Us</a>
+                <a href="../contact_us.html" class="nav-link">Feedback</a>
+            </nav>
+            <div class="header-actions">
+                <a href="../end_term_practice.html" class="btn btn-secondary nav-btn-desktop"><i
+                        class="fa-solid fa-arrow-left"></i><span>Back to Papers</span></a>
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i
+                        class="fa-solid fa-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="portal-layout">
+
+            <!-- Mobile Collapsible Sidebar Toggle Button -->
+            <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()">
+                <span><i class="fa-solid fa-sliders"></i> Exam Controls & Question Menu</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <!-- Left Sidebar: Controls, Menu & Timer -->
+            <aside class="portal-sidebar" id="portalSidebar">
+
+                <!-- Header Info -->
+                <div class="exam-info-header">
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Exam :</span>
+                        <span class="exam-info-val">End Term Quiz</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Subject :</span>
+                        <span class="exam-info-val">AppDev2</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Total Marks :</span>
+                        <span class="exam-info-val">100.00</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">QP :</span>
+                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">Modern Application Development II 18 Dec 25</span>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher -->
+                <div>
+                    <div class="menu-heading">Portal Mode</div>
+                    <div class="mode-toggle-group">
+                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam Mode</button>
+                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning Mode</button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                        onclick="openSummaryModal()">
+                        <i class="fa-solid fa-eye"></i> View Question Paper Summary
+                    </button>
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                        onclick="window.print()">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </button>
+                </div>
+
+                <!-- Question Menu Grid -->
+                <div>
+                    <div class="menu-heading">
+                        <span>QUESTION MENU</span>
+                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/35</span>
+                    </div>
+                    <div class="palette-grid" id="paletteGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Timer Box -->
+                <div>
+                    <div class="menu-heading">TIMER</div>
+                    <div class="timer-box">
+                        <div class="timer-display" id="timerDisplay">00:00</div>
+                        <div class="timer-controls">
+                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i
+                                    class="fa-solid fa-pause"></i></button>
+                            <button class="btn-icon-sm" onclick="resetTimer()"><i
+                                    class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls & Score Box -->
+                <div>
+                    <div class="menu-heading">CONTROLS</div>
+                    <button class="btn-submit-exam" onclick="submitExam()">
+                        <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
+                    </button>
+                    <div class="score-card" style="margin-top:1rem;">
+                        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">YOUR SCORE</span>
+                        <div class="score-num" id="liveScoreDisplay">0.00 / 100.00</div>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);"
+                            id="livePercentDisplay">(0.0%)</span>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Right Area: Questions List -->
+            <section class="questions-area" id="questionsContainer">
+                <!-- Dynamically Rendered by JS -->
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Floating Back to Top FAB -->
+    <button class="fab-back-to-top" id="fabBackToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;">Question Paper Summary</h3>
+                <button class="btn-icon-sm" onclick="closeSummaryModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+                Paper Title: <b>Modern Application Development II 18 Dec 25</b> (End Term Quiz)
+            </p>
+            <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+                <tr style="border-bottom:1px solid var(--border-light); text-align:left;">
+                    <th style="padding:0.6rem;">Question Type</th>
+                    <th style="padding:0.6rem;">Count</th>
+                    <th style="padding:0.6rem;">Total Marks</th>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MCQ (Multiple Choice)</td>
+                    <td style="padding:0.6rem;">30</td>
+                    <td style="padding:0.6rem;">88.00</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MSQ (Multiple Select)</td>
+                    <td style="padding:0.6rem;">5</td>
+                    <td style="padding:0.6rem;">12.00</td>
+                </tr>
+            </table>
+            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close Summary</button>
+        </div>
+    </div>
+
+    <!-- Exam Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-card" style="text-align:center;">
+            <div
+                style="width:64px; height:64px; border-radius:50%; background:rgba(16, 185, 129, 0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 1rem;">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Exam Submitted!</h2>
+            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for AppDev2 End Term Quiz (18 Dec 25)</p>
+
+            <div
+                style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
+                <div style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; font-weight:600;">
+                    Final Score</div>
+                <div style="font-family:var(--font-mono); font-size:2.8rem; font-weight:800; color:var(--accent-green);"
+                    id="modalScoreText">0.00 / 100.00</div>
+                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0% Accuracy
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem; margin-bottom:1.5rem;">
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Correct</div>
+                    <div style="font-weight:700; color:#10b981; font-size:1.2rem;" id="modalCorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Incorrect</div>
+                    <div style="font-weight:700; color:#ef4444; font-size:1.2rem;" id="modalIncorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Unanswered</div>
+                    <div style="font-weight:700; color:var(--text-secondary); font-size:1.2rem;"
+                        id="modalUnansweredCount">0</div>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:0.75rem;">
+                <button class="btn btn-secondary btn-full"
+                    onclick="closeResultModal(); setPortalMode('learning');">Review Solutions <i
+                        class="fa-solid fa-book-open"></i></button>
+                <button class="btn btn-primary btn-full" onclick="resetExam()">Retake Exam <i
+                        class="fa-solid fa-rotate-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Master Scripts -->
+    <script src="../assets/js/main.js"></script>
+    <script>
+        const QUESTIONS_DATA = [
+            {
+                qn: 1,
+                id: "6406531852185",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the following JavaScript code snippet:",
+                code: "const calculator = {\n    multiplier: 5,\n    calculate: function(a, b) {\n        console.log(`Result: ${(a + b) * this.multiplier}`);\n        return (a + b) * this.multiplier;\n    }\n};\n\nconst advancedCalc = {\n    multiplier: 10,\n    bonus: 20\n};\n\nconst operation1 = calculator.calculate.call(advancedCalc, 3, 5);\nconst operation2 = calculator.calculate.bind(advancedCalc, 4);\noperation2(8);\nconsole.log(operation1);\nconsole.log(typeof operation2);",
+                qnSubText: "What will be the output of the above program?",
+                options: [
+                    "Result: 40\nResult: 60\n40\nobject",
+                    "Result: 80\nResult: 120\n80\nobject",
+                    "Result: 40\nResult: 60\n40\nfunction",
+                    "Result: 80\nResult: 120\n80\nfunction"
+                ],
+                correct: [3],
+                solution: "operation1 executes calculate with this=advancedCalc (multiplier=10) and args (3,5) -> (3+5)*10 = 80. operation2 binds calculate to advancedCalc with first arg 4. Calling operation2(8) passes (4,8) -> (4+8)*10 = 120. typeof operation2 is 'function'."
+            },
+            {
+                qn: 2,
+                id: "6406531852186",
+                type: "MSQ",
+                marks: 2.00,
+                text: "Considering the following code snippet, which statements are true about components in Vue?",
+                code: "childComponent.$emit('update', 5)",
+                options: [
+                    "Parent can listen with @update",
+                    "Parent receives payload via $event",
+                    "Child can directly modify parent state",
+                    "$emit triggers a DOM event"
+                ],
+                correct: [0, 1],
+                solution: "$emit triggers Vue custom events. Parents listen via @update=\"handler\" and receive arguments via $event payload."
+            },
+            {
+                qn: 3,
+                id: "6406531852187",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the following JavaScript code snippet.",
+                code: "Promise.resolve(1)\n  .then(v => { throw v + 1 })\n  .catch(e => e * 2)\n  .then(console.log)",
+                qnSubText: "What will be printed on the console?",
+                options: [
+                    "2",
+                    "4",
+                    "Undefined",
+                    "Error"
+                ],
+                correct: [1],
+                solution: "Promise.resolve(1) resolves to 1. First .then throws 2. .catch receives 2 and returns 2 * 2 = 4. Final .then logs 4."
+            },
+            {
+                qn: 4,
+                id: "6406531852188",
+                type: "MCQ",
+                marks: 2.00,
+                text: "Which of the following is considered a good practice for securing user authentication in a web application?",
+                options: [
+                    "Storing passwords as plain text in the database for quick lookup",
+                    "Using hashing algorithms like \"bcrypt\" or \"Argon2\" to store passwords securely",
+                    "Including user passwords directly in SQL queries for verification",
+                    "All of these"
+                ],
+                correct: [1],
+                solution: "Using strong password hashing algorithms like bcrypt or Argon2 ensures stored passwords cannot be decrypted if the database is breached."
+            },
+            {
+                qn: 5,
+                id: "6406531852189",
+                type: "MCQ",
+                marks: 2.00,
+                text: "In the following code snippet, which values should replace option1 and option2 so that the cookie is sent only over HTTPS and is restricted from cross-site requests?",
+                code: "response.set_cookie('session_id', 'abc123', secure=option1, samesite=option2)",
+                options: [
+                    "secure=True and samesite='Strict'",
+                    "secure=False and samesite='Strict'",
+                    "secure=True and samesite='None'",
+                    "secure=False and samesite='Lax'"
+                ],
+                correct: [0],
+                solution: "secure=True restricts cookie transmission to encrypted HTTPS connections, and samesite='Strict' blocks cross-site cookie attachment."
+            },
+            {
+                qn: 6,
+                id: "6406531852190",
+                type: "MCQ",
+                marks: 3.00,
+                text: "You are working in VS Code terminal with Git CLI. You are currently on branch appdev2, and you want to merge the latest changes from the main branch into appdev2. Which of the following command sequences correctly performs the merge with a commit?",
+                options: [
+                    "git checkout main\ngit merge appdev2\ngit commit -m \"Merged main into appdev2\"",
+                    "git merge main\ngit commit -m \"Merged main into appdev2\"",
+                    "git checkout appdev2\ngit pull origin main\ngit commit -m \"Pulled changes from main into appdev2\"",
+                    "git merge appdev2 main\ngit commit -m \"Merged main into appdev2\""
+                ],
+                correct: [1],
+                solution: "While checked out on branch appdev2, git merge main merges changes from main into appdev2."
+            },
+            {
+                qn: 7,
+                id: "6406531852191",
+                type: "MCQ",
+                marks: 3.00,
+                text: "When comparing Redis with a typical API data store (like a relational database accessed through REST APIs), which of the following statements is true?",
+                options: [
+                    "Redis can only store strings, unlike API data stores which can handle complex structures.",
+                    "Redis is an in-memory data structure store, often used as a cache or message broker to complement API-based data stores.",
+                    "Redis is a relational database and queries data using SQL, just like an API data store.",
+                    "Redis is slower than API-based databases because it stores everything in memory."
+                ],
+                correct: [1],
+                solution: "Redis operates as an in-memory key-value data structure store providing ultra-fast caching and pub/sub message brokering."
+            },
+            {
+                qn: 8,
+                id: "6406531852192",
+                type: "MCQ",
+                marks: 3.00,
+                text: "How can you stop a Cross-Site Scripting (XSS) attack?",
+                options: [
+                    "Backend validation of user input and make sure any user-provided text is not executed as code.",
+                    "Store authentication token or jwt in cookies.",
+                    "Use v-html to show user generated data.",
+                    "Send cookies with every request to the backend."
+                ],
+                correct: [0],
+                solution: "Validating, sanitizing input on the backend and escaping output before browser rendering prevents unauthorized script injection."
+            },
+            {
+                qn: 9,
+                id: "6406531852193",
+                type: "MSQ",
+                marks: 2.00,
+                text: "Which of the following describe Redis features correctly?",
+                options: [
+                    "In-memory database",
+                    "Can support publish-subscribe (pub/sub)",
+                    "Can be used as Celery result backend",
+                    "Requires SQL to query"
+                ],
+                correct: [0, 1, 2],
+                solution: "Redis is an in-memory datastore supporting Pub/Sub messaging and Celery result backends. It does not use SQL."
+            },
+            {
+                qn: 10,
+                id: "6406531852194",
+                type: "MCQ",
+                marks: 2.00,
+                text: "Which of the following is true about Vuex state?",
+                options: [
+                    "It should be modified only through mutations",
+                    "It should be modified only through actions",
+                    "It cannot contain nested objects",
+                    "It should be modified by getters"
+                ],
+                correct: [0],
+                solution: "In Vuex, state mutations are synchronous transactions that serve as the sole method to modify application state."
+            },
+            {
+                qn: 11,
+                id: "6406531852195",
+                type: "MCQ",
+                marks: 2.00,
+                text: "What is the purpose of Redis in a Celery-based system?",
+                options: [
+                    "To automatically retry failed tasks",
+                    "To execute tasks in parallel",
+                    "To return computed results in JSON format",
+                    "To store scheduled tasks and serve as a message broker"
+                ],
+                correct: [3],
+                solution: "In Celery setups, Redis serves as a message broker queueing tasks and storing execution results."
+            },
+            {
+                qn: 12,
+                id: "6406531852196",
+                type: "MCQ",
+                marks: 3.00,
+                text: "What happens to the fetch call when it gets a 404 status code (page not found)?",
+                options: [
+                    "Promise rejects automatically",
+                    "Promise resolves and response.ok = true",
+                    "Promise resolves and response.ok = false",
+                    "Promise stays as pending"
+                ],
+                correct: [2],
+                solution: "fetch() promises resolve for HTTP error responses like 404; response.ok is set to false."
+            },
+            {
+                qn: 13,
+                id: "6406531852197",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the following JavaScript code.",
+                code: "const p = Promise.resolve(1)\n  .then(v => { console.log(\"A\", v); return v + 1; })\n  .then(v => { console.log(\"B\", v); throw \"err\"; })\n  .catch(e => { console.log(\"C\", e); return 10; })\n  .then(v => console.log(\"D\", v));\n\nconsole.log(\"END\");",
+                qnSubText: "What will be the output?",
+                options: [
+                    "END\nA 1\nB 2\nC err\nD 10",
+                    "A 1\nB 2\nEND\nC err\nD 10",
+                    "END\nA 1\nC err\nD 10",
+                    "END\nA 1\nB 2\nC err"
+                ],
+                correct: [0],
+                solution: "Synchronous console.log('END') logs first. Async microtasks log A 1, B 2, C err, D 10."
+            },
+            {
+                qn: 14,
+                id: "6406531852198",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the following JavaScript snippet.",
+                code: "let arr = [1, 2, 3];\nlet result = arr.map(x => x * 2).filter(x => x > 4);\nconsole.log(result);",
+                qnSubText: "What will be printed on the browser's console?",
+                options: [
+                    "[2, 4, 6]",
+                    "[6]",
+                    "[4, 6]",
+                    "[1, 2, 3]"
+                ],
+                correct: [1],
+                solution: "arr.map doubles elements to [2, 4, 6]. filter(x => x > 4) selects values strictly greater than 4, producing [6]."
+            },
+            {
+                qn: 15,
+                id: "6406531852199",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the following JavaScript snippet:",
+                code: "const obj = {\n    x: 50,\n    getX() { return this.x; }\n};\nconst fn = obj.getX.bind({ x: 7 });\nconsole.log(fn());",
+                qnSubText: "What will be printed on the browsers' console?",
+                options: [
+                    "50",
+                    "undefined",
+                    "Error",
+                    "7"
+                ],
+                correct: [3],
+                solution: "Function.prototype.bind({ x: 7 }) explicitly binds this to { x: 7 }, returning 7."
+            },
+            {
+                qn: 16,
+                id: "6406531852200",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the following Vue Router setup and HTML.",
+                code: "const User = {\n    template: `\n    <div>\n        <h2>User {{ $route.params.id }}</h2>\n        <router-view></router-view>\n    </div>`\n};\nconst Overview = { template: '<p>User Overview</p>' };\nconst Orders = { template: '<p>User Orders</p>' };\n\nconst routes = [\n    {\n        path: \"/user/:id\",\n        component: User,\n        children: [\n            { path: \"\", component: Overview },\n            { path: \"orders\", component: Orders }\n        ]\n    }\n];\nconst router = new VueRouter({ routes });",
+                qnSubText: "Suppose the webpage is served at http://127.0.0.1:5000. A user visits the URL http://127.0.0.1:5000/#/user/10/orders. What will be rendered on the browser?",
+                options: [
+                    "User Orders",
+                    "User 10 User Overview",
+                    "User 10 User Orders",
+                    "Nothing is rendered because sibling routes overwrite the parent route."
+                ],
+                correct: [2],
+                solution: "Parent User component renders 'User 10' and child router-view renders 'User Orders'."
+            },
+            {
+                qn: 17,
+                id: "6406531852201",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the following JavaScript code snippet where a web application manages user preferences using localStorage. A user opens the application, sets their theme preference to \"dark\", refreshes the page once, closes the browser tab, and opens a new tab to reload the page. What will be the behavior of the theme preference?",
+                code: "const setTheme = (theme) => {\n    localStorage.setItem('theme', theme);\n    console.log('Theme set to:', theme);\n};\n\nconst getTheme = () => {\n    return localStorage.getItem('theme') || 'light';\n};\n\nsetTheme('dark');\nconsole.log(getTheme());",
+                options: [
+                    "The theme will be lost because closing the browser tab clears localStorage",
+                    "The theme will be preserved as \"dark\" because localStorage persists across browser sessions",
+                    "The theme will be undefined because localStorage is cleared on refresh",
+                    "The theme will be reset to \"light\" when a new tab is opened"
+                ],
+                correct: [1],
+                solution: "localStorage persists key-value pairs across tab closures and browser sessions."
+            },
+            {
+                qn: 18,
+                id: "6406531852202",
+                type: "MCQ",
+                marks: 2.00,
+                text: "A developer creates a Vue component using both v-if and v-show directives on different elements with initially false conditions. Later, the conditions are changed to true. What is the key difference in how these two directives handle the DOM?",
+                options: [
+                    "v-if removes the element from DOM when false, v-show only changes CSS display property",
+                    "v-show removes the element from DOM when false, v-if only changes CSS display property",
+                    "Both v-if and v-show re-mount the element and re-run lifecycle hooks",
+                    "Both directives are identical in their functionality; they just have different naming conventions"
+                ],
+                correct: [0],
+                solution: "v-if conditionally unmounts/remounts elements in the DOM tree, whereas v-show toggles CSS display property."
+            },
+            {
+                qn: 19,
+                id: "6406531852203",
+                type: "MCQ",
+                marks: 3.00,
+                text: "A Promise chain is created as follows. The first Promise resolves with a string, which is then processed through multiple .then() handlers. What will be logged to the console?",
+                code: "const processString = (str) => {\n    return new Promise((resolve) => {\n        setTimeout(() => resolve(str.toUpperCase()), 100);\n    });\n};\n\nPromise.resolve('hello')\n    .then(processString)\n    .then(result => result + ' WORLD')\n    .then(console.log)\n    .catch(err => console.log('Error:', err));",
+                options: [
+                    "hello",
+                    "hello WORLD",
+                    "HELLO WORLD",
+                    "An error will be thrown"
+                ],
+                correct: [2],
+                solution: "processString resolves 'HELLO', and the next .then appends ' WORLD' -> HELLO WORLD."
+            },
+            {
+                qn: 20,
+                id: "6406531852204",
+                type: "MCQ",
+                marks: 3.00,
+                text: "A JavaScript object is created and then assigned to another variable. Modifications are made through both variables. What will be the final state of the original object?",
+                code: "let originalConfig = { apiUrl: 'https://api.example.com', timeout: 5000 };\nlet configCopy = originalConfig;\nconfigCopy.timeout = 10000;\nconfigCopy = { apiUrl: 'https://api2.example.com', timeout: 3000 };\nconsole.log(originalConfig.timeout);",
+                options: [
+                    "5000",
+                    "3000",
+                    "10000",
+                    "undefined"
+                ],
+                correct: [2],
+                solution: "configCopy.timeout = 10000 mutates originalConfig. Reactivating configCopy with a new object literal doesn't alter originalConfig."
+            },
+            {
+                qn: 21,
+                id: "6406531852205",
+                type: "MSQ",
+                marks: 2.00,
+                text: "Which of the following statements about the \"this\" keyword in JavaScript are correct?",
+                options: [
+                    "In a regular function, \"this\" is always bound to the global object (window in browsers)",
+                    "In an arrow function, \"this\" is inherited from the enclosing lexical scope",
+                    "The .call() method can be used to explicitly set the context of \"this\" in a function",
+                    "In a method called on an object, \"this\" always refers to that object regardless of how the function is defined"
+                ],
+                correct: [1, 2],
+                solution: "Arrow functions inherit lexical this, and .call() explicitly sets runtime execution context."
+            },
+            {
+                qn: 22,
+                id: "6406531852206",
+                type: "MCQ",
+                marks: 3.00,
+                text: "A Vue Router application uses lazy-loaded route components. When a user navigates to a route with a dynamic parameter (e.g., /product/:id), and the computed property depends on this route parameter, what could be a potential issue if the component is not properly handling asynchronous operations?",
+                options: [
+                    "The component will throw a critical error and crash the application",
+                    "The computed property will return undefined because the component hasn't mounted yet",
+                    "The route parameter will not be accessible in the computed property",
+                    "The component will display data from the previously loaded route"
+                ],
+                correct: [3],
+                solution: "Reusing component instances across route updates without updating async state causes stale data from previous routes to render."
+            },
+            {
+                qn: 23,
+                id: "6406531852207",
+                type: "MCQ",
+                marks: 3.00,
+                text: "A developer uses sessionStorage to store authentication tokens in a web application. The user logs in, the token is stored, and then they close the browser window completely. When they reopen the browser later, what will happen?",
+                code: "const saveToken = (token) => {\n    sessionStorage.setItem('authToken', token);\n};\n\nconst getToken = () => {\n    return sessionStorage.getItem('authToken') || null;\n};",
+                options: [
+                    "The token will be preserved and available in the new browser session.",
+                    "The token will be cleared because sessionStorage is cleared when the browser is closed.",
+                    "The token will be partially available but require re-authentication.",
+                    "The token will move to localStorage automatically."
+                ],
+                correct: [1],
+                solution: "sessionStorage data is destroyed when the browser window or tab is closed."
+            },
+            {
+                qn: 24,
+                id: "6406531852208",
+                type: "MCQ",
+                marks: 5.00,
+                text: "A developer creates a Vue component with prototype chain inspection. The component uses class-based inheritance with lifecycle hooks. Consider the following scenario.",
+                code: "class BaseComponent {\n    constructor(name) {\n        this.name = name;\n    }\n}\n\nclass AdvancedComponent extends BaseComponent {\n    constructor(name, role) {\n        super(name);\n        this.role = role;\n    }\n}\n\nconst comp = new AdvancedComponent('Alice', 'admin');\nconsole.log(comp.__proto__ === AdvancedComponent.prototype);\nconsole.log(comp.__proto__.__proto__ === BaseComponent.prototype);\nconsole.log(comp instanceof BaseComponent);\nconsole.log(comp instanceof AdvancedComponent);",
+                qnSubText: "What will be the output on the browser's console?",
+                options: [
+                    "true true true true",
+                    "true false true true",
+                    "false true true false",
+                    "true true false false"
+                ],
+                correct: [0],
+                solution: "comp is instance of AdvancedComponent and BaseComponent, and prototype chain connections evaluate to true."
+            },
+            {
+                qn: 25,
+                id: "6406531852209",
+                type: "MSQ",
+                marks: 3.00,
+                text: "In a web application using webhooks and Redis for real-time data synchronization:\nScenario: An order management system where: • When an order is created, a webhook is sent to a notification service • Redis stores the current order cache • Multiple concurrent requests update the cache\nWhich statements about this architecture are true?",
+                options: [
+                    "Webhooks guarantee that the notification service will process events in the exact order they were triggered",
+                    "Redis is suitable for this use case because it's an in-memory data structure store that provides fast access to cached data",
+                    "The webhook will automatically retry if the notification service is temporarily unavailable",
+                    "Webhooks use HTTP POST requests to communicate events asynchronously"
+                ],
+                correct: [1, 3],
+                solution: "Redis delivers high-speed in-memory caching, and webhooks push event data via HTTP POST calls."
+            },
+            {
+                qn: 26,
+                id: "6406531852210",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "Consider the Vue application.",
+                code: "<div id=\"app\">\n  <p>{{ expensive }}</p>\n  <button @click=\"calculate\">Calculate</button>\n</div>\n\x3Cscript\x3E\nnew Vue({\n  el: \"#app\",\n  data: { a: 1, b: 2, time: 0 },\n  computed: {\n    expensive() {\n      console.log(\"computed run\");\n      let s = 0;\n      for (let i = 0; i < 10000000; i++) s += i;\n      return s + this.a + this.b;\n    }\n  },\n  methods: {\n    calculate() {\n      this.time = Date.now();\n    }\n  }\n});\n\x3C/script\x3E",
+                qnSubText: "Based on the above data, answer the given subquestions.",
+                options: [],
+                correct: [],
+                solution: "Comprehension passage block."
+            },
+            {
+                qn: 27,
+                id: "6406531852211",
+                type: "MCQ",
+                marks: 3.00,
+                text: "What happens when the user clicks the calculate button?",
+                options: [
+                    "expensive() runs again because the DOM updates",
+                    "expensive() does NOT run again because its dependencies did not change",
+                    "Vue recomputes all computed properties on any state change",
+                    "Nothing is displayed"
+                ],
+                correct: [1],
+                solution: "Mutating this.time does not invalidate the cache of expensive() because this.time is not a dependency."
+            },
+            {
+                qn: 28,
+                id: "6406531852212",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Under which condition will the computed property expensive() re-run?",
+                options: [
+                    "When this.time changes",
+                    "The user clicks anywhere on the DOM",
+                    "Either this.a or this.b changes",
+                    "When Date.now() changes"
+                ],
+                correct: [2],
+                solution: "expensive() re-evaluates when reactive data properties this.a or this.b change."
+            },
+            {
+                qn: 29,
+                id: "6406531852213",
+                type: "MSQ",
+                marks: 3.00,
+                text: "What are the benefits of computed caching in Vue?",
+                options: [
+                    "Reduced CPU usage",
+                    "Faster rendering",
+                    "Avoids unnecessary recomputation",
+                    "Makes all computations asynchronous"
+                ],
+                correct: [0, 1, 2],
+                solution: "Computed caching avoids re-executing heavy logic unless dependent state properties change, saving CPU cycles."
+            },
+            {
+                qn: 30,
+                id: "6406531852214",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "Consider the following Vue 2 (CDN) code. html code:",
+                code: "<body>\n  <div id=\"app\">\n    <h2>User Router & Watcher Demo</h2>\n    <p>Current userId: {{ userId }}</p>\n    <router-link to=\"/user/1\">User 1</router-link> |\n    <router-link to=\"/user/2\">User 2</router-link>\n    <router-view></router-view>\n  </div>\n</body>\n\x3Cscript\x3E\nconst User = {\n  template: \"<div>User component loaded with ID: {{ $route.params.id }}</div>\"\n};\nconst routes = [{ path: '/user/:id', component: User }];\nconst router = new VueRouter({ routes });\nnew Vue({\n  el: '#app',\n  router,\n  data: { userId: null },\n  watch: {\n    '$route.params.id': function(newId) {\n      this.userId = newId;\n    }\n  }\n});\n\x3C/script\x3E",
+                qnSubText: "Based on the above data, answer the given subquestions.",
+                options: [],
+                correct: [],
+                solution: "Comprehension passage block."
+            },
+            {
+                qn: 31,
+                id: "6406531852215",
+                type: "MCQ",
+                marks: 5.00,
+                text: "What happens when the user clicks on \"User 2\" after initially opening \"User 1\"?",
+                options: [
+                    "The route changes to /user/2 but the userId in data does not update.",
+                    "The watcher updates userId to \"2\", and the <p> displays it instantly.",
+                    "The router-view still shows User 1 because watchers don't re-render components.",
+                    "An error occurs because $route.params.id cannot be watched."
+                ],
+                correct: [1],
+                solution: "Watching $route.params.id updates this.userId to '2' on route navigation."
+            },
+            {
+                qn: 32,
+                id: "6406531852216",
+                type: "MCQ",
+                marks: 5.00,
+                text: "Why is the watcher on $route.params.id necessary in this code?",
+                options: [
+                    "Without it, the userId in data would never change when the route changes.",
+                    "It is required because Vue Router does not automatically update component data.",
+                    "It prevents the component from being destroyed and recreated on every navigation.",
+                    "Both Without it, the userId in data would never change when the route changes and It is required because Vue Router does not automatically update component data are correct."
+                ],
+                correct: [3],
+                solution: "Component instance reuse requires watching route params to synchronize root data."
+            },
+            {
+                qn: 33,
+                id: "6406531852217",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "Consider the following Vue.js application with two different route scenarios and a component that uses reactive data binding:\nScenario: An e-commerce application where:\n• Product list component displays products filtered by category\n• Category changes through router parameters: /products/:category\n• When a user navigates from /products/electronics to /products/books, the product list should update",
+                code: "const ProductList = {\n    template: `<div>{{ filteredProducts }}</div>`,\n    data() {\n        return {\n            allProducts: [\n                { id: 1, name: 'Laptop', category: 'electronics' },\n                { id: 2, name: 'Novel', category: 'books' },\n                { id: 3, name: 'Phone', category: 'electronics' }\n            ],\n            displayedProducts: null\n        }\n    },\n    computed: {\n        filteredProducts() {\n            return this.allProducts.filter(p => p.category === this.$route.params.category);\n        }\n    },\n    watch: {\n        '$route.params.category': function(newCategory) {\n            this.displayedProducts = this.filteredProducts;\n        }\n    }\n}",
+                qnSubText: "Based on the above data, answer the given subquestions.",
+                options: [],
+                correct: [],
+                solution: "Comprehension passage block."
+            },
+            {
+                qn: 34,
+                id: "6406531852218",
+                type: "MCQ",
+                marks: 5.00,
+                text: "What will be rendered when the user first navigates to /products/electronics?",
+                options: [
+                    "An empty array because displayedProducts is initialized as null",
+                    "All three products because the watch handler hasn't been triggered yet",
+                    "Only the Laptop and Phone (both electronics)",
+                    "The data will show an error because the category doesn't exist in the array"
+                ],
+                correct: [2],
+                solution: "Template renders filteredProducts computed property, returning electronics items directly."
+            },
+            {
+                qn: 35,
+                id: "6406531852219",
+                type: "MCQ",
+                marks: 4.00,
+                text: "When the user navigates from /products/electronics to /products/books, what will happen and why?",
+                options: [
+                    "The computed property will not update because it's being used in a watch handler",
+                    "The computed property will automatically re-evaluate because the route parameter dependency changed",
+                    "The displayedProducts variable will update, but the computed property will display stale data",
+                    "Both the computed property and displayedProducts will update to show books"
+                ],
+                correct: [3],
+                solution: "Route param change triggers computed re-evaluation and updates displayedProducts."
+            }
+        ];
+
+        // ==========================================================================
+        // PORTAL STATE & FUNCTIONS
+        // ==========================================================================
+        let currentMode = 'exam'; // 'exam' or 'learning'
+        let userAnswers = {}; // { qnNum: [optIdx] }
+        let timerSeconds = 0;
+        let timerInterval = null;
+        let isTimerRunning = true;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuestionPalette();
+            renderQuestions();
+            updateScoreDisplay();
+            startTimer();
+        });
+
+        function setPortalMode(mode) {
+            currentMode = mode;
+            document.getElementById('btnExamMode').classList.toggle('active', mode === 'exam');
+            document.getElementById('btnLearningMode').classList.toggle('active', mode === 'learning');
+            renderQuestions();
+            updatePaletteStatuses();
+        }
+
+        function renderQuestionPalette() {
+            const grid = document.getElementById('paletteGrid');
+            grid.innerHTML = QUESTIONS_DATA.map(q => `
+                <button class="palette-btn" id="paletteBtn_${q.qn}" onclick="scrollToQuestion(${q.qn})">${q.qn}</button>
+            `).join('');
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            let html = '';
+
+            QUESTIONS_DATA.forEach((q) => {
+                html += `
+                <article class="qn-card" id="qnCard_${q.qn}">
+                    <div class="qn-header-container">
+                        <div class="qn-header-top">
+                            <div class="qn-title-main">
+                                Question ${q.qn} : ${q.id}
+                            </div>
+                            <button class="btn-solution-pill" onclick="toggleSolution(${q.qn})">
+                                <i class="fa-regular fa-circle-check"></i> View Solutions (0)
+                            </button>
+                        </div>
+                        <div class="qn-header-sub">
+                            <span class="qn-id-tag">Question ${q.qn} : ${q.id}</span>
+                            <span class="qn-meta-info">Total Mark : ${q.marks.toFixed(2)} | Type : ${q.type}</span>
+                        </div>
+                    </div>
+
+                    <div class="qn-text">${q.text ? q.text.replace(/\\n/g, '<br>').replace(/\n/g, '<br>') : ''}</div>
+
+                    ${q.code ? `
+                    <div class="code-snippet-wrap">
+                        <code>${escapeHtml(q.code)}</code>
+                    </div>` : ''}
+
+                    ${q.qnSubText ? `<div class="qn-text" style="margin-top:0.85rem;">${q.qnSubText.replace(/\\n/g, '<br>').replace(/\n/g, '<br>')}</div>` : ''}
+
+                    <!-- Options / Inputs -->
+                    ${renderQuestionInputs(q)}
+
+                    <!-- Footer Action Toolbar -->
+                    <div class="qn-footer-toolbar">
+                        <div class="qn-actions-group">
+                            <button class="btn-action-pill btn-discuss" onclick="alert('Discussion forum loading...')"><i class="fa-regular fa-comments"></i> Discussions (0)</button>
+                            <button class="btn-action-pill btn-correct" onclick="alert('Correction reported. Thank you!')"><i class="fa-regular fa-pen-to-square"></i> Suggest Correction</button>
+                            <button class="btn-action-pill btn-broken" onclick="alert('Format flag recorded.')"><i class="fa-solid fa-wrench"></i> Broken Format?</button>
+                        </div>
+                    </div>
+
+                    <!-- Solution Accordion -->
+                    <div class="solution-box" id="solution_${q.qn}">
+                        <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution & Code Trace</div>
+                        <div class="solution-text">${q.solution ? q.solution.replace(/\\n/g, '<br>').replace(/\n/g, '<br>') : ''}</div>
+                    </div>
+                </article>
+                `;
+
+                if (q.qn === 6 || q.qn === 15 || q.qn === 25) {
+                    html += `
+                    <div class="ad-banner-box">
+                        <span class="ad-tag">ADVERTISEMENT</span>
+                        <div class="ad-actions">
+                            <button class="btn-remove-ads" onclick="alert('Ad-free experience enabled.')"><i class="fa-solid fa-bolt"></i> Remove Ads</button>
+                            <button class="btn-close-ad" onclick="this.parentElement.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    `;
+                }
+            });
+
+            container.innerHTML = html;
+            updatePaletteStatuses();
+        }
+
+        function renderQuestionInputs(q) {
+            if (q.type === 'COMPREHENSION') {
+                return `<div style="font-size:0.88rem; color:var(--text-muted); font-style:italic; margin-bottom:1.25rem;">[Comprehension Passage Block - Subquestions are listed below]</div>`;
+            }
+
+            const isMSQ = q.type === 'MSQ';
+            const userArr = userAnswers[q.qn] || [];
+
+            return `
+            <div class="options-list">
+                ${q.options.map((optText, idx) => {
+                    const isChecked = userArr.includes(idx);
+                    const isCorrect = q.correct.includes(idx);
+                    let highlightClass = '';
+
+                    if (isChecked) highlightClass = 'selected';
+
+                    if (currentMode === 'learning') {
+                        if (isCorrect) highlightClass = 'correct-highlight';
+                        else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                    }
+
+                    const cleanOptText = (optText || '').replace(/\\n/g, '\n');
+                    const isMultiLine = cleanOptText.includes('\n');
+
+                    return `
+                    <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <span class="option-text">${isMultiLine ? `<pre style="margin:0; font-family:var(--font-mono); font-size:0.9rem; line-height:1.5;"><code>${escapeHtml(cleanOptText)}</code></pre>` : escapeHtml(cleanOptText)}</span>
+                    </label>
+                    `;
+                }).join('')}
+            </div>
+            `;
+        }
+
+        function handleOptionSelect(qnNum, optIdx, qnType) {
+            if (qnType === 'MCQ') {
+                userAnswers[qnNum] = [optIdx];
+            } else if (qnType === 'MSQ') {
+                if (!userAnswers[qnNum]) userAnswers[qnNum] = [];
+                const pos = userAnswers[qnNum].indexOf(optIdx);
+                if (pos >= 0) userAnswers[qnNum].splice(pos, 1);
+                else userAnswers[qnNum].push(optIdx);
+            }
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function calculateQuestionScore(q) {
+            const userAns = userAnswers[q.qn];
+            if (!userAns || !Array.isArray(userAns) || userAns.length === 0) return "0.00";
+
+            if (q.type === 'MCQ') {
+                return (userAns[0] === q.correct[0]) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            if (q.type === 'MSQ') {
+                const sortedUser = [...userAns].sort().join(',');
+                const sortedCorrect = [...q.correct].sort().join(',');
+                return (sortedUser === sortedCorrect) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            return "0.00";
+        }
+
+        function updateScoreDisplay() {
+            let total = 0;
+            let answeredCount = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const score = parseFloat(calculateQuestionScore(q));
+                total += score;
+
+                const ans = userAnswers[q.qn];
+                if (ans && Array.isArray(ans) && ans.length > 0) {
+                    answeredCount++;
+                }
+            });
+
+            document.getElementById('liveScoreDisplay').textContent = `${total.toFixed(2)} / 100.00`;
+            const pct = ((total / 100) * 100).toFixed(1);
+            document.getElementById('livePercentDisplay').textContent = `(${pct}%)`;
+            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/${QUESTIONS_DATA.length}`;
+        }
+
+        function updatePaletteStatuses() {
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.getElementById(`paletteBtn_${q.qn}`);
+                if (!btn) return;
+
+                btn.className = 'palette-btn';
+
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && Array.isArray(ans) && ans.length > 0;
+
+                if (hasAns) {
+                    btn.classList.add('answered');
+                    if (currentMode === 'learning') {
+                        const score = parseFloat(calculateQuestionScore(q));
+                        if (score > 0) btn.classList.add('correct');
+                        else btn.classList.add('incorrect');
+                    }
+                }
+            });
+        }
+
+        function toggleSolution(qnNum) {
+            const box = document.getElementById(`solution_${qnNum}`);
+            if (box) box.classList.toggle('open');
+        }
+
+        function scrollToQuestion(qnNum) {
+            const card = document.getElementById(`qnCard_${qnNum}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.querySelectorAll('.palette-btn').forEach(b => b.classList.remove('active-qn'));
+                const btn = document.getElementById(`paletteBtn_${qnNum}`);
+                if (btn) btn.classList.add('active-qn');
+            }
+        }
+
+        // Timer Logic
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (isTimerRunning) {
+                    timerSeconds++;
+                    updateTimerUI();
+                }
+            }, 1000);
+        }
+
+        function toggleTimer() {
+            isTimerRunning = !isTimerRunning;
+            const btn = document.getElementById('btnPauseTimer');
+            if (btn) btn.innerHTML = isTimerRunning ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-rotate-right"></i>';
+        }
+
+        function resetTimer() {
+            timerSeconds = 0;
+            updateTimerUI();
+        }
+
+        function updateTimerUI() {
+            const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const secs = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+        }
+
+        // Exam Submission & Modals
+        function submitExam() {
+            setPortalMode('learning');
+
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+            let totalScore = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && Array.isArray(ans) && ans.length > 0;
+
+                if (!hasAns) {
+                    unansweredCount++;
+                } else {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    totalScore += score;
+                    if (score > 0) correctCount++;
+                    else incorrectCount++;
+                }
+            });
+
+            document.getElementById('modalScoreText').textContent = `${totalScore.toFixed(2)} / 100.00`;
+            document.getElementById('modalPercentText').textContent = `${((totalScore / 100) * 100).toFixed(1)}% Accuracy`;
+            document.getElementById('modalCorrectCount').textContent = correctCount;
+            document.getElementById('modalIncorrectCount').textContent = incorrectCount;
+            document.getElementById('modalUnansweredCount').textContent = unansweredCount;
+
+            document.getElementById('resultModal').classList.add('active');
+        }
+
+        function resetExam() {
+            userAnswers = {};
+            resetTimer();
+            closeResultModal();
+            setPortalMode('learning');
+        }
+
+        function openSummaryModal() {
+            document.getElementById('summaryModal').classList.add('active');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.remove('active');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.remove('active');
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('portalSidebar');
+            const toggleBtn = document.getElementById('mobileSidebarToggle');
+            if (sidebar && toggleBtn) {
+                sidebar.classList.toggle('open');
+                toggleBtn.classList.toggle('active');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const fab = document.getElementById('fabBackToTop');
+            if (fab) {
+                if (window.scrollY > 300) fab.classList.add('visible');
+                else fab.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice AppDev2 questions : Modern Application Development II 06 May 26 - QuizPractice | BSH</title>
+    <meta name="description"
+        content="Practice Modern Application Development II End Term question paper (06 May 26) with interactive exam & learning modes, instant score calculation, detailed solutions, and question palette.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+
+    <!-- Master CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/quiz-portal.css">
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('bsh-theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Site Navigation Header -->
+    <header class="site-header" id="header">
+        <div class="header-container">
+            <a href="../index.html" class="brand-logo" aria-label="BSH Homepage">
+                <img src="../assets/images/logo.png" alt="BSH Logo" class="logo-img">
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="../index.html#features" class="nav-link">Features</a>
+                <a href="../quiz_practice.html" class="nav-link active">Quiz Practice</a>
+                <a href="../calculator.html" class="nav-link">SEC Calculator</a>
+                <a href="../about.html" class="nav-link">About Us</a>
+                <a href="../contact_us.html" class="nav-link">Feedback</a>
+            </nav>
+            <div class="header-actions">
+                <a href="../end_term_practice.html" class="btn btn-secondary nav-btn-desktop"><i
+                        class="fa-solid fa-arrow-left"></i><span>Back to Papers</span></a>
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i
+                        class="fa-solid fa-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="portal-layout">
+
+            <!-- Mobile Collapsible Sidebar Toggle Button -->
+            <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()">
+                <span><i class="fa-solid fa-sliders"></i> Exam Controls & Question Menu</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <!-- Left Sidebar: Controls, Menu & Timer -->
+            <aside class="portal-sidebar" id="portalSidebar">
+
+                <!-- Header Info -->
+                <div class="exam-info-header">
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Exam :</span>
+                        <span class="exam-info-val">End Term Quiz</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Subject :</span>
+                        <span class="exam-info-val">AppDev2</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Total Marks :</span>
+                        <span class="exam-info-val">100.00</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">QP :</span>
+                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">Modern Application Development II 06 May 26</span>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher -->
+                <div>
+                    <div class="menu-heading">Portal Mode</div>
+                    <div class="mode-toggle-group">
+                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam Mode</button>
+                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning Mode</button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                        onclick="openSummaryModal()">
+                        <i class="fa-solid fa-eye"></i> View Question Paper Summary
+                    </button>
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                        onclick="window.print()">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </button>
+                </div>
+
+                <!-- Question Menu Grid -->
+                <div>
+                    <div class="menu-heading">
+                        <span>QUESTION MENU</span>
+                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/34</span>
+                    </div>
+                    <div class="palette-grid" id="paletteGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Timer Box -->
+                <div>
+                    <div class="menu-heading">TIMER</div>
+                    <div class="timer-box">
+                        <div class="timer-display" id="timerDisplay">00:00</div>
+                        <div class="timer-controls">
+                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i
+                                    class="fa-solid fa-pause"></i></button>
+                            <button class="btn-icon-sm" onclick="resetTimer()"><i
+                                    class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls & Score Box -->
+                <div>
+                    <div class="menu-heading">CONTROLS</div>
+                    <button class="btn-submit-exam" onclick="submitExam()">
+                        <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
+                    </button>
+                    <div class="score-card" style="margin-top:1rem;">
+                        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">YOUR SCORE</span>
+                        <div class="score-num" id="liveScoreDisplay">0.00 / 100.00</div>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);"
+                            id="livePercentDisplay">(0.0%)</span>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Right Area: Questions List -->
+            <section class="questions-area" id="questionsContainer">
+                <!-- Dynamically Rendered by JS -->
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Floating Back to Top FAB -->
+    <button class="fab-back-to-top" id="fabBackToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;">Question Paper Summary</h3>
+                <button class="btn-icon-sm" onclick="closeSummaryModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+                Paper Title: <b>Modern Application Development II 06 May 26</b> (End Term Quiz)
+            </p>
+            <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+                <tr style="border-bottom:1px solid var(--border-light); text-align:left;">
+                    <th style="padding:0.6rem;">Question Type</th>
+                    <th style="padding:0.6rem;">Count</th>
+                    <th style="padding:0.6rem;">Total Marks</th>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MCQ (Multiple Choice)</td>
+                    <td style="padding:0.6rem;">28</td>
+                    <td style="padding:0.6rem;">82.00</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MSQ (Multiple Select)</td>
+                    <td style="padding:0.6rem;">6</td>
+                    <td style="padding:0.6rem;">18.00</td>
+                </tr>
+            </table>
+            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close Summary</button>
+        </div>
+    </div>
+
+    <!-- Exam Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-card" style="text-align:center;">
+            <div
+                style="width:64px; height:64px; border-radius:50%; background:rgba(16, 185, 129, 0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 1rem;">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Exam Submitted!</h2>
+            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for AppDev2 End Term Quiz (06 May 26)</p>
+
+            <div
+                style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
+                <div style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; font-weight:600;">
+                    Final Score</div>
+                <div style="font-family:var(--font-mono); font-size:2.8rem; font-weight:800; color:var(--accent-green);"
+                    id="modalScoreText">0.00 / 100.00</div>
+                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0% Accuracy
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem; margin-bottom:1.5rem;">
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Correct</div>
+                    <div style="font-weight:700; color:#10b981; font-size:1.2rem;" id="modalCorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Incorrect</div>
+                    <div style="font-weight:700; color:#ef4444; font-size:1.2rem;" id="modalIncorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Unanswered</div>
+                    <div style="font-weight:700; color:var(--text-secondary); font-size:1.2rem;"
+                        id="modalUnansweredCount">0</div>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:0.75rem;">
+                <button class="btn btn-secondary btn-full"
+                    onclick="closeResultModal(); setPortalMode('learning');">Review Solutions <i
+                        class="fa-solid fa-book-open"></i></button>
+                <button class="btn btn-primary btn-full" onclick="resetExam()">Retake Exam <i
+                        class="fa-solid fa-rotate-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Master Scripts -->
+    <script src="../assets/js/main.js"></script>
+    <script>
+        const QUESTIONS_DATA = [
+            {
+                qn: 1,
+                id: "6406532128287",
+                type: "MCQ",
+                marks: 2.00,
+                text: "Which of the following statements is true regarding the \"this\" keyword in JavaScript?",
+                options: [
+                    "\"this\" in an arrow function refers to the global object.",
+                    "\"this\" inside a regular function refers to the object that owns the function.",
+                    "Arrow functions do not have their own \"this\" and inherit it from the surrounding scope.",
+                    "\"this\" always points to the window object in browser environments."
+                ],
+                correct: [2],
+                solution: "Arrow functions do not bind their own 'this'; instead, they inherit 'this' lexically from the enclosing execution scope."
+            },
+            {
+                qn: 2,
+                id: "6406532128288",
+                type: "MCQ",
+                marks: 2.00,
+                text: "Consider the below JavaScript program.",
+                code: "let arr = [1, 2, 3];\nlet sum = arr.reduce((acc, val, idx, array) => acc + val, 0);\nconsole.log(sum);",
+                qnSubText: "What will be the output of the above program?",
+                options: [
+                    "0",
+                    "3",
+                    "6",
+                    "9",
+                    "12"
+                ],
+                correct: [2],
+                solution: "Array.prototype.reduce() iterates over array elements [1, 2, 3] starting with accumulator 0. Result: 0 + 1 + 2 + 3 = 6."
+            },
+            {
+                qn: 3,
+                id: "6406532128292",
+                type: "MCQ",
+                marks: 2.00,
+                text: "What is the main advantage of using JWT over session-based authentication?",
+                options: [
+                    "JWTs require server-side storage for each session.",
+                    "JWTs are stateless and eliminate the need for server-side session storage.",
+                    "JWTs are longer and contain more data than session IDs.",
+                    "JWTs automatically handle token expiration without additional logic."
+                ],
+                correct: [1],
+                solution: "JWTs self-contain authentication claims and signature on the client side, enabling stateless server verification without database session lookups."
+            },
+            {
+                qn: 4,
+                id: "6406532128294",
+                type: "MCQ",
+                marks: 2.00,
+                text: "Which of the following HTTP methods does WebSocket use for initial handshake?",
+                options: [
+                    "GET",
+                    "POST",
+                    "PUT",
+                    "DELETE"
+                ],
+                correct: [0],
+                solution: "WebSocket connections initiate using an HTTP GET request with 'Upgrade: websocket' headers."
+            },
+            {
+                qn: 5,
+                id: "6406532128307",
+                type: "MCQ",
+                marks: 2.00,
+                text: "You are building a cricket analytics app. The file battingStats.js contains the following exports:",
+                code: "export const strikeRate = (runs, balls) => {\n    return (runs / balls) * 100;\n};\n\nexport const playerName = \"Virat Kohli\";",
+                qnSubText: "In another file app.js, which of the following import statements will correctly import both strikeRate and playerName ? ( Assume both files are in the same directory )",
+                options: [
+                    "import strikeRate, playerName from \"./battingStats.js\";",
+                    "import { strikeRate, playerName } from \"./battingStats.js\";",
+                    "import * as stats from \"./battingStats.js\";",
+                    "require(\"./battingStats.js\");"
+                ],
+                correct: [1],
+                solution: "ES6 named exports require import syntax using curly braces: import { strikeRate, playerName } from './battingStats.js'."
+            },
+            {
+                qn: 6,
+                id: "6406532128309",
+                type: "MCQ",
+                marks: 2.00,
+                text: "A JWT (JSON Web Token) is represented in the format: \"header.payload.signature\". In authentication using Flask-JWT-Extended, what does the payload part of the JWT stores?",
+                options: [
+                    "Encryption keys used to secure the token",
+                    "User-related data (claims) such as identity and expiration time",
+                    "The algorithm used for signing the token",
+                    "The hashed signature of the token"
+                ],
+                correct: [1],
+                solution: "The payload section of a JWT stores claims containing user identity, expiration timestamp (exp), and application metadata."
+            },
+            {
+                qn: 7,
+                id: "6406532128289",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the below JavaScript program.",
+                code: "const promise = new Promise((resolve, reject) => {\n    resolve('Success!');\n    reject('Error!');\n});\npromise.then(console.log).catch(console.log);",
+                qnSubText: "What will be the output of the above program?",
+                options: [
+                    "Success!",
+                    "Error!",
+                    "Success! Error!",
+                    "Error! Success!"
+                ],
+                correct: [0],
+                solution: "A Promise can settle only once. Calling resolve('Success!') settles the promise immediately; subsequent reject() calls are ignored."
+            },
+            {
+                qn: 8,
+                id: "6406532128290",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the below Vuex store configuration:",
+                code: "const store = new Vuex.Store({\n    state: {\n        items: ['Angular', 'Vue'],\n    },\n    mutations: {\n        addItem(state, item) {\n            state.items.push(item);\n        },\n    },\n    actions: {\n        addItemAsync({ commit }, item) {\n            setTimeout(() => {\n                commit('addItem', item);\n            }, 500);\n        },\n    },\n});",
+                qnSubText: "If the addItemAsync action is dispatched with the item 'React', what will be the state of items after 2 seconds?",
+                options: [
+                    "['Angular', 'Vue']",
+                    "['Angular', 'Vue', 'React']",
+                    "['React']",
+                    "['Angular']"
+                ],
+                correct: [1],
+                solution: "After 500ms, the action commits the addItem mutation, pushing 'React' onto the state array resulting in ['Angular', 'Vue', 'React']."
+            },
+            {
+                qn: 9,
+                id: "6406532128291",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the below Vue app.",
+                code: "<div id=\"app\">\n    <router-link to=\"/about\">Go to About</router-link>\n    <router-view></router-view>\n</div>\n\x3Cscript\x3E\nconst Home = { template: '<div>Home</div>' };\nconst About = { template: '<div>About</div>' };\n\nconst routes = [\n    { path: '/home', component: Home },\n    { path: '/about', component: About },\n    { path: '*', redirect: '/about' }\n];\n\nconst router = new VueRouter({ routes });\nnew Vue({ el: '#app', router });\n<\/script>",
+                qnSubText: "What happens when the user navigates to an undefined route like \"/random\"?",
+                options: [
+                    "Browser navigates to /random and shows a blank page.",
+                    "Browser navigates to /random but renders nothing.",
+                    "Browser redirects to /about and displays \"About\".",
+                    "Error: No matching route."
+                ],
+                correct: [2],
+                solution: "The route path '*' acts as a fallback wildcard that matches any unmapped URL and redirects to '/about'."
+            },
+            {
+                qn: 10,
+                id: "6406532128296",
+                type: "MCQ",
+                marks: 3.00,
+                text: "What will be the output of the following JavaScript code?",
+                code: "console.log(typeof NaN);\nconsole.log(typeof null);\nconsole.log(NaN == null);\nconsole.log(NaN === null);",
+                options: [
+                    "number, object, false, false",
+                    "NaN, null, true, true",
+                    "number, object, true, false",
+                    "NaN, null, false, false"
+                ],
+                correct: [0],
+                solution: "typeof NaN is 'number', typeof null is 'object'. NaN is not equal to null under equality checks (false, false)."
+            },
+            {
+                qn: 11,
+                id: "6406532128297",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the following JavaScript program:",
+                code: "class Animal {\n    constructor(type) {\n        this.type = type;\n    }\n    speak() {\n        console.log(`${this.type} makes a sound`);\n    }\n    getType() {\n        return `This is a ${this.type}`;\n    }\n}\n\nclass Dog extends Animal {\n    constructor(type, breed) {\n        super(type);\n        this.breed = breed;\n    }\n    speak() {\n        console.log(`${this.type} ${this.breed} barks`);\n    }\n}\n\nconst myDog = new Dog('Dog', 'Labrador');\nmyDog.speak();\nconsole.log(myDog.getType());\nconsole.log(myDog instanceof Dog);\nconsole.log(myDog instanceof Animal);\nconsole.log(Dog.prototype.__proto__ === Animal.prototype);",
+                qnSubText: "What will be the output of the above program on a browser's console?",
+                options: [
+                    "Dog Labrador barks\\nThis is a Dog\\ntrue\\ntrue\\ntrue",
+                    "Dog makes a sound\\nThis is a Dog Labrador\\ntrue\\nfalse\\ntrue",
+                    "Dog Labrador barks\\nThis is a Dog Labrador\\ntrue\\ntrue\\nfalse",
+                    "Dog Labrador barks\\nThis is a Dog\\nfalse\\ntrue\\ntrue"
+                ],
+                correct: [0],
+                solution: "myDog.speak() executes overridden Dog method printing 'Dog Labrador barks'. getType() returns 'This is a Dog'. Both instanceof checks and prototype chain equality return true."
+            },
+            {
+                qn: 12,
+                id: "6406532128298",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the following JavaScript program:",
+                code: "const person = {\n    firstName: 'John',\n    lastName: 'Doe',\n    age: 30,\n    city: 'New York'\n};\n\nconst { firstName, city, ...rest } = person;\nconst newPerson = { firstName, location: city, ...rest };\n\nconsole.log(firstName);\nconsole.log(rest);\nconsole.log(newPerson);",
+                qnSubText: "What will be the output of the above program?",
+                options: [
+                    "John\\n{ city: 'New York', lastName: 'Doe', age: 30 }\\n{ firstName: 'John', location: 'New York', city: 'New York', lastName: 'Doe', age: 30 }",
+                    "John\\n{ lastName: 'Doe', age: 30 }\\n{ firstName: 'John', location: 'New York', lastName: 'Doe', age: 30 }",
+                    "John\\n{ lastName: 'Doe', age: 30 }\\n{ firstName: 'John', location: 'New York', city: 'New York', lastName: 'Doe', age: 30 }",
+                    "undefined\\n{ firstName: 'John', city: 'New York', lastName: 'Doe', age: 30 }\\n{ firstName: 'John', location: 'New York' }"
+                ],
+                correct: [1],
+                solution: "Destructuring extracts firstName ('John') and city ('New York'), leaving rest = { lastName: 'Doe', age: 30 }. newPerson spreads rest into { firstName: 'John', location: 'New York', lastName: 'Doe', age: 30 }."
+            },
+            {
+                qn: 13,
+                id: "6406532128299",
+                type: "MCQ",
+                marks: 3.00,
+                text: "What happens when this Flask caching code runs?",
+                code: "from flask import Flask\nfrom flask_caching import Cache\nimport time\n\napp = Flask(__name__)\napp.config['CACHE_TYPE'] = 'SimpleCache'\napp.config['CACHE_DEFAULT_TIMEOUT'] = 300\n\ncache = Cache(app)\n\n@cache.memoize(timeout=300)\ndef compute_data(user_id):\n    time.sleep(5)\n    return f\"Data for user {user_id}\"\n\n@app.route('/api/info/<int:user_id>')\ndef get_info(user_id):\n    return compute_data(user_id)",
+                qnSubText: "If requests for user IDs 1, 2, 1 are made within 5 minutes, what's the total response time?",
+                options: [
+                    "15 seconds",
+                    "10 seconds",
+                    "5 seconds",
+                    "0 seconds"
+                ],
+                correct: [1],
+                solution: "First request for user 1 takes 5s. Request for user 2 takes 5s. Second request for user 1 hits memoized cache (0s). Total = 5 + 5 + 0 = 10s."
+            },
+            {
+                qn: 14,
+                id: "6406532128306",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the following JavaScript program:",
+                code: "const CAPACITY = 75;\nconst TOTAL_PEOPLE = 213;\n\nfunction allocatePeople() {\n    return new Promise((resolve, reject) => {\n        let slots = [0, 0, 0];\n        let remaining = TOTAL_PEOPLE;\n\n        for (let i = 0; i < slots.length; i++) {\n            if (remaining >= CAPACITY) {\n                slots[i] = CAPACITY;\n                remaining -= CAPACITY;\n            } else {\n                slots[i] = remaining;\n                remaining = 0;\n            }\n        }\n        reject(slots);\n    });\n}\n\nasync function startAllocation() {\n    try {\n        const result = await allocatePeople();\n        console.log(\"Passed \" + JSON.stringify(result));\n    } catch (error) {\n        console.log(\"Failed \" + JSON.stringify(error));\n    }\n}\n\nstartAllocation();",
+                qnSubText: "What will be printed in the console when the above code is executed?",
+                options: [
+                    "Passed [75,75,63]",
+                    "Failed [0,0,0]",
+                    "Failed [75,75,63]",
+                    "Passed [0,0,0]"
+                ],
+                correct: [2],
+                solution: "allocatePeople() calculates slots = [75, 75, 63] and calls reject(slots). The await inside async function throws the rejection into the catch block, printing 'Failed [75,75,63]'."
+            },
+            {
+                qn: 15,
+                id: "6406532128312",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Match the Vue directive in Directive with its correct functionality in Description using Vue.js.",
+                code: "Directive:\n1. v-if\n2. v-for\n3. v-bind\n4. v-model\n\nDescription:\nA. Two-way data binding between input and data\nB. Conditionally renders elements in the DOM\nC. Binds HTML attributes dynamically\nD. Renders a list of items",
+                options: [
+                    "1–A, 2–D, 3–C, 4–B",
+                    "1–D, 2–B, 3–C, 4–A",
+                    "1–B, 2–D, 3–C, 4–A",
+                    "1–B, 2–C, 3–D, 4–A"
+                ],
+                correct: [2],
+                solution: "v-if -> B (conditional render), v-for -> D (list render), v-bind -> C (attribute binding), v-model -> A (two-way binding)."
+            },
+            {
+                qn: 16,
+                id: "6406532128293",
+                type: "MSQ",
+                marks: 2.00,
+                text: "In a Single Page Application (SPA), what are the benefits of client-side routing over server-side routing?",
+                options: [
+                    "Slower navigation between pages",
+                    "Reduced load on the backend server",
+                    "Better SEO performance by default",
+                    "Seamless page transitions without full reloads"
+                ],
+                correct: [1, 3],
+                solution: "Client-side routing reduces server load by serving pre-rendered templates locally and provides seamless transitions without full page reloads."
+            },
+            {
+                qn: 17,
+                id: "6406532128320",
+                type: "MSQ",
+                marks: 2.00,
+                text: "Which of the following is the correct statement?",
+                options: [
+                    "Cookie size can impact the website performance.",
+                    "Cookie size does not affect performance in any practical/meaningful sense.",
+                    "A request to static.example.com will include cookies set for example.com.",
+                    "A request to static.example.com will not include cookies set for example.com."
+                ],
+                correct: [0, 2],
+                solution: "Large cookie payloads increase HTTP request header overhead. Cookies scoped to example.com are automatically sent with requests to subdomains like static.example.com."
+            },
+            {
+                qn: 18,
+                id: "6406532128295",
+                type: "MCQ",
+                marks: 4.50,
+                text: "Consider the following Vue application with markup index.html and JavaScript file app.js.",
+                code: "<!-- index.html -->\n<div id=\"app\"></div>\n&lt;script src=\"script.js\"&gt;<\/script>\n\n// script.js\nnew Vue({\n    el: '#app',\n    template: `<div>Status: {{status}}<br>Value: {{value}}</div>`,\n    data: {\n        status: \"Initial\",\n        value: 10,\n    },\n    beforeCreate() {\n        this.status = this.status + \" -> Created\";\n        this.value = this.value + 5;\n    },\n    beforeMount() {\n        this.status = this.status + \" -> Ready\";\n        this.value = this.value - 2;\n    },\n    created() {\n        this.status = this.status + \" -> Mounted\";\n        this.value = this.value * 2;\n    },\n    mounted() {\n        this.status = this.status + \" -> Done\";\n        this.value = this.value / 2;\n    }\n})",
+                qnSubText: "Suppose the application is running on http://127.0.0.1:8080. What will be rendered by the browser?",
+                options: [
+                    "Status: Initial -> Created -> Ready -> Mounted -> Done Value: 13",
+                    "Status: Initial -> Ready -> Mounted -> Done Value: 8",
+                    "Status: Initial -> Created -> Mounted -> Ready -> Done Value: 14",
+                    "Status: Initial -> Mounted -> Ready -> Done Value: 9"
+                ],
+                correct: [0],
+                solution: "Lifecycle hooks run in sequence: beforeCreate -> created -> beforeMount -> mounted."
+            },
+            {
+                qn: 19,
+                id: "6406532128300",
+                type: "MCQ",
+                marks: 4.50,
+                text: "Consider the following endpoints created with a working setup of flask-security and flask-sqlalchemy.",
+                code: "@app.route('/api/open')\ndef open_endpoint():\n    return jsonify({'message': 'Open access', 'status': 'success'})\n\n@app.route('/api/secure')\n@auth_required('token')\ndef secure_endpoint():\n    return jsonify({'message': 'Secure access', 'status': 'authenticated'})\n\n@app.route('/api/superuser')\n@auth_required('token')\n@roles_required('superuser')\ndef superuser_endpoint():\n    return jsonify({'message': 'Superuser access', 'status': 'authorized'})",
+                qnSubText: "Three requests are made to this application:\n1. GET /api/open (no authentication headers)\n2. GET /api/secure (no authentication headers)\n3. GET /api/superuser with valid authentication token but user has role 'basic' (not 'superuser').\nWhat will be the response status codes for these requests, respectively?",
+                options: [
+                    "200, 200, 200",
+                    "200, 401, 403",
+                    "200, 403, 401",
+                    "401, 403, 403"
+                ],
+                correct: [1],
+                solution: "Request 1 returns 200 OK. Request 2 missing token returns 401 Unauthorized. Request 3 with valid token but insufficient role returns 403 Forbidden."
+            },
+            {
+                qn: 20,
+                id: "6406532128301",
+                type: "MCQ",
+                marks: 4.50,
+                text: "Consider the following code snippet running in a browser. What will be the output on the console?",
+                code: "function inventory() {\n    const item = { name: \"Polycab\", stats: { power: 20 } };\n\n    const ref1 = item;\n    const ref2 = { ...item };\n    const ref3 = { name: item.name, stats: { ...item.stats } };\n\n    ref1.name = \"Ambrane\";\n    ref2.stats.power = 50;\n    ref3.stats.power = 30;\n\n    console.log(item.name);\n    console.log(item.stats.power);\n    console.log(ref2.stats.power);\n    console.log(ref3.stats.power);\n}\n\ninventory();",
+                options: [
+                    "Ambrane 20 50 30",
+                    "Polycab 50 50 30",
+                    "Ambrane 50 50 30",
+                    "Ambrane 50 30 30"
+                ],
+                correct: [2],
+                solution: "ref1 references item directly, so ref1.name = 'Ambrane' updates item.name. ref2 is shallow copy sharing stats object reference, so ref2.stats.power = 50 updates item.stats.power. ref3 deep copies stats object. Output: Ambrane 50 50 30."
+            },
+            {
+                qn: 21,
+                id: "6406532128302",
+                type: "MCQ",
+                marks: 4.50,
+                text: "Consider the following code snippet running on a browser. What is the output on the console?",
+                code: "const obj = {\n    value: 100,\n    outerFunc: function () {\n        const innerFunc = () => {\n            console.log(this.value);\n        };\n        return innerFunc;\n    },\n    otherFunc: function () {\n        console.log(this.value);\n    }\n};\n\nconst func1 = obj.outerFunc();\nconst func2 = obj.outerFunc;\nconst func3 = obj.otherFunc;\n\nfunc1();       // #1\nfunc2()();     // #2\nfunc3();       // #3",
+                options: [
+                    "100 100 100",
+                    "100 undefined 100",
+                    "undefined undefined undefined",
+                    "100 undefined undefined"
+                ],
+                correct: [3],
+                solution: "func1() binds this to obj (100). func2() invokes outerFunc unbound so this becomes window (undefined). func3() is called unbound (undefined). Output: 100 undefined undefined."
+            },
+            {
+                qn: 22,
+                id: "6406532128303",
+                type: "MCQ",
+                marks: 4.50,
+                text: "Consider the flask application app.py and an HTML file index.html:",
+                code: "// app.py\nfrom flask import Flask, jsonify\nfrom datetime import datetime\nimport time\n\napp = Flask(__name__)\n\n@app.route('/')\ndef home():\n    time.sleep(10)\n    return jsonify(datetime.now().second), 200, {'Access-Control-Allow-Origin': '*'}\n\n@app.route('/profile')\ndef profile():\n    time.sleep(30)\n    return jsonify(datetime.now().second), 200, {'Access-Control-Allow-Origin': '*'}\n\n// index.html\n\x3Cscript\x3E\nfunction test() {\n    const res1 = fetch('http://127.0.0.1:5000/')\n    const res2 = fetch('http://127.0.0.1:5000/profile')\n\n    res1.then(res => res.json()).then(data => console.log(data))\n    res2.then(res => res.json()).then(data => console.log(data))\n}\ntest()\n<\/script>",
+                qnSubText: "If a user visit index.html at 10:10:10 AM, what will be logged in the console?",
+                options: [
+                    "20, 50",
+                    "20, 40",
+                    "40, 40",
+                    "50, 50"
+                ],
+                correct: [1],
+                solution: "res1 completes after 10s at 10:10:20 (logging 20). res2 completes after 30s at 10:10:40 (logging 40)."
+            },
+            {
+                qn: 23,
+                id: "6406532128305",
+                type: "MCQ",
+                marks: 4.50,
+                text: "A student is going on a trip and wants to check whether all essential items are packed. The application uses Vue 2 and Vuex to manage the list of packed items. The following Vue application is incomplete. Two lines of code are missing and are marked as Line X and Line Y.",
+                code: "<div id=\"app\">\n    <h3>Trip Essentials</h3>\n    <ul><li v-for=\"item in packedItems\" :key=\"item\">{{ item }}</li></ul>\n    <button @click=\"packItem('Passport')\">Pack Passport</button>\n</div>\n\x3Cscript\x3E\nconst store = new Vuex.Store({\n    state: { packed: [] },\n    mutations: {\n        ADD_ITEM(state, item) { state.packed.push(item); }\n    }\n});\nnew Vue({\n    el: \"#app\",\n    store,\n    computed: { /* Line X */ },\n    methods: { packItem(item) { /* Line Y */ } }\n});\n<\/script>",
+                qnSubText: "Which of the following options correctly fills Line X and Line Y so that the application works as expected?",
+                options: [
+                    "// Line X\npackedItems() {\n    return this.$store.state.packed;\n}\n// Line Y\nthis.$store.commit(\"ADD_ITEM\", item);",
+                    "// Line X\npackedItems() {\n    return this.$store.state.packed;\n}\n// Line Y\nthis.commit(\"ADD_ITEM\", item);",
+                    "// Line X\npackedItems: this.$store.state.packed\n// Line Y\nthis.$store.dispatch(\"ADD_ITEM\", item);"
+                ],
+                correct: [0],
+                solution: "Computed property accesses state via this.$store.state.packed, and mutation is invoked via this.$store.commit('ADD_ITEM', item)."
+            },
+            {
+                qn: 24,
+                id: "6406532128304",
+                type: "MSQ",
+                marks: 3.00,
+                text: "Which of the following statement(s) is/are true about GraphQL?",
+                options: [
+                    "Mutations in GraphQL can be used to change the underlying data store.",
+                    "GraphQL services are created by defining types and fields of those types, then providing functions for each field.",
+                    "GraphQL can only fetch data from a single source.",
+                    "GraphQL allows only GET operations."
+                ],
+                correct: [0, 1],
+                solution: "GraphQL mutations update state, and services define schemas with field resolvers. GraphQL aggregates multiple data sources and uses POST operations."
+            },
+            {
+                qn: 25,
+                id: "6406532128308",
+                type: "MSQ",
+                marks: 3.00,
+                text: "Consider the following code:",
+                code: "from flask import Flask, jsonify, request\nfrom flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity\n\napp = Flask(__name__)\napp.config[\"JWT_SECRET_KEY\"] = \"secret\"\njwt = JWTManager(app)\n\n@app.route(\"/login\", methods=[\"POST\"])\ndef login():\n    username = request.json.get(\"username\")\n    access_token = create_access_token(identity=username)\n    return jsonify(access_token=access_token)\n\n@app.route(\"/stats\")\n@jwt_required()\ndef stats():\n    current_user = get_jwt_identity()\n    return jsonify(message=f\"Welcome {current_user}\")",
+                qnSubText: "You are developing an analytics platform using Flask and Flask-JWT-Extended. A user sends a POST request to /login with: { \"username\": \"Jassi\" }. Then tries to access /stats. Which of the following statements are correct?",
+                options: [
+                    "The /stats route will return \"Welcome Jassi\" only if a valid JWT token is sent in the Authorization header",
+                    "If no token is sent, accessing /stats will result in an unauthorized error",
+                    "The JWT token must be sent as JSON in the request body to access /stats",
+                    "None of these"
+                ],
+                correct: [0, 1],
+                solution: "@jwt_required() validates Bearer tokens passed in HTTP Authorization headers, returning 401 Unauthorized if omitted."
+            },
+            {
+                qn: 26,
+                id: "6406532128310",
+                type: "MSQ",
+                marks: 3.00,
+                text: "Hamza is working on a project using Git and performs the following operations:\n1. Creates a new branch and switches to it\n2. Stages changes for commit\n3. Commits changes with a message\n4. Pushes the branch to a remote repository\nWhich of the following commands are correctly used for these operations?",
+                options: [
+                    "git checkout -b feature-branch",
+                    "git add .",
+                    "git commit -m \"Initial commit\"",
+                    "git push origin feature-branch"
+                ],
+                correct: [0, 1, 2, 3],
+                solution: "All 4 commands accurately perform Git branch creation, staging, committing, and pushing."
+            },
+            {
+                qn: 27,
+                id: "6406532128311",
+                type: "MSQ",
+                marks: 3.00,
+                text: "Prerna and Swathy are using a web application built with Vue.js for the BS Degree program. When the page loads, the sidebar content appears instantly. However, when they click on an Assignments link, the main content takes noticeable time to load. A simplified version of the component is shown below:",
+                code: "export default {\n    data() {\n        return {\n            assignments: []\n        }\n    },\n    created() {\n        fetch(\"/api/assignments\")\n            .then(res => res.json())\n            .then(data => {\n                this.assignments = data;\n            });\n    }\n}",
+                qnSubText: "Which of the following statements correctly explain why the Assignments page takes time to load?",
+                options: [
+                    "The sidebar is likely part of a parent component and is already rendered before the API call",
+                    "The Assignments component waits for the API response before displaying data",
+                    "Vue blocks rendering of all components until API calls complete",
+                    "The delay is caused because data is fetched asynchronously after the component is created"
+                ],
+                correct: [0, 3],
+                solution: "Parent layout renders immediately while asynchronous fetch() inside created() executes after initial mount."
+            },
+            {
+                qn: 28,
+                id: "6406532128314",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the following Vue.js application:",
+                code: "<div id=\"app\">\n    <p>{{ bigNumber }}</p>\n    <button @click=\"calculate\">Calculate</button>\n</div>\n\x3Cscript\x3E\nnew Vue({\n    el: \"#app\",\n    data: { a: 1, b: 2, time: 0 },\n    computed: {\n        bigNumber() {\n            console.log(\"computed run\");\n            let s = 0;\n            for (let i = 0; i < 10000000; i++) s += i;\n            return s + this.a + this.b;\n        }\n    },\n    methods: {\n        calculate() {\n            this.time = Date.now();\n        }\n    }\n});\n<\/script>",
+                qnSubText: "How many times will \"computed run\" be logged in the console during the initial render?",
+                options: [
+                    "0",
+                    "1",
+                    "Multiple times due to the loop",
+                    "Depends on user interaction"
+                ],
+                correct: [1],
+                solution: "Computed properties run once during initial component render and cache their return value."
+            },
+            {
+                qn: 29,
+                id: "6406532128315",
+                type: "MCQ",
+                marks: 3.00,
+                text: "If the calculate() method is modified as follows:\ncalculate() { this.a = this.a + 1; }\nWhat will happen when the button is clicked?",
+                options: [
+                    "bigNumber() will not run again",
+                    "bigNumber() will run again because a dependency changed",
+                    "Only time will update",
+                    "Vue will throw an error"
+                ],
+                correct: [1],
+                solution: "Mutating this.a invalidates the computed cache for bigNumber(), forcing re-evaluation."
+            },
+            {
+                qn: 30,
+                id: "6406532128316",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Why is bigNumber() defined as a computed property instead of a method?",
+                options: [
+                    "Computed properties are always faster than methods",
+                    "Methods cannot access data properties",
+                    "Computed properties are cached based on their dependencies",
+                    "Computed properties run only once"
+                ],
+                correct: [2],
+                solution: "Computed caching avoids re-executing heavy loop calculations on unrelated re-renders."
+            },
+            {
+                qn: 31,
+                id: "6406532128318",
+                type: "MCQ",
+                marks: 4.50,
+                text: "Consider the following Vue 2 application:",
+                code: "<div id=\"app\">\n    <h3>Selected ID: {{ currentId }}</h3>\n    <router-link to=\"/item/1\">Item 1</router-link> |\n    <router-link to=\"/item/2\">Item 2</router-link>\n    <router-view></router-view>\n</div>\n\x3Cscript\x3E\nconst Item = {\n    template: '<p>Item ID from route: {{ $route.params.id }}</p>',\n    updated() { console.log(\"updated hook called\"); }\n};\nconst router = new VueRouter({ routes: [{ path: \"/item/:id\", component: Item }] });\nnew Vue({\n    el: \"#app\",\n    router,\n    data: { currentId: null },\n    watch: { \"$route.params.id\"(newId) { this.currentId = newId; } }\n});\n<\/script>",
+                qnSubText: "Assume the Vue application is loaded at the url http://127.0.0.1:5000/#/item/1. The user then clicks on the Item 2 router link. What happens immediately after clicking \"Item 2\"?",
+                options: [
+                    "The Item component is destroyed and recreated, so updated() is never called",
+                    "The route changes, the component is reused, and updated() is called",
+                    "The route changes, but neither watcher nor lifecycle hooks run",
+                    "A new Vue instance is created for the route"
+                ],
+                correct: [1],
+                solution: "Component reuse on parameter change triggers route watcher, mutating data and calling updated() hook."
+            },
+            {
+                qn: 32,
+                id: "6406532128319",
+                type: "MCQ",
+                marks: 4.50,
+                text: "Why is the updated() lifecycle hook triggered in this scenario?",
+                options: [
+                    "Because Vue Router always recreates components on navigation",
+                    "Because lifecycle hooks run on every URL change regardless of reactivity",
+                    "Because router-view forces a full re-render of the component tree",
+                    "Because a watched route parameter updates parent reactive state, triggering a component update"
+                ],
+                correct: [3],
+                solution: "Route parameter watcher mutates currentId on root instance, triggering template re-render and updated() hook."
+            },
+            {
+                qn: 33,
+                id: "6406532128310",
+                type: "MSQ",
+                marks: 3.00,
+                text: "Hamza is working on a project using Git and performs standard operations. Which of the following commands are correctly used?",
+                options: [
+                    "git checkout -b feature-branch",
+                    "git add .",
+                    "git commit -m \"Initial commit\"",
+                    "git push origin feature-branch"
+                ],
+                correct: [0, 1, 2, 3],
+                solution: "Valid Git CLI commands."
+            },
+            {
+                qn: 34,
+                id: "6406532128313",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "Consider the following Vue.js application:",
+                options: [],
+                correct: [],
+                solution: "Comprehension passage block."
+            }
+        ];
+
+        // ==========================================================================
+        // PORTAL STATE & FUNCTIONS
+        // ==========================================================================
+        let currentMode = 'exam'; // 'exam' or 'learning'
+        let userAnswers = {}; // { qnNum: [optIdx] }
+        let timerSeconds = 0;
+        let timerInterval = null;
+        let isTimerRunning = true;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuestionPalette();
+            renderQuestions();
+            updateScoreDisplay();
+            startTimer();
+        });
+
+        function setPortalMode(mode) {
+            currentMode = mode;
+            document.getElementById('btnExamMode').classList.toggle('active', mode === 'exam');
+            document.getElementById('btnLearningMode').classList.toggle('active', mode === 'learning');
+            renderQuestions();
+            updatePaletteStatuses();
+        }
+
+        function renderQuestionPalette() {
+            const grid = document.getElementById('paletteGrid');
+            grid.innerHTML = QUESTIONS_DATA.map(q => `
+                <button class="palette-btn" id="paletteBtn_${q.qn}" onclick="scrollToQuestion(${q.qn})">${q.qn}</button>
+            `).join('');
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            let html = '';
+
+            QUESTIONS_DATA.forEach((q) => {
+                html += `
+                <article class="qn-card" id="qnCard_${q.qn}">
+                    <div class="qn-header-container">
+                        <div class="qn-header-top">
+                            <div class="qn-title-main">
+                                Question ${q.qn} : ${q.id}
+                            </div>
+                            <button class="btn-solution-pill" onclick="toggleSolution(${q.qn})">
+                                <i class="fa-regular fa-circle-check"></i> View Solutions (0)
+                            </button>
+                        </div>
+                        <div class="qn-header-sub">
+                            <span class="qn-id-tag">Question ${q.qn} : ${q.id}</span>
+                            <span class="qn-meta-info">Total Mark : ${q.marks.toFixed(2)} | Type : ${q.type}</span>
+                        </div>
+                    </div>
+
+                    <div class="qn-text">${q.text ? q.text.replace(/\\n/g, '<br>').replace(/\n/g, '<br>') : ''}</div>
+
+                    ${q.code ? `
+                    <div class="code-snippet-wrap">
+                        <code>${escapeHtml(q.code)}</code>
+                    </div>` : ''}
+
+                    ${q.qnSubText ? `<div class="qn-text" style="margin-top:0.85rem;">${q.qnSubText.replace(/\\n/g, '<br>').replace(/\n/g, '<br>')}</div>` : ''}
+
+                    <!-- Options / Inputs -->
+                    ${renderQuestionInputs(q)}
+
+                    <!-- Footer Action Toolbar -->
+                    <div class="qn-footer-toolbar">
+                        <div class="qn-actions-group">
+                            <button class="btn-action-pill btn-discuss" onclick="alert('Discussion forum loading...')"><i class="fa-regular fa-comments"></i> Discussions (0)</button>
+                            <button class="btn-action-pill btn-correct" onclick="alert('Correction reported. Thank you!')"><i class="fa-regular fa-pen-to-square"></i> Suggest Correction</button>
+                            <button class="btn-action-pill btn-broken" onclick="alert('Format flag recorded.')"><i class="fa-solid fa-wrench"></i> Broken Format?</button>
+                        </div>
+                    </div>
+
+                    <!-- Solution Accordion -->
+                    <div class="solution-box" id="solution_${q.qn}">
+                        <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution & Code Trace</div>
+                        <div class="solution-text">${q.solution ? q.solution.replace(/\\n/g, '<br>').replace(/\n/g, '<br>') : ''}</div>
+                    </div>
+                </article>
+                `;
+
+                if (q.qn === 6 || q.qn === 15 || q.qn === 25) {
+                    html += `
+                    <div class="ad-banner-box">
+                        <span class="ad-tag">ADVERTISEMENT</span>
+                        <div class="ad-actions">
+                            <button class="btn-remove-ads" onclick="alert('Ad-free experience enabled.')"><i class="fa-solid fa-bolt"></i> Remove Ads</button>
+                            <button class="btn-close-ad" onclick="this.parentElement.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    `;
+                }
+            });
+
+            container.innerHTML = html;
+            updatePaletteStatuses();
+        }
+
+        function renderQuestionInputs(q) {
+            if (q.type === 'COMPREHENSION') {
+                return `<div style="font-size:0.88rem; color:var(--text-muted); font-style:italic; margin-bottom:1.25rem;">[Comprehension Passage Block - Subquestions are listed below]</div>`;
+            }
+
+            const isMSQ = q.type === 'MSQ';
+            const userArr = userAnswers[q.qn] || [];
+
+            return `
+            <div class="options-list">
+                ${q.options.map((optText, idx) => {
+                    const isChecked = userArr.includes(idx);
+                    const isCorrect = q.correct.includes(idx);
+                    let highlightClass = '';
+
+                    if (isChecked) highlightClass = 'selected';
+
+                    if (currentMode === 'learning') {
+                        if (isCorrect) highlightClass = 'correct-highlight';
+                        else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                    }
+
+                    const cleanOptText = (optText || '').replace(/\\n/g, '\n');
+                    const isMultiLine = cleanOptText.includes('\n');
+
+                    return `
+                    <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <span class="option-text">${isMultiLine ? `<pre style="margin:0; font-family:var(--font-mono); font-size:0.9rem; line-height:1.5;"><code>${escapeHtml(cleanOptText)}</code></pre>` : escapeHtml(cleanOptText)}</span>
+                    </label>
+                    `;
+                }).join('')}
+            </div>
+            `;
+        }
+
+        function handleOptionSelect(qnNum, optIdx, qnType) {
+            if (qnType === 'MCQ') {
+                userAnswers[qnNum] = [optIdx];
+            } else if (qnType === 'MSQ') {
+                if (!userAnswers[qnNum]) userAnswers[qnNum] = [];
+                const pos = userAnswers[qnNum].indexOf(optIdx);
+                if (pos >= 0) userAnswers[qnNum].splice(pos, 1);
+                else userAnswers[qnNum].push(optIdx);
+            }
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function calculateQuestionScore(q) {
+            const userAns = userAnswers[q.qn];
+            if (!userAns || !Array.isArray(userAns) || userAns.length === 0) return "0.00";
+
+            if (q.type === 'MCQ') {
+                return (userAns[0] === q.correct[0]) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            if (q.type === 'MSQ') {
+                const sortedUser = [...userAns].sort().join(',');
+                const sortedCorrect = [...q.correct].sort().join(',');
+                return (sortedUser === sortedCorrect) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            return "0.00";
+        }
+
+        function updateScoreDisplay() {
+            let total = 0;
+            let answeredCount = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const score = parseFloat(calculateQuestionScore(q));
+                total += score;
+
+                const ans = userAnswers[q.qn];
+                if (ans && Array.isArray(ans) && ans.length > 0) {
+                    answeredCount++;
+                }
+            });
+
+            document.getElementById('liveScoreDisplay').textContent = `${total.toFixed(2)} / 100.00`;
+            const pct = ((total / 100) * 100).toFixed(1);
+            document.getElementById('livePercentDisplay').textContent = `(${pct}%)`;
+            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/${QUESTIONS_DATA.length}`;
+        }
+
+        function updatePaletteStatuses() {
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.getElementById(`paletteBtn_${q.qn}`);
+                if (!btn) return;
+
+                btn.className = 'palette-btn';
+
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && Array.isArray(ans) && ans.length > 0;
+
+                if (hasAns) {
+                    btn.classList.add('answered');
+                    if (currentMode === 'learning') {
+                        const score = parseFloat(calculateQuestionScore(q));
+                        if (score > 0) btn.classList.add('correct');
+                        else btn.classList.add('incorrect');
+                    }
+                }
+            });
+        }
+
+        function toggleSolution(qnNum) {
+            const box = document.getElementById(`solution_${qnNum}`);
+            if (box) box.classList.toggle('open');
+        }
+
+        function scrollToQuestion(qnNum) {
+            const card = document.getElementById(`qnCard_${qnNum}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.querySelectorAll('.palette-btn').forEach(b => b.classList.remove('active-qn'));
+                const btn = document.getElementById(`paletteBtn_${qnNum}`);
+                if (btn) btn.classList.add('active-qn');
+            }
+        }
+
+        // Timer Logic
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (isTimerRunning) {
+                    timerSeconds++;
+                    updateTimerUI();
+                }
+            }, 1000);
+        }
+
+        function toggleTimer() {
+            isTimerRunning = !isTimerRunning;
+            const btn = document.getElementById('btnPauseTimer');
+            if (btn) btn.innerHTML = isTimerRunning ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-rotate-right"></i>';
+        }
+
+        function resetTimer() {
+            timerSeconds = 0;
+            updateTimerUI();
+        }
+
+        function updateTimerUI() {
+            const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const secs = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+        }
+
+        // Exam Submission & Modals
+        function submitExam() {
+            setPortalMode('learning');
+
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+            let totalScore = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && Array.isArray(ans) && ans.length > 0;
+
+                if (!hasAns) {
+                    unansweredCount++;
+                } else {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    totalScore += score;
+                    if (score > 0) correctCount++;
+                    else incorrectCount++;
+                }
+            });
+
+            document.getElementById('modalScoreText').textContent = `${totalScore.toFixed(2)} / 100.00`;
+            document.getElementById('modalPercentText').textContent = `${((totalScore / 100) * 100).toFixed(1)}% Accuracy`;
+            document.getElementById('modalCorrectCount').textContent = correctCount;
+            document.getElementById('modalIncorrectCount').textContent = incorrectCount;
+            document.getElementById('modalUnansweredCount').textContent = unansweredCount;
+
+            document.getElementById('resultModal').classList.add('active');
+        }
+
+        function resetExam() {
+            userAnswers = {};
+            resetTimer();
+            closeResultModal();
+            setPortalMode('learning');
+        }
+
+        function openSummaryModal() {
+            document.getElementById('summaryModal').classList.add('active');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.remove('active');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.remove('active');
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('portalSidebar');
+            const toggleBtn = document.getElementById('mobileSidebarToggle');
+            if (sidebar && toggleBtn) {
+                sidebar.classList.toggle('open');
+                toggleBtn.classList.toggle('active');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const fab = document.getElementById('fabBackToTop');
+            if (fab) {
+                if (window.scrollY > 300) fab.classList.add('visible');
+                else fab.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+
+</html>

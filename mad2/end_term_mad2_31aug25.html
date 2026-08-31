@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice AppDev2 questions : 2025 Aug31: IIT M AN EXAM QIB4 - QuizPractice | BSH</title>
+    <meta name="description"
+        content="Practice Modern Application Development II End Term question paper (31 Aug 25) with interactive exam & learning modes, instant score calculation, detailed solutions, and question palette.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+
+    <!-- Master CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/quiz-portal.css">
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('bsh-theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Site Navigation Header -->
+    <header class="site-header" id="header">
+        <div class="header-container">
+            <a href="../index.html" class="brand-logo" aria-label="BSH Homepage">
+                <img src="../assets/images/logo.png" alt="BSH Logo" class="logo-img">
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="../index.html#features" class="nav-link">Features</a>
+                <a href="../quiz_practice.html" class="nav-link active">Quiz Practice</a>
+                <a href="../calculator.html" class="nav-link">SEC Calculator</a>
+                <a href="../about.html" class="nav-link">About Us</a>
+                <a href="../contact_us.html" class="nav-link">Feedback</a>
+            </nav>
+            <div class="header-actions">
+                <a href="../end_term_practice.html" class="btn btn-secondary nav-btn-desktop"><i
+                        class="fa-solid fa-arrow-left"></i><span>Back to Papers</span></a>
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i
+                        class="fa-solid fa-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="portal-layout">
+
+            <!-- Mobile Collapsible Sidebar Toggle Button -->
+            <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()">
+                <span><i class="fa-solid fa-sliders"></i> Exam Controls & Question Menu</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <!-- Left Sidebar: Controls, Menu & Timer -->
+            <aside class="portal-sidebar" id="portalSidebar">
+
+                <!-- Header Info -->
+                <div class="exam-info-header">
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Exam :</span>
+                        <span class="exam-info-val">End Term Quiz</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Subject :</span>
+                        <span class="exam-info-val">AppDev2</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Total Marks :</span>
+                        <span class="exam-info-val">100.00</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">QP :</span>
+                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">2025 Aug31: IIT M AN EXAM QIB4</span>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher -->
+                <div>
+                    <div class="menu-heading">Portal Mode</div>
+                    <div class="mode-toggle-group">
+                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam Mode</button>
+                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning Mode</button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                        onclick="openSummaryModal()">
+                        <i class="fa-solid fa-eye"></i> View Question Paper Summary
+                    </button>
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                        onclick="window.print()">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </button>
+                </div>
+
+                <!-- Question Menu Grid -->
+                <div>
+                    <div class="menu-heading">
+                        <span>QUESTION MENU</span>
+                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/36</span>
+                    </div>
+                    <div class="palette-grid" id="paletteGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Timer Box -->
+                <div>
+                    <div class="menu-heading">TIMER</div>
+                    <div class="timer-box">
+                        <div class="timer-display" id="timerDisplay">00:00</div>
+                        <div class="timer-controls">
+                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i
+                                    class="fa-solid fa-pause"></i></button>
+                            <button class="btn-icon-sm" onclick="resetTimer()"><i
+                                    class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls & Score Box -->
+                <div>
+                    <div class="menu-heading">CONTROLS</div>
+                    <button class="btn-submit-exam" onclick="submitExam()">
+                        <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
+                    </button>
+                    <div class="score-card" style="margin-top:1rem;">
+                        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">YOUR SCORE</span>
+                        <div class="score-num" id="liveScoreDisplay">0.00 / 100.00</div>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);"
+                            id="livePercentDisplay">(0.0%)</span>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Right Area: Questions List -->
+            <section class="questions-area" id="questionsContainer">
+                <!-- Dynamically Rendered by JS -->
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Floating Back to Top FAB -->
+    <button class="fab-back-to-top" id="fabBackToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;">Question Paper Summary</h3>
+                <button class="btn-icon-sm" onclick="closeSummaryModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+                Paper Title: <b>Modern Application Development II 31 Aug 25</b> (End Term Quiz)
+            </p>
+            <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+                <tr style="border-bottom:1px solid var(--border-light); text-align:left;">
+                    <th style="padding:0.6rem;">Question Type</th>
+                    <th style="padding:0.6rem;">Count</th>
+                    <th style="padding:0.6rem;">Total Marks</th>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MCQ (Multiple Choice)</td>
+                    <td style="padding:0.6rem;">25</td>
+                    <td style="padding:0.6rem;">79.00</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MSQ (Multiple Select)</td>
+                    <td style="padding:0.6rem;">11</td>
+                    <td style="padding:0.6rem;">21.00</td>
+                </tr>
+            </table>
+            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close Summary</button>
+        </div>
+    </div>
+
+    <!-- Exam Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-card" style="text-align:center;">
+            <div
+                style="width:64px; height:64px; border-radius:50%; background:rgba(16, 185, 129, 0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 1rem;">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Exam Submitted!</h2>
+            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for AppDev2 End Term Quiz (31 Aug 25)</p>
+
+            <div
+                style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
+                <div style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; font-weight:600;">
+                    Final Score</div>
+                <div style="font-family:var(--font-mono); font-size:2.8rem; font-weight:800; color:var(--accent-green);"
+                    id="modalScoreText">0.00 / 100.00</div>
+                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0% Accuracy
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem; margin-bottom:1.5rem;">
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Correct</div>
+                    <div style="font-weight:700; color:#10b981; font-size:1.2rem;" id="modalCorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Incorrect</div>
+                    <div style="font-weight:700; color:#ef4444; font-size:1.2rem;" id="modalIncorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Unanswered</div>
+                    <div style="font-weight:700; color:var(--text-secondary); font-size:1.2rem;"
+                        id="modalUnansweredCount">0</div>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:0.75rem;">
+                <button class="btn btn-secondary btn-full"
+                    onclick="closeResultModal(); setPortalMode('learning');">Review Solutions <i
+                        class="fa-solid fa-book-open"></i></button>
+                <button class="btn btn-primary btn-full" onclick="resetExam()">Retake Exam <i
+                        class="fa-solid fa-rotate-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Master Scripts -->
+    <script src="../assets/js/main.js"></script>
+    <script>
+        const QUESTIONS_DATA = [
+            {
+                qn: 1,
+                id: "6406531433597",
+                type: "MCQ",
+                marks: 0.00,
+                text: "THIS IS QUESTION PAPER FOR THE SUBJECT \"DIPLOMA LEVEL : MODERN APPLICATION DEVELOPMENT II (COMPUTER BASED EXAM)\" ARE YOU SURE YOU HAVE TO WRITE EXAM FOR THIS SUBJECT? CROSS CHECK YOUR HALL TICKET TO CONFIRM THE SUBJECTS TO BE WRITTEN. (IF IT IS NOT THE CORRECT SUBJECT, PLS CHECK THE SECTION AT THE TOP FOR THE SUBJECTS REGISTERED BY YOU)",
+                options: [
+                    "YES",
+                    "NO"
+                ],
+                correct: [0],
+                solution: "Subject confirmation question. Select YES to proceed."
+            },
+            {
+                qn: 2,
+                id: "6406531433598",
+                type: "MCQ",
+                marks: 2.00,
+                text: "In a message queue system, if the consumer is slower than the producer, what is likely to occur first?",
+                options: [
+                    "Messages will be dropped",
+                    "Messages will accumulate in the queue",
+                    "The consumer will speed up automatically",
+                    "The producer will block until the consumer is ready"
+                ],
+                correct: [1],
+                solution: "Message queues buffer unconsumed messages, causing queue depth to grow when producer throughput exceeds consumer processing speed."
+            },
+            {
+                qn: 3,
+                id: "6406531433599",
+                type: "MCQ",
+                marks: 2.00,
+                text: "What does \"reactivity\" mean in the context of frontend frameworks like Vue.js?",
+                options: [
+                    "The component will reload when data changes",
+                    "All function calls become asynchronous",
+                    "It disables direct access to state",
+                    "The DOM updates automatically when the underlying reactive data changes"
+                ],
+                correct: [3],
+                solution: "Reactivity enables automatic tracking of data property changes and automatically updates dependent DOM nodes."
+            },
+            {
+                qn: 4,
+                id: "6406531433600",
+                type: "MCQ",
+                marks: 2.00,
+                text: "In Flask, what is the main benefit of using the @cache.cached() decorator?",
+                options: [
+                    "It stores output in session storage",
+                    "It enables token authentication",
+                    "It sends compressed response headers",
+                    "It skips route execution for repeated inputs"
+                ],
+                correct: [3],
+                solution: "@cache.cached() intercepts repeated route requests, serving cached HTTP responses without re-executing controller logic."
+            },
+            {
+                qn: 5,
+                id: "6406531433601",
+                type: "MCQ",
+                marks: 2.00,
+                text: "What is the primary purpose of CORS (Cross-Origin Resource Sharing)?",
+                options: [
+                    "To encrypt data between client and server",
+                    "To compress HTTP responses",
+                    "To authenticate users across applications",
+                    "To control which domains can access resources"
+                ],
+                correct: [3],
+                solution: "CORS HTTP headers allow servers to explicitly specify which external origin domains are permitted to access hosted API resources."
+            },
+            {
+                qn: 6,
+                id: "6406531433602",
+                type: "MSQ",
+                marks: 2.00,
+                text: "Which of the following practices help protect against supply chain attacks?",
+                options: [
+                    "Storing keys only in environment variables",
+                    "Version pinning",
+                    "Using only packages with over 1000 stars on GitHub",
+                    "Reduce Dependencies"
+                ],
+                correct: [1, 3],
+                solution: "Version pinning locks specific package checksums, and minimizing third-party dependencies reduces supply chain attack surface."
+            },
+            {
+                qn: 7,
+                id: "6406531433603",
+                type: "MSQ",
+                marks: 2.00,
+                text: "Which of the following factors directly affect the speed and performance of a web page load?",
+                options: [
+                    "The number of CSS selectors in the stylesheet",
+                    "Use of semantic HTML tags",
+                    "Number of HTTP requests made",
+                    "File size of resources (like images, JS)"
+                ],
+                correct: [2, 3],
+                solution: "HTTP request overhead and aggregate payload file size directly determine network load time."
+            },
+            {
+                qn: 8,
+                id: "6406531433604",
+                type: "MSQ",
+                marks: 2.00,
+                text: "Which of the following is/are the potential benefits of using a message broker?",
+                options: [
+                    "A message broker makes the network scalable for adding more servers to thenetwork.",
+                    "A message broker allows two servers in a network to directly communicatewith each other, without an intermediary.",
+                    "A message broker is not suited in case of traffic spikes, as messages areretained in the queue until processed.",
+                    "A message broker can be used for batch processing of messages."
+                ],
+                correct: [0, 3],
+                solution: "Message brokers decouple application components, allowing independent scaling of worker nodes and batch execution."
+            },
+            {
+                qn: 9,
+                id: "6406531433605",
+                type: "MSQ",
+                marks: 2.00,
+                text: "Which statements about webhooks are correct?",
+                options: [
+                    "They enable real-time data delivery",
+                    "They use HTTP POST requests typically",
+                    "They're designed for server-to-server communication",
+                    "They require polling from the client"
+                ],
+                correct: [0, 1, 2],
+                solution: "Webhooks provide real-time server-to-server event notifications pushed via HTTP POST requests."
+            },
+            {
+                qn: 10,
+                id: "6406531433607",
+                type: "MCQ",
+                marks: 3.00,
+                text: "A popular e-commerce platform needs to notify multiple third-party services (inventory management, email marketing, analytics) whenever a customer places an order. The development team is considering different approaches to handle these notifications.\nScenario: When an order is placed, the system needs to:\n● Update inventory levels in an external warehouse system ● Send a welcome email through a third-party email service ● Log analytics data to an external tracking service ● Update customer loyalty points in a CRM system\nWhich of the following statements about using webhooks for this scenario is MOST accurate?",
+                options: [
+                    "Webhooks are not suitable for this use case because they require the e-commerce platform to continuously poll each third party service to check if they're ready to receive data, which would create unnecessary network overhead.",
+                    "Webhooks should be avoided in this scenario because they operatesynchronously, meaning the customer's order placement would be delayed until all third-party services have successfully processed their notifications.",
+                    "Webhooks provide an ideal solution as they allow the e-commerce platform topush real-time notifications to all subscribed third-party services immediately when an order is placed, eliminating the need for these services to repeatedly poll for updates.",
+                    "Webhooks are primarily designed for read-only operations and cannot handlecomplex data payloads like order information, making them unsuitable for e-commerce transaction notifications."
+                ],
+                correct: [2],
+                solution: "Webhooks automatically push real-time event notifications with JSON payloads to all registered subscribers upon trigger events."
+            },
+            {
+                qn: 11,
+                id: "6406531433608",
+                type: "MCQ",
+                marks: 3.00,
+                text: "What is the main advantage of using caching in a Flask-based web application?",
+                options: [
+                    "It eliminates the need for client-side rendering",
+                    "It reduces server load by reusing responses for repeated requests",
+                    "It encrypts data transmission between server and client",
+                    "It avoids the need for database interactions completely"
+                ],
+                correct: [1],
+                solution: "Caching reduces backend database load and CPU cycles by returning stored responses for identical incoming requests."
+            },
+            {
+                qn: 12,
+                id: "6406531433609",
+                type: "MCQ",
+                marks: 3.00,
+                text: "What will be the order of console output when the following JavaScript code is executed?",
+                code: "async function test() {\n    console.log(\"P\");\n    await Promise.resolve();\n    console.log(\"Q\");\n}\nconsole.log(\"R\");\ntest();\nconsole.log(\"S\");",
+                options: [
+                    "R P Q S",
+                    "P R S Q",
+                    "R S P Q",
+                    "R P S Q"
+                ],
+                correct: [3],
+                solution: "console.log('R') runs first. test() logs 'P' synchronously until await. Main script continues logging 'S'. Microtask queue resumes logging 'Q'. Output: R P S Q."
+            },
+            {
+                qn: 13,
+                id: "6406531433610",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the following JavaScript program:",
+                code: "const user = {\n    name: 'Alice',\n    age: 25,\n    city: 'Boston',\n    country: 'USA'\n};\n\nconst { name, city, ...otherInfo } = user;\nconst newUser = { name, location: city, ...otherInfo };\n\nconsole.log(name);\nconsole.log(otherInfo);\nconsole.log(newUser);",
+                qnSubText: "What will be the output of the above program?",
+                options: [
+                    "Alice\\n{ age: 25, country: 'USA' }\\n{ name: 'Alice', location: 'Boston', age: 25, country: 'USA' }",
+                    "Alice\\n{ city: 'Boston', age: 25, country: 'USA' }\\n{ name: 'Alice', location: 'Boston', city: 'Boston', age: 25, country: 'USA' }",
+                    "Alice\\n{ age: 25, country: 'USA' }\\n{ name: 'Alice', location: 'Boston', city: 'Boston', age: 25, country: 'USA' }",
+                    "undefined\\n{ name: 'Alice', city: 'Boston', age: 25, country: 'USA' }\\n{ name: 'Alice', location: 'Boston' }"
+                ],
+                correct: [0],
+                solution: "Rest properties extract { age: 25, country: 'USA' }. newUser spreads rest properties alongside name and location: 'Boston'."
+            },
+            {
+                qn: 14,
+                id: "6406531433611",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the following javascript program.",
+                code: "new Promise((resolve, reject) => {\n    const score = 0.45;\n    if (score >= 0.5) {\n        resolve(score);\n    } else {\n        reject(new Error(\"Score too low\"));\n    }\n})\n.then(data => {\n    console.log(\"Stage A:\", data);\n    return data * 10;\n})\n.catch(error => {\n    console.log(\"Stage B:\", error.message);\n    return 3;\n})\n.then(data => {\n    console.log(\"Stage C:\", data);\n    if (data < 5) {\n        throw new Error(\"Value below threshold\");\n    }\n    return data + 2;\n})\n.then(data => {\n    console.log(\"Stage D:\", data);\n    return data / 2;\n})\n.catch(error => {\n    console.log(\"Stage E:\", error.message);\n    if (error.message === \"Value below threshold\") {\n        return \"Recovered\";\n    }\n    throw error;\n})\n.then(data => {\n    console.log(\"Stage F:\", data);\n    if (data === \"Recovered\") {\n        return 10;\n    }\n    return data * 4;\n})\n.finally(() => {\n    console.log(\"Stage G: Cleanup completed\");\n});",
+                qnSubText: "What will be the output of the above program on the browser's console?",
+                options: [
+                    "Stage A: 0.45\\nStage C: 4.5\\nStage D: 6.5\\nStage F: 26\\nStage G: Cleanup completed",
+                    "Stage B: Score too low\\nStage C: 3\\nStage E: Value below threshold\\nStage F: Recovered\\nStage G: Cleanup completed",
+                    "Stage A: 0.45\\nStage C: 4.5\\nStage E: Value below threshold\\nStage F: Recovered\\nStage G: Cleanup completed",
+                    "Stage B: Score too low\\nStage C: 3\\nStage D: 5\\nStage F: 20\\nStage G: Cleanup completed"
+                ],
+                correct: [1],
+                solution: "Promise rejects -> catch logs 'Stage B: Score too low' and returns 3 -> then logs 'Stage C: 3' and throws 'Value below threshold' -> catch logs 'Stage E: Value below threshold' and returns 'Recovered' -> then logs 'Stage F: Recovered' -> finally logs 'Stage G: Cleanup completed'."
+            },
+            {
+                qn: 15,
+                id: "6406531433616",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider this HTML and Vue setup:",
+                code: "<!-- index.html -->\n<div id=\"app1\">{{ message }}</div>\n<div id=\"app2\">{{ message }}</div>\n&lt;script src=\"app.js\"&gt;<\/script>\n\n// app.js\nnew Vue({\n    el: '#app1',\n    data: { message: 'Hello from App 1' }\n});\nnew Vue({\n    el: '#app2',\n    data: { message: 'Hello from App 2' }\n});",
+                qnSubText: "What will be rendered on the browser?",
+                options: [
+                    "App 1 only shows data",
+                    "Both show \"Hello from App 2\"",
+                    "Both show \"Hello from App 1\"",
+                    "Each renders its own message independently"
+                ],
+                correct: [3],
+                solution: "Two distinct Vue root instances mounted to different DOM containers (#app1 and #app2) render their own isolated data properties."
+            },
+            {
+                qn: 16,
+                id: "6406531433617",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the following JavaScript code running in a browser:",
+                code: "localStorage.setItem('score', '10');\nsessionStorage.setItem('multiplier', '3');\n\nfor (let i = 0; i < 2; i++) {\n    let score = localStorage.getItem('score');\n    let multiplier = sessionStorage.getItem('multiplier');\n\n    score = score + 5;\n    multiplier = multiplier * 2;\n\n    localStorage.setItem('score', score);\n    sessionStorage.setItem('multiplier', multiplier);\n}\n\nconsole.log(localStorage.getItem('score'));\nconsole.log(sessionStorage.getItem('multiplier'));",
+                qnSubText: "What will be the output in the browser console?",
+                options: [
+                    "20\\n12",
+                    "20\\nNaN",
+                    "NaN\\n12",
+                    "None of these"
+                ],
+                correct: [3],
+                solution: "score is string '10'. Loop 1: '10'+5 = '105', multiplier = 6. Loop 2: '105'+5 = '1055', multiplier = 12. Outputs: '1055' and 12 (None of the listed numbers)."
+            },
+            {
+                qn: 17,
+                id: "6406531433606",
+                type: "MSQ",
+                marks: 3.00,
+                text: "Which factors directly impact the Lighthouse \"Performance\" score?",
+                options: [
+                    "First Contentful Paint (FCP)",
+                    "Time to Interactive (TTI)",
+                    "Layout Shift",
+                    "HTTPS usage"
+                ],
+                correct: [0, 1, 2],
+                solution: "Lighthouse Performance audit evaluates FCP, TTI, and Cumulative Layout Shift."
+            },
+            {
+                qn: 18,
+                id: "6406531433618",
+                type: "MSQ",
+                marks: 3.00,
+                text: "Which statements are true about handling background tasks in Flask with Celery?",
+                options: [
+                    "Using time.sleep() blocks the event loop and is recommended for async tasks",
+                    "Celery allows long-running tasks to be executed asynchronously",
+                    "Polling is a strategy to check task status periodically",
+                    "Flask + Celery + Redis is a common stack for async task management"
+                ],
+                correct: [1, 2, 3],
+                solution: "Celery enables asynchronous task execution with Redis message brokers, and clients query task status using polling."
+            },
+            {
+                qn: 19,
+                id: "6406531433619",
+                type: "MSQ",
+                marks: 3.00,
+                text: "Which of the following are true about mutations and actions in Vuex?",
+                options: [
+                    "Actions can be asynchronous",
+                    "Only actions can call APIs through fetch call",
+                    "Mutations should modify state directly",
+                    "Mutations can be asynchronous"
+                ],
+                correct: [0, 1, 2],
+                solution: "Vuex actions encapsulate asynchronous operations and API calls, committing mutations to update state synchronously."
+            },
+            {
+                qn: 20,
+                id: "6406531433620",
+                type: "MSQ",
+                marks: 3.00,
+                text: "Consider the below Vue class binding and select the most appropriate option(s):",
+                code: "<div v-bind:class=\"{ active: isActive, 'text-bold': hasBoldText, disabled: !isEnabled }\"></div>",
+                options: [
+                    "The class \"active\" will only be applied to the div element if the variable \"isActive\" evaluates to true.",
+                    "The class \"disabled\" will be applied to the div element when the variable \"isEnabled\" evaluates to false.",
+                    "The class \"text-bold\" will always be applied to the div element regardless of the \"hasBoldText\" variable value.",
+                    "The class \"text-bold\" will only be applied if the variable \"hasBoldText\" exists and evaluates to a truthy value."
+                ],
+                correct: [0, 1, 3],
+                solution: "Vue object syntax applies classes based on truthiness of object property values."
+            },
+            {
+                qn: 21,
+                id: "6406531433612",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "Given the following component setup, answer the given subquestions\nComponent: Task.vue",
+                code: "<template>\n  <div>\n    <button @click=\"toggleShowCompleted\">\n      {{ showCompleted ? 'Hide' : 'Show' }} Completed\n    </button>\n    <ul>\n      <li v-for=\"task in filteredTasks\" :key=\"task.id\">\n        <span>{{ task.name }} - {{ task.status }}</span>\n        <button @click=\"markComplete(task.id)\">Mark Complete</button>\n      </li>\n    </ul>\n    <p>Total Completed: {{ completedCount }}</p>\n  </div>\n</template>\n\x3Cscript\x3E\nexport default {\n  data() {\n    return {\n      showCompleted: false,\n      tasks: [\n        { id: 1, name: 'Learn Vue', status: 'incomplete' },\n        { id: 2, name: 'Build Project', status: 'incomplete' },\n        { id: 3, name: 'Test App', status: 'complete' }\n      ]\n    }\n  },\n  computed: {\n    filteredTasks() {\n      if (this.showCompleted) return this.tasks;\n      return this.tasks.filter(task => task.status !== 'complete');\n    },\n    completedCount() {\n      return this.tasks.reduce((acc, task) => acc + (task.status === 'complete' ? 1 : 0), 0);\n    }\n  },\n  methods: {\n    markComplete(id) {\n      const task = this.tasks.find(t => t.id === id);\n      if (task && task.status === 'incomplete') {\n        task.status = 'complete';\n      }\n    },\n    toggleShowCompleted() {\n      this.showCompleted = !this.showCompleted;\n    }\n  }\n}\n<\/script>",
+                options: [],
+                correct: [],
+                solution: "Comprehension passage block."
+            },
+            {
+                qn: 22,
+                id: "6406531433613",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Scenario:\n1. The component is loaded. 2. User clicks \"Mark Complete\" for the task named Build Project. 3. User clicks \"Show Completed\" button again.\nAfter step 2 (Mark Completed is clicked), what tasks are shown?",
+                options: [
+                    "Learn Vue",
+                    "Learn Vue, Build Project, Test App",
+                    "Test App only",
+                    "None"
+                ],
+                correct: [0],
+                solution: "showCompleted is initially false. Marking Build Project complete excludes it from filteredTasks, leaving only Learn Vue."
+            },
+            {
+                qn: 23,
+                id: "6406531433614",
+                type: "MCQ",
+                marks: 3.00,
+                text: "After step 3 (Mark Complete is clicked on Build Project and Show Completed toggled), how many completed tasks are reported in the UI?",
+                options: [
+                    "1",
+                    "2",
+                    "3",
+                    "0"
+                ],
+                correct: [1],
+                solution: "Build Project and Test App both have status 'complete', returning completedCount = 2."
+            },
+            {
+                qn: 24,
+                id: "6406531433615",
+                type: "MSQ",
+                marks: 3.00,
+                text: "Which of the following are true about this component's behavior?",
+                options: [
+                    "The filteredTasks logic won't work properly if we used arrow functions for the filter method.",
+                    "Using non-arrow functions in computed properties allows correct this access to Vue instance.",
+                    "filteredTasks and completedCount will both update reactively when a task's status is changed.",
+                    "The @click=\"markComplete(task.id)\" usage correctly preserves reactivity."
+                ],
+                correct: [1, 2, 3],
+                solution: "Vue reactive properties automatically track mutation of task properties inside arrays, and standard functions preserve instance binding."
+            },
+            {
+                qn: 25,
+                id: "6406531433621",
+                type: "MCQ",
+                marks: 4.50,
+                text: "Assuming this code runs in a browser environment, what will be the output?",
+                code: "const globalVar = 100;\nvar value = 200;\n\nconst calculator = {\n    value: 50,\n    compute: function () {\n        const innerObj = {\n            value: 25,\n            regularMethod: function () {\n                return this.value;\n            },\n            arrowMethod: () => {\n                return this.value;\n            },\n            mixedMethod: function () {\n                const arrowInside = () => this.value;\n                return arrowInside();\n            }\n        };\n\n        return {\n            regular: innerObj.regularMethod(),\n            arrow: innerObj.arrowMethod(),\n            mixed: innerObj.mixedMethod()\n        };\n    }\n};\n\nconst result = calculator.compute();\nconsole.log(result.regular);\nconsole.log(result.arrow);\nconsole.log(result.mixed);",
+                options: [
+                    "25\\n200\\n50",
+                    "25\\n50\\n25",
+                    "50\\n200\\n50",
+                    "25\\n200\\n25"
+                ],
+                correct: [3],
+                solution: "regularMethod returns 25. arrowMethod captures global window.value = 200. mixedMethod arrowInside captures innerObj.value = 25. Output: 25, 200, 25."
+            },
+            {
+                qn: 26,
+                id: "6406531433622",
+                type: "MCQ",
+                marks: 4.50,
+                text: "Consider this Vue.js component code:",
+                code: "const TodoApp = {\n    template: `\n    <div>\n        <input v-model=\"newTodo\" @keyup.enter=\"addTodo\" />\n        <ul><li v-for=\"todo in todos\" :key=\"todo.id\">{{ todo.text }}</li></ul>\n    </div>`,\n    data() {\n        return { newTodo: '', todos: [] }\n    },\n    methods: {\n        addTodo() {\n            if (this.newTodo) {\n                this.todos.push({ id: Date.now(), text: this.newTodo });\n                this.newTodo = '';\n            }\n        }\n    }\n}",
+                qnSubText: "What happens when a user types \"Learn Vue\" into the input field and presses Enter?",
+                options: [
+                    "An error occurs because the todos array is empty",
+                    "The input is cleared, and Learn Vue appears in the list",
+                    "Only the input is cleared, no todo is added",
+                    "The page refreshes"
+                ],
+                correct: [1],
+                solution: "addTodo pushes { id: Date.now(), text: 'Learn Vue' } to todos array and clears newTodo input."
+            },
+            {
+                qn: 27,
+                id: "6406531433623",
+                type: "MCQ",
+                marks: 4.50,
+                text: "Given this Vue Router setup:",
+                code: "const routes = [\n    { path: '/user/id/profile', component: UserProfile },\n    { path: '/user/:id', component: User },\n    { path: '*', component: NotFound },\n    { path: '/user/:id/settings', component: UserSettings }\n];",
+                qnSubText: "What component renders for URL /user/123/settings?",
+                options: [
+                    "UserProfile",
+                    "User",
+                    "NotFound",
+                    "UserSettings"
+                ],
+                correct: [1],
+                solution: "Sequential route matching matches /user/:id for /user/123 before checking lower nested path rules."
+            },
+            {
+                qn: 28,
+                id: "6406531433624",
+                type: "MCQ",
+                marks: 4.50,
+                text: "Given the Flask app and frontend code:",
+                code: "// Flask backend\nfrom flask import Flask\nfrom flask_cors import CORS\n\napp = Flask(__name__)\nCORS(app, resources={r\"/api/*\": {\"origins\": \"http://localhost:3000\"}})\n\n@app.route('/api/data')\ndef data():\n    return {\"msg\": \"Success\"}\n\n// Frontend code\nfetch(\"http://localhost:5000/api/data\")\n    .then(res => res.json())\n    .then(data => console.log(data));",
+                qnSubText: "What will happen when run from a Vue app hosted at http://localhost:5173?",
+                options: [
+                    "Request succeeds",
+                    "CORS error occurs",
+                    "404 error",
+                    "The server crashes"
+                ],
+                correct: [1],
+                solution: "CORS configuration specifies allowed origin http://localhost:3000, causing browser to block requests from origin http://localhost:5173."
+            },
+            {
+                qn: 29,
+                id: "6406531433625",
+                type: "MCQ",
+                marks: 4.50,
+                text: "What will this JavaScript code output?",
+                code: "function createCounter() {\n    let count = 0;\n    return function() {\n        count++;\n        return count;\n    };\n}\n\nconst counter1 = createCounter();\nconst counter2 = createCounter();\n\nconsole.log(counter1());\nconsole.log(counter1());\nconsole.log(counter2());",
+                options: [
+                    "1\\n2\\n3",
+                    "1\\n2\\n1",
+                    "1\\n1\\n1",
+                    "undefined\\nundefined\\nundefined"
+                ],
+                correct: [1],
+                solution: "counter1 closure increments to 1, then 2. counter2 has an independent scope and returns 1."
+            },
+            {
+                qn: 30,
+                id: "6406531433626",
+                type: "MSQ",
+                marks: 4.50,
+                text: "Assuming that the root Vue instance has already been created and mounted to div app. Which of the following statements are CORRECT?",
+                code: "<template>\n  <data-provider>\n    <template v-slot:header=\"{ user, loading }\">\n      <h1 v-if=\"!loading\">Welcome {{ user.name }}</h1>\n      <span v-else>Loading...</span>\n    </template>\n    <template v-slot:content=\"slotProps\">\n      <ul>\n        <li v-for=\"item in slotProps.items\" :key=\"item\">\n          {{ item }} ({{ slotProps.count }} total)\n        </li>\n      </ul>\n    </template>\n    <template v-slot:default=\"defaultProps\">\n      <p>{{ defaultProps.fallback }}</p>\n    </template>\n  </data-provider>\n</template>",
+                options: [
+                    "The header slot will display \"Welcome John\" when loading is false",
+                    "The content slot will render 3 list items with \"item1 (3 total)\", \"item2 (3 total)\",\"item3 (3 total)\"",
+                    "The default slot will display \"No data available\" from the fallback prop",
+                    "Changing v-slot:default to just v-slot in parent-component would break thefunctionality"
+                ],
+                correct: [0, 1, 2],
+                solution: "Scoped slot props pass child slot state dynamically into named template scopes."
+            },
+            {
+                qn: 31,
+                id: "6406531433627",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "Answer the given Subquestions:",
+                options: [],
+                correct: [],
+                solution: "Comprehension passage block."
+            },
+            {
+                qn: 32,
+                id: "6406531433628",
+                type: "MCQ",
+                marks: 4.50,
+                text: "Consider the following Vue Router configuration in a Vue 2 application:",
+                code: "const routes = [\n    { path: '/', name: 'Home', component: HomeView },\n    { path: '/user/:id', name: 'UserProfile', component: UserProfile },\n    { path: '/product/:category/:id', name: 'ProductDetail', component: ProductDetail }\n];",
+                qnSubText: "In a Vue component, you have navigation methods. What URLs will be generated when the user clicks each navigation element?",
+                options: [
+                    "User button: /user, Product button: /product, Home link: /home",
+                    "User button: /user/123, Product button: /product/electronics/456, Home link: /",
+                    "User button: /UserProfile/123, Product button: /ProductDetail/electronics/456, Home link: /Home",
+                    "User button: /user?id=123, Product button: /product?category=electronics&id=456, Home link: /"
+                ],
+                correct: [1],
+                solution: "Named route router.push() calls substitute params into path templates (/user/123, /product/electronics/456, /)."
+            },
+            {
+                qn: 33,
+                id: "6406531433629",
+                type: "MSQ",
+                marks: 4.50,
+                text: "Using the same Vue Router configuration from the previous question, Select ALL correct statements about these navigation methods.",
+                options: [
+                    "The \"View User\" link will navigate to /user/789 and match the UserProfile route",
+                    "The navigateOne() method will create URL /user/555?tab=settings",
+                    "The $router.replace() method adds a new entry to the browser history",
+                    "The $router.go(-1) method navigates to the previous page in browser history"
+                ],
+                correct: [1, 3],
+                solution: "navigateOne() passes params and query params producing /user/555?tab=settings, and $router.go(-1) steps back 1 page."
+            },
+            {
+                qn: 34,
+                id: "6406531433630",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "Prashant and Nikita are creating a quiz question paper collaboratively...",
+                code: "function simulateTasks() {\n    const prashant = new Promise(resolve => setTimeout(() => resolve(\"Prashant\"), 3000));\n    const nikita = new Promise(resolve => setTimeout(() => resolve(\"Nikita\"), 2000));\n    const mayur = new Promise(resolve => setTimeout(() => resolve(\"Mayur\"), 4000));\n\n    const team = Promise.all([prashant, nikita]).then(() => \"Team\");\n\n    Promise.race([team, mayur]).then(winner => {\n        console.log(\"Winner is:\", winner);\n    });\n}",
+                options: [],
+                correct: [],
+                solution: "Comprehension passage block."
+            },
+            {
+                qn: 35,
+                id: "6406531433631",
+                type: "MCQ",
+                marks: 3.00,
+                text: "If Prashant and Nikita finish together in 3 seconds (since Promise.all waits for both), and Mayur finishes in 4 seconds, who wins?",
+                options: [
+                    "Mayur",
+                    "Team",
+                    "Nikita",
+                    "Race condition prevents output"
+                ],
+                correct: [1],
+                solution: "Promise.all team resolves in 3s, beating Mayur's 4s in Promise.race."
+            },
+            {
+                qn: 36,
+                id: "6406531433632",
+                type: "MCQ",
+                marks: 3.00,
+                text: "The Team takes 5 seconds in total. Mayur takes 2 seconds. According to the logic of app2.js, who is the winner?",
+                options: [
+                    "Mayur",
+                    "Team",
+                    "Undefined",
+                    "Error due to async logic"
+                ],
+                correct: [0],
+                solution: "teamTime (5000ms) >= mayurTime (2000ms), so teamTime < mayurTime evaluates false, outputting Mayur."
+            }
+        ];
+
+        // ==========================================================================
+        // PORTAL STATE & FUNCTIONS
+        // ==========================================================================
+        let currentMode = 'exam'; // 'exam' or 'learning'
+        let userAnswers = {}; // { qnNum: [optIdx] }
+        let timerSeconds = 0;
+        let timerInterval = null;
+        let isTimerRunning = true;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuestionPalette();
+            renderQuestions();
+            updateScoreDisplay();
+            startTimer();
+        });
+
+        function setPortalMode(mode) {
+            currentMode = mode;
+            document.getElementById('btnExamMode').classList.toggle('active', mode === 'exam');
+            document.getElementById('btnLearningMode').classList.toggle('active', mode === 'learning');
+            renderQuestions();
+            updatePaletteStatuses();
+        }
+
+        function renderQuestionPalette() {
+            const grid = document.getElementById('paletteGrid');
+            grid.innerHTML = QUESTIONS_DATA.map(q => `
+                <button class="palette-btn" id="paletteBtn_${q.qn}" onclick="scrollToQuestion(${q.qn})">${q.qn}</button>
+            `).join('');
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            let html = '';
+
+            QUESTIONS_DATA.forEach((q) => {
+                html += `
+                <article class="qn-card" id="qnCard_${q.qn}">
+                    <div class="qn-header-container">
+                        <div class="qn-header-top">
+                            <div class="qn-title-main">
+                                Question ${q.qn} : ${q.id}
+                            </div>
+                            <button class="btn-solution-pill" onclick="toggleSolution(${q.qn})">
+                                <i class="fa-regular fa-circle-check"></i> View Solutions (0)
+                            </button>
+                        </div>
+                        <div class="qn-header-sub">
+                            <span class="qn-id-tag">Question ${q.qn} : ${q.id}</span>
+                            <span class="qn-meta-info">Total Mark : ${q.marks.toFixed(2)} | Type : ${q.type}</span>
+                        </div>
+                    </div>
+
+                    <div class="qn-text">${q.text ? q.text.replace(/\\n/g, '<br>').replace(/\n/g, '<br>') : ''}</div>
+
+                    ${q.code ? `
+                    <div class="code-snippet-wrap">
+                        <code>${escapeHtml(q.code)}</code>
+                    </div>` : ''}
+
+                    ${q.qnSubText ? `<div class="qn-text" style="margin-top:0.85rem;">${q.qnSubText.replace(/\\n/g, '<br>').replace(/\n/g, '<br>')}</div>` : ''}
+
+                    <!-- Options / Inputs -->
+                    ${renderQuestionInputs(q)}
+
+                    <!-- Footer Action Toolbar -->
+                    <div class="qn-footer-toolbar">
+                        <div class="qn-actions-group">
+                            <button class="btn-action-pill btn-discuss" onclick="alert('Discussion forum loading...')"><i class="fa-regular fa-comments"></i> Discussions (0)</button>
+                            <button class="btn-action-pill btn-correct" onclick="alert('Correction reported. Thank you!')"><i class="fa-regular fa-pen-to-square"></i> Suggest Correction</button>
+                            <button class="btn-action-pill btn-broken" onclick="alert('Format flag recorded.')"><i class="fa-solid fa-wrench"></i> Broken Format?</button>
+                        </div>
+                    </div>
+
+                    <!-- Solution Accordion -->
+                    <div class="solution-box" id="solution_${q.qn}">
+                        <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution & Code Trace</div>
+                        <div class="solution-text">${q.solution ? q.solution.replace(/\\n/g, '<br>').replace(/\n/g, '<br>') : ''}</div>
+                    </div>
+                </article>
+                `;
+
+                if (q.qn === 6 || q.qn === 15 || q.qn === 25) {
+                    html += `
+                    <div class="ad-banner-box">
+                        <span class="ad-tag">ADVERTISEMENT</span>
+                        <div class="ad-actions">
+                            <button class="btn-remove-ads" onclick="alert('Ad-free experience enabled.')"><i class="fa-solid fa-bolt"></i> Remove Ads</button>
+                            <button class="btn-close-ad" onclick="this.parentElement.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    `;
+                }
+            });
+
+            container.innerHTML = html;
+            updatePaletteStatuses();
+        }
+
+        function renderQuestionInputs(q) {
+            if (q.type === 'COMPREHENSION') {
+                return `<div style="font-size:0.88rem; color:var(--text-muted); font-style:italic; margin-bottom:1.25rem;">[Comprehension Passage Block - Subquestions are listed below]</div>`;
+            }
+
+            const isMSQ = q.type === 'MSQ';
+            const userArr = userAnswers[q.qn] || [];
+
+            return `
+            <div class="options-list">
+                ${q.options.map((optText, idx) => {
+                    const isChecked = userArr.includes(idx);
+                    const isCorrect = q.correct.includes(idx);
+                    let highlightClass = '';
+
+                    if (isChecked) highlightClass = 'selected';
+
+                    if (currentMode === 'learning') {
+                        if (isCorrect) highlightClass = 'correct-highlight';
+                        else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                    }
+
+                    const cleanOptText = (optText || '').replace(/\\n/g, '\n');
+                    const isMultiLine = cleanOptText.includes('\n');
+
+                    return `
+                    <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <span class="option-text">${isMultiLine ? `<pre style="margin:0; font-family:var(--font-mono); font-size:0.9rem; line-height:1.5;"><code>${escapeHtml(cleanOptText)}</code></pre>` : escapeHtml(cleanOptText)}</span>
+                    </label>
+                    `;
+                }).join('')}
+            </div>
+            `;
+        }
+
+        function handleOptionSelect(qnNum, optIdx, qnType) {
+            if (qnType === 'MCQ') {
+                userAnswers[qnNum] = [optIdx];
+            } else if (qnType === 'MSQ') {
+                if (!userAnswers[qnNum]) userAnswers[qnNum] = [];
+                const pos = userAnswers[qnNum].indexOf(optIdx);
+                if (pos >= 0) userAnswers[qnNum].splice(pos, 1);
+                else userAnswers[qnNum].push(optIdx);
+            }
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function calculateQuestionScore(q) {
+            const userAns = userAnswers[q.qn];
+            if (!userAns || !Array.isArray(userAns) || userAns.length === 0) return "0.00";
+
+            if (q.type === 'MCQ') {
+                return (userAns[0] === q.correct[0]) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            if (q.type === 'MSQ') {
+                const sortedUser = [...userAns].sort().join(',');
+                const sortedCorrect = [...q.correct].sort().join(',');
+                return (sortedUser === sortedCorrect) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            return "0.00";
+        }
+
+        function updateScoreDisplay() {
+            let total = 0;
+            let answeredCount = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const score = parseFloat(calculateQuestionScore(q));
+                total += score;
+
+                const ans = userAnswers[q.qn];
+                if (ans && Array.isArray(ans) && ans.length > 0) {
+                    answeredCount++;
+                }
+            });
+
+            document.getElementById('liveScoreDisplay').textContent = `${total.toFixed(2)} / 100.00`;
+            const pct = ((total / 100) * 100).toFixed(1);
+            document.getElementById('livePercentDisplay').textContent = `(${pct}%)`;
+            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/${QUESTIONS_DATA.length}`;
+        }
+
+        function updatePaletteStatuses() {
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.getElementById(`paletteBtn_${q.qn}`);
+                if (!btn) return;
+
+                btn.className = 'palette-btn';
+
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && Array.isArray(ans) && ans.length > 0;
+
+                if (hasAns) {
+                    btn.classList.add('answered');
+                    if (currentMode === 'learning') {
+                        const score = parseFloat(calculateQuestionScore(q));
+                        if (score > 0) btn.classList.add('correct');
+                        else btn.classList.add('incorrect');
+                    }
+                }
+            });
+        }
+
+        function toggleSolution(qnNum) {
+            const box = document.getElementById(`solution_${qnNum}`);
+            if (box) box.classList.toggle('open');
+        }
+
+        function scrollToQuestion(qnNum) {
+            const card = document.getElementById(`qnCard_${qnNum}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.querySelectorAll('.palette-btn').forEach(b => b.classList.remove('active-qn'));
+                const btn = document.getElementById(`paletteBtn_${qnNum}`);
+                if (btn) btn.classList.add('active-qn');
+            }
+        }
+
+        // Timer Logic
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (isTimerRunning) {
+                    timerSeconds++;
+                    updateTimerUI();
+                }
+            }, 1000);
+        }
+
+        function toggleTimer() {
+            isTimerRunning = !isTimerRunning;
+            const btn = document.getElementById('btnPauseTimer');
+            if (btn) btn.innerHTML = isTimerRunning ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-rotate-right"></i>';
+        }
+
+        function resetTimer() {
+            timerSeconds = 0;
+            updateTimerUI();
+        }
+
+        function updateTimerUI() {
+            const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const secs = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+        }
+
+        // Exam Submission & Modals
+        function submitExam() {
+            setPortalMode('learning');
+
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+            let totalScore = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && Array.isArray(ans) && ans.length > 0;
+
+                if (!hasAns) {
+                    unansweredCount++;
+                } else {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    totalScore += score;
+                    if (score > 0) correctCount++;
+                    else incorrectCount++;
+                }
+            });
+
+            document.getElementById('modalScoreText').textContent = `${totalScore.toFixed(2)} / 100.00`;
+            document.getElementById('modalPercentText').textContent = `${((totalScore / 100) * 100).toFixed(1)}% Accuracy`;
+            document.getElementById('modalCorrectCount').textContent = correctCount;
+            document.getElementById('modalIncorrectCount').textContent = incorrectCount;
+            document.getElementById('modalUnansweredCount').textContent = unansweredCount;
+
+            document.getElementById('resultModal').classList.add('active');
+        }
+
+        function resetExam() {
+            userAnswers = {};
+            resetTimer();
+            closeResultModal();
+            setPortalMode('learning');
+        }
+
+        function openSummaryModal() {
+            document.getElementById('summaryModal').classList.add('active');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.remove('active');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.remove('active');
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('portalSidebar');
+            const toggleBtn = document.getElementById('mobileSidebarToggle');
+            if (sidebar && toggleBtn) {
+                sidebar.classList.toggle('open');
+                toggleBtn.classList.toggle('active');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const fab = document.getElementById('fabBackToTop');
+            if (fab) {
+                if (window.scrollY > 300) fab.classList.add('visible');
+                else fab.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+
+</html>
