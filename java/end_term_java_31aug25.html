@@ -88,7 +88,7 @@
                     </div>
                     <div class="exam-info-row">
                         <span class="exam-info-label">QP :</span>
-                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">2025 Aug31: IIT M AN EXAM QDF4</span>
+                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">Programming Concepts Using Java 31 Aug 25</span>
                     </div>
                 </div>
 
@@ -101,62 +101,154 @@
                     </div>
                 </div>
 
-                <!-- Action Button: Download PDF -->
-                <button class="btn-sidebar-action" onclick="alert('PDF download will start shortly...')">
-                    <i class="fa-solid fa-lock"></i> Download PDF
-                </button>
-
-                <!-- Question Menu Grid -->
-                <div class="question-menu-wrap">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
-                        <span class="menu-heading" style="margin-bottom:0;">Question Menu</span>
-                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem; color:var(--text-muted);">0/24</span>
-                    </div>
-                    <div class="qn-grid" id="qnGrid">
-                        <!-- Populated dynamically -->
-                    </div>
-                </div>
-
-                <!-- Live Timer Card -->
-                <div class="timer-card">
-                    <div class="timer-label"><i class="fa-regular fa-clock"></i> TIMER</div>
-                    <div class="timer-digits" id="timerDigits">00:00</div>
-                </div>
-
-                <!-- Exam Action Controls -->
-                <div>
-                    <div class="menu-heading">Controls</div>
-                    <button class="btn-submit-exam" id="btnSubmitExam" onclick="submitExam()">
-                        <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
+                <!-- Action Buttons -->
+                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                        onclick="openSummaryModal()">
+                        <i class="fa-solid fa-eye"></i> View Question Paper Summary
+                    </button>
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                        onclick="window.print()">
+                        <i class="fa-solid fa-download"></i> Download PDF
                     </button>
                 </div>
 
-                <!-- Score Result Display -->
-                <div class="score-card-box" id="scoreCardBox">
-                    <div class="score-title">Your Score</div>
-                    <div class="score-val" id="scoreVal">0.00 / 100.00</div>
-                    <div class="score-pct" id="scorePct">(0%)</div>
+                <!-- Question Menu Grid -->
+                <div>
+                    <div class="menu-heading">
+                        <span>QUESTION MENU</span>
+                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/24</span>
+                    </div>
+                    <div class="palette-grid" id="paletteGrid">
+                        <!-- Populated by JS -->
+                    </div>
                 </div>
 
-                <!-- Remove Ads Button -->
-                <button class="btn-remove-ads" style="width:100%; margin-top:0.75rem;" onclick="alert('Ad-free view activated!')">
-                    <i class="fa-solid fa-bolt"></i> Remove Ads
-                </button>
+                <!-- Timer Box -->
+                <div>
+                    <div class="menu-heading">TIMER</div>
+                    <div class="timer-box">
+                        <div class="timer-display" id="timerDisplay">00:00</div>
+                        <div class="timer-controls">
+                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i
+                                    class="fa-solid fa-pause"></i></button>
+                            <button class="btn-icon-sm" onclick="resetTimer()"><i
+                                    class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls & Score Box -->
+                <div>
+                    <div class="menu-heading">CONTROLS</div>
+                    <button class="btn-submit-exam" onclick="submitExam()">
+                        <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
+                    </button>
+                    <div class="score-card" style="margin-top:1rem;">
+                        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">YOUR SCORE</span>
+                        <div class="score-num" id="liveScoreDisplay">0.00 / 100.00</div>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);"
+                            id="livePercentDisplay">(0.0%)</span>
+                    </div>
+                </div>
 
             </aside>
 
-            <!-- Main Question Area -->
-            <section class="portal-main">
-                <div class="questions-container" id="questionsContainer">
-                    <!-- Populated dynamically via JS -->
-                </div>
+            <!-- Right Area: Questions List -->
+            <section class="questions-area" id="questionsContainer">
+                <!-- Dynamically Rendered by JS -->
             </section>
+
         </div>
     </main>
 
+    <!-- Floating Back to Top FAB -->
+    <button class="fab-back-to-top" id="fabBackToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;">Question Paper Summary</h3>
+                <button class="btn-icon-sm" onclick="closeSummaryModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+                Paper Title: <b>Programming Concepts Using Java 31 Aug 25</b> (End Term Quiz)
+            </p>
+            <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+                <tr style="border-bottom:1px solid var(--border-light); text-align:left;">
+                    <th style="padding:0.6rem;">Question Type</th>
+                    <th style="padding:0.6rem;">Count</th>
+                    <th style="padding:0.6rem;">Total Marks</th>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MCQ (Multiple Choice)</td>
+                    <td style="padding:0.6rem;">22</td>
+                    <td style="padding:0.6rem;">92.00</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MSQ (Multiple Select)</td>
+                    <td style="padding:0.6rem;">2</td>
+                    <td style="padding:0.6rem;">8.00</td>
+                </tr>
+            </table>
+            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close Summary</button>
+        </div>
+    </div>
+
+    <!-- Exam Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-card" style="text-align:center;">
+            <div
+                style="width:64px; height:64px; border-radius:50%; background:rgba(16, 185, 129, 0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 1rem;">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Exam Submitted!</h2>
+            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for Java End Term Quiz (31 Aug 25)</p>
+
+            <div
+                style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
+                <div style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; font-weight:600;">
+                    Final Score</div>
+                <div style="font-family:var(--font-mono); font-size:2.8rem; font-weight:800; color:var(--accent-green);"
+                    id="modalScoreText">0.00 / 100.00</div>
+                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0% Accuracy
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem; margin-bottom:1.5rem;">
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Correct</div>
+                    <div style="font-weight:700; color:#10b981; font-size:1.2rem;" id="modalCorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Incorrect</div>
+                    <div style="font-weight:700; color:#ef4444; font-size:1.2rem;" id="modalIncorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Unanswered</div>
+                    <div style="font-weight:700; color:var(--text-secondary); font-size:1.2rem;"
+                        id="modalUnansweredCount">0</div>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:0.75rem;">
+                <button class="btn btn-secondary btn-full"
+                    onclick="closeResultModal(); setPortalMode('learning');">Review Solutions <i
+                        class="fa-solid fa-book-open"></i></button>
+                <button class="btn btn-primary btn-full" onclick="resetExam()">Retake Exam <i
+                        class="fa-solid fa-rotate-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Master Scripts -->
+    <script src="../assets/js/main.js"></script>
     <script>
         // Questions Master Data for 31 Aug 2025 AN Java End Term Paper
-        const questionsData = [
+        const QUESTIONS_DATA = [
             {
                 qn: 1,
                 id: "6406531415016",
@@ -1045,67 +1137,49 @@ public class ToggleLabel extends JFrame implements ActionListener {
             }
         ];
 
-        // State Tracking
-        let currentMode = 'exam';
-        const userAnswers = {};
-        let isSubmitted = false;
+        // ==========================================================================
+        // PORTAL STATE & FUNCTIONS
+        // ==========================================================================
+        let currentMode = 'exam'; // 'exam' or 'learning'
+        let userAnswers = {}; // { qnNum: [optIdx] }
+        let timerSeconds = 0;
+        let timerInterval = null;
+        let isTimerRunning = true;
 
         document.addEventListener('DOMContentLoaded', () => {
             renderQuestionPalette();
             renderQuestions();
+            updateScoreDisplay();
             startTimer();
         });
-
-        function toggleMobileSidebar() {
-            const sidebar = document.getElementById('portalSidebar');
-            const toggleBtn = document.getElementById('mobileSidebarToggle');
-            sidebar.classList.toggle('active');
-            toggleBtn.classList.toggle('active');
-        }
-
-        let secondsElapsed = 1;
-        function startTimer() {
-            setInterval(() => {
-                secondsElapsed++;
-                const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
-                const secs = String(secondsElapsed % 60).padStart(2, '0');
-                document.getElementById('timerDigits').textContent = `${mins}:${secs}`;
-            }, 1000);
-        }
-
-        function renderQuestionPalette() {
-            const qnGrid = document.getElementById('qnGrid');
-            qnGrid.innerHTML = questionsData.map(q => `
-                <button class="qn-palette-btn" id="palette_btn_${q.qn}" onclick="scrollToQuestion(${q.qn})">
-                    ${q.qn}
-                </button>
-            `).join('');
-        }
-
-        function scrollToQuestion(qnNum) {
-            const el = document.getElementById(`question_card_${qnNum}`);
-            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            const sidebar = document.getElementById('portalSidebar');
-            if (sidebar.classList.contains('active')) toggleMobileSidebar();
-        }
 
         function setPortalMode(mode) {
             currentMode = mode;
             document.getElementById('btnExamMode').classList.toggle('active', mode === 'exam');
             document.getElementById('btnLearningMode').classList.toggle('active', mode === 'learning');
             renderQuestions();
+            updatePaletteStatuses();
+        }
+
+        function renderQuestionPalette() {
+            const grid = document.getElementById('paletteGrid');
+            grid.innerHTML = QUESTIONS_DATA.map(q => `
+                <button class="palette-btn" id="paletteBtn_${q.qn}" onclick="scrollToQuestion(${q.qn})">${q.qn}</button>
+            `).join('');
         }
 
         function renderQuestions() {
             const container = document.getElementById('questionsContainer');
             let html = '';
 
-            questionsData.forEach(q => {
+            QUESTIONS_DATA.forEach((q) => {
                 html += `
-                <article class="question-card" id="question_card_${q.qn}">
-                    <div class="qn-header-top">
-                        <div class="qn-header-main">
-                            <h2 class="qn-title">Question ${q.qn}</h2>
+                <article class="qn-card" id="qnCard_${q.qn}">
+                    <div class="qn-header-container">
+                        <div class="qn-header-top">
+                            <div class="qn-title-main">
+                                Question ${q.qn} : ${q.id}
+                            </div>
                             <button class="btn-solution-pill" onclick="toggleSolution(${q.qn})">
                                 <i class="fa-regular fa-circle-check"></i> View Solutions (0)
                             </button>
@@ -1116,17 +1190,19 @@ public class ToggleLabel extends JFrame implements ActionListener {
                         </div>
                     </div>
 
-                    <div class="qn-text">${q.text.replace(/\\n/g, '<br>')}</div>
+                    <div class="qn-text">${q.text}</div>
 
                     ${q.code ? `
                     <div class="code-snippet-wrap">
                         <code>${escapeHtml(q.code)}</code>
                     </div>` : ''}
 
-                    ${q.qnSubText ? `<div class="qn-text" style="margin-top:0.85rem;">${q.qnSubText.replace(/\\n/g, '<br>')}</div>` : ''}
+                    ${q.qnSubText ? `<div class="qn-text" style="margin-top:0.85rem;">${q.qnSubText.replace(/\n/g, '<br>')}</div>` : ''}
 
+                    <!-- Options / Inputs -->
                     ${renderQuestionInputs(q)}
 
+                    <!-- Footer Action Toolbar -->
                     <div class="qn-footer-toolbar">
                         <div class="qn-actions-group">
                             <button class="btn-action-pill btn-discuss" onclick="alert('Discussion forum loading...')"><i class="fa-regular fa-comments"></i> Discussions (0)</button>
@@ -1135,13 +1211,15 @@ public class ToggleLabel extends JFrame implements ActionListener {
                         </div>
                     </div>
 
+                    <!-- Solution Accordion -->
                     <div class="solution-box" id="solution_${q.qn}">
                         <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution & Code Trace</div>
-                        <div class="solution-text">${q.solution.replace(/\\n/g, '<br>')}</div>
+                        <div class="solution-text">${q.solution.replace(/\n/g, '<br>')}</div>
                     </div>
                 </article>
                 `;
 
+                // Add Advertisement banner after Q6 and Q15
                 if (q.qn === 6 || q.qn === 15) {
                     html += `
                     <div class="ad-banner-box">
@@ -1171,17 +1249,18 @@ public class ToggleLabel extends JFrame implements ActionListener {
                     let highlightClass = '';
 
                     if (isChecked) highlightClass = 'selected';
-                    if (currentMode === 'learning' || isSubmitted) {
+
+                    if (currentMode === 'learning') {
                         if (isCorrect) highlightClass = 'correct-highlight';
                         else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
                     }
 
-                    const formattedOpt = escapeHtml(optText).replace(/\\n/g, '<br>');
+                    const isMultiLine = optText.includes('\n');
 
                     return `
                     <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
-                        <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" ${isChecked ? 'checked' : ''} style="margin-top:0.2rem;">
-                        <span class="option-text">${formattedOpt}</span>
+                        <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <span class="option-text">${isMultiLine ? `<pre style="margin:0; font-family:var(--font-mono); font-size:0.9rem; line-height:1.5;"><code>${escapeHtml(optText)}</code></pre>` : escapeHtml(optText)}</span>
                     </label>
                     `;
                 }).join('')}
@@ -1190,65 +1269,168 @@ public class ToggleLabel extends JFrame implements ActionListener {
         }
 
         function handleOptionSelect(qnNum, optIdx, qnType) {
-            if (isSubmitted && currentMode === 'exam') return;
-            if (!userAnswers[qnNum]) userAnswers[qnNum] = [];
-
             if (qnType === 'MCQ') {
                 userAnswers[qnNum] = [optIdx];
-            } else {
+            } else if (qnType === 'MSQ') {
+                if (!userAnswers[qnNum]) userAnswers[qnNum] = [];
                 const pos = userAnswers[qnNum].indexOf(optIdx);
-                if (pos > -1) userAnswers[qnNum].splice(pos, 1);
+                if (pos >= 0) userAnswers[qnNum].splice(pos, 1);
                 else userAnswers[qnNum].push(optIdx);
             }
-
             renderQuestions();
-            updatePaletteStatuses();
+            updateScoreDisplay();
+        }
+
+        function calculateQuestionScore(q) {
+            const userAns = userAnswers[q.qn];
+            if (!userAns || !Array.isArray(userAns) || userAns.length === 0) return "0.00";
+
+            if (q.type === 'MCQ') {
+                return (userAns[0] === q.correct[0]) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            if (q.type === 'MSQ') {
+                const sortedUser = [...userAns].sort().join(',');
+                const sortedCorrect = [...q.correct].sort().join(',');
+                return (sortedUser === sortedCorrect) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            return "0.00";
+        }
+
+        function updateScoreDisplay() {
+            let total = 0;
+            let answeredCount = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const score = parseFloat(calculateQuestionScore(q));
+                total += score;
+
+                const ans = userAnswers[q.qn];
+                if (ans && Array.isArray(ans) && ans.length > 0) {
+                    answeredCount++;
+                }
+            });
+
+            document.getElementById('liveScoreDisplay').textContent = `${total.toFixed(2)} / 100.00`;
+            const pct = ((total / 100) * 100).toFixed(1);
+            document.getElementById('livePercentDisplay').textContent = `(${pct}%)`;
+            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/${QUESTIONS_DATA.length}`;
         }
 
         function updatePaletteStatuses() {
-            let answeredCount = 0;
-            questionsData.forEach(q => {
-                const btn = document.getElementById(`palette_btn_${q.qn}`);
-                const userArr = userAnswers[q.qn] || [];
-                if (btn) {
-                    if (userArr.length > 0) {
-                        btn.classList.add('answered');
-                        answeredCount++;
-                    } else {
-                        btn.classList.remove('answered');
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.getElementById(`paletteBtn_${q.qn}`);
+                if (!btn) return;
+
+                btn.className = 'palette-btn';
+
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && Array.isArray(ans) && ans.length > 0;
+
+                if (hasAns) {
+                    btn.classList.add('answered');
+                    if (currentMode === 'learning') {
+                        const score = parseFloat(calculateQuestionScore(q));
+                        if (score > 0) btn.classList.add('correct');
+                        else btn.classList.add('incorrect');
                     }
                 }
             });
-            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/${questionsData.length}`;
         }
 
         function toggleSolution(qnNum) {
-            const solBox = document.getElementById(`solution_${qnNum}`);
-            if (solBox) solBox.classList.toggle('active');
+            const box = document.getElementById(`solution_${qnNum}`);
+            if (box) box.classList.toggle('open');
         }
 
+        function scrollToQuestion(qnNum) {
+            const card = document.getElementById(`qnCard_${qnNum}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                document.querySelectorAll('.palette-btn').forEach(b => b.classList.remove('active-qn'));
+                const btn = document.getElementById(`paletteBtn_${qnNum}`);
+                if (btn) btn.classList.add('active-qn');
+            }
+        }
+
+        // Timer Logic
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (isTimerRunning) {
+                    timerSeconds++;
+                    updateTimerUI();
+                }
+            }, 1000);
+        }
+
+        function toggleTimer() {
+            isTimerRunning = !isTimerRunning;
+            const btn = document.getElementById('btnPauseTimer');
+            if (btn) btn.innerHTML = isTimerRunning ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+        }
+
+        function resetTimer() {
+            timerSeconds = 0;
+            updateTimerUI();
+        }
+
+        function updateTimerUI() {
+            const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const secs = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+        }
+
+        // Exam Submission & Modals
         function submitExam() {
-            isSubmitted = true;
-            let totalObtained = 0;
-            let maxTotal = 0;
+            setPortalMode('learning');
 
-            questionsData.forEach(q => {
-                maxTotal += q.marks;
-                const userArr = (userAnswers[q.qn] || []).sort().join(',');
-                const correctArr = q.correct.sort().join(',');
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+            let totalScore = 0;
 
-                if (userArr === correctArr && userArr.length > 0) {
-                    totalObtained += q.marks;
+            QUESTIONS_DATA.forEach(q => {
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && Array.isArray(ans) && ans.length > 0;
+
+                if (!hasAns) {
+                    unansweredCount++;
+                } else {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    totalScore += score;
+                    if (score > 0) correctCount++;
+                    else incorrectCount++;
                 }
             });
 
-            const pct = maxTotal > 0 ? ((totalObtained / maxTotal) * 100).toFixed(1) : "0.0";
-            document.getElementById('scoreVal').textContent = `${totalObtained.toFixed(2)} / ${maxTotal.toFixed(2)}`;
-            document.getElementById('scorePct').textContent = `(${pct}%)`;
-            document.getElementById('scoreCardBox').classList.add('active');
+            document.getElementById('modalScoreText').textContent = `${totalScore.toFixed(2)} / 100.00`;
+            document.getElementById('modalPercentText').textContent = `${((totalScore / 100) * 100).toFixed(1)}% Accuracy`;
+            document.getElementById('modalCorrectCount').textContent = correctCount;
+            document.getElementById('modalIncorrectCount').textContent = incorrectCount;
+            document.getElementById('modalUnansweredCount').textContent = unansweredCount;
 
+            document.getElementById('resultModal').classList.add('active');
+        }
+
+        function resetExam() {
+            userAnswers = {};
+            resetTimer();
+            closeResultModal();
             setPortalMode('learning');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openSummaryModal() {
+            document.getElementById('summaryModal').classList.add('active');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.remove('active');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.remove('active');
         }
 
         function escapeHtml(str) {
@@ -1261,11 +1443,25 @@ public class ToggleLabel extends JFrame implements ActionListener {
                 .replace(/'/g, "&#039;");
         }
 
-        document.getElementById('themeToggleBtn').addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('bsh-theme', newTheme);
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('portalSidebar');
+            const toggleBtn = document.getElementById('mobileSidebarToggle');
+            if (sidebar && toggleBtn) {
+                sidebar.classList.toggle('open');
+                toggleBtn.classList.toggle('active');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const fab = document.getElementById('fabBackToTop');
+            if (fab) {
+                if (window.scrollY > 300) fab.classList.add('visible');
+                else fab.classList.remove('visible');
+            }
         });
     </script>
 </body>
