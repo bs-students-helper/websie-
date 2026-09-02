@@ -1203,7 +1203,7 @@ public class OrderTest {
                     </div>
 
                     <!-- Solution Accordion -->
-                    <div class="solution-box" id="solution_${q.qn}">
+                    <div class="solution-box ${currentMode === 'learning' ? 'open' : ''}" id="solution_${q.qn}">
                         <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution & Code Trace</div>
                         <div class="solution-text">${q.solution ? q.solution.replace(/\\n/g, '<br>').replace(/\n/g, '<br>') : ''}</div>
                     </div>
@@ -1229,6 +1229,25 @@ public class OrderTest {
         }
 
         function renderQuestionInputs(q) {
+            if (q.type === 'COMPREHENSION') {
+                return `<div style="font-size:0.88rem; color:var(--text-muted); font-style:italic; margin-bottom:1.25rem;">[Comprehension Passage Block - Subquestions are listed below]</div>`;
+            }
+
+            if (q.type === 'SA') {
+                const userVal = userAnswers[q.qn] || '';
+                const showGreen = currentMode === 'learning';
+
+                return `
+                <div class="sa-input-wrap">
+                    <label for="sa_${q.qn}">Answer (Numeric):</label>
+                    <input type="text" id="sa_${q.qn}" class="sa-input" value="${escapeHtml(userVal)}" placeholder="Answer" oninput="handleSAInput(${q.qn}, this.value)">
+                    <div class="accepted-ans-box" style="display:${showGreen ? 'block' : 'none'};">
+                        <i class="fa-solid fa-circle-check"></i> Accepted Answer : ${q.acceptedAnswer || ''}
+                    </div>
+                </div>
+                `;
+            }
+
             const isMSQ = q.type === 'MSQ';
             const userArr = userAnswers[q.qn] || [];
 
