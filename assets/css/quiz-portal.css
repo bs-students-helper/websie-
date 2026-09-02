@@ -445,6 +445,20 @@
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.option-item::-webkit-scrollbar,
+.quiz-option::-webkit-scrollbar,
+.option-text::-webkit-scrollbar,
+mjx-container::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
 }
 
 [data-theme="dark"] .option-item,
@@ -514,8 +528,33 @@
     color: var(--text-primary);
     line-height: 1.5;
     flex: 1;
+    min-width: 0;
     font-weight: 500;
     word-break: break-word;
+    overflow-wrap: break-word;
+    overflow-x: auto;
+    max-width: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+/* MathJax Responsiveness & Overflow Prevention */
+mjx-container,
+.MathJax,
+mjx-math {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    vertical-align: middle;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+mjx-container[jax="CHTML"][display="true"] {
+    display: block !important;
+    margin: 0.5em 0 !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
 }
 
 /* Selected State */
