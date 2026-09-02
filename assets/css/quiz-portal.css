@@ -538,7 +538,11 @@ mjx-container::-webkit-scrollbar {
     -ms-overflow-style: none;
 }
 
-/* MathJax Responsiveness & Overflow Prevention */
+/* MathJax Responsiveness & Dynamic Scaling */
+.option-text mjx-container {
+    font-size: 86% !important;
+}
+
 mjx-container,
 .MathJax,
 mjx-math {
@@ -546,8 +550,13 @@ mjx-math {
     overflow-x: auto !important;
     overflow-y: hidden !important;
     vertical-align: middle;
+    -webkit-overflow-scrolling: touch;
     scrollbar-width: none !important;
     -ms-overflow-style: none !important;
+}
+
+mjx-math {
+    white-space: normal !important;
 }
 
 mjx-container[jax="CHTML"][display="true"] {
@@ -982,6 +991,10 @@ mjx-container[jax="CHTML"][display="true"] {
 
     .option-text {
         font-size: 0.9rem;
+    }
+
+    .option-text mjx-container {
+        font-size: 78% !important;
     }
 
     .qn-footer-toolbar {
