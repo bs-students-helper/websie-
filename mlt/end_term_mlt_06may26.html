@@ -516,12 +516,14 @@
             document.getElementById('btnLearningMode').classList.toggle('active', mode === 'learning');
 
             const banner = document.getElementById('portalModeBanner');
-            if (mode === 'learning') {
-                banner.className = 'portal-mode-banner learning';
-                banner.innerHTML = '<i class="fa-solid fa-graduation-cap"></i> <span><strong>Learning Mode:</strong> Solutions and answer explanations are revealed below each question. Perfect for study and practice!</span>';
-            } else {
-                banner.className = 'portal-mode-banner';
-                banner.innerHTML = '<i class="fa-solid fa-clock"></i> <span><strong>Exam Mode:</strong> Live timer active. Instant scoring enabled. Solutions shown on exam submission or when switching to Learning Mode.</span>';
+            if (banner) {
+                if (mode === 'learning') {
+                    banner.className = 'portal-mode-banner learning';
+                    banner.innerHTML = '<i class="fa-solid fa-graduation-cap"></i> <span><strong>Learning Mode:</strong> Solutions and answer explanations are revealed below each question. Perfect for study and practice!</span>';
+                } else {
+                    banner.className = 'portal-mode-banner';
+                    banner.innerHTML = '<i class="fa-solid fa-clock"></i> <span><strong>Exam Mode:</strong> Live timer active. Instant scoring enabled. Solutions shown on exam submission or when switching to Learning Mode.</span>';
+                }
             }
 
             renderQuestions();
@@ -600,7 +602,7 @@
                     </div>
 
                     <!-- Solution Accordion -->
-                    <div class="solution-box" id="solution_${q.qn}">
+                    <div class="solution-box ${currentMode === 'learning' ? 'open' : ''}" id="solution_${q.qn}">
                         <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution & Explanation</div>
                         <div class="solution-text">
                             ${(q.acceptedAnswer || (q.correct && q.options)) ? `<div style="font-weight:700; margin-bottom:0.5rem; color:var(--accent-green);">Accepted / Correct Answer:</div><div style="font-family:var(--font-mono); background:var(--bg-surface); padding:0.5rem 0.75rem; border-radius:6px; margin-bottom:0.75rem; border:1px solid var(--border-color);">${q.type === 'SA' ? q.acceptedAnswer : q.correct.map(i => `${i + 1}. ${q.options[i]}`).join('<br>')}</div>` : ''}
@@ -625,7 +627,7 @@
 
             container.innerHTML = html;
             updatePaletteStatuses();
-            if (window.MathJax) {
+            if (window.MathJax && typeof MathJax.typesetPromise === 'function') {
                 MathJax.typesetPromise();
             }
         }
@@ -633,10 +635,14 @@
         function renderAnswerInput(q) {
             if (q.type === 'SA') {
                 const val = userAnswers[q.qn] ? userAnswers[q.qn][0] : '';
+                const showGreen = currentMode === 'learning';
                 return `
-                <div style="margin-top:1.25rem;">
+                <div class="sa-input-wrap" style="margin-top:1.25rem;">
                     <label style="display:block; font-size:0.85rem; font-weight:600; color:var(--text-muted); margin-bottom:0.4rem;">Answer (Numeric):</label>
                     <input type="text" class="sa-input" value="${escapeHtml(val)}" placeholder="Type your numeric answer here..." oninput="handleSAInput(${q.qn}, this.value)">
+                    <div class="accepted-ans-box" style="display:${showGreen ? 'block' : 'none'};">
+                        <i class="fa-solid fa-circle-check"></i> Accepted Answer : ${q.acceptedAnswer}
+                    </div>
                 </div>
                 `;
             }
