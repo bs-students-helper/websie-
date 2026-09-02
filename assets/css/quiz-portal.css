@@ -540,7 +540,8 @@ mjx-container::-webkit-scrollbar {
 
 /* MathJax Responsiveness & Dynamic Scaling */
 .option-text mjx-container {
-    font-size: 86% !important;
+    font-size: 82% !important;
+    max-width: 100% !important;
 }
 
 mjx-container,
@@ -557,6 +558,7 @@ mjx-math {
 
 mjx-math {
     white-space: normal !important;
+    word-break: break-word !important;
 }
 
 mjx-container[jax="CHTML"][display="true"] {
@@ -986,15 +988,16 @@ mjx-container[jax="CHTML"][display="true"] {
     }
 
     .option-item {
-        padding: 0.75rem 0.9rem;
+        padding: 0.6rem 0.6rem;
+        gap: 0.5rem;
     }
 
     .option-text {
-        font-size: 0.9rem;
+        font-size: 0.88rem;
     }
 
     .option-text mjx-container {
-        font-size: 78% !important;
+        font-size: 68% !important;
     }
 
     .qn-footer-toolbar {
@@ -1016,5 +1019,11 @@ mjx-container[jax="CHTML"][display="true"] {
 
     .ad-banner-box {
         padding: 0.6rem 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .option-text mjx-container {
+        font-size: 64% !important;
     }
 }
