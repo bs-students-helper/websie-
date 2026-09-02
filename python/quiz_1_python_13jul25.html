@@ -597,7 +597,7 @@
                     </div>
 
                     <!-- Solution Accordion -->
-                    <div class="solution-box" id="solution_${q.qn}">
+                    <div class="solution-box ${currentMode === 'learning' ? 'open' : ''}" id="solution_${q.qn}">
                         <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution & Code Trace</div>
                         <div class="solution-text">${q.solution}</div>
                     </div>
