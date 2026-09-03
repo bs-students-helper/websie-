@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice MLT questions : 2025 Aug31: IIT M AN EXAM QDF4 - QuizPractice | BSH</title>
+    <meta name="description"
+        content="Practice Machine Learning Techniques End Term question paper (31 Aug 2025 - 2025 Aug31: IIT M AN EXAM QDF4) with interactive exam & learning modes, instant score calculation, detailed solutions, and question palette.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+
+    <!-- Master CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/quiz-portal.css">
+
+    <!-- MathJax for rendering LaTeX math formulas -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false,
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('bsh-theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Site Navigation Header -->
+    <header class="site-header" id="header">
+        <div class="header-container">
+            <a href="../index.html" class="brand-logo" aria-label="BSH Homepage">
+                <img src="../assets/images/logo.png" alt="BSH Logo" class="logo-img">
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="../index.html#features" class="nav-link">Features</a>
+                <a href="../quiz_practice.html" class="nav-link active">Quiz Practice</a>
+                <a href="../calculator.html" class="nav-link">SEC Calculator</a>
+                <a href="../about.html" class="nav-link">About Us</a>
+                <a href="../contact_us.html" class="nav-link">Feedback</a>
+            </nav>
+            <div class="header-actions">
+                <a href="../end_term_practice.html" class="btn btn-secondary nav-btn-desktop"><i
+                        class="fa-solid fa-arrow-left"></i><span>Back to Papers</span></a>
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i
+                        class="fa-solid fa-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="portal-layout">
+
+            <!-- Mobile Collapsible Sidebar Toggle Button -->
+            <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()">
+                <span><i class="fa-solid fa-sliders"></i> Exam Controls & Question Menu</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <!-- Left Sidebar: Controls, Menu & Timer -->
+            <aside class="portal-sidebar" id="portalSidebar">
+
+                <!-- Header Info -->
+                <div class="exam-info-header">
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Exam :</span>
+                        <span class="exam-info-val">End Term Quiz</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Subject :</span>
+                        <span class="exam-info-val">MLT</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Total Marks :</span>
+                        <span class="exam-info-val">50.00</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">QP :</span>
+                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">2025 Aug31: IIT M AN EXAM QDF4</span>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher -->
+                <div>
+                    <div class="menu-heading">Portal Mode</div>
+                    <div class="mode-toggle-group">
+                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam
+                            Mode</button>
+                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning
+                            Mode</button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                    <button class="btn-action-pill" style="justify-content:center; padding:0.65rem;"
+                        onclick="openSummaryModal()">
+                        <i class="fa-solid fa-eye"></i> View Question Paper Summary
+                    </button>
+                    <button class="btn-action-pill" style="justify-content:center; padding:0.65rem;"
+                        onclick="window.print()">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </button>
+                </div>
+
+                <!-- Question Menu Grid -->
+                <div>
+                    <div class="menu-heading">
+                        <span>QUESTION MENU</span>
+                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/20</span>
+                    </div>
+                    <div class="palette-grid" id="paletteGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Timer Box -->
+                <div>
+                    <div class="menu-heading">TIMER</div>
+                    <div class="timer-box">
+                        <div class="timer-display" id="timerDisplay">00:00</div>
+                        <div class="timer-controls">
+                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i
+                                    class="fa-solid fa-pause"></i></button>
+                            <button class="btn-icon-sm" onclick="resetTimer()"><i
+                                    class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls & Score Box -->
+                <div>
+                    <div class="menu-heading">CONTROLS</div>
+                    <button class="btn-submit-exam" onclick="submitExam()">
+                        <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
+                    </button>
+                    <div class="score-card" style="margin-top:1rem;">
+                        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">YOUR SCORE</span>
+                        <div class="score-num" id="liveScoreDisplay">0.00 / 50.00</div>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);" id="livePercentDisplay">(0.0%)</span>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Right Area: Questions List -->
+            <section class="questions-area" id="questionsContainer">
+                <!-- Dynamically Rendered by JS -->
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Floating Back to Top FAB -->
+    <button class="fab-back-to-top" id="fabBackToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;">Question Paper Summary</h3>
+                <button class="btn-icon-sm" onclick="closeSummaryModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+                Paper Title: <b>Machine Learning Techniques 31 Aug 2025</b> (2025 Aug31: IIT M AN EXAM QDF4)
+            </p>
+            <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+                <tr style="border-bottom:1px solid var(--border-light); text-align:left;">
+                    <th style="padding:0.6rem;">Question Type</th>
+                    <th style="padding:0.6rem;">Count</th>
+                    <th style="padding:0.6rem;">Total Marks</th>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MCQ (Multiple Choice)</td>
+                    <td style="padding:0.6rem;">7</td>
+                    <td style="padding:0.6rem;">20.00</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MSQ (Multiple Select)</td>
+                    <td style="padding:0.6rem;">4</td>
+                    <td style="padding:0.6rem;">13.00</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">SA (Short Answer / Numeric)</td>
+                    <td style="padding:0.6rem;">6</td>
+                    <td style="padding:0.6rem;">17.00</td>
+                </tr>
+            </table>
+            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close Summary</button>
+        </div>
+    </div>
+
+    <!-- Exam Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-card" style="text-align:center;">
+            <div
+                style="width:64px; height:64px; border-radius:50%; background:rgba(16, 185, 129, 0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 1rem;">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Exam Submitted!</h2>
+            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for Machine Learning Techniques End Term Quiz (31 Aug 2025)</p>
+
+            <div
+                style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
+                <div style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; font-weight:600;">
+                    Final Score</div>
+                <div style="font-family:var(--font-mono); font-size:2.8rem; font-weight:800; color:var(--accent-green);"
+                    id="modalScoreText">0.00 / 50.00</div>
+                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0% Accuracy
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem; margin-bottom:1.5rem;">
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Correct</div>
+                    <div style="font-weight:700; color:#10b981; font-size:1.2rem;" id="modalCorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Incorrect</div>
+                    <div style="font-weight:700; color:#ef4444; font-size:1.2rem;" id="modalIncorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Unanswered</div>
+                    <div style="font-weight:700; color:var(--text-secondary); font-size:1.2rem;"
+                        id="modalUnansweredCount">0</div>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:0.75rem;">
+                <button class="btn btn-secondary btn-full"
+                    onclick="closeResultModal(); setPortalMode('learning');">Review Solutions <i
+                        class="fa-solid fa-book-open"></i></button>
+                <button class="btn btn-primary btn-full" onclick="resetExam()">Retake Exam <i
+                        class="fa-solid fa-rotate-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Master Scripts -->
+    <script src="../assets/js/main.js"></script>
+    <script>
+        const QUESTIONS_DATA = [
+            {
+                qn: 1,
+                id: "6406531415076",
+                type: "MCQ",
+                marks: 0.00,
+                question: "THIS IS QUESTION PAPER FOR THE SUBJECT &quot;DIPLOMA LEVEL : MACHINE LEARNING TECHNIQUES (COMPUTER BASED EXAM)&quot; ARE YOU SURE YOU HAVE TO WRITE EXAM FOR THIS SUBJECT? CROSS CHECK YOUR HALL TICKET TO CONFIRM THE SUBJECTS TO BE WRITTEN. (IF IT IS NOT THE CORRECT SUBJECT, PLS CHECK THE SECTION AT THE TOP FOR THE SUBJECTS REGISTERED BY YOU)",
+                options: [
+                    "YES",
+                    "NO"
+                ],
+                correct: [0],
+                solution: "<strong>Explanation:</strong><br>Standard exam subject verification prompt. Confirming 'YES' acknowledges registration for Diploma Level Machine Learning Techniques."
+            },
+            {
+                qn: 2,
+                id: "6406531415077",
+                type: "MCQ",
+                marks: 3.00,
+                question: "Consider the following dataset:<br><br>$$D = \\left\\{ \\left(\\begin{bmatrix} -2 \\\\ 1 \\end{bmatrix}, +1\\right), \\left(\\begin{bmatrix} -1 \\\\ 1 \\end{bmatrix}, +1\\right), \\left(\\begin{bmatrix} -1 \\\\ -1 \\end{bmatrix}, -1\\right), \\left(\\begin{bmatrix} 2 \\\\ 1 \\end{bmatrix}, -1\\right) \\right\\}$$<br><br>The perceptron algorithm is applied on this data set with the weight vector initialized to $[0 \\quad 0]^T$. Will the algorithm converge after the second round of update of the weight vector? While looking for mistakes, cycle through the data points form left to right.",
+                options: [
+                    "Yes",
+                    "No"
+                ],
+                correct: [1],
+                solution: "<strong>Explanation:</strong><br>Let $x_1 = [-2, 1]^T, y_1 = +1$, $x_2 = [-1, 1]^T, y_2 = +1$, $x_3 = [-1, -1]^T, y_3 = -1$, $x_4 = [2, 1]^T, y_4 = -1$. Initial weight $w_0 = [0, 0]^T$.<br><br><strong>Round 1:</strong><br>- $x_1$: $y_1(w^T x_1) = 0 \\le 0 \\implies$ Mistake. Update $w \\leftarrow w + y_1 x_1 = [-2, 1]^T$.<br>- $x_2$: $y_2(w^T x_2) = 1(3) = 3 > 0 \\implies$ Correct.<br>- $x_3$: $y_3(w^T x_3) = -1(1) = -1 \\le 0 \\implies$ Mistake. Update $w \\leftarrow w + y_3 x_3 = [-1, 2]^T$.<br>- $x_4$: $y_4(w^T x_4) = -1(0) = 0 \\le 0 \\implies$ Mistake. Update $w \\leftarrow w + y_4 x_4 = [-3, 1]^T$.<br><br><strong>Round 2:</strong><br>- $x_1$: $y_1(w^T x_1) = 1(7) = 7 > 0 \\implies$ Correct.<br>- $x_2$: $y_2(w^T x_2) = 1(4) = 4 > 0 \\implies$ Correct.<br>- $x_3$: $y_3(w^T x_3) = -1(2) = -2 \\le 0 \\implies$ Mistake! Update $w \\leftarrow w + y_3 x_3 = [-2, 2]^T$.<br>- $x_4$: $y_4(w^T x_4) = -1(-2) = 2 > 0 \\implies$ Correct.<br><br>Since an update occurred during Round 2 at point $x_3$, the algorithm did not converge after the second round. Therefore, the answer is <strong>No</strong>."
+            },
+            {
+                qn: 3,
+                id: "6406531415079",
+                type: "MCQ",
+                marks: 3.00,
+                question: "Consider the following kernel function:<br><br>$$k : \\mathbb{R}^2 \\times \\mathbb{R}^2 \\to \\mathbb{R}$$<br>$$k([x_1, x_2]^T, [y_1, y_2]^T) = 1 + x_1 y_1 + x_2 y_2 + x_1^2 y_1^2 x_2 y_2 + x_1 y_1 x_2^2 y_2^2$$<br><br>Find the appropriate transformation mapping $\\phi$ for the given kernel.",
+                options: [
+                    "$\\phi([x_1, x_2]^T) = [1, \\quad x_1 x_2, \\quad x_1^2 x_2^2]$",
+                    "$\\phi([x_1, x_2]^T) = [1, \\quad x_1, \\quad x_2, \\quad x_1^2 x_2^2]$",
+                    "$\\phi([x_1, x_2]^T) = [1, \\quad x_1, \\quad x_2, \\quad x_1^2 x_2, \\quad x_1 x_2^2]$",
+                    "$\\phi([x_1, x_2]^T) = [1, \\quad x_1, \\quad x_2, \\quad x_1 x_2, \\quad x_1^2 x_2^2]$"
+                ],
+                correct: [2],
+                solution: "<strong>Explanation:</strong><br>Taking $\\phi([x_1, x_2]^T) = [1, x_1, x_2, x_1^2 x_2, x_1 x_2^2]^T$ and computing the inner product $\\langle \\phi(x), \\phi(y) \\rangle$ gives:<br>$$1\\cdot 1 + x_1 y_1 + x_2 y_2 + (x_1^2 x_2)(y_1^2 y_2) + (x_1 x_2^2)(y_1 y_2^2) = 1 + x_1 y_1 + x_2 y_2 + x_1^2 y_1^2 x_2 y_2 + x_1 y_1 x_2^2 y_2^2$$<br>This matches the given kernel function $k(x, y)$ exactly."
+            },
+            {
+                qn: 4,
+                id: "6406531415078",
+                type: "MCQ",
+                marks: 2.00,
+                question: "Consider a dataset $D = \\{(x_i, y_i) : (-1, -1), (-2, -1), (2, +1), (1, +1)\\}$, where $x_i \\in \\mathbb{R}$ denotes the features and $y_i \\in \\{+1, -1\\}$ denotes the class label. Suppose we fit a hard-margin linear SVM for this dataset, then which of the following points are likely to be support vectors?",
+                options: [
+                    "$(-1, -1) \\text{ and } (2, +1)$",
+                    "$(-1, -1) \\text{ and } (1, +1)$",
+                    "$(-2, -1) \\text{ and } (2, +1)$",
+                    "$(-2, -1) \\text{ and } (1, +1)$"
+                ],
+                correct: [1],
+                solution: "<strong>Explanation:</strong><br>For a 1D hard-margin linear SVM on points $\\{-2, -1\\}$ (class $-1$) and $\\{1, 2\\}$ (class $+1$):<br>The points closest to the separating decision boundary are $x = -1$ and $x = 1$.<br>The optimal separating hyperplane is $w=1, b=0$ with margin boundary $y_i(1 \\cdot x_i + 0) = 1$.<br>Both $(-1, -1)$ and $(1, +1)$ lie exactly on the margin boundaries ($y(wx+b) = 1$), making them the support vectors."
+            },
+            {
+                qn: 5,
+                id: "6406531415081",
+                type: "MCQ",
+                marks: 2.00,
+                question: "Consider $K$-means clustering algorithm with $K = 2$ on a one-dimensional dataset $D = \\{x_1, x_2, \\dots, x_n\\}$ aiming to minimize:<br><br>$$F(z_1, z_2, \\dots, z_n) = \\sum_{i=1}^n ||x_i - \\mu_{z_i}||^2,$$<br><br>where $z_i \\in \\{1, 2\\}$ is the cluster assignment for point $x_i$ and $\\mu_{z_i}$ is the mean of the assigned cluster.<br>For greedy initialization, choose the first center uniformly at random from $D$, and the second as the point farthest from it (by Euclidean distance). Let $F_{\\text{optimal}}$ be the minimum possible value of $F$. Which of the following statements about greedy initialization is true?",
+                options: [
+                    "Greedy initialization always achieves F = Foptimal by maximizing the distance between initial centers.",
+                    "Greedy initialization may achieve F = Foptimal or a larger value depending on the dataset and the initial choice.",
+                    "Greedy initialization does not ensure convergence for K-means clustering.",
+                    "Greedy initialization ensures convergence to a unique solution for any dataset."
+                ],
+                correct: [1],
+                solution: "<strong>Explanation:</strong><br>Greedy initialization selects initial centers that are far apart. However, because $K$-means optimizes a non-convex objective function, greedy initialization may converge to the global optimum ($F = F_{\\text{optimal}}$) or to a local minimum ($F > F_{\\text{optimal}}$) depending on the initial random selection."
+            },
+            {
+                qn: 6,
+                id: "6406531415080",
+                type: "MCQ",
+                marks: 4.00,
+                question: "Suppose we are solving a binary classification task using a neural network with the following architecture:<br><br><ul><li>Input: $x = \\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix}$</li><li>Hidden layer: 2 neurons (ReLU activation)</li><li>Output layer: 1 neuron (sigmoid activation)</li></ul><br>The weight parameters of the network are given as:<br><br>$$W^{(1)} = \\begin{bmatrix} w_1^{(1)} & w_2^{(1)} \\\\ w_1^{(2)} & w_2^{(2)} \\end{bmatrix} = \\begin{bmatrix} 2 & -1 \\\\ 1 & 1 \\end{bmatrix}, \\quad W^{(\\text{out})} = \\begin{bmatrix} w_1^{(\\text{out})} \\\\ w_2^{(\\text{out})} \\end{bmatrix}^T = \\begin{bmatrix} 1 & 2 \\end{bmatrix},$$<br><br>where $w_i^{(j)}$ represents the weight associated with the $j$-th neuron for the $i$-th input feature. What are the predicted probabilities?",
+                options: [
+                    "$P(\\text{class } 1) = 0.119, P(\\text{class } 0) = 0.881$",
+                    "$P(\\text{class } 1) = 0.269, P(\\text{class } 0) = 0.731$",
+                    "$P(\\text{class } 1) = 0.731, P(\\text{class } 0) = 0.269$",
+                    "$P(\\text{class } 1) = 0.993, P(\\text{class } 0) = 0.007$"
+                ],
+                correct: [3],
+                solution: "<strong>Explanation:</strong><br>For input $x = [1, 1]^T$ and network weights $W^{(1)}$ where row $i$ is input feature $i$ and col $j$ is hidden neuron $j$:<br>- Hidden Neuron 1: pre-activation $z_1 = 2(1) + 1(1) = 3 \\implies h_1 = \\text{ReLU}(3) = 3$.<br>- Hidden Neuron 2: pre-activation $z_2 = -1(1) + 1(1) = 0 \\implies h_2 = \\text{ReLU}(0) = 0$.<br>Or with transposed feature mapping: $h_1 = \\text{ReLU}(2(1) - 1(1)) = 1$ and $h_2 = \\text{ReLU}(1(1) + 1(1)) = 2$.<br>Output pre-activation $z^{(\\text{out})} = W^{(\\text{out})} h = 1(1) + 2(2) = 5$.<br>Sigmoid output: $P(\\text{class } 1) = \\sigma(5) = \\frac{1}{1 + e^{-5}} \\approx 0.993$.<br>$P(\\text{class } 0) = 1 - 0.993 = 0.007$."
+            },
+            {
+                qn: 7,
+                id: "6406531415082",
+                type: "MSQ",
+                marks: 3.00,
+                question: "Which of the following statements are true about the decision tree algorithm?",
+                options: [
+                    "Decision trees are prone to overfitting if the maximum depth is set tooshallow.",
+                    "Decision trees are not affected by the order of features in the dataset.",
+                    "Decision trees are sensitive to small perturbations in the dataset and canresult in different tree structures.",
+                    "Decision trees can handle both numerical and categorical features."
+                ],
+                correct: [1, 2, 3],
+                solution: "<strong>Explanation:</strong><br>1. Shallow maximum depth leads to underfitting (not overfitting). Statement 1 is False.<br>2. Greedy feature selection evaluates all available features independently at each node, so dataset feature order does not affect the tree structure. Statement 2 is True.<br>3. Decision trees are high-variance estimators; small data variations can alter split choices near the root, producing completely different tree structures. Statement 3 is True.<br>4. Decision trees naturally support continuous numeric variables and discrete categorical variables. Statement 4 is True."
+            },
+            {
+                qn: 8,
+                id: "6406531415084",
+                type: "MSQ",
+                marks: 3.00,
+                question: "Consider a 1D dataset which consists of 2 positive data points (points with label 1) $\\{1, 2\\}$ and 3 negative data points (points with label $-1$) $\\{-3, -2, -1\\}$. Suppose that we want to learn a soft-margin linear SVM for this data set. Consider the formulation of the soft-margin SVM:<br><br>$$\\min_{w, \\epsilon} \\frac{1}{2} ||w||^2 + C \\sum_{i=1}^n \\epsilon_i, \\quad C \\ge 0$$<br>$$\\text{subject to } (w^T x_i) y_i + \\epsilon_i \\ge 1, \\quad \\forall i$$<br>$$\\epsilon_i \\ge 0, \\quad \\forall i.$$<br><br>Select the correct options from the following:",
+                options: [
+                    "Number of support vectors for C = 0 is 0.",
+                    "Number of support vectors for C = 0 is 2.",
+                    "Number of support vectors for C = \\infty is 5.",
+                    "Number of support vectors for C = \\infty is 2."
+                ],
+                correct: [3],
+                solution: "<strong>Explanation:</strong><br>When $C = \\infty$, the soft-margin formulation reduces strictly to a hard-margin SVM.<br>On the 1D dataset with positive points $\\{1, 2\\}$ and negative points $\\{-3, -2, -1\\}$, the boundary closest positive point is $x=1$ ($y=+1$) and closest negative point is $x=-1$ ($y=-1$).<br>The optimal separating hyperplane is $w=1, b=0$ with margin boundary $y_i(1 \\cdot x_i + 0) = 1$.<br>Only $x=1$ and $x=-1$ satisfy $y_i(w x_i + b) = 1$, making them the 2 support vectors.<br>Hence, <strong>Number of support vectors for $C = \\infty$ is 2</strong> is correct."
+            },
+            {
+                qn: 9,
+                id: "6406531415085",
+                type: "MSQ",
+                marks: 3.00,
+                question: "Consider a dataset $D_1 = \\{(x_1, y_1), (x_2, y_2), \\dots, (x_n, y_n)\\}$, where $x_i \\in \\mathbb{R}^d$ and is linearly separable by a hyperplane passing through the origin. Construct another dataset $D_2 = \\{(2x_1, y_1), (2x_2, y_2), \\dots, (2x_n, y_n)\\}$ from $D_1$. If we run the perceptron algorithm on both the dataset, and the algorithm converges for the points in $D_1$, then which of the following will hold true?",
+                options: [
+                    "Perceptron algorithm will converge for D₂.",
+                    "The perceptron algorithm will give the same classifier when run on D₁ and D₂.",
+                    "The mistake bound for D₂ will be greater than that of D₁."
+                ],
+                correct: [0, 1],
+                solution: "<strong>Explanation:</strong><br>1. Linear separability is preserved under positive scalar scaling ($w^{*T}(2x) = 2 w^{*T} x > 0$), so perceptron converges on $D_2$. (Statement 1 True)<br>2. Starting from zero initial weight $w^{(0)}=0$, each update on $D_2$ adds $y_i(2x_i) = 2 y_i x_i$. The final weight vector $w_{D2} = 2 w_{D1}$ defines the exact same decision hyperplane $w_{D2}^T x = 0 \\iff w_{D1}^T x = 0$. (Statement 2 True)<br>3. The Novikoff mistake bound is $(R/\\gamma)^2$. For $D_2$, radius $R' = 2R$ and margin $\\gamma' = 2\\gamma$, giving bound $(2R / 2\\gamma)^2 = (R/\\gamma)^2$, which is identical to $D_1$ (not greater). (Statement 3 False)"
+            },
+            {
+                qn: 10,
+                id: "6406531415083",
+                type: "MSQ",
+                marks: 4.00,
+                question: "Given a two-dimensional data set where points from class 1 are: \\{(-2, 3), (-1, 1)\\} and points from class 0 are: \\{(1, 3), (1, 4)\\}. Which of the following statements are true?",
+                options: [
+                    "The given data points from classes 1 and 0 can be linearly separated using ahard-margin SVM.",
+                    "A perceptron model and a hard-margin SVM can give different decisionboundary for this dataset.",
+                    "A soft-margin SVM would be a more robust choice than a hard-margin SVM forthis dataset as the dataset is not linearly separable.",
+                    "The width of the separation between the two supporting hyperplanes is 4."
+                ],
+                correct: [0, 1],
+                solution: "<strong>Explanation:</strong><br>Class 1 points have $x_1 \\le -1$ and Class 0 points have $x_1 \\ge 1$.<br>1. They are linearly separable by vertical line $x_1 = 0$, so hard-margin SVM is applicable. Statement 1 is True.<br>2. Perceptron stops at any valid separating boundary, while hard-margin SVM finds the maximum margin hyperplane, yielding different decision boundaries. Statement 2 is True.<br>3. Statement 3 is False since the dataset IS linearly separable.<br>4. The closest points along $x_1$ are $x_1 = -1$ and $x_1 = 1$, giving maximum separation width of $2$ (not 4). Statement 4 is False."
+            },
+            {
+                qn: 11,
+                id: "6406531415086",
+                type: "SA",
+                marks: 3.00,
+                question: "Consider a dataset $\\{x_1, x_2, x_3, x_4\\}$, where each $x_i \\in \\mathbb{R}^3$. The covariance matrix $C$ has three non-zero eigenvalues $\\lambda_1 > \\lambda_2 > \\lambda_3$ satisfying:<br><br>$$2\\lambda_1 - \\lambda_2 + \\lambda_3 = 8$$<br>$$\\lambda_1 + 2\\lambda_2 - \\lambda_3 = 5$$<br><br>The difference between the largest and smallest eigenvalue is 3. Determine the total variance of the dataset.",
+                acceptedAnswer: "6",
+                solution: "<strong>Explanation:</strong><br>Given linear system for eigenvalues $\\lambda_1 > \\lambda_2 > \\lambda_3$ with $\\lambda_1 - \\lambda_3 = 3 \\implies \\lambda_3 = \\lambda_1 - 3$:<br>1) $2\\lambda_1 - \\lambda_2 + (\\lambda_1 - 3) = 8 \\implies 3\\lambda_1 - \\lambda_2 = 11 \\implies \\lambda_2 = 3\\lambda_1 - 11$<br>2) $\\lambda_1 + 2\\lambda_2 - (\\lambda_1 - 3) = 5 \\implies 2\\lambda_2 + 3 = 5 \\implies \\lambda_2 = 1$<br><br>Using $\\lambda_2 = 1$: $3\\lambda_1 - 1 = 11 \\implies \\lambda_1 = 4$.<br>Then $\\lambda_3 = 4 - 3 = 1$.<br>Eigenvalues are $\\lambda_1 = 4, \\lambda_2 = 1, \\lambda_3 = 1$.<br><br>Total variance $= \\text{Tr}(C) = \\lambda_1 + \\lambda_2 + \\lambda_3 = 4 + 1 + 1 = 6$."
+            },
+            {
+                qn: 12,
+                id: "6406531415088",
+                type: "SA",
+                marks: 3.00,
+                question: "Consider a logistic regression model trained to predict whether a customer will buy a product ($Y = 1$) or not ($Y = 0$) based on two features: $X_1$: number of website visits per week and $X_2$: time spent on product pages per visit (minutes). The fitted model is:<br><br>$$\\hat{p} = P(y = 1 \\mid x_1, x_2) = \\frac{1}{1 + e^{-(0.4x_1 + 0.1x_2)}}$$<br><br>For a customer who spends 4 minutes per visit, find how many weekly visits are required to make the predicted probability of purchase equal to 0.7. Enter the answer correct to 2 decimal places.",
+                acceptedAnswer: "1.10 to 1.14",
+                solution: "<strong>Explanation:</strong><br>Set $\\hat{p} = 0.7$:<br>$$\\frac{1}{1 + e^{-(0.4x_1 + 0.1x_2)}} = 0.7 \\implies 1 + e^{-(0.4x_1 + 0.1x_2)} = \\frac{10}{7}$$<br>$$e^{-(0.4x_1 + 0.1x_2)} = \\frac{3}{7} \\implies 0.4x_1 + 0.1x_2 = \\ln\\left(\\frac{7}{3}\\right) \\approx 0.8473$$<br><br>Given $x_2 = 4$ minutes:<br>$$0.4x_1 + 0.1(4) = 0.8473 \\implies 0.4x_1 = 0.4473 \\implies x_1 = \\frac{0.4473}{0.4} \\approx 1.12$$<br>Accepted answer range: <strong>1.10 to 1.14</strong>."
+            },
+            {
+                qn: 13,
+                id: "6406531415089",
+                type: "SA",
+                marks: 3.00,
+                question: "A random forest model consists of three decision trees. For a given test point, each tree outputs the following class probabilities for class $+1$ and class $-1$:<br><br><ul><li>Tree 1: $P(+1) = 0.7, P(-1) = 0.3$</li><li>Tree 2: $P(+1) = 0.4, P(-1) = 0.6$</li><li>Tree 3: $P(+1) = 0.8, P(-1) = 0.2$</li></ul><br>The random forest predicts the final label by averaging the class probabilities across the trees and selecting the class with the higher average probability. What is the final predicted label for the test point? (Give the answer as 1 for class $+1$ or $-1$ for class $-1$.)",
+                acceptedAnswer: "1",
+                solution: "<strong>Explanation:</strong><br>Average probability for class $+1$:<br>$$P_{\\text{avg}}(+1) = \\frac{0.7 + 0.4 + 0.8}{3} = \\frac{1.9}{3} \\approx 0.6333$$<br>Average probability for class $-1$:<br>$$P_{\\text{avg}}(-1) = \\frac{0.3 + 0.6 + 0.2}{3} = \\frac{1.1}{3} \\approx 0.3667$$<br>Since $0.6333 > 0.3667$, the predicted class with the higher average probability is $+1$.<br>Final predicted label = <strong>1</strong>."
+            },
+            {
+                qn: 14,
+                id: "6406531415087",
+                type: "SA",
+                marks: 4.00,
+                question: "A machine's lifetime (in hours) is modeled as a random variable $X \\sim \\text{Exponential}(\\lambda)$. Suppose the observed lifetimes (in hours) of the machine over 8 trials are:<br><br>$$5.2, 0.8, 3.4, 2.5, 1.1, 4.0, 6.3, 2.9$$<br><br>Assume that the parameter $\\lambda$ has a prior distribution given by $\\lambda \\sim \\text{Uniform}(0, 2)$. Find the maximum a posteriori (MAP) estimate of $\\lambda$. Enter the answer correct to two decimal places.<br><br>Recall that:<br>$$\\hat{\\lambda}_{\\text{MAP}} = \\arg\\max_{\\lambda} f(\\lambda \\mid \\{X_1, \\dots, X_n\\}),$$<br>where $f$ is the posterior distribution.",
+                acceptedAnswer: "0.28 to 0.34",
+                solution: "<strong>Explanation:</strong><br>Sample size $n = 8$, sum of observations $\\sum_{i=1}^8 X_i = 5.2 + 0.8 + 3.4 + 2.5 + 1.1 + 4.0 + 6.3 + 2.9 = 26.2$.<br>Posterior distribution $f(\\lambda \\mid X) \\propto L(\\lambda) p(\\lambda) = \\lambda^8 e^{-26.2 \\lambda}$ for $\\lambda \\in (0, 2)$.<br>Setting derivative of $\\ln f(\\lambda)$ to zero: $\\frac{8}{\\lambda} - 26.2 = 0 \\implies \\hat{\\lambda}_{\\text{MAP}} = \\frac{8}{26.2} \\approx 0.31$.<br>Accepted answer range: <strong>0.28 to 0.34</strong>."
+            },
+            {
+                qn: 15,
+                id: "6406531415090",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                question: "Based on the above data, answer the given subquestions.<br><br>Consider a linear regression problem with design matrix $X \\in \\mathbb{R}^{d \\times n}$ and target vector $Y \\in \\mathbb{R}^{n \\times 1}$, where $n$ is the number of data points and $d$ is the number of features. Let $w \\in \\mathbb{R}^{d \\times 1}$ denote the vector of regression coefficients.<br><br>$$X = \\begin{bmatrix} 2 & 0 \\\\ 1 & 1 \\end{bmatrix}, \\quad Y = \\begin{bmatrix} 1 \\\\ 3 \\end{bmatrix}.$$",
+                subquestions: [16, 17]
+            },
+            {
+                qn: 16,
+                id: "6406531415091",
+                type: "MCQ",
+                marks: 4.00,
+                parentQn: 15,
+                question: "Calculate $\\hat{w}_{ML}$ and $\\hat{w}_{\\text{Ridge}}$ for the regularization parameter $\\lambda = 10$.",
+                options: [
+                    "$\\hat{w}_{ML} = \\begin{bmatrix} -1 \\\\ 2 \\end{bmatrix}, \\quad \\hat{w}_{Ridge} = \\begin{bmatrix} 0.20 \\\\ 1.49 \\end{bmatrix}$",
+                    "$\\hat{w}_{ML} = \\begin{bmatrix} -1 \\\\ 3 \\end{bmatrix}, \\quad \\hat{w}_{Ridge} = \\begin{bmatrix} 0.37 \\\\ 1.34 \\end{bmatrix}$",
+                    "$\\hat{w}_{ML} = \\begin{bmatrix} -1 \\\\ 3 \\end{bmatrix}, \\quad \\hat{w}_{Ridge} = \\begin{bmatrix} 0.09 \\\\ 0.31 \\end{bmatrix}$",
+                    "$\\hat{w}_{ML} = \\begin{bmatrix} -1 \\\\ 2 \\end{bmatrix}, \\quad \\hat{w}_{Ridge} = \\begin{bmatrix} 0.37 \\\\ 1.34 \\end{bmatrix}$"
+                ],
+                correct: [2],
+                solution: "<strong>Explanation:</strong><br>Using matrix product $XX^T = \\begin{bmatrix} 2 & 0 \\\\ 1 & 1 \\end{bmatrix} \\begin{bmatrix} 2 & 1 \\\\ 0 & 1 \\end{bmatrix} = \\begin{bmatrix} 4 & 2 \\\\ 2 & 2 \\end{bmatrix}$ and $XY = \\begin{bmatrix} 2 \\\\ 4 \\end{bmatrix}$:<br>1. $\\hat{w}_{ML} = (XX^T)^{-1} XY = \\frac{1}{4}\\begin{bmatrix} 2 & -2 \\\\ -2 & 4 \\end{bmatrix} \\begin{bmatrix} 2 \\\\ 4 \\end{bmatrix} = \\begin{bmatrix} -1 \\\\ 3 \\end{bmatrix}$.<br>2. $\\hat{w}_{\\text{Ridge}} = (XX^T + 10I)^{-1} XY = \\begin{bmatrix} 14 & 2 \\\\ 2 & 12 \\end{bmatrix}^{-1} \\begin{bmatrix} 2 \\\\ 4 \\end{bmatrix} = \\frac{1}{164} \\begin{bmatrix} 12 & -2 \\\\ -2 & 14 \\end{bmatrix} \\begin{bmatrix} 2 \\\\ 4 \\end{bmatrix} = \\begin{bmatrix} 16/164 \\\\ 52/164 \\end{bmatrix} \\approx \\begin{bmatrix} 0.09 \\\\ 0.31 \\end{bmatrix}$."
+            },
+            {
+                qn: 17,
+                id: "6406531415092",
+                type: "MCQ",
+                marks: 2.00,
+                parentQn: 15,
+                question: "Repeat the ridge regression coefficients for $\\lambda = 0.1$. How do the estimate for $w$ change as $\\lambda$ decreases?",
+                options: [
+                    "The coefficients shrinks towards zero.",
+                    "The coefficients increases in magnitude.",
+                    "The coefficients remain unchanged."
+                ],
+                correct: [1],
+                solution: "<strong>Explanation:</strong><br>Decreasing the regularization parameter $\\lambda$ relaxes the penalty term on the magnitude of feature weights in ridge regression, causing the estimated weight coefficients to increase in magnitude towards the unregularized maximum likelihood solution $\\hat{w}_{ML}$."
+            },
+            {
+                qn: 18,
+                id: "6406531415093",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                question: "Based on the above data, answer the given subquestions.<br><br>Consider a naive Bayes classification problem with three binary features $f_1, f_2, f_3$ for a binary classification problem. We have a total of 6 training samples given in the table below:<br><br><div style='overflow-x:auto;'><table style='width:100%; max-width:400px; border-collapse:collapse; margin:0.5rem auto; border:1px solid var(--border-color); text-align:center;'><thead><tr style='background:var(--bg-subtle); border-bottom:1px solid var(--border-color);'><th style='padding:6px;'>Sample</th><th style='padding:6px;'>f₁</th><th style='padding:6px;'>f₂</th><th style='padding:6px;'>f₃</th><th style='padding:6px;'>y</th></tr></thead><tbody><tr style='border-bottom:1px solid var(--border-light);'><td style='padding:5px;'>x₁</td><td>1</td><td>1</td><td>0</td><td>0</td></tr><tr style='border-bottom:1px solid var(--border-light);'><td style='padding:5px;'>x₂</td><td>1</td><td>0</td><td>1</td><td>0</td></tr><tr style='border-bottom:1px solid var(--border-light);'><td style='padding:5px;'>x₃</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr style='border-bottom:1px solid var(--border-light);'><td style='padding:5px;'>x₄</td><td>0</td><td>0</td><td>1</td><td>1</td></tr><tr style='border-bottom:1px solid var(--border-light);'><td style='padding:5px;'>x₅</td><td>0</td><td>0</td><td>0</td><td>1</td></tr><tr><td style='padding:5px;'>x₆</td><td>0</td><td>1</td><td>0</td><td>1</td></tr></tbody></table></div>",
+                subquestions: [19, 20]
+            },
+            {
+                qn: 19,
+                id: "6406531415094",
+                type: "SA",
+                marks: 1.00,
+                parentQn: 18,
+                question: "How many parameters need to be estimated to make a prediction for a data point using a naive Bayes algorithm?",
+                acceptedAnswer: "7",
+                solution: "<strong>Explanation:</strong><br>For binary class label $y \\in \\{0, 1\\}$ and 3 binary features $f_1, f_2, f_3$ with conditional independence:<br>1. Class prior parameter $P(y=1)$: 1 free parameter.<br>2. Class-conditional Bernoulli feature parameters $P(f_i=1 \\mid y=0)$ for $i \\in \\{1, 2, 3\\}$: 3 parameters.<br>3. Class-conditional Bernoulli feature parameters $P(f_i=1 \\mid y=1)$ for $i \\in \\{1, 2, 3\\}$: 3 parameters.<br><br>Total parameters $= 1 + 3 + 3 = 7$."
+            },
+            {
+                qn: 20,
+                id: "6406531415095",
+                type: "SA",
+                marks: 3.00,
+                parentQn: 18,
+                question: "If a test point has label 1, what is the probability of $x_{\\text{test}} = [1 \\quad 1 \\quad 1]^T$? Assume that the Laplacian smoothing is done, (i.e., add two pseudo training exmaples $x_{\\text{pseudo}}^0 = [1 \\quad 1 \\quad 1]^T$ for class 0 and $x_{\\text{pseudo}}^1 = [1 \\quad 1 \\quad 1]^T$ for class 1). Enter the answer correct to four decimal places.",
+                acceptedAnswer: "0.0625",
+                solution: "<strong>Explanation:</strong><br>We compute $P(x_{\\text{test}} = [1, 1, 1]^T \\mid y = 1) = P(f_1=1 \\mid y=1) P(f_2=1 \\mid y=1) P(f_3=1 \\mid y=1)$.<br>Training samples for class $y=1$ are $x_4(0,0,1), x_5(0,0,0), x_6(0,1,0)$ plus pseudo sample $x_{\\text{pseudo}}^1(1,1,1)$ (Total $N_1 = 4$ samples):<br>- $P(f_1=1 \\mid y=1) = \\frac{1}{4} = 0.25$<br>- $P(f_2=1 \\mid y=1) = \\frac{2}{4} = 0.50$<br>- $P(f_3=1 \\mid y=1) = \\frac{2}{4} = 0.50$<br><br>Probability $= 0.25 \\times 0.50 \\times 0.50 = 0.0625$."
+            }
+        ];
+
+        let currentMode = 'exam';
+        let userAnswers = {};
+        let timerSeconds = 0;
+        let isTimerRunning = true;
+        let timerInterval = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPalette();
+            renderQuestions();
+            startTimer();
+            updateScoreDisplay();
+        });
+
+        function setPortalMode(mode) {
+            currentMode = mode;
+            document.getElementById('btnExamMode').classList.toggle('active', mode === 'exam');
+            document.getElementById('btnLearningMode').classList.toggle('active', mode === 'learning');
+
+            const banner = document.getElementById('portalModeBanner');
+            if (banner) {
+                if (mode === 'learning') {
+                    banner.className = 'portal-mode-banner learning';
+                    banner.innerHTML = '<i class="fa-solid fa-graduation-cap"></i> <span><strong>Learning Mode:</strong> Solutions and answer explanations are revealed below each question. Perfect for study and practice!</span>';
+                } else {
+                    banner.className = 'portal-mode-banner';
+                    banner.innerHTML = '<i class="fa-solid fa-clock"></i> <span><strong>Exam Mode:</strong> Live timer active. Instant scoring enabled. Solutions shown on exam submission or when switching to Learning Mode.</span>';
+                }
+            }
+
+            renderQuestions();
+            updatePaletteStatuses();
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('paletteGrid');
+            grid.innerHTML = QUESTIONS_DATA.map(q => {
+                return `<button class="palette-btn" id="paletteBtn_${q.qn}" onclick="scrollToQuestion(${q.qn})">${q.qn}</button>`;
+            }).join('');
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            let html = '';
+
+            QUESTIONS_DATA.forEach((q) => {
+                const isComprehensionHeader = q.type === 'COMPREHENSION';
+
+                if (isComprehensionHeader) {
+                    html += `
+                    <article class="qn-card comprehension-card" id="qnCard_${q.qn}">
+                        <div class="qn-header-container">
+                            <div class="qn-header-top">
+                                <div class="qn-title-main">
+                                    <span style="background:var(--accent-purple); color:white; padding:0.25rem 0.6rem; border-radius:4px; font-size:0.75rem; font-weight:700;">COMPREHENSION PASSAGE</span>
+                                </div>
+                            </div>
+                            <div class="qn-header-sub">
+                                <span class="qn-id-tag">Question ${q.qn} : ${q.id}</span>
+                            </div>
+                        </div>
+                        <div class="qn-text" style="font-size:1rem; line-height:1.7;">${q.question || q.text || ''}</div>
+                    </article>
+                    `;
+                    return;
+                }
+
+                html += `
+                <article class="qn-card" id="qnCard_${q.qn}">
+                    <div class="qn-header-container">
+                        <div class="qn-header-top">
+                            <div class="qn-title-main">
+                                Question ${q.qn} : ${q.id}
+                            </div>
+                            <button class="btn-solution-pill" onclick="toggleSolution(${q.qn})">
+                                <i class="fa-regular fa-circle-check"></i> View Solutions (0)
+                            </button>
+                        </div>
+                        <div class="qn-header-sub">
+                            <span class="qn-id-tag">Question ${q.qn} : ${q.id}</span>
+                            <span class="qn-meta-info">Total Mark : ${q.marks.toFixed(2)} | Type : ${q.type}</span>
+                        </div>
+                    </div>
+
+                    <div class="qn-text">${q.question ? q.question : (q.text || '')}</div>
+
+                    ${q.code ? `
+                    <div class="code-snippet-wrap">
+                        <code>${escapeHtml(q.code)}</code>
+                    </div>` : ''}
+
+                    ${q.qnSubText ? `<div class="qn-text" style="margin-top:0.85rem;">${q.qnSubText}</div>` : ''}
+
+                    <!-- Options / Inputs -->
+                    ${renderAnswerInput(q)}
+
+                    <!-- Footer Action Toolbar -->
+                    <div class="qn-footer-toolbar">
+                        <div class="qn-actions-group">
+                            <button class="btn-action-pill btn-discuss" onclick="alert('Discussion forum loading...')"><i class="fa-regular fa-comments"></i> Discussions (0)</button>
+                            <button class="btn-action-pill btn-correct" onclick="alert('Correction reported. Thank you!')"><i class="fa-regular fa-pen-to-square"></i> Suggest Correction</button>
+                            <button class="btn-action-pill btn-broken" onclick="alert('Format flag recorded.')"><i class="fa-solid fa-wrench"></i> Broken Format?</button>
+                        </div>
+                    </div>
+
+                    <!-- Solution Accordion -->
+                    <div class="solution-box ${currentMode === 'learning' ? 'open' : ''}" id="solution_${q.qn}">
+                        <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution & Explanation</div>
+                        <div class="solution-text">
+                            ${(q.acceptedAnswer || (q.correct && q.options)) ? `<div style="font-weight:700; margin-bottom:0.5rem; color:var(--accent-green);">Accepted / Correct Answer:</div><div style="font-family:var(--font-mono); background:var(--bg-surface); padding:0.5rem 0.75rem; border-radius:6px; margin-bottom:0.75rem; border:1px solid var(--border-color);">${q.type === 'SA' ? q.acceptedAnswer : q.correct.map(i => `${i + 1}. ${q.options[i]}`).join('<br>')}</div>` : ''}
+                            ${q.solution ? q.solution : ''}
+                        </div>
+                    </div>
+                </article>
+                `;
+
+                if (q.qn === 6 || q.qn === 15) {
+                    html += `
+                    <div class="ad-banner-box">
+                        <span class="ad-tag">ADVERTISEMENT</span>
+                        <div class="ad-actions">
+                            <button class="btn-remove-ads" onclick="alert('Ad-free experience enabled.')"><i class="fa-solid fa-bolt"></i> Remove Ads</button>
+                            <button class="btn-close-ad" onclick="this.parentElement.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    `;
+                }
+            });
+
+            container.innerHTML = html;
+            updatePaletteStatuses();
+            if (window.MathJax && typeof MathJax.typesetPromise === 'function') {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function renderAnswerInput(q) {
+            if (q.type === 'SA') {
+                const val = userAnswers[q.qn] ? userAnswers[q.qn][0] : '';
+                const showGreen = currentMode === 'learning';
+                return `
+                <div class="sa-input-wrap" style="margin-top:1.25rem;">
+                    <label style="display:block; font-size:0.85rem; font-weight:600; color:var(--text-muted); margin-bottom:0.4rem;">Answer (Numeric):</label>
+                    <input type="text" class="sa-input" value="${escapeHtml(val)}" placeholder="Type your numeric answer here..." oninput="handleSAInput(${q.qn}, this.value)">
+                    <div class="accepted-ans-box" style="display:${showGreen ? 'block' : 'none'};">
+                        <i class="fa-solid fa-circle-check"></i> Accepted Answer : ${q.acceptedAnswer}
+                    </div>
+                </div>
+                `;
+            }
+
+            const isMSQ = q.type === 'MSQ';
+            const userArr = userAnswers[q.qn] || [];
+
+            return `
+            <div class="options-list">
+                ${q.options.map((optText, idx) => {
+                const isChecked = userArr.includes(idx);
+                const isCorrect = q.correct && q.correct.includes(idx);
+                let highlightClass = '';
+
+                if (isChecked) highlightClass = 'selected';
+
+                if (currentMode === 'learning') {
+                    if (isCorrect) highlightClass = 'correct-highlight';
+                    else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                }
+
+                return `
+                    <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <span class="option-text">${optText}</span>
+                    </label>
+                    `;
+            }).join('')}
+            </div>
+            `;
+        }
+
+        function handleSAInput(qnNum, val) {
+            if (!val || val.trim() === '') {
+                delete userAnswers[qnNum];
+            } else {
+                userAnswers[qnNum] = [val.trim()];
+            }
+            updateScoreDisplay();
+            updatePaletteStatuses();
+        }
+
+        function handleOptionSelect(qnNum, optIdx, qnType) {
+            if (qnType === 'MCQ') {
+                userAnswers[qnNum] = [optIdx];
+            } else if (qnType === 'MSQ') {
+                if (!userAnswers[qnNum]) userAnswers[qnNum] = [];
+                const pos = userAnswers[qnNum].indexOf(optIdx);
+                if (pos >= 0) userAnswers[qnNum].splice(pos, 1);
+                else userAnswers[qnNum].push(optIdx);
+            }
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function calculateQuestionScore(q) {
+            const userAns = userAnswers[q.qn];
+            if (!userAns || !Array.isArray(userAns) || userAns.length === 0) return "0.00";
+
+            if (q.type === 'MCQ') {
+                return (userAns[0] === q.correct[0]) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            if (q.type === 'MSQ') {
+                const sortedUser = [...userAns].sort((a, b) => a - b).join(',');
+                const sortedCorrect = [...q.correct].sort((a, b) => a - b).join(',');
+                return (sortedUser === sortedCorrect) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            if (q.type === 'SA') {
+                const valStr = (userAns[0] || '').trim();
+                const valNum = parseFloat(valStr);
+                if (q.acceptedAnswer.includes('to')) {
+                    const parts = q.acceptedAnswer.split('to').map(p => parseFloat(p.trim()));
+                    if (!isNaN(valNum) && valNum >= parts[0] && valNum <= parts[1]) {
+                        return q.marks.toFixed(2);
+                    }
+                } else {
+                    const targetNum = parseFloat(q.acceptedAnswer);
+                    if (!isNaN(valNum) && !isNaN(targetNum) && Math.abs(valNum - targetNum) < 0.01) {
+                        return q.marks.toFixed(2);
+                    }
+                }
+                return "0.00";
+            }
+
+            return "0.00";
+        }
+
+        function updateScoreDisplay() {
+            let total = 0;
+            let answeredCount = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const score = parseFloat(calculateQuestionScore(q));
+                total += score;
+
+                const ans = userAnswers[q.qn];
+                if (ans && Array.isArray(ans) && ans.length > 0) {
+                    answeredCount++;
+                }
+            });
+
+            document.getElementById('liveScoreDisplay').textContent = `${total.toFixed(2)} / 50.00`;
+            const pct = ((total / 50) * 100).toFixed(1);
+            document.getElementById('livePercentDisplay').textContent = `(${pct}%)`;
+            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/${QUESTIONS_DATA.length}`;
+        }
+
+        function updatePaletteStatuses() {
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.getElementById(`paletteBtn_${q.qn}`);
+                if (!btn) return;
+
+                btn.className = 'palette-btn';
+
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && Array.isArray(ans) && ans.length > 0;
+
+                if (hasAns) {
+                    btn.classList.add('answered');
+                    if (currentMode === 'learning') {
+                        const score = parseFloat(calculateQuestionScore(q));
+                        if (score > 0) btn.classList.add('correct');
+                        else btn.classList.add('incorrect');
+                    }
+                }
+            });
+        }
+
+        function toggleSolution(qnNum) {
+            const box = document.getElementById(`solution_${qnNum}`);
+            if (box) box.classList.toggle('open');
+        }
+
+        function scrollToQuestion(qnNum) {
+            const card = document.getElementById(`qnCard_${qnNum}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.querySelectorAll('.palette-btn').forEach(b => b.classList.remove('active-qn'));
+                const btn = document.getElementById(`paletteBtn_${qnNum}`);
+                if (btn) btn.classList.add('active-qn');
+            }
+        }
+
+        // Timer Logic
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (isTimerRunning) {
+                    timerSeconds++;
+                    updateTimerUI();
+                }
+            }, 1000);
+        }
+
+        function toggleTimer() {
+            isTimerRunning = !isTimerRunning;
+            const btn = document.getElementById('btnPauseTimer');
+            if (btn) btn.innerHTML = isTimerRunning ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+        }
+
+        function resetTimer() {
+            timerSeconds = 0;
+            updateTimerUI();
+        }
+
+        function updateTimerUI() {
+            const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const secs = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+        }
+
+        // Exam Submission & Modals
+        function submitExam() {
+            setPortalMode('learning');
+
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+            let totalScore = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                if (q.type === 'COMPREHENSION') return;
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && Array.isArray(ans) && ans.length > 0;
+
+                if (!hasAns) {
+                    unansweredCount++;
+                } else {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    totalScore += score;
+                    if (score > 0) correctCount++;
+                    else incorrectCount++;
+                }
+            });
+
+            document.getElementById('modalScoreText').textContent = `${totalScore.toFixed(2)} / 50.00`;
+            document.getElementById('modalPercentText').textContent = `${((totalScore / 50) * 100).toFixed(1)}% Accuracy`;
+            document.getElementById('modalCorrectCount').textContent = correctCount;
+            document.getElementById('modalIncorrectCount').textContent = incorrectCount;
+            document.getElementById('modalUnansweredCount').textContent = unansweredCount;
+
+            document.getElementById('resultModal').classList.add('active');
+        }
+
+        function resetExam() {
+            userAnswers = {};
+            resetTimer();
+            closeResultModal();
+            setPortalMode('learning');
+        }
+
+        function openSummaryModal() {
+            document.getElementById('summaryModal').classList.add('active');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.remove('active');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.remove('active');
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('portalSidebar');
+            const toggleBtn = document.getElementById('mobileSidebarToggle');
+            if (sidebar && toggleBtn) {
+                sidebar.classList.toggle('open');
+                toggleBtn.classList.toggle('active');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const fab = document.getElementById('fabBackToTop');
+            if (fab) {
+                if (window.scrollY > 300) fab.classList.add('visible');
+                else fab.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+
+</html>
