@@ -554,6 +554,22 @@ mjx-math {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none !important;
     -ms-overflow-style: none !important;
+    outline: none !important;
+}
+
+mjx-container:focus,
+mjx-container:active,
+.MathJax:focus,
+.MathJax:active {
+    outline: none !important;
+    background-color: transparent !important;
+}
+
+#MathJax_MenuFrame,
+#MathJax_About,
+.MathJax_Menu,
+.mjx-menu {
+    display: none !important;
 }
 
 mjx-math {
