@@ -13,7 +13,8 @@
     <meta name="apple-mobile-web-app-title" content="BS Students Helper">
     <meta property="og:site_name" content="BS Students Helper">
     <meta property="og:title" content="IITM BS Quiz 1 Practice & Question Papers | BSH">
-    <meta property="og:description" content="Practice IIT Madras BS Degree Quiz 1 PYQs with topic filters and answer keys.">
+    <meta property="og:description"
+        content="Practice IIT Madras BS Degree Quiz 1 PYQs with topic filters and answer keys.">
     <meta property="og:url" content="https://bsstudentshelper.vercel.app/quiz_1_practice.html">
     <meta property="og:type" content="website">
     <link rel="canonical" href="https://bsstudentshelper.vercel.app/quiz_1_practice.html">
@@ -394,62 +395,65 @@
 
                 <!-- Toolbar: Title + Filters -->
                 <div class="papers-toolbar">
-            <div class="papers-title-row">
-                <h2 class="papers-title">QUIZ 1 - <span>QUESTION PAPERS</span></h2>
-                <a href="quiz_practice.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> All Quiz Modes</a>
-            </div>
+                    <div class="papers-title-row">
+                        <h2 class="papers-title">QUIZ 1 - <span>QUESTION PAPERS</span></h2>
+                        <a href="quiz_practice.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> All Quiz
+                            Modes</a>
+                    </div>
 
-            <div class="filter-row">
-                <div class="filter-group course-group">
-                    <label for="courseSelect">Select Course</label>
-                    <select id="courseSelect">
-                        <option value="">Select course...</option>
-                        <option value="maths1">Mathematics for Data Science I</option>
-                        <option value="maths2">Mathematics for Data Science II</option>
-                        <option value="stats1">Statistics for Data Science I</option>
-                        <option value="stats2">Statistics for Data Science II</option>
-                        <option value="ct">Computational Thinking</option>
-                        <option value="english1">English I</option>
-                        <option value="english2">English II</option>
-                        <option value="python">Python Programming</option>
-                        <option value="java">Programming Concepts Using Java</option>
-                        <option value="mad2">Modern Application Development II</option>
-                        <option value="ml">Machine Learning</option>
-                        <option value="es-embedded">ES - Embedded Systems</option>
-                    </select>
+                    <div class="filter-row">
+                        <div class="filter-group course-group">
+                            <label for="courseSelect">Select Course</label>
+                            <select id="courseSelect">
+                                <option value="">Select course...</option>
+                                <option value="maths1">Mathematics for Data Science I</option>
+                                <option value="maths2">Mathematics for Data Science II</option>
+                                <option value="stats1">Statistics for Data Science I</option>
+                                <option value="stats2">Statistics for Data Science II</option>
+                                <option value="ct">Computational Thinking</option>
+                                <option value="english1">English I</option>
+                                <option value="english2">English II</option>
+                                <option value="python">Python Programming</option>
+                                <option value="java">Programming Concepts Using Java</option>
+                                <option value="mad2">Modern Application Development II</option>
+                                <option value="ml">Machine Learning</option>
+                                <option value="es-embedded">ES - Embedded Systems</option>
+                            </select>
+                        </div>
+                        <div class="filter-group year-group">
+                            <label for="yearSelect">Year</label>
+                            <select id="yearSelect">
+                                <option value="all">All</option>
+                                <option value="2026">2026</option>
+                                <option value="2025">2025</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <p class="filter-hint">
+                        There may be some courses in different name. eg: You might see Math 1 and Math1 listed
+                        separately. Each
+                        one will have different Question Papers
+                    </p>
                 </div>
-                <div class="filter-group year-group">
-                    <label for="yearSelect">Year</label>
-                    <select id="yearSelect">
-                        <option value="all">All</option>
-                        <option value="2026">2026</option>
-                        <option value="2025">2025</option>
-                        <option value="2024">2024</option>
-                        <option value="2023">2023</option>
-                    </select>
+
+                <div class="divider-line"></div>
+
+                <!-- Empty State (shown when no course is selected, by default) -->
+                <div class="empty-state" id="emptyState">
+                    <img src="assets/images/empty.png" alt="Choose a Course" class="empty-state-img">
+                    <h3>Please Choose a course</h3>
+                    <p>Pick a subject from the dropdown above to view available Quiz 1 question papers. Year filter is
+                        optional
+                        (defaults to <b>All</b>).</p>
                 </div>
+
+                <!-- Papers Grid (populated by JS) -->
+                <div class="papers-grid" id="papersGrid"></div>
+
             </div>
-
-            <p class="filter-hint">
-                There may be some courses in different name. eg: You might see Math 1 and Math1 listed separately. Each
-                one will have different Question Papers
-            </p>
-        </div>
-
-        <div class="divider-line"></div>
-
-        <!-- Empty State (shown when no course is selected, by default) -->
-        <div class="empty-state" id="emptyState">
-            <img src="assets/images/empty.png" alt="Choose a Course" class="empty-state-img">
-            <h3>Please Choose a course</h3>
-            <p>Pick a subject from the dropdown above to view available Quiz 1 question papers. Year filter is optional
-                (defaults to <b>All</b>).</p>
-        </div>
-
-        <!-- Papers Grid (populated by JS) -->
-        <div class="papers-grid" id="papersGrid"></div>
-
-        </div>
         </section>
     </main>
 
@@ -495,11 +499,11 @@
     <script>
         const QUIZ1_PAPERS = [
 
-            { id: 101, title: "Quiz 1 - Programming in Python - 16 Jul 2026", course: "python", courseLabel: "Python", year: "2026", url: "python/quiz_1_python_16jul26.html" },
-            { id: 102, title: "Quiz 1 - Programming in Python - 15 Mar 2026", course: "python", courseLabel: "Python", year: "2026", url: "python/quiz_1_python_15mar26.html" },
-            { id: 103, title: "Quiz 1 - Programming in Python - 26 Oct 2025", course: "python", courseLabel: "Python", year: "2025", url: "python/quiz_1_python_26oct25.html" },
-            { id: 104, title: "Quiz 1 - Programming in Python - 13 Jul 2025", course: "python", courseLabel: "Python", year: "2025", url: "python/quiz_1_python_13jul25.html" },
-            { id: 105, title: "Quiz 1 - Programming in Python - 23 Feb 2025", course: "python", courseLabel: "Python", year: "2025", url: "python/quiz_1_python_23feb25.html" },
+            { id: 101, title: "Quiz 1 - Programming in Python - 16 Jul 2026", course: "python", courseLabel: "Python", year: "2026", url: "python/quiz1/quiz_1_python_16jul26.html" },
+            { id: 102, title: "Quiz 1 - Programming in Python - 15 Mar 2026", course: "python", courseLabel: "Python", year: "2026", url: "python/quiz1/quiz_1_python_15mar26.html" },
+            { id: 103, title: "Quiz 1 - Programming in Python - 26 Oct 2025", course: "python", courseLabel: "Python", year: "2025", url: "python/quiz1/quiz_1_python_26oct25.html" },
+            { id: 104, title: "Quiz 1 - Programming in Python - 13 Jul 2025", course: "python", courseLabel: "Python", year: "2025", url: "python/quiz1/quiz_1_python_13jul25.html" },
+            { id: 105, title: "Quiz 1 - Programming in Python - 23 Feb 2025", course: "python", courseLabel: "Python", year: "2025", url: "python/quiz1/quiz_1_python_23feb25.html" },
             //     { id: 1, title: "Quiz 1 - Mathematics for Data Science I - Jan 2026", course: "maths1", courseLabel: "Maths 1", year: "2026", url: "#" },
             //     { id: 2, title: "Quiz 1 - Mathematics for Data Science I - May 2025", course: "maths1", courseLabel: "Maths 1", year: "2025", url: "#" },
             //     { id: 3, title: "Quiz 1 - Statistics for Data Science I - Jan 2026", course: "stats1", courseLabel: "Stats 1", year: "2026", url: "#" },
