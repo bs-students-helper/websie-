@@ -629,10 +629,10 @@
             return `
             <div class="options-list">
                 ${q.options.map((optText, idx) => {
-                    const isChecked = userArr.includes(idx);
-                    const isCorrect = q.correct.includes(idx);
-                    let highlightClass = '';
-                    if (isChecked) highlightClass = 'selected';
+                const isChecked = userArr.includes(idx);
+                const isCorrect = q.correct.includes(idx);
+                let highlightClass = '';
+                if (isChecked) highlightClass = 'selected';
 
                 if (currentMode === 'learning') {
                     if (isCorrect) highlightClass = 'correct-highlight';
