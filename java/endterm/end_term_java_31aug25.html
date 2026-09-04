@@ -88,7 +88,8 @@
                     </div>
                     <div class="exam-info-row">
                         <span class="exam-info-label">QP :</span>
-                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">Programming Concepts Using Java 31 Aug 25</span>
+                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">Programming Concepts
+                            Using Java 31 Aug 25</span>
                     </div>
                 </div>
 
@@ -96,8 +97,10 @@
                 <div>
                     <div class="menu-heading">Portal Mode</div>
                     <div class="mode-toggle-group">
-                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam Mode</button>
-                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning Mode</button>
+                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam
+                            Mode</button>
+                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning
+                            Mode</button>
                     </div>
                 </div>
 
@@ -145,7 +148,9 @@
                         <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
                     </button>
                     <div class="score-card" style="margin-top:1rem;">
-                        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">YOUR SCORE</span>
+                        <span
+                            style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">YOUR
+                            SCORE</span>
                         <div class="score-num" id="liveScoreDisplay">0.00 / 100.00</div>
                         <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);"
                             id="livePercentDisplay">(0.0%)</span>
@@ -194,7 +199,8 @@
                     <td style="padding:0.6rem;">8.00</td>
                 </tr>
             </table>
-            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close Summary</button>
+            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close
+                Summary</button>
         </div>
     </div>
 
@@ -206,7 +212,8 @@
                 <i class="fa-solid fa-trophy"></i>
             </div>
             <h2 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Exam Submitted!</h2>
-            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for Java End Term Quiz (31 Aug 25)</p>
+            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for Java End Term
+                Quiz (31 Aug 25)</p>
 
             <div
                 style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
@@ -214,7 +221,8 @@
                     Final Score</div>
                 <div style="font-family:var(--font-mono); font-size:2.8rem; font-weight:800; color:var(--accent-green);"
                     id="modalScoreText">0.00 / 100.00</div>
-                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0% Accuracy
+                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0%
+                    Accuracy
                 </div>
             </div>
 
@@ -523,7 +531,7 @@ public class MapTest {
                     "24 30",
                     "18 36"
                 ],
-                correct: [3],
+                correct: [2],
                 solution: "filter(n % 3 == 0) gives 9, 12, 15, 18. map(*2) gives 18, 24, 30, 36. skip(1) skips 18. limit(2) takes 24, 30... wait, in the exam paper answer key, option 4 (18 36) is highlighted as correct."
             },
             {
@@ -1263,27 +1271,27 @@ public class ToggleLabel extends JFrame implements ActionListener {
             return `
             <div class="options-list">
                 ${q.options.map((optText, idx) => {
-                    const isChecked = userArr.includes(idx);
-                    const isCorrect = q.correct.includes(idx);
-                    let highlightClass = '';
+                const isChecked = userArr.includes(idx);
+                const isCorrect = q.correct.includes(idx);
+                let highlightClass = '';
 
-                    if (isChecked) highlightClass = 'selected';
+                if (isChecked) highlightClass = 'selected';
 
-                    if (currentMode === 'learning') {
-                        if (isCorrect) highlightClass = 'correct-highlight';
-                        else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
-                    }
+                if (currentMode === 'learning') {
+                    if (isCorrect) highlightClass = 'correct-highlight';
+                    else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                }
 
-                    const cleanOptText = (optText || '').replace(/\\n/g, '\n');
-                    const isMultiLine = cleanOptText.includes('\n');
+                const cleanOptText = (optText || '').replace(/\\n/g, '\n');
+                const isMultiLine = cleanOptText.includes('\n');
 
-                    return `
+                return `
                     <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
                         <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
                         <span class="option-text">${isMultiLine ? `<pre style="margin:0; font-family:var(--font-mono); font-size:0.9rem; line-height:1.5;"><code>${escapeHtml(cleanOptText)}</code></pre>` : escapeHtml(cleanOptText)}</span>
                     </label>
                     `;
-                }).join('')}
+            }).join('')}
             </div>
             `;
         }
