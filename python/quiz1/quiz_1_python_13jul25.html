@@ -15,7 +15,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <!-- FontAwesome Non-Blocking Asynchronous Load -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../../assets/icons/favicon.ico">
@@ -42,7 +44,7 @@
     <header class="site-header" id="header">
         <div class="header-container">
             <a href="../../index.html" class="brand-logo" aria-label="BSH Homepage">
-                <img src="../../assets/images/logo.png" alt="BSH Logo" class="logo-img">
+                <img src="../../assets/images/logo.webp" width="160" height="58" alt="BSH Logo" class="logo-img">
             </a>
             <nav class="nav-menu" id="navMenu">
                 <a href="../../index.html#features" class="nav-link">Features</a>

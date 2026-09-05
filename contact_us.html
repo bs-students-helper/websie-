@@ -23,7 +23,9 @@
         rel="stylesheet">
 
     <!-- FontAwesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <!-- FontAwesome Non-Blocking Asynchronous Load -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://bsstudentshelper.vercel.app/contact_us">
@@ -170,7 +172,7 @@
         <div class="header-container">
             <!-- BSH Brand Logo -->
             <a href="index.html" class="brand-logo" aria-label="BSH Homepage">
-                <img src="assets/images/logo.png" alt="BSH - Portal for IIT Madras BS Students" class="logo-img">
+                <img src="assets/images/logo.webp" width="160" height="58" alt="BSH - Portal for IIT Madras BS Students" class="logo-img">
             </a>
 
             <!-- Navigation Links -->
@@ -305,7 +307,7 @@
         <div class="container footer-container">
             <div class="footer-brand">
                 <a href="index.html" class="brand-logo footer-logo" aria-label="BSH Homepage">
-                    <img src="assets/images/logo.png" alt="BSH - Portal for IIT Madras BS Students" class="logo-img">
+                    <img src="assets/images/logo.webp" width="160" height="58" alt="BSH - Portal for IIT Madras BS Students" class="logo-img">
                 </a>
                 <p class="footer-desc">
                     The open, student-driven academic companion for IIT Madras BS in Data Science & Electronic Systems.

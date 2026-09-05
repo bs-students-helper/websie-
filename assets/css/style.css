@@ -9,7 +9,6 @@
 /* --------------------------------------------------------------------------
    1. Design Tokens & CSS Custom Properties (Warm Retro Pastel Voxel System)
    -------------------------------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:wght@400;600;700&display=swap');
 
 :root {
     /* Color Palette */
@@ -23,8 +22,8 @@
     --bg-header-rgb: 248, 239, 230;
 
     --text-primary: #231815;
-    --text-secondary: #685952;
-    --text-muted: #8E7E76;
+    --text-secondary: #4D3E37;
+    --text-muted: #594942;
     --text-inverse: #FFF9F5;
 
     --border-color: #EADACD;
@@ -47,14 +46,22 @@
     --font-mono: 'JetBrains Mono', monospace;
 
     /* Typographic Scale System (Standardized 8-level modular scale) */
-    --fs-xs: 0.75rem;     /* 12px - Badges & micro text */
-    --fs-sm: 0.875rem;    /* 14px - Subtext, meta, tags */
-    --fs-base: 1rem;      /* 16px - Base body copy */
-    --fs-md: 1.125rem;    /* 18px - Lead copy, subtitles */
-    --fs-lg: 1.25rem;     /* 20px - Card titles, subheadings */
-    --fs-xl: 1.5rem;      /* 24px - H3 Headings */
-    --fs-2xl: 2rem;       /* 32px - H2 Section titles */
-    --fs-3xl: 2.75rem;    /* 44px - H1 Hero title */
+    --fs-xs: 0.75rem;
+    /* 12px - Badges & micro text */
+    --fs-sm: 0.875rem;
+    /* 14px - Subtext, meta, tags */
+    --fs-base: 1rem;
+    /* 16px - Base body copy */
+    --fs-md: 1.125rem;
+    /* 18px - Lead copy, subtitles */
+    --fs-lg: 1.25rem;
+    /* 20px - Card titles, subheadings */
+    --fs-xl: 1.5rem;
+    /* 24px - H3 Headings */
+    --fs-2xl: 2rem;
+    /* 32px - H2 Section titles */
+    --fs-3xl: 2.75rem;
+    /* 44px - H1 Hero title */
 
     /* Spacing & Layout */
     --container-max: 1240px;
@@ -299,6 +306,7 @@ html {
         opacity: 1;
         transform: scale(1);
     }
+
     to {
         opacity: 0;
         transform: scale(0.995);
@@ -310,6 +318,7 @@ html {
         opacity: 0;
         transform: translateY(8px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -343,6 +352,7 @@ body.page-transitioning-out {
         opacity: 0;
         transform: translateY(6px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
@@ -378,10 +388,12 @@ body.page-transitioning-out {
         transition: none !important;
         will-change: auto !important;
     }
+
     body.page-transitioning-out {
         opacity: 1 !important;
         transform: none !important;
     }
+
     body.page-entry-animate {
         animation: none !important;
     }
@@ -531,7 +543,7 @@ h4 {
     font-weight: 700;
     letter-spacing: 0.04em;
     color: var(--text-primary);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
 .badge-dot {
@@ -547,10 +559,12 @@ h4 {
         transform: scale(0.95);
         box-shadow: 0 0 0 0 rgba(216, 76, 30, 0.7);
     }
+
     70% {
         transform: scale(1);
         box-shadow: 0 0 0 8px rgba(216, 76, 30, 0);
     }
+
     100% {
         transform: scale(0.95);
         box-shadow: 0 0 0 0 rgba(216, 76, 30, 0);
@@ -578,7 +592,7 @@ h4 {
     font-weight: 600;
     font-size: 0.92rem;
     color: #231815;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
     transition: all 0.2s ease;
 }
 
@@ -601,7 +615,7 @@ h4 {
 
 [data-theme="dark"] .feature-pill {
     background: #1E1A28;
-    border-color: rgba(255,255,255,0.14);
+    border-color: rgba(255, 255, 255, 0.14);
     color: #F7F5F8;
 }
 
@@ -664,9 +678,17 @@ h4 {
 }
 
 @keyframes proShimmerSweep {
-    0% { transform: translateX(-100%) rotate(25deg); }
-    30% { transform: translateX(350%) rotate(25deg); }
-    100% { transform: translateX(350%) rotate(25deg); }
+    0% {
+        transform: translateX(-100%) rotate(25deg);
+    }
+
+    30% {
+        transform: translateX(350%) rotate(25deg);
+    }
+
+    100% {
+        transform: translateX(350%) rotate(25deg);
+    }
 }
 
 .btn-primary:hover,
@@ -722,7 +744,7 @@ h4 {
    -------------------------------------------------------------------------- */
 .hero-section {
     position: relative;
-    background-image: url('../images/voxel_hero.jpg');
+    background-image: url('../images/voxel_hero.webp');
     background-position: center bottom;
     background-size: cover;
     background-repeat: no-repeat;
@@ -883,12 +905,19 @@ h4 {
 
 /* Animations */
 @keyframes scrollBounce {
-    0%, 20%, 50%, 80%, 100% {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
         transform: translateY(0);
     }
+
     40% {
         transform: translateY(9px);
     }
+
     60% {
         transform: translateY(4px);
     }
@@ -899,10 +928,12 @@ h4 {
         transform: scale(0.95);
         opacity: 0.85;
     }
+
     50% {
         transform: scale(1.38);
         opacity: 0;
     }
+
     100% {
         transform: scale(1.38);
         opacity: 0;
@@ -1408,6 +1439,7 @@ h4 {
     0% {
         transform: translateY(0px) translateZ(0);
     }
+
     100% {
         transform: translateY(-10px) translateZ(0);
     }
@@ -1421,6 +1453,7 @@ h4 {
         width: fit-content;
         max-width: 100%;
     }
+
     .hero-showcase-wrapper {
         display: flex;
         flex-direction: column;
@@ -2412,6 +2445,7 @@ svg.grade-ring-svg {
         opacity: 0;
         transform: translateY(20px) scale(0.95);
     }
+
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -2423,6 +2457,7 @@ svg.grade-ring-svg {
         opacity: 1;
         transform: translateY(0) scale(1);
     }
+
     to {
         opacity: 0;
         transform: translateY(20px) scale(0.95);
@@ -2629,10 +2664,22 @@ svg.grade-ring-svg {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    align-items: flex-start;
+}
+
+.footer-logo {
+    display: inline-flex;
+    align-items: center;
 }
 
 .footer-logo .logo-img-footer {
-    height: 56px;
+    height: 48px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+    filter: var(--logo-filter, none);
+    transition: filter var(--transition-base);
 }
 
 .footer-logo .logo-text {

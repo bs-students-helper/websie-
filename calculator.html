@@ -15,14 +15,14 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="manifest" href="site.webmanifest">
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts Preconnect & Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"></noscript>
 
-    <!-- FontAwesome / Lucide Icons CDN -->
+    <!-- FontAwesome Non-Blocking Asynchronous Load -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Canonical URL -->
@@ -105,7 +105,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
 
-    <!-- Stylesheet -->
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/calculator.css">
 
     <!-- Anti-Flash Theme Script -->
@@ -128,7 +129,7 @@
         <div class="header-container">
             <!-- BSH Brand Logo -->
             <a href="index.html" class="brand-logo" aria-label="BSH Homepage">
-                <img src="assets/images/logo.png" alt="BSH - Portal for IIT Madras BS Students" class="logo-img">
+                <img src="assets/images/logo.webp" alt="BSH - Portal for IIT Madras BS Students" class="logo-img" width="160" height="58">
             </a>
 
             <!-- Navigation Links -->
@@ -389,7 +390,7 @@
         <div class="container footer-container">
             <div class="footer-brand">
                 <a href="index.html" class="brand-logo footer-logo" aria-label="BSH Homepage">
-                    <img src="assets/images/logo.png" alt="BSH - Portal for IIT Madras BS Students" class="logo-img">
+                    <img src="assets/images/logo.webp" alt="BSH - Portal for IIT Madras BS Students" class="logo-img" width="160" height="58">
                 </a>
                 <p class="footer-desc">
                     The open, student-driven academic companion for IIT Madras BS in Data Science & Electronic Systems.
