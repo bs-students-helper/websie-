@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice MLT questions : 2025 Apr13: IIT M FN EXAM QDF2 - QuizPractice | BSH</title>
+    <meta name="description"
+        content="Practice Machine Learning Techniques End Term question paper (13 Apr 2025 FN - 2025 Apr13: IIT M FN EXAM QDF2) with interactive exam & learning modes, instant score calculation, detailed solutions, and question palette.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+
+    <!-- Master CSS -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/quiz-portal.css">
+
+    <!-- MathJax for rendering LaTeX math formulas -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false,
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('bsh-theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Site Navigation Header -->
+    <header class="site-header" id="header">
+        <div class="header-container">
+            <a href="../../index.html" class="brand-logo" aria-label="BSH Homepage">
+                <img src="../../assets/images/logo.png" alt="BSH Logo" class="logo-img">
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="../../index.html#features" class="nav-link">Features</a>
+                <a href="../../quiz_practice.html" class="nav-link active">Quiz Practice</a>
+                <a href="../../calculator.html" class="nav-link">SEC Calculator</a>
+                <a href="../../about.html" class="nav-link">About Us</a>
+                <a href="../../contact_us.html" class="nav-link">Feedback</a>
+            </nav>
+            <div class="header-actions">
+                <a href="../../end_term_practice.html" class="btn btn-secondary nav-btn-desktop"><i
+                        class="fa-solid fa-arrow-left"></i><span>Back to Papers</span></a>
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i
+                        class="fa-solid fa-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="portal-layout">
+
+            <!-- Mobile Collapsible Sidebar Toggle Button -->
+            <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()">
+                <span><i class="fa-solid fa-sliders"></i> Exam Controls & Question Menu</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <!-- Left Sidebar: Controls, Menu & Timer -->
+            <aside class="portal-sidebar" id="portalSidebar">
+
+                <!-- Header Info -->
+                <div class="exam-info-header">
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Exam :</span>
+                        <span class="exam-info-val">End Term Quiz</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Subject :</span>
+                        <span class="exam-info-val">MLT</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Total Marks :</span>
+                        <span class="exam-info-val">50.00</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">QP :</span>
+                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">2025 Apr13: IIT M FN
+                            EXAM QDF2</span>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher -->
+                <div>
+                    <div class="menu-heading">Portal Mode</div>
+                    <div class="mode-toggle-group">
+                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam
+                            Mode</button>
+                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning
+                            Mode</button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                    <button class="btn-action-pill" style="justify-content:center; padding:0.65rem;"
+                        onclick="openSummaryModal()">
+                        <i class="fa-solid fa-eye"></i> View Question Paper Summary
+                    </button>
+                    <button class="btn-action-pill" style="justify-content:center; padding:0.65rem;"
+                        onclick="window.print()">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </button>
+                </div>
+
+                <!-- Question Menu Grid -->
+                <div>
+                    <div class="menu-heading">
+                        <span>QUESTION MENU</span>
+                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/22</span>
+                    </div>
+                    <div class="palette-grid" id="paletteGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Timer Box -->
+                <div>
+                    <div class="menu-heading">TIMER</div>
+                    <div class="timer-box">
+                        <div class="timer-display" id="timerDisplay">00:00</div>
+                        <div class="timer-controls">
+                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i
+                                     class="fa-solid fa-pause"></i></button>
+                            <button class="btn-icon-sm" onclick="resetTimer()"><i
+                                     class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls & Score Box -->
+                <div>
+                    <div class="menu-heading">CONTROLS</div>
+                    <button class="btn-submit-exam" onclick="submitExam()">
+                        <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
+                    </button>
+                    <div class="score-card" style="margin-top:1rem;">
+                        <span
+                            style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">YOUR
+                            SCORE</span>
+                        <div class="score-num" id="liveScoreDisplay">0.00 / 50.00</div>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);"
+                            id="livePercentDisplay">(0.0%)</span>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Right Area: Questions List -->
+            <section class="questions-area" id="questionsContainer">
+                <!-- Dynamically Rendered by JS -->
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Floating Back to Top FAB -->
+    <button class="fab-back-to-top" id="fabBackToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;">Question Paper Summary</h3>
+                <button class="btn-icon-sm" onclick="closeSummaryModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+                Paper Title: <b>Machine Learning Techniques 13 Apr 2025 (FN)</b> (2025 Apr13: IIT M FN EXAM QDF2)
+            </p>
+            <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+                <tr style="border-bottom:1px solid var(--border-light); text-align:left;">
+                    <th style="padding:0.6rem;">Question Type</th>
+                    <th style="padding:0.6rem;">Count</th>
+                    <th style="padding:0.6rem;">Total Marks</th>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MCQ (Multiple Choice)</td>
+                    <td style="padding:0.6rem;">7</td>
+                    <td style="padding:0.6rem;">19.00</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MSQ (Multiple Select)</td>
+                    <td style="padding:0.6rem;">5</td>
+                    <td style="padding:0.6rem;">13.00</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">SA (Short Answer / Numeric)</td>
+                    <td style="padding:0.6rem;">7</td>
+                    <td style="padding:0.6rem;">18.00</td>
+                </tr>
+            </table>
+            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close
+                Summary</button>
+        </div>
+    </div>
+
+    <!-- Exam Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-card" style="text-align:center;">
+            <div
+                style="width:64px; height:64px; border-radius:50%; background:rgba(16, 185, 129, 0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 1rem;">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Exam Submitted!</h2>
+            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for Machine
+                Learning Techniques End Term Quiz (13 Apr 2025 FN)</p>
+
+            <div
+                style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
+                <div style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; font-weight:600;">
+                    Final Score</div>
+                <div style="font-family:var(--font-mono); font-size:2.8rem; font-weight:800; color:var(--accent-green);"
+                    id="modalScoreText">0.00 / 50.00</div>
+                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0%
+                    Accuracy
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem; margin-bottom:1.5rem;">
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Correct</div>
+                    <div style="font-weight:700; color:#10b981; font-size:1.2rem;" id="modalCorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Incorrect</div>
+                    <div style="font-weight:700; color:#ef4444; font-size:1.2rem;" id="modalIncorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Unanswered</div>
+                    <div style="font-weight:700; color:var(--text-secondary); font-size:1.2rem;"
+                        id="modalUnansweredCount">0</div>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:0.75rem;">
+                <button class="btn btn-secondary btn-full"
+                    onclick="closeResultModal(); setPortalMode('learning');">Review Solutions <i
+                        class="fa-solid fa-book-open"></i></button>
+                <button class="btn btn-primary btn-full" onclick="resetExam()">Retake Exam <i
+                        class="fa-solid fa-rotate-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Master Scripts -->
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        const QUESTIONS_DATA = [
+            {
+                qn: 1,
+                id: "6406531230338",
+                type: "MCQ",
+                marks: 0.00,
+                question: "THIS IS QUESTION PAPER FOR THE SUBJECT &quot;DIPLOMA LEVEL : MACHINE LEARNING TECHNIQUES (COMPUTER BASED EXAM)&quot; ARE YOU SURE YOU HAVE TO WRITE EXAM FOR THIS SUBJECT? CROSS CHECK YOUR HALL TICKET TO CONFIRM THE SUBJECTS TO BE WRITTEN. (IF IT IS NOT THE CORRECT SUBJECT, PLS CHECK THE SECTION AT THE TOP FOR THE SUBJECTS REGISTERED BY YOU)",
+                options: [
+                    "YES",
+                    "NO"
+                ],
+                correct: [0],
+                solution: "<strong>Explanation:</strong><br>Standard exam subject verification prompt. Confirming 'YES' acknowledges registration for Diploma Level Machine Learning Techniques."
+            },
+            {
+                qn: 2,
+                id: "6406531230339",
+                type: "MCQ",
+                marks: 3.00,
+                question: "For a given dataset, a 1-Nearest Neighbor (1-NN) and a 3-Nearest Neighbor (3-NN) classifier are applied. Which classifier is likely to exhibit a higher Leave-One-Out Cross Validation (LOOCV) error? In case of tie-breaker, assign a positive class (+) to the data point.<br><br><div style='text-align:center;'><svg width='360' height='300' viewBox='0 0 360 300' style='background:var(--card-bg, #ffffff); border:1px solid var(--border-color, #cbd5e1); border-radius:8px; display:inline-block; margin:0.5rem 0;'><text x='180' y='24' font-family='sans-serif' font-size='14' font-weight='bold' text-anchor='middle' fill='var(--text-primary, #0f172a)'>Labeled Data Points</text><line x1='50' y1='260' x2='300' y2='260' stroke='#64748b' stroke-width='1.5'/><line x1='50' y1='60' x2='50' y2='260' stroke='#64748b' stroke-width='1.5'/><line x1='100' y1='60' x2='100' y2='260' stroke='#e2e8f0' stroke-dasharray='3,3'/><line x1='150' y1='60' x2='150' y2='260' stroke='#e2e8f0' stroke-dasharray='3,3'/><line x1='200' y1='60' x2='200' y2='260' stroke='#e2e8f0' stroke-dasharray='3,3'/><line x1='250' y1='60' x2='250' y2='260' stroke='#e2e8f0' stroke-dasharray='3,3'/><line x1='300' y1='60' x2='300' y2='260' stroke='#e2e8f0' stroke-dasharray='3,3'/><line x1='50' y1='220' x2='300' y2='220' stroke='#e2e8f0' stroke-dasharray='3,3'/><line x1='50' y1='180' x2='300' y2='180' stroke='#e2e8f0' stroke-dasharray='3,3'/><line x1='50' y1='140' x2='300' y2='140' stroke='#e2e8f0' stroke-dasharray='3,3'/><line x1='50' y1='100' x2='300' y2='100' stroke='#e2e8f0' stroke-dasharray='3,3'/><line x1='50' y1='60' x2='300' y2='60' stroke='#e2e8f0' stroke-dasharray='3,3'/><text x='50' y='275' font-family='sans-serif' font-size='12' text-anchor='middle' fill='#475569'>0</text><text x='100' y='275' font-family='sans-serif' font-size='12' text-anchor='middle' fill='#475569'>1</text><text x='150' y='275' font-family='sans-serif' font-size='12' text-anchor='middle' fill='#475569'>2</text><text x='200' y='275' font-family='sans-serif' font-size='12' text-anchor='middle' fill='#475569'>3</text><text x='250' y='275' font-family='sans-serif' font-size='12' text-anchor='middle' fill='#475569'>4</text><text x='300' y='275' font-family='sans-serif' font-size='12' text-anchor='middle' fill='#475569'>5</text><text x='175' y='292' font-family='sans-serif' font-size='12' font-weight='bold' text-anchor='middle' fill='#475569'>X-axis</text><text x='42' y='264' font-family='sans-serif' font-size='12' text-anchor='end' fill='#475569'>0</text><text x='42' y='224' font-family='sans-serif' font-size='12' text-anchor='end' fill='#475569'>1</text><text x='42' y='184' font-family='sans-serif' font-size='12' text-anchor='end' fill='#475569'>2</text><text x='42' y='144' font-family='sans-serif' font-size='12' text-anchor='end' fill='#475569'>3</text><text x='42' y='104' font-family='sans-serif' font-size='12' text-anchor='end' fill='#475569'>4</text><text x='42' y='64' font-family='sans-serif' font-size='12' text-anchor='end' fill='#475569'>5</text><text x='25' y='160' font-family='sans-serif' font-size='12' font-weight='bold' text-anchor='middle' fill='#475569' transform='rotate(-90 25 160)'>Y-axis</text><rect x='190' y='45' width='115' height='34' fill='var(--bg-surface, #ffffff)' stroke='#cbd5e1' rx='4'/><path d='M196,55 L204,63 M204,55 L196,63' stroke='#2563eb' stroke-width='2.5'/><text x='210' y='62' font-family='sans-serif' font-size='10' fill='#2563eb'>Positive Class (+)</text><rect x='197' y='71' width='7' height='3' fill='#dc2626'/><text x='210' y='75' font-family='sans-serif' font-size='10' fill='#dc2626'>Negative Class (-)</text><path d='M94,100 L106,100 M100,94 L100,106' stroke='#2563eb' stroke-width='3'/><path d='M144,100 L156,100 M150,94 L150,106' stroke='#2563eb' stroke-width='3'/><path d='M94,140 L106,140 M100,134 L100,146' stroke='#2563eb' stroke-width='3'/><path d='M144,180 L156,180 M150,174 L150,186' stroke='#2563eb' stroke-width='3'/><rect x='244' y='98' width='12' height='4' fill='#dc2626'/><rect x='194' y='138' width='12' height='4' fill='#dc2626'/><rect x='244' y='138' width='12' height='4' fill='#dc2626'/><rect x='194' y='218' width='12' height='4' fill='#dc2626'/><rect x='244' y='218' width='12' height='4' fill='#dc2626'/></svg></div>",
+                options: [
+                    "1-NN",
+                    "3-NN",
+                    "Both have the same error."
+                ],
+                correct: [1],
+                solution: "<strong>Explanation:</strong><br>Evaluating Leave-One-Out Cross-Validation (LOOCV):<br>- For 1-NN: All positive (+) points $(1,4), (2,4), (1,3)$ find nearest neighbor of class (+). Point $(2,2)$ has nearest neighbors at distance $\\sqrt{2}$ ($(1,3)$ [+], $(3,3)$ [-], $(3,1)$ [-]); tie-breaker assigns (+), matching its true class (+). All negative (-) points also classify correctly. Total LOOCV errors = 0.<br>- For 3-NN: For point $(2,2)$, the 3 nearest neighbors are $(1,3)$ [+], $(3,3)$ [-], and $(3,1)$ [-]. The majority vote is (-) [2 vs 1], which misclassifies $(2,2)$ (true class +). Total LOOCV errors = 1.<br>Therefore, <strong>3-NN</strong> exhibits a higher LOOCV error."
+            },
+            {
+                qn: 3,
+                id: "6406531230340",
+                type: "MCQ",
+                marks: 3.00,
+                question: "Consider the following three weight vectors obtained by minimizing the ridge regression objective with penalty parameters $\\lambda = 0.1, 10, 50$.<br><br>$$\\theta_1 = [0.5 \\quad 0.56 \\quad 2.5]^T$$<br>$$\\theta_2 = [0.05 \\quad 0.1 \\quad 1.23]^T$$<br>$$\\theta_3 = [1.2 \\quad 0.84 \\quad 3.15]^T$$<br><br>Select the most appropriate match for each weight vector corresponding to penalty parameter $\\lambda$ from the following options:",
+                options: [
+                    "$\\theta_1$ corresponds to $\\lambda = 50, \\theta_2$ to $\\lambda = 0.1$, and $\\theta_3$ to $\\lambda = 10$.",
+                    "$\\theta_1$ corresponds to $\\lambda = 0.1, \\theta_2$ to $\\lambda = 10$, and $\\theta_3$ to $\\lambda = 50$.",
+                    "$\\theta_1$ corresponds to $\\lambda = 10, \\theta_2$ to $\\lambda = 50$, and $\\theta_3$ to $\\lambda = 0.1$."
+                ],
+                correct: [2],
+                solution: "<strong>Explanation:</strong><br>In ridge regression, as the regularization parameter $\\lambda$ increases, the penalty on the magnitude of weight vector $\|\\theta\|^2$ increases, driving the weight norms strictly smaller.<br>Comparing norms of the weight vectors:<br>- $\|\\theta_3\| = \\sqrt{1.2^2 + 0.84^2 + 3.15^2}$ is largest $\\implies \\lambda = 0.1$<br>- $\|\\theta_1\| = \\sqrt{0.5^2 + 0.56^2 + 2.5^2}$ is intermediate $\\implies \\lambda = 10$<br>- $\|\\theta_2\| = \\sqrt{0.05^2 + 0.1^2 + 1.23^2}$ is smallest $\\implies \\lambda = 50$<br>Therefore, $\\theta_1 \\to \\lambda = 10$, $\\theta_2 \\to \\lambda = 50$, $\\theta_3 \\to \\lambda = 0.1$."
+            },
+            {
+                qn: 4,
+                id: "6406531230341",
+                type: "MCQ",
+                marks: 4.00,
+                question: "Consider the following dataset with two features and the corresponding labels:<br><br><div style='text-align:center;'><table style='margin:0.5rem auto; border-collapse:collapse; border:1px solid var(--border-color); text-align:center;'><thead><tr style='background:var(--bg-subtle); border-bottom:1px solid var(--border-color);'><th style='padding:6px 16px;'>$x_1$</th><th style='padding:6px 16px;'>$x_2$</th><th style='padding:6px 16px;'>$y$</th></tr></thead><tbody><tr style='border-bottom:1px solid var(--border-light);'><td>1</td><td>0</td><td>1.5</td></tr><tr style='border-bottom:1px solid var(--border-light);'><td>2</td><td>2</td><td>4</td></tr><tr style='border-bottom:1px solid var(--border-light);'><td>3</td><td>0</td><td>4.5</td></tr><tr><td>4</td><td>2</td><td>7</td></tr></tbody></table></div><br>Fit the linear regression model $y = w_1 x_1 + w_2 x_2$ using the normal equation obtained from the squared error loss.<br><strong>Hint:</strong> The normal equation for linear regression is:<br>$$w = (X X^T)^{-1} X y$$",
+                options: [
+                    "$y = 2x_1 + x_2$",
+                    "$y = 1.5x_1 + 0.5x_2$",
+                    "$y = 1.8x_1 + 1.45x_2$",
+                    "$y = x_1 + 2x_2$"
+                ],
+                correct: [1],
+                solution: "<strong>Explanation:</strong><br>Testing $y = 1.5x_1 + 0.5x_2$ on all data points:<br>- Point 1 $(1,0): 1.5(1) + 0.5(0) = 1.5 = y_1$<br>- Point 2 $(2,2): 1.5(2) + 0.5(2) = 3 + 1 = 4 = y_2$<br>- Point 3 $(3,0): 1.5(3) + 0.5(0) = 4.5 = y_3$<br>- Point 4 $(4,2): 1.5(4) + 0.5(2) = 6 + 1 = 7 = y_4$<br>The fitted equation $y = 1.5x_1 + 0.5x_2$ fits all 4 points with zero error!"
+            },
+            {
+                qn: 5,
+                id: "6406531230342",
+                type: "MCQ",
+                marks: 4.00,
+                question: "Consider a dataset with 4 datapoints:<br><br>$$\\{(x_1, y_1), (x_2, y_2), (x_3, y_3), (x_4, y_4)\\},$$<br>where $y_i \\in \\{+1, -1\\}$ and $x_i \\in \\mathbb{R}^2$. In the first iteration of the AdaBoost algorithm, suppose a decision stump $f_1$ is chosen, which correctly classifies the first three data points and incorrectly classifies the last data point. Assume the initial distribution of the dataset assigns equal weights to all data points, i.e., $D_0(i) = \\frac{1}{4}$, for $i = 1, 2, 3, 4$. What will be the updated distribution of the weights of the data points after the first iteration?",
+                options: [
+                    "$D_1(i) = \\begin{cases} \\frac{1}{3}, & i = 1, 2, 3 \\\\ 0, & i = 4 \\end{cases}$",
+                    "$D_1(i) = \\begin{cases} \\frac{1}{6}, & i = 1, 2, 3 \\\\ \\frac{1}{2}, & i = 4 \\end{cases}$",
+                    "$D_1(i) = \\begin{cases} \\frac{1}{4}, & i = 1, 2, 3, 4 \\\\ 0, & \\text{otherwise} \\end{cases}$",
+                    "$D_1(i) = \\begin{cases} \\frac{1}{5}, & i = 1, 2, 3 \\\\ \\frac{2}{5}, & i = 4 \\end{cases}$"
+                ],
+                correct: [1],
+                solution: "<strong>Explanation:</strong><br>1. Misclassification error $\\epsilon_1 = D_0(4) = \\frac{1}{4}$.<br>2. Estimator weight $\\alpha_1 = \\frac{1}{2} \\ln\\left(\\frac{1-\\epsilon_1}{\\epsilon_1}\\right) = \\frac{1}{2} \\ln(3)$.<br>3. Unnormalized weight update $w_1(i) = D_0(i) e^{-\\alpha_1 y_i f_1(x_i)}$:<br>   - Correct points ($i = 1, 2, 3$): $w_1(i) = \\frac{1}{4} e^{-\\frac{1}{2}\\ln 3} = \\frac{1}{4 \\sqrt{3}}$.<br>   - Misclassified point ($i = 4$): $w_1(4) = \\frac{1}{4} e^{\\frac{1}{2}\\ln 3} = \\frac{\\sqrt{3}}{4}$.<br>4. Normalization factor $Z_1 = 3 \\left(\\frac{1}{4\\sqrt{3}}\\right) + \\frac{\\sqrt{3}}{4} = \\frac{\\sqrt{3}}{2}$.<br>5. Normalized weights $D_1(i) = \\frac{w_1(i)}{Z_1}$:<br>   - For $i = 1, 2, 3$: $D_1(i) = \\frac{1 / (4\\sqrt{3})}{\\sqrt{3}/2} = \\frac{1}{6}$.<br>   - For $i = 4$: $D_1(4) = \\frac{\\sqrt{3}/4}{\\sqrt{3}/2} = \\frac{1}{2}$."
+            },
+            {
+                qn: 6,
+                id: "6406531230343",
+                type: "MSQ",
+                marks: 3.00,
+                question: "Which of the following statements correctly differentiates PCA and Kernel PCA?",
+                options: [
+                    "PCA maximizes variance in the original feature space, while Kernel PCA maximizes variance in a higher-dimensional transformed space.",
+                    "PCA finds principal components using linear transformations in the original space, while Kernel PCA uses non-linear transformations to find principal components in a higher dimensional space.",
+                    "Kernel PCA can capture non-linear patterns in data, making it useful when PCA fails to represent complex structures in a linear space.",
+                    "PCA and Kernel PCA always yield identical results regardless of the dataset structure."
+                ],
+                correct: [0, 1, 2],
+                solution: "<strong>Explanation:</strong><br>1. PCA projects data onto linear orthogonal axes maximizing variance in original feature space, whereas Kernel PCA maps data via non-linear feature map $\\phi(x)$ to a high-dimensional feature space where it performs PCA. (Statement 1 is True)<br>2. PCA is a linear dimension reduction method, whereas Kernel PCA uses non-linear kernel functions to compute principal components. (Statement 2 is True)<br>3. Kernel PCA captures non-linear manifolds and non-linearly separable structures that linear PCA cannot capture. (Statement 3 is True)<br>4. Kernel PCA yields different results from standard linear PCA unless a linear kernel $K(x,y)=x^T y$ is used. (Statement 4 is False)"
+            },
+            {
+                qn: 7,
+                id: "6406531230344",
+                type: "MSQ",
+                marks: 3.00,
+                question: "Consider the following formulation of the soft margin SVM:<br><br>$$\\min_{w, \\epsilon} \\frac{1}{2} ||w||^2 + C \\sum_{i=1}^n \\epsilon_i, \\quad C \\ge 0$$<br>$$\\text{subject to } (w^T x_i) y_i + \\epsilon_i \\ge 1, \\quad \\forall i$$<br>$$\\epsilon_i \\ge 0, \\quad \\forall i.$$<br><br>Which of the following statements is/are correct?",
+                options: [
+                    "When $C = 0$, the optimal value of the objective function is $\\infty$.",
+                    "When $C = 0$, the optimal value of the objective function is 0.",
+                    "As $C$ approaches 0, the soft-margin SVM is equivalent to the hard-margin SVM.",
+                    "As $C$ approaches $\\infty$, the soft-margin SVM is equivalent to the hard-margin SVM.",
+                    "A smaller value of $C$ will create larger margin."
+                ],
+                correct: [1, 3, 4],
+                solution: "<strong>Explanation:</strong><br>1. When $C = 0$, objective becomes $\\min \\frac{1}{2}\|w\|^2$. Setting $w = 0$ yields objective value 0. Statement 2 is True.<br>2. As $C \\to \\infty$, misclassification penalty becomes infinite, enforcing $\\epsilon_i = 0$, which makes soft-margin SVM identical to hard-margin SVM. Statement 4 is True.<br>3. Smaller $C$ permits slack variables $\\epsilon_i > 0$ and prioritizes maximizing the margin width ($2/\|w\|$), leading to a wider margin. Statement 5 is True."
+            },
+            {
+                qn: 8,
+                id: "6406531230345",
+                type: "MSQ",
+                marks: 2.00,
+                question: "Which of the following statements are true for bagging?",
+                options: [
+                    "The final model has lesser variance than the individual learners.",
+                    "The final model has a higher variance than the individual learners.",
+                    "Estimators in bagging can be trained parallely.",
+                    "If the number of data points is large, typically two-third of the data points remain unselected in bags."
+                ],
+                correct: [0, 2],
+                solution: "<strong>Explanation:</strong><br>1. Bagging (Bootstrap Aggregating) averages predictions across independent base learners, which reduces variance without increasing bias. (Statement 1 True)<br>2. Each bootstrap sample is drawn independently, allowing all base estimators to be trained in parallel. (Statement 3 True)<br>3. For large $n$, probability of a point being selected in a bootstrap sample is $1 - (1 - 1/n)^n \\approx 1 - 1/e \\approx 63.2\\%$. Thus, about $1/3$ (~36.8%) of data points remain unselected (out-of-bag), not $2/3$."
+            },
+            {
+                qn: 9,
+                id: "6406531230346",
+                type: "MSQ",
+                marks: 2.00,
+                question: "What is the effect of increasing the regularization parameter $\\lambda$ in Lasso regression?",
+                options: [
+                    "It penalizes large coefficients to reduce overfitting.",
+                    "It shrinks the coefficients but does not set them to zero.",
+                    "It forces more coefficients to be exactly zero, performing feature selection.",
+                    "It has no effect on the regression model."
+                ],
+                correct: [0, 2],
+                solution: "<strong>Explanation:</strong><br>1. Lasso regression uses an $L_1$ penalty term $\\lambda \\sum |w_i|$ which penalizes large coefficient magnitudes to mitigate overfitting. (Statement 1 True)<br>2. Because the $L_1$ ball has sharp corners at the coordinate axes, increasing $\\lambda$ drives coefficients to become exactly zero, enabling automatic feature selection. (Statement 3 True)"
+            },
+            {
+                qn: 10,
+                id: "6406531230347",
+                type: "SA",
+                marks: 2.00,
+                question: "For a decision tree, each node has exactly two child nodes (balanced tree). If the tree has a depth of 3, how many leaf nodes are there?",
+                acceptedAnswer: "8",
+                solution: "<strong>Explanation:</strong><br>For a full binary decision tree of depth $d = 3$ (where root is at depth 0):<br>Number of leaf nodes at depth $d$ is $2^d = 2^3 = 8$."
+            },
+            {
+                qn: 11,
+                id: "6406531230348",
+                type: "SA",
+                marks: 3.00,
+                question: "Consider the following dataset in $\\mathbb{R}^2$:<br><br>$$\\{(1, 2), (3, 4), (5, 4), (7, 8), (9, 10)\\}$$<br>Lloyd's algorithm ($K$-means) is run on this data set with points $(1, 2)$ and $(9, 10)$ as the initial cluster centers. Let $(c_1, d_1)$ and $(c_2, d_2)$ be the final cluster centers upon convergence. What is the value of the product $c_1 \\times c_2$?",
+                acceptedAnswer: "24",
+                solution: "<strong>Explanation:</strong><br>Initial centers: $\\mu_1 = (1, 2)$, $\\mu_2 = (9, 10)$.<br>1. Distance calculations for initial assignment:<br>   - $(1,2): \\text{dist to } \\mu_1=0 \\implies$ Cluster 1<br>   - $(3,4): \\text{dist to } \\mu_1=\\sqrt{8}, \\mu_2=\\sqrt{72} \\implies$ Cluster 1<br>   - $(5,4): \\text{dist to } \\mu_1=\\sqrt{20}, \\mu_2=\\sqrt{52} \\implies$ Cluster 1<br>   - $(7,8): \\text{dist to } \\mu_1=\\sqrt{72}, \\mu_2=\\sqrt{8} \\implies$ Cluster 2<br>   - $(9,10): \\text{dist to } \\mu_2=0 \\implies$ Cluster 2<br><br>2. Updated cluster centers:<br>   - Cluster 1: $\{(1,2), (3,4), (5,4)\} \\implies c_1 = \\frac{1+3+5}{3} = 3, d_1 = \\frac{2+4+4}{3} = \\frac{10}{3}$.<br>   - Cluster 2: $\{(7,8), (9,10)\} \\implies c_2 = \\frac{7+9}{2} = 8, d_2 = \\frac{8+10}{2} = 9$.<br><br>3. Product of $x$-coordinates of final cluster centers:<br>   $c_1 \\times c_2 = 3 \\times 8 = 24$."
+            },
+            {
+                qn: 12,
+                id: "6406531230349",
+                type: "SA",
+                marks: 3.00,
+                question: "Let $X_1, X_2, \\dots, X_n$ be i.i.d. samples from a Uniform distribution on the interval $[0, \\theta]$, where $\\theta$ is an unknown parameter. The probability density function (PDF) of continuous uniform distribution is given by:<br><br>$$f(x; \\theta) = \\begin{cases} \\frac{1}{\\theta}, & 0 \\le x \\le \\theta \\\\ 0, & \\text{otherwise} \\end{cases}$$<br><br>Find the Maximum Likelihood Estimate (MLE) of $\\theta$ based on a given sample $10, 15, 12, 20, 17$.",
+                acceptedAnswer: "20",
+                solution: "<strong>Explanation:</strong><br>Likelihood function $L(\\theta) = \\frac{1}{\\theta^n}$ for $\\theta \\ge \\max(x_1, \\dots, X_n)$, and $0$ if $\\theta < \\max(X_i)$.<br>To maximize $L(\\theta)$, we select the smallest possible value of $\\theta$ that satisfies $\\theta \\ge \\max(X_i)$.<br>Therefore, $\\hat{\\theta}_{\\text{MLE}} = \\max(10, 15, 12, 20, 17) = 20$."
+            },
+            {
+                qn: 13,
+                id: "6406531230350",
+                type: "SA",
+                marks: 3.00,
+                question: "You are building a Naïve Bayes classifier to determine whether a person has a certain medical condition (Yes or No) based on three features: $f_1$ (Age), $f_2$ (Blood pressure level), and $f_3$ (Smoking status, Yes/No). Given that the features are conditionally independent for a given class, the continuous features $f_1$ and $f_2$ are modeled using a Gaussian distribution, while the binary feature $f_3$ follows a Bernoulli distribution. Determine the total number of parameters that need to be estimated for classification using this Naïve Bayes model.",
+                acceptedAnswer: "11",
+                solution: "<strong>Explanation:</strong><br>Binary target class $Y \\in \\{\\text{Yes}, \\text{No}\\}$ (2 classes).<br>1. Prior probability $P(Y)$: 1 independent parameter ($P(Y=\\text{Yes})$).<br>2. For each class $y \\in \\{\\text{Yes}, \\text{No}\\}$:<br>   - Continuous feature $f_1$ (Gaussian): 2 parameters ($\\mu_{1|y}, \\sigma^2_{1|y}$) $\\times 2$ classes = 4 parameters.<br>   - Continuous feature $f_2$ (Gaussian): 2 parameters ($\\mu_{2|y}, \\sigma^2_{2|y}$) $\\times 2$ classes = 4 parameters.<br>   - Binary feature $f_3$ (Bernoulli): 1 parameter ($p_{3|y}$) $\\times 2$ classes = 2 parameters.<br><br>Total parameters $= 1 + 4 + 4 + 2 = 11$."
+            },
+            {
+                qn: 14,
+                id: "6406531230351",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                question: "Based on the above data, answer the given subquestions.<br><br>Consider the following data set with three data points:<br><br>$$D = \\left\\{ \\left(\\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix}, -1\\right), \\left(\\begin{bmatrix} 1 \\\\ 0 \\end{bmatrix}, +1\\right), \\left(\\begin{bmatrix} -1 \\\\ -1 \\end{bmatrix}, +1\\right) \\right\\}.$$",
+                subquestions: [15, 16]
+            },
+            {
+                qn: 15,
+                id: "6406531230352",
+                type: "SA",
+                marks: 3.00,
+                parentQn: 14,
+                question: "Find the squared length of the updated weight vector after one iteration (one pass through all the data points) of the perceptron algorithm, assuming $w_0 = [0 \\quad 0]^T$. While looking for mistakes, cycle through the data points from left to right.",
+                acceptedAnswer: "1",
+                solution: "<strong>Explanation:</strong><br>Data points: $x_1 = [1, 1]^T, y_1 = -1$; $x_2 = [1, 0]^T, y_2 = +1$; $x_3 = [-1, -1]^T, y_3 = +1$. Initial weight $w_0 = [0, 0]^T$.<br><br><strong>Pass 1:</strong><br>- $x_1$: $y_1(w^T x_1) = 0 \\le 0 \\implies$ Mistake. Update $w \\leftarrow [0, 0]^T + (-1)[1, 1]^T = [-1, -1]^T$.<br>- $x_2$: $y_2(w^T x_2) = 1(-1) = -1 \\le 0 \\implies$ Mistake. Update $w \\leftarrow [-1, -1]^T + 1[1, 0]^T = [0, -1]^T$.<br>- $x_3$: $y_3(w^T x_3) = 1(0 + 1) = 1 > 0 \\implies$ Correct.<br><br>After pass 1, updated weight vector $w_1 = [0, -1]^T$.<br>Squared length $\|w_1\|^2 = 0^2 + (-1)^2 = 1$."
+            },
+            {
+                qn: 16,
+                id: "6406531230353",
+                type: "MCQ",
+                marks: 2.00,
+                parentQn: 14,
+                question: "Will the algorithm converge after this update?",
+                options: [
+                    "YES",
+                    "NO"
+                ],
+                correct: [1],
+                solution: "<strong>Explanation:</strong><br>Evaluating $w = [0, -1]^T$ on $x_2 = [1, 0]^T, y_2 = +1$ gives $y_2(w^T x_2) = 1(0) = 0 \\le 0$, which is still a mistake. Thus, another update is required, so the algorithm has not converged after one pass. Answer: <strong>NO</strong>."
+            },
+            {
+                qn: 17,
+                id: "6406531230354",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                question: "Based on the above data, answer the given subquestions.<br><br>Consider the transformation $\\phi : \\mathbb{R}^2 \\to \\mathbb{R}^6$ associated with a polynomial kernel of degree 2:<br><br>$$\\phi(x) = [1 \\quad x_1^2 \\quad x_2^2 \\quad \\sqrt{2}x_1 x_2 \\quad \\sqrt{2}x_1 \\quad \\sqrt{2}x_2]^T$$<br>A kernel-SVM is trained on a dataset with the above kernel. The optimal weight vector is $w = [-25 \\quad 1 \\quad 2 \\quad 0 \\quad 0 \\quad 0]^T$. Assume that the dataset is linearly separable in the transformed space.",
+                subquestions: [18, 19]
+            },
+            {
+                qn: 18,
+                id: "6406531230355",
+                type: "MCQ",
+                marks: 2.00,
+                parentQn: 17,
+                question: "What is the shape of the decision boundary in $\\mathbb{R}^2$?",
+                options: [
+                    "It is a circle.",
+                    "It is a straight line.",
+                    "It is an ellipse.",
+                    "It is a parabola."
+                ],
+                correct: [2],
+                solution: "<strong>Explanation:</strong><br>The decision boundary in transformed space is $w^T \\phi(x) = 0$:<br>$$-25(1) + 1(x_1^2) + 2(x_2^2) = 0 \\implies x_1^2 + 2x_2^2 = 25 \\implies \\frac{x_1^2}{25} + \\frac{x_2^2}{12.5} = 1$$<br>This is the equation of an <strong>ellipse</strong> centered at the origin in $\\mathbb{R}^2$."
+            },
+            {
+                qn: 19,
+                id: "6406531230356",
+                type: "MSQ",
+                marks: 3.00,
+                parentQn: 17,
+                question: "Which of the following training data points are certainly not support vectors?",
+                options: [
+                    "$[1 \\quad 2]^T$",
+                    "$[2\\sqrt{2} \\quad 3]^T$",
+                    "$[4 \\quad 2]^T$",
+                    "$[3 \\quad 2\\sqrt{2}]^T$"
+                ],
+                correct: [2],
+                solution: "<strong>Explanation:</strong><br>Support vectors for SVM lie on the margin boundaries $w^T \\phi(x) = \\pm 1$.<br>Evaluating $w^T \\phi(x) = x_1^2 + 2x_2^2 - 25$:<br>- For $[4, 2]^T$: $4^2 + 2(2^2) - 25 = 16 + 8 - 25 = -1$, which lies on the margin boundary.<br>- Points not on the margin boundary $w^T \\phi(x) = \\pm 1$ cannot be support vectors."
+            },
+            {
+                qn: 20,
+                id: "6406531230357",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                question: "Based on the above data, answer the given subquestions.<br><br>Consider a single-layer neural network with two neurons in the hidden layer. The weight parameters of the network are given as follows:<br><br>$$w_1^{(1)} = \\frac{1}{2}, \\quad w_2^{(1)} = \\frac{1}{2}$$<br>$$w_1^{(2)} = \\frac{1}{2}, \\quad w_2^{(2)} = -\\frac{1}{2}$$<br>$$w^{\\text{out}} = [1 \\quad -1]^T,$$<br>where $w_i^{(j)}$ represents the weight associated with the $j$-th neuron for the $i$-th input feature. Assume that we are solving a binary classification problem.",
+                subquestions: [21, 22]
+            },
+            {
+                qn: 21,
+                id: "6406531230358",
+                type: "SA",
+                marks: 3.00,
+                parentQn: 20,
+                question: "The output layer of the neural network will return a probability $p$ for the input $x_{\\text{test}} = [2 \\quad 4]^T$. The sigmoid function is used as the activation function in both the hidden and the output layer of the neural network. Find the value of $p$. Enter the answer correct to two decimal places.",
+                acceptedAnswer: "0.64 to 0.68",
+                solution: "<strong>Explanation:</strong><br>For input $x = [2, 4]^T$ and sigmoid activation $\\sigma(z) = \\frac{1}{1 + e^{-z}}$:<br>1. Hidden neuron 1 pre-activation: $z_1 = \\frac{1}{2}(2) + \\frac{1}{2}(4) = 3 \\implies h_1 = \\sigma(3) \\approx 0.95257$.<br>2. Hidden neuron 2 pre-activation: $z_2 = \\frac{1}{2}(2) - \\frac{1}{2}(4) = -1 \\implies h_2 = \\sigma(-1) \\approx 0.26894$.<br>3. Output pre-activation: $z_{\\text{out}} = 1(h_1) - 1(h_2) = 0.95257 - 0.26894 = 0.68363$.<br>4. Output probability: $p = \\sigma(0.68363) \\approx 0.6645 \\approx 0.66$.<br>Accepted answer range: <strong>0.64 to 0.68</strong>."
+            },
+            {
+                qn: 22,
+                id: "6406531230359",
+                type: "SA",
+                marks: 2.00,
+                parentQn: 20,
+                question: "If the model predicts the label as 1 for $p$ greater than 0.5 and 0 otherwise, find the predicted label for $x_{\\text{test}}$.",
+                acceptedAnswer: "1",
+                solution: "<strong>Explanation:</strong><br>Since the calculated probability $p \\approx 0.66 > 0.5$, the model predicts class label <strong>1</strong>."
+            }
+        ];
+
+        let currentMode = 'exam';
+        let userAnswers = {};
+        let timerSeconds = 0;
+        let isTimerRunning = true;
+        let timerInterval = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPalette();
+            renderQuestions();
+            startTimer();
+            updateScoreDisplay();
+        });
+
+        function setPortalMode(mode) {
+            currentMode = mode;
+            document.getElementById('btnExamMode').classList.toggle('active', mode === 'exam');
+            document.getElementById('btnLearningMode').classList.toggle('active', mode === 'learning');
+
+            const banner = document.getElementById('portalModeBanner');
+            if (banner) {
+                if (mode === 'learning') {
+                    banner.className = 'portal-mode-banner learning';
+                    banner.innerHTML = '<i class="fa-solid fa-graduation-cap"></i> <span><strong>Learning Mode:</strong> Solutions and answer explanations are revealed below each question. Perfect for study and practice!</span>';
+                } else {
+                    banner.className = 'portal-mode-banner';
+                    banner.innerHTML = '<i class="fa-solid fa-clock"></i> <span><strong>Exam Mode:</strong> Live timer active. Instant scoring enabled. Solutions shown on exam submission or when switching to Learning Mode.</span>';
+                }
+            }
+
+            renderQuestions();
+            updatePaletteStatuses();
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('paletteGrid');
+            grid.innerHTML = QUESTIONS_DATA.map(q => {
+                return `<button class="palette-btn" id="paletteBtn_${q.qn}" onclick="scrollToQuestion(${q.qn})">${q.qn}</button>`;
+            }).join('');
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            let html = '';
+
+            QUESTIONS_DATA.forEach((q) => {
+                const isComprehensionHeader = q.type === 'COMPREHENSION';
+
+                if (isComprehensionHeader) {
+                    html += `
+                    <article class="qn-card comprehension-card" id="qnCard_${q.qn}">
+                        <div class="qn-header-container">
+                            <div class="qn-header-top">
+                                <div class="qn-title-main">
+                                    <span style="background:var(--accent-purple); color:white; padding:0.25rem 0.6rem; border-radius:4px; font-size:0.75rem; font-weight:700;">COMPREHENSION PASSAGE</span>
+                                </div>
+                            </div>
+                            <div class="qn-header-sub">
+                                <span class="qn-id-tag">Question ${q.qn} : ${q.id}</span>
+                            </div>
+                        </div>
+                        <div class="qn-text" style="font-size:1rem; line-height:1.7;">${q.question || q.text || ''}</div>
+                    </article>
+                    `;
+                    return;
+                }
+
+                html += `
+                <article class="qn-card" id="qnCard_${q.qn}">
+                    <div class="qn-header-container">
+                        <div class="qn-header-top">
+                            <div class="qn-title-main">
+                                Question ${q.qn} : ${q.id}
+                            </div>
+                            <button class="btn-solution-pill" onclick="toggleSolution(${q.qn})">
+                                <i class="fa-regular fa-circle-check"></i> View Solutions (0)
+                            </button>
+                        </div>
+                        <div class="qn-header-sub">
+                            <span class="qn-id-tag">Question ${q.qn} : ${q.id}</span>
+                            <span class="qn-meta-info">Total Mark : ${q.marks.toFixed(2)} | Type : ${q.type}</span>
+                        </div>
+                    </div>
+
+                    <div class="qn-text">${q.question ? q.question : (q.text || '')}</div>
+
+                    ${q.code ? `
+                    <div class="code-snippet-wrap">
+                        <code>${escapeHtml(q.code)}</code>
+                    </div>` : ''}
+
+                    ${q.qnSubText ? `<div class="qn-text" style="margin-top:0.85rem;">${q.qnSubText}</div>` : ''}
+
+                    <!-- Options / Inputs -->
+                    ${renderAnswerInput(q)}
+
+                    <!-- Footer Action Toolbar -->
+                    <div class="qn-footer-toolbar">
+                        <div class="qn-actions-group">
+                            <button class="btn-action-pill btn-discuss" onclick="alert('Discussion forum loading...')"><i class="fa-regular fa-comments"></i> Discussions (0)</button>
+                            <button class="btn-action-pill btn-correct" onclick="alert('Correction reported. Thank you!')"><i class="fa-regular fa-pen-to-square"></i> Suggest Correction</button>
+                            <button class="btn-action-pill btn-broken" onclick="alert('Format flag recorded.')"><i class="fa-solid fa-wrench"></i> Broken Format?</button>
+                        </div>
+                    </div>
+
+                    <!-- Solution Accordion -->
+                    <div class="solution-box ${currentMode === 'learning' ? 'open' : ''}" id="solution_${q.qn}">
+                        <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution & Explanation</div>
+                        <div class="solution-text">
+                            ${(q.acceptedAnswer || (q.correct && q.options)) ? `<div style="font-weight:700; margin-bottom:0.5rem; color:var(--accent-green);">Accepted / Correct Answer:</div><div style="font-family:var(--font-mono); background:var(--bg-surface); padding:0.5rem 0.75rem; border-radius:6px; margin-bottom:0.75rem; border:1px solid var(--border-color);">${q.type === 'SA' ? q.acceptedAnswer : q.correct.map(i => `${i + 1}. ${q.options[i]}`).join('<br>')}</div>` : ''}
+                            ${q.solution ? q.solution : ''}
+                        </div>
+                    </div>
+                </article>
+                `;
+
+                if (q.qn === 6 || q.qn === 14) {
+                    html += `
+                    <div class="ad-banner-box">
+                        <span class="ad-tag">ADVERTISEMENT</span>
+                        <div class="ad-actions">
+                            <button class="btn-remove-ads" onclick="alert('Ad-free experience enabled.')"><i class="fa-solid fa-bolt"></i> Remove Ads</button>
+                            <button class="btn-close-ad" onclick="this.parentElement.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    `;
+                }
+            });
+
+            container.innerHTML = html;
+            updatePaletteStatuses();
+            if (window.MathJax && typeof MathJax.typesetPromise === 'function') {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function renderAnswerInput(q) {
+            if (q.type === 'SA') {
+                const val = userAnswers[q.qn] ? userAnswers[q.qn][0] : '';
+                const showGreen = currentMode === 'learning';
+                return `
+                <div class="sa-input-wrap" style="margin-top:1.25rem;">
+                    <label style="display:block; font-size:0.85rem; font-weight:600; color:var(--text-muted); margin-bottom:0.4rem;">Answer (Numeric):</label>
+                    <input type="text" class="sa-input" value="${escapeHtml(val)}" placeholder="Type your numeric answer here..." oninput="handleSAInput(${q.qn}, this.value)">
+                    <div class="accepted-ans-box" style="display:${showGreen ? 'block' : 'none'};">
+                        <i class="fa-solid fa-circle-check"></i> Accepted Answer : ${q.acceptedAnswer}
+                    </div>
+                </div>
+                `;
+            }
+
+            const isMSQ = q.type === 'MSQ';
+            const userArr = userAnswers[q.qn] || [];
+
+            return `
+            <div class="options-list">
+                ${q.options.map((optText, idx) => {
+                const isChecked = userArr.includes(idx);
+                const isCorrect = q.correct && q.correct.includes(idx);
+                let highlightClass = '';
+
+                if (isChecked) highlightClass = 'selected';
+
+                if (currentMode === 'learning') {
+                    if (isCorrect) highlightClass = 'correct-highlight';
+                    else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                }
+
+                return `
+                    <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <span class="option-text">${optText}</span>
+                    </label>
+                    `;
+            }).join('')}
+            </div>
+            `;
+        }
+
+        function handleSAInput(qnNum, val) {
+            if (!val || val.trim() === '') {
+                delete userAnswers[qnNum];
+            } else {
+                userAnswers[qnNum] = [val.trim()];
+            }
+            updateScoreDisplay();
+            updatePaletteStatuses();
+        }
+
+        function handleOptionSelect(qnNum, optIdx, qnType) {
+            if (qnType === 'MCQ') {
+                userAnswers[qnNum] = [optIdx];
+            } else if (qnType === 'MSQ') {
+                if (!userAnswers[qnNum]) userAnswers[qnNum] = [];
+                const pos = userAnswers[qnNum].indexOf(optIdx);
+                if (pos >= 0) userAnswers[qnNum].splice(pos, 1);
+                else userAnswers[qnNum].push(optIdx);
+            }
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function calculateQuestionScore(q) {
+            const userAns = userAnswers[q.qn];
+            if (!userAns || !Array.isArray(userAns) || userAns.length === 0) return "0.00";
+
+            if (q.type === 'MCQ') {
+                return (userAns[0] === q.correct[0]) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            if (q.type === 'MSQ') {
+                const sortedUser = [...userAns].sort((a, b) => a - b).join(',');
+                const sortedCorrect = [...q.correct].sort((a, b) => a - b).join(',');
+                return (sortedUser === sortedCorrect) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            if (q.type === 'SA') {
+                const valStr = (userAns[0] || '').trim();
+                const valNum = parseFloat(valStr);
+
+                if (q.acceptedAnswer.includes('to')) {
+                    const parts = q.acceptedAnswer.split('to').map(p => parseFloat(p.trim()));
+                    if (!isNaN(valNum) && valNum >= parts[0] && valNum <= parts[1]) {
+                        return q.marks.toFixed(2);
+                    }
+                } else {
+                    const targetNum = parseFloat(q.acceptedAnswer);
+                    if (!isNaN(valNum) && Math.abs(valNum - targetNum) < 0.01) {
+                        return q.marks.toFixed(2);
+                    }
+                }
+            }
+
+            return "0.00";
+        }
+
+        function updateScoreDisplay() {
+            let total = 0;
+            let maxMarks = 50.00;
+
+            QUESTIONS_DATA.forEach(q => {
+                if (q.type !== 'COMPREHENSION') {
+                    total += parseFloat(calculateQuestionScore(q));
+                }
+            });
+
+            document.getElementById('liveScoreDisplay').textContent = `${total.toFixed(2)} / ${maxMarks.toFixed(2)}`;
+            const pct = ((total / maxMarks) * 100).toFixed(1);
+            document.getElementById('livePercentDisplay').textContent = `(${pct}%)`;
+        }
+
+        function updatePaletteStatuses() {
+            let answeredCount = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.getElementById(`paletteBtn_${q.qn}`);
+                if (!btn) return;
+
+                const isAnswered = userAnswers[q.qn] && userAnswers[q.qn].length > 0;
+                if (isAnswered) answeredCount++;
+
+                btn.className = 'palette-btn';
+
+                if (currentMode === 'learning' && q.type !== 'COMPREHENSION') {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    if (isAnswered) {
+                        if (score > 0) btn.classList.add('correct');
+                        else btn.classList.add('incorrect');
+                    }
+                } else if (isAnswered) {
+                    btn.classList.add('answered');
+                }
+            });
+
+            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/${QUESTIONS_DATA.length}`;
+        }
+
+        function toggleSolution(qnNum) {
+            const solBox = document.getElementById(`solution_${qnNum}`);
+            if (solBox) {
+                solBox.classList.toggle('open');
+            }
+        }
+
+        function scrollToQuestion(qnNum) {
+            const el = document.getElementById(`qnCard_${qnNum}`);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function toggleTimer() {
+            isTimerRunning = !isTimerRunning;
+            const btn = document.getElementById('btnPauseTimer');
+            if (isTimerRunning) {
+                btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+            } else {
+                btn.innerHTML = '<i class="fa-solid fa-play"></i>';
+            }
+        }
+
+        function resetTimer() {
+            timerSeconds = 0;
+            updateTimerDisplay();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (isTimerRunning) {
+                    timerSeconds++;
+                    updateTimerDisplay();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const secs = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+        }
+
+        function submitExam() {
+            isTimerRunning = false;
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+            let totalScore = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                if (q.type === 'COMPREHENSION') return;
+                const userAns = userAnswers[q.qn];
+                if (!userAns || userAns.length === 0) {
+                    unansweredCount++;
+                } else {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    if (score > 0) {
+                        correctCount++;
+                        totalScore += score;
+                    } else {
+                        incorrectCount++;
+                    }
+                }
+            });
+
+            document.getElementById('modalScoreText').textContent = `${totalScore.toFixed(2)} / 50.00`;
+            document.getElementById('modalPercentText').textContent = `${((totalScore / 50.00) * 100).toFixed(1)}% Accuracy`;
+            document.getElementById('modalCorrectCount').textContent = correctCount;
+            document.getElementById('modalIncorrectCount').textContent = incorrectCount;
+            document.getElementById('modalUnansweredCount').textContent = unansweredCount;
+
+            document.getElementById('resultModal').classList.add('active');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.remove('active');
+        }
+
+        function resetExam() {
+            userAnswers = {};
+            resetTimer();
+            isTimerRunning = true;
+            closeResultModal();
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function openSummaryModal() {
+            document.getElementById('summaryModal').classList.add('active');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.remove('active');
+        }
+
+        function toggleMobileSidebar() {
+            document.getElementById('portalSidebar').classList.toggle('active');
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function escapeHtml(str) {
+            return (str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+    </script>
+</body>
+
+</html>
