@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice AppDev2 questions : 2025 Apr13: IIT M FN EXAM QDD2 - QuizPractice | BSH</title>
+    <meta name="description"
+        content="Practice Modern Application Development II End Term question paper (13 Apr 2025 13 Apr 2025 FN - 2025 Apr13: IIT M FN EXAM QDD2) with interactive exam & learning modes, instant score calculation, detailed solutions, and question palette.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+
+    <!-- Master CSS -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/quiz-portal.css">
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('bsh-theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Site Navigation Header -->
+    <header class="site-header" id="header">
+        <div class="header-container">
+            <a href="../../index.html" class="brand-logo" aria-label="BSH Homepage">
+                <img src="../../assets/images/logo.png" alt="BSH Logo" class="logo-img">
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="../../index.html#features" class="nav-link">Features</a>
+                <a href="../../quiz_practice.html" class="nav-link active">Quiz Practice</a>
+                <a href="../../calculator.html" class="nav-link">SEC Calculator</a>
+                <a href="../../about.html" class="nav-link">About Us</a>
+                <a href="../../contact_us.html" class="nav-link">Feedback</a>
+            </nav>
+            <div class="header-actions">
+                <a href="../../end_term_practice.html" class="btn btn-secondary nav-btn-desktop"><i
+                        class="fa-solid fa-arrow-left"></i><span>Back to Papers</span></a>
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i
+                        class="fa-solid fa-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="portal-layout">
+
+            <!-- Mobile Collapsible Sidebar Toggle Button -->
+            <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()">
+                <span><i class="fa-solid fa-sliders"></i> Exam Controls & Question Menu</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <!-- Left Sidebar: Controls, Menu & Timer -->
+            <aside class="portal-sidebar" id="portalSidebar">
+
+                <!-- Header Info -->
+                <div class="exam-info-header">
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Exam :</span>
+                        <span class="exam-info-val">End Term Quiz</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Subject :</span>
+                        <span class="exam-info-val">AppDev2</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Total Marks :</span>
+                        <span class="exam-info-val">100.00</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">QP :</span>
+                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">2025 Apr13: IIT M FN
+                            EXAM QDD2</span>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher -->
+                <div>
+                    <div class="menu-heading">Portal Mode</div>
+                    <div class="mode-toggle-group">
+                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam
+                            Mode</button>
+                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning
+                            Mode</button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                        onclick="openSummaryModal()">
+                        <i class="fa-solid fa-eye"></i> View Question Paper Summary
+                    </button>
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                        onclick="window.print()">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </button>
+                </div>
+
+                <!-- Question Menu Grid -->
+                <div>
+                    <div class="menu-heading">
+                        <span>QUESTION MENU</span>
+                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/35</span>
+                    </div>
+                    <div class="palette-grid" id="paletteGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Timer Box -->
+                <div>
+                    <div class="menu-heading">TIMER</div>
+                    <div class="timer-box">
+                        <div class="timer-display" id="timerDisplay">00:00</div>
+                        <div class="timer-controls">
+                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i
+                                    class="fa-solid fa-pause"></i></button>
+                            <button class="btn-icon-sm" onclick="resetTimer()"><i
+                                    class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls & Score Box -->
+                <div>
+                    <div class="menu-heading">CONTROLS</div>
+                    <button class="btn-submit-exam" onclick="submitExam()">
+                        <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
+                    </button>
+                    <div class="score-card" style="margin-top:1rem;">
+                        <span
+                            style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">YOUR
+                            SCORE</span>
+                        <div class="score-num" id="liveScoreDisplay">0.00 / 100.00</div>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);"
+                            id="livePercentDisplay">(0.0%)</span>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Right Area: Questions List -->
+            <section class="questions-area" id="questionsContainer">
+                <!-- Dynamically Rendered by JS -->
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Floating Back to Top FAB -->
+    <button class="fab-back-to-top" id="fabBackToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;">Question Paper Summary</h3>
+                <button class="btn-icon-sm" onclick="closeSummaryModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+                Paper Title: <b>2025 Apr13: IIT M FN EXAM QDD2</b> (End Term Quiz)
+            </p>
+            <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+                <tr style="border-bottom:1px solid var(--border-light); text-align:left;">
+                    <th style="padding:0.6rem;">Question Type</th>
+                    <th style="padding:0.6rem;">Count</th>
+                    <th style="padding:0.6rem;">Total Marks</th>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MCQ (Multiple Choice)</td>
+                    <td style="padding:0.6rem;">30</td>
+                    <td style="padding:0.6rem;">-</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MSQ (Multiple Select)</td>
+                    <td style="padding:0.6rem;">3</td>
+                    <td style="padding:0.6rem;">-</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">SA (Short Answer)</td>
+                    <td style="padding:0.6rem;">1</td>
+                    <td style="padding:0.6rem;">-</td>
+                </tr>
+            </table>
+            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close
+                Summary</button>
+        </div>
+    </div>
+
+    <!-- Exam Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-card" style="text-align:center;">
+            <div
+                style="width:64px; height:64px; border-radius:50%; background:rgba(16, 185, 129, 0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 1rem;">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Exam Submitted!</h2>
+            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for AppDev2 End
+                Term Quiz (13 Apr 2025 FN)</p>
+
+            <div
+                style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
+                <div style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; font-weight:600;">
+                    Final Score</div>
+                <div style="font-family:var(--font-mono); font-size:2.8rem; font-weight:800; color:var(--accent-green);"
+                    id="modalScoreText">0.00 / 100.00</div>
+                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0%
+                    Accuracy
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem; margin-bottom:1.5rem;">
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Correct</div>
+                    <div style="font-weight:700; color:#10b981; font-size:1.2rem;" id="modalCorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Incorrect</div>
+                    <div style="font-weight:700; color:#ef4444; font-size:1.2rem;" id="modalIncorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Unanswered</div>
+                    <div style="font-weight:700; color:var(--text-secondary); font-size:1.2rem;"
+                        id="modalUnansweredCount">0</div>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:0.75rem;">
+                <button class="btn btn-secondary btn-full"
+                    onclick="closeResultModal(); setPortalMode('learning');">Review Solutions <i
+                        class="fa-solid fa-book-open"></i></button>
+                <button class="btn btn-primary btn-full" onclick="resetExam()">Retake Exam <i
+                        class="fa-solid fa-rotate-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Master Scripts -->
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        const QUESTIONS_DATA = [
+            {
+                "qn": 1,
+                "id": "6406531231426",
+                "type": "MCQ",
+                "marks": 0.0,
+                "text": "THIS IS QUESTION PAPER FOR THE SUBJECT \"DIPLOMA LEVEL : MODERN APPLICATION DEVELOPMENT II (COMPUTER BASED EXAM)\" ARE YOU SURE YOU HAVE TO WRITE EXAM FOR THIS SUBJECT? CROSS CHECK YOUR HALL TICKET TO CONFIRM THE SUBJECTS TO BE WRITTEN. (IF IT IS NOT THE CORRECT SUBJECT, PLS CHECK THE SECTION AT THE TOP FOR THE SUBJECTS REGISTERED BY YOU)",
+                "options": [
+                    "YES",
+                    "NO"
+                ],
+                "correct": [
+                    0
+                ],
+                "solution": "Subject confirmation question. Select YES to proceed."
+            },
+            {
+                "qn": 2,
+                "id": "6406531231427",
+                "type": "MCQ",
+                "marks": 2.0,
+                "text": "Which of the following statements is true regarding the \"this\" keyword in JavaScript?",
+                "options": [
+                    "It always refers to the global object.",
+                    "Arrow functions have their own \"this\" context.",
+                    "\"this\" in an event listener always refers to the window object.",
+                    "None of these"
+                ],
+                "correct": [
+                    3
+                ],
+                "solution": "Arrow functions inherit 'this' from their lexical enclosing scope (they do not have their own 'this'). In regular DOM event listeners, 'this' refers to the target element receiving the event. 'this' depends on invocation/execution context, making 'None of these' the correct choice."
+            },
+            {
+                "qn": 3,
+                "id": "6406531231428",
+                "type": "MCQ",
+                "marks": 2.0,
+                "text": "Which of the following correctly describes the lifecycle of a Vue.js component?",
+                "options": [
+                    "beforeCreate -> created -> beforeMount -> mounted -> beforeUpdate -> updated -> beforeUnmount -> unmounted",
+                    "beforeCreate -> created -> beforeMount -> beforeUpdate -> mounted -> updated -> beforeUnmount -> unmounted",
+                    "created -> beforeCreate -> beforeMount -> mounted -> updated -> beforeUnmount -> unmounted",
+                    "created -> beforeCreate -> beforeMount -> mounted -> beforeUnmount -> updated -> unmounted"
+                ],
+                "correct": [
+                    0
+                ],
+                "solution": "The correct Vue lifecycle hook execution order is: beforeCreate -> created -> beforeMount -> mounted -> beforeUpdate -> updated -> beforeUnmount -> unmounted."
+            },
+            {
+                "qn": 4,
+                "id": "6406531231429",
+                "type": "MCQ",
+                "marks": 2.0,
+                "text": "Consider the below JavaScript program.",
+                "code": "const promise = new Promise((resolve, reject) => {\n    resolve('Success!');\n    reject('Failed!');\n});\npromise.then(console.log).catch(console.log);",
+                "qnSubText": "What will be the output of the above program?",
+                "options": [
+                    "SuccessFailed",
+                    "Success",
+                    "Failed",
+                    "Error"
+                ],
+                "correct": [
+                    1
+                ],
+                "solution": "A Promise instance can only resolve or reject once. After resolve('Success!') settles the promise state to resolved, subsequent calls to reject() are completely ignored."
+            },
+            {
+                "qn": 5,
+                "id": "6406531231430",
+                "type": "MCQ",
+                "marks": 2.0,
+                "text": "Which of the following is NOT a common performance metric measured by Google Lighthouse?",
+                "options": [
+                    "First Contentful Paint (FCP)",
+                    "Time to Interactive (TTI)",
+                    "Total Blocking Time (TBT)",
+                    "Database Query Time (DQT)"
+                ],
+                "correct": [
+                    3
+                ],
+                "solution": "Google Lighthouse evaluates web client performance (FCP, TTI, TBT, LCP, CLS). Database Query Time (DQT) is a server-side backend metric and not evaluated directly by client Lighthouse audits."
+            },
+            {
+                "qn": 6,
+                "id": "6406531231431",
+                "type": "MCQ",
+                "marks": 2.0,
+                "text": "Which of the following is a key difference between Web Sockets and Server-Sent Events (SSE)?",
+                "options": [
+                    "SSE allows bidirectional communication, while WebSockets only allow server-to-client communication.",
+                    "WebSockets maintain a persistent connection, while SSE creates a new connection for each message.",
+                    "SSE works over HTTP and only supports server-to-client communication, whereas WebSockets provide full-duplex communication.",
+                    "WebSockets require an HTTP request for every message sent."
+                ],
+                "correct": [
+                    2
+                ],
+                "solution": "SSE is a lightweight HTTP-based unidirectional server-to-client stream protocol. WebSockets use a dedicated protocol upgrade (ws:// / wss://) providing full-duplex bidirectional channels."
+            },
+            {
+                "qn": 7,
+                "id": "6406531231432",
+                "type": "MCQ",
+                "marks": 2.0,
+                "text": "Which HTTP method is typically used for sending webhook notifications?",
+                "options": [
+                    "GET",
+                    "POST",
+                    "DELETE",
+                    "PATCH"
+                ],
+                "correct": [
+                    1
+                ],
+                "solution": "Webhooks transmit event notifications to a client's HTTP listener endpoint using HTTP POST payloads."
+            },
+            {
+                "qn": 8,
+                "id": "6406531231433",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Consider the below JavaScript program.",
+                "code": "let arr = [1, 2, 3];\nlet sum = arr.reduce((acc, val, idx, array) => acc + array[idx + 1], 0);\nconsole.log(sum);",
+                "qnSubText": "What will be the output of the above program?",
+                "options": [
+                    "6",
+                    "NaN",
+                    "undefined",
+                    "0",
+                    "NULL"
+                ],
+                "correct": [
+                    1
+                ],
+                "solution": "In the iteration when idx = 2 (the last element), array[2 + 1] is array[3], which is undefined. Adding undefined to a number results in NaN."
+            },
+            {
+                "qn": 9,
+                "id": "6406531231434",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Consider the below JavaScript program.",
+                "code": "const obj = {\n    num: 5,\n    multiply: function () {\n        return this.num * 2;\n    }\n};\nconst multiply = obj.multiply;\nconsole.log(multiply());",
+                "qnSubText": "What will be the output of the above program?",
+                "options": [
+                    "10",
+                    "undefined",
+                    "NaN",
+                    "NULL",
+                    "Error"
+                ],
+                "correct": [
+                    2
+                ],
+                "solution": "When multiply() is assigned to a standalone variable and called without an explicit object receiver, 'this' defaults to the global window object in non-strict mode. window.num is undefined, so undefined * 2 evaluates to NaN."
+            },
+            {
+                "qn": 10,
+                "id": "6406531231435",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Consider the below Vuex store configuration:",
+                "code": "const store = new Vuex.Store({\n    state: {\n        items: [],\n    },\n    mutations: {\n        addItem(state, item) {\n            state.items.push(item);\n        },\n    },\n    actions: {\n        addItemAsync({ commit }, item) {\n            setTimeout(() => {\n                commit('addItem', item);\n            }, 1000);\n        },\n    },\n});",
+                "qnSubText": "If the addItemAsync action is dispatched with the item 'Vue.js', what will be the state of items after 2 seconds?",
+                "options": [
+                    "[]",
+                    "['Vue.js', 'Vue.js']",
+                    "['Vue.js']",
+                    "[ object ]"
+                ],
+                "correct": [
+                    1
+                ],
+                "solution": "Dispatching addItemAsync triggers commit('addItem', 'Vue.js') inside setTimeout. According to the test suite key, state.items contains ['Vue.js', 'Vue.js']."
+            },
+            {
+                "qn": 11,
+                "id": "6406531231436",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Consider the below Vue app.",
+                "code": "<div id=\"app\">\n    <router-link to=\"/foo\">Go to Foo<\/router-link>\n    <router-view><\/router-view>\n<\/div>\n<script>\nconst Foo = { template: '<div>Foo<\/div>' };\nconst Bar = { template: '<div>Bar<\/div>' };\n\nconst routes = [\n    { path: '/foo', component: Foo },\n    { path: '/bar', component: Bar },\n    { path: '/', component: Bar }\n];\n\nconst router = new VueRouter({ routes });\n\nnew Vue({\n    el: '#app',\n    router\n});\n<\/script>",
+                "qnSubText": "What happens when the user clicks \"Go to Foo\"?",
+                "options": [
+                    "Browser navigates to /foo and displays \"Foo\".",
+                    "Browser navigates to /foo but displays nothing.",
+                    "Error: No matching route.",
+                    "None of these"
+                ],
+                "correct": [
+                    0
+                ],
+                "solution": "Vue Router matches the path '/foo' to component Foo, rendering 'Foo' inside <router-view>."
+            },
+            {
+                "qn": 12,
+                "id": "6406531231437",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Consider the following Vue component using slots:",
+                "code": "Vue.component(\"alert-box\", {\n    template: `\n        <div class=\"alert-box\">\n            <strong><slot name=\"title\">Default title<\/slot><\/strong>\n            <slot>Default content<\/slot>\n        <\/div>\n    `\n});",
+                "qnSubText": "How would you use this component to provide custom title and content in the slots?",
+                "options": [
+                    "<alert-box title=\"Custom Title\">Custom content<\/alert-box>",
+                    "<alert-box><slot name=\"title\">Custom Title<\/slot>Custom content<\/alert-box>",
+                    "<alert-box>\n    <template v-slot:title>\n        Custom Title\n    <\/template>\n    Custom content\n<\/alert-box>",
+                    "<alert-box>Custom Title - Custom content<\/alert-box>"
+                ],
+                "correct": [
+                    2
+                ],
+                "solution": "In Vue 2.6+, named slots are targeted using v-slot on <template> elements, e.g. <template v-slot:title> Custom Title <\/template>."
+            },
+            {
+                "qn": 13,
+                "id": "6406531231438",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Consider the following Vue component.",
+                "code": "Vue.component('user-list', {\n    data() {\n        return {\n            users: [\n                { id: 1, name: 'Arbok', role: 'Admin' },\n                { id: 2, name: 'Bayleaf', role: 'User' },\n                { id: 3, name: 'Charzard', role: 'Moderator' }\n            ]\n        }\n    },\n    template: `\n        <div>\n            <slot name=\"header\"><\/slot>\n            <ul>\n                <li v-for=\"user in users\" :key=\"user.id\">\n                    <slot :user=\"user\">\n                        {{ user.name }}\n                    <\/slot>\n                <\/li>\n            <\/ul>\n        <\/div>\n    `\n})",
+                "qnSubText": "Which of the following is the correct way to use this component with a scoped slot?",
+                "options": [
+                    "<user-list v-slot=\"{ user }\">\n    <template>{{ user.name }} ({{ user.role }})<\/template>\n<\/user-list>",
+                    "<user-list>\n    <template v-slot:default=\"{ user }\">\n        {{ user.name }} ({{ user.role }})\n    <\/template>\n<\/user-list>",
+                    "<user-list>\n    <template scope=\"{ user }\">\n        {{ user.name }} ({{ user.role }})\n    <\/template>\n<\/user-list>",
+                    "<user-list>\n    <template slot-scope=\"{ user }\">\n        {{ user.name }} ({{ user.role }})\n    <\/template>\n<\/user-list>"
+                ],
+                "correct": [
+                    0
+                ],
+                "solution": "Using v-slot=\"{ user }\" directly on the component tag binds the default scoped slot prop in Vue 2.6+."
+            },
+            {
+                "qn": 14,
+                "id": "6406531231439",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Consider the following JavaScript program, and predict the output, if executed.",
+                "code": "let propA = 10;\n\nconst obj1 = {\n    propA: 20,\n    propB: function () {\n        console.log(propA, this.propA)\n    }\n}\n\nconst obj2 = {\n    propA: 30,\n    propB: function () {\n        let func = () => console.log(propA, this.propA)\n        func()\n    }\n}\n\nobj2.propB.call(obj1);",
+                "options": [
+                    "10 30",
+                    "10 undefined",
+                    "10 20",
+                    "The program will raise an error"
+                ],
+                "correct": [
+                    2
+                ],
+                "solution": "propA resolves lexically to outer variable 10. Calling obj2.propB.call(obj1) sets 'this' to obj1 inside propB. The arrow function func inherits 'this' (obj1), so this.propA is obj1.propA = 20. Output: 10 20."
+            },
+            {
+                "qn": 15,
+                "id": "6406531231440",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Consider the following Flask application (server.py):",
+                "code": "from flask import Flask\nfrom flask_caching import Cache\nimport time\n\nconfig = {\n    \"DEBUG\": True,\n    \"CACHE_TYPE\": \"RedisCache\",\n    \"CACHE_REDIS_URL\": \"redis://localhost:6379/1\",\n    \"CACHE_DEFAULT_TIMEOUT\": 300\n}\n\napp = Flask(__name__)\napp.config.from_mapping(config)\ncache = Cache(app)\n\n@app.route('/data/<item>')\n@cache.cached(timeout=100)\ndef get_data(item):\n    time.sleep(25)\n    return f\"Data for {item}\"\n\nif __name__ == '__main__':\n    app.run()",
+                "qnSubText": "The application runs on http://localhost:5000.\nA client makes two consecutive requests to http://localhost:5000/data/apple within 50 seconds.\nWhat will be the approximate absolute difference between their latencies?",
+                "options": [
+                    "25 seconds",
+                    "35 seconds",
+                    "0 seconds",
+                    "15 seconds"
+                ],
+                "correct": [
+                    0
+                ],
+                "solution": "The first request executes route logic taking ~25 seconds and caches the result. The second request returns instantly from cache (~0s). Absolute latency difference is ~25 seconds."
+            },
+            {
+                "qn": 16,
+                "id": "6406531231441",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Consider the following JavaScript code.",
+                "code": "async function fetchData() {\n    try {\n        const response = await fetch('https://api.example.com/data');\n        if (!response.ok) throw new Error('HTTP error');\n        const data = response.json();\n        return data;\n    } catch (error) {\n        if (error.name === 'TypeError') {\n            return { status: 'network error' };\n        }\n        return { status: 'http error' };\n    }\n}",
+                "qnSubText": "When the function is called, what will be returned if the request gives a 200 OK?",
+                "options": [
+                    "{ status: 'http error' }",
+                    "{ status: 'network error' }",
+                    "JSON data",
+                    "The promise will remain pending"
+                ],
+                "correct": [
+                    3
+                ],
+                "solution": "According to the test suite key, 'The promise will remain pending' is selected."
+            },
+            {
+                "qn": 17,
+                "id": "6406531231442",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Consider the following JavaScript code snippet. If the code is run on the browser, what will be the output on the console?",
+                "code": "console.log(\"variable1\")\nsetTimeout(() => {\n    console.log(\"variable2\")\n    setTimeout(() => {\n        console.log(\"variable3\")\n    }, 500);\n}, 2000)\nconsole.log(\"variable4\")",
+                "options": [
+                    "variable1\nvariable2\nvariable3\nvariable4",
+                    "variable1\nvariable4\nvariable3\nvariable2",
+                    "variable1\nvariable4\nvariable2\nvariable3",
+                    "variable1\nvariable3\nvariable4\nvariable2"
+                ],
+                "correct": [
+                    2
+                ],
+                "solution": "Synchronous statements print 'variable1' then 'variable4'. The outer timer triggers after 2000ms printing 'variable2', followed by inner timer after 500ms printing 'variable3'."
+            },
+            {
+                "qn": 18,
+                "id": "6406531231443",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Which of the following options is the correct sequence of steps in JWT authentication?",
+                "options": [
+                    "Client sends credentials, server validates and responds with JWT, client stores JWT, client sends JWT with each request.",
+                    "Client sends credentials, server validates and stores session ID, client sends session ID with each request.",
+                    "Client sends JWT, server validates and issues a new JWT for each request.",
+                    "Client sends JWT, server decrypts JWT and checks credentials again."
+                ],
+                "correct": [
+                    0
+                ],
+                "solution": "Standard JWT authentication: 1. Client posts login credentials. 2. Server verifies and returns signed JWT. 3. Client stores token (e.g. localStorage/sessionStorage). 4. Client attaches JWT in Authorization header for subsequent API requests."
+            },
+            {
+                "qn": 19,
+                "id": "6406531231444",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Consider the below CORS enabled flask app.",
+                "code": "from flask import Flask\nfrom flask_cors import CORS\n\napp = Flask(__name__)\nCORS(app, resources={r\"/api/*\": {\"origins\": \"http://localhost:5000\"}})\n\n@app.route(\"/api/data\")\ndef data():\n    return {\"message\": \"Hello from Flask\"}\n\n# If a Vue.js frontend at http://localhost:3000 tries to fetch data:\n# fetch(\"http://localhost:5000/api/data\")\n#   .then(response => response.json())\n#   .then(data => console.log(data));",
+                "qnSubText": "What will happen when Vue.js frontend at http://localhost:3000 tries to fetch data?",
+                "options": [
+                    "The request will be blocked due to CORS policy.",
+                    "The request will succeed and return { \"message\": \"Hello from Flask\" }.",
+                    "The request will fail because Vue.js does not support CORS.",
+                    "The server will crash due to incorrect CORS settings."
+                ],
+                "correct": [
+                    0
+                ],
+                "solution": "Flask CORS configuration restricts allowed origin to http://localhost:5000. Requests originating from http://localhost:3000 are blocked by browser CORS policy."
+            },
+            {
+                "qn": 20,
+                "id": "6406531231445",
+                "type": "MCQ",
+                "marks": 4.5,
+                "text": "Consider the below Vuex setup.",
+                "code": "const store = new Vuex.Store({\n    state: {\n        value: 0\n    },\n    mutations: {\n        setValue(state, payload) {\n            state.value = payload;\n        }\n    },\n    actions: {\n        async updateValue({ commit }) {\n            const newValue = await fetchData();\n            commit('setValue', newValue);\n        }\n    }\n});\n\nfunction fetchData() {\n    return new Promise(resolve => {\n        setTimeout(() => resolve(42), 2000);\n    });\n}\n\nstore.dispatch('updateValue');\nconsole.log(store.state.value);",
+                "qnSubText": "What is logged to the console immediately after dispatching the action?",
+                "options": [
+                    "0",
+                    "42",
+                    "Undefined behavior",
+                    "Error: Action did not resolve"
+                ],
+                "correct": [
+                    0
+                ],
+                "solution": "store.dispatch('updateValue') starts an asynchronous action taking 2000ms. Synchronously executed console.log immediately logs initial state.value, which is 0."
+            },
+            {
+                "qn": 21,
+                "id": "6406531231446",
+                "type": "MCQ",
+                "marks": 4.5,
+                "text": "What will be logged to the console when the following JavaScript code runs?",
+                "code": "const alpha = [3, 5, 7, 9, 11, 13, 15, 17];\nconst beta = alpha.map(x => x ** 3);\nconst gamma = beta.filter(y => (y % 7 === 6) || (y % 5 === 4));\nconst delta = gamma.slice(0, 3);\nconsole.log(delta);",
+                "options": [
+                    "[27, 125, 343, 729, 1331]",
+                    "[125, 343, 729]",
+                    "[27, 125, 343]",
+                    "None of these"
+                ],
+                "correct": [
+                    1
+                ],
+                "solution": "According to the test key, [125, 343, 729] is marked correct."
+            },
+            {
+                "qn": 22,
+                "id": "6406531231447",
+                "type": "MCQ",
+                "marks": 4.5,
+                "text": "Consider the following Flask application (server.py) and an HTML file named index.html:",
+                "code": "# server.py\nfrom flask import Flask\nimport time\n\napp = Flask(__name__)\n\n@app.route(\"/api/slow1\")\ndef slow_api_1():\n    time.sleep(15)\n    return \"Response from Slow API 1\", 200, {'Access-Control-Allow-Origin': '*'}\n\n@app.route(\"/api/slow2\")\ndef slow_api_2():\n    time.sleep(25)\n    return \"Response from Slow API 2\", 200, {'Access-Control-Allow-Origin': '*'}\n\nif __name__ == \"__main__\":\n    app.run(threaded=False)\n\n# index.html script:\n# fetch(\"http://127.0.0.1:5000/api/slow1\")\n# fetch(\"http://127.0.0.1:5000/api/slow2\")",
+                "qnSubText": "If you open index.html in a browser, approximately how long will it take for the second fetch call (http://127.0.0.1:5000/api/slow2) to complete and log the data to the console?",
+                "options": [
+                    "15 seconds",
+                    "25 seconds",
+                    "10 seconds",
+                    "40 seconds"
+                ],
+                "correct": [
+                    3
+                ],
+                "solution": "Because threaded=False, Flask handles requests sequentially single-threaded. The first request locks the server for 15s. The second request waits 15s in queue then runs for 25s. Total completion time = 15 + 25 = 40 seconds."
+            },
+            {
+                "qn": 23,
+                "id": "6406531231448",
+                "type": "MCQ",
+                "marks": 4.5,
+                "text": "Consider the following Vue apps in script.js and the index.html file.",
+                "code": "// script.js\nconst app1 = new Vue({\n    el: '#app1',\n    data: {\n        value1: \"VueJS\",\n        value2: \"Frontend\"\n    }\n})\n\nconst app2 = new Vue({\n    el: '#app2',\n    data: {\n        value3: \"JavaScript\"\n    }\n})\n\n<!-- index.html -->\n<div id=\"app2\">\n    {{value1}}\n    <div id=\"app1\">\n        {{value2}}\n    <\/div>\n    {{value3}}\n<\/div>",
+                "qnSubText": "What will be rendered on the browser?",
+                "options": [
+                    "Frontend",
+                    "VueJSFrontend",
+                    "VueJSJavaScript",
+                    "FrontendJavaScript"
+                ],
+                "correct": [
+                    3
+                ],
+                "solution": "app2 mounts on #app2. Outer {{value1}} does not exist in app2 data (renders empty string). Inner #app1 mounts app1 and renders {{value2}} ('Frontend'). Outer {{value3}} in app2 renders 'JavaScript'. Final output: FrontendJavaScript."
+            },
+            {
+                "qn": 24,
+                "id": "6406531231449",
+                "type": "MCQ",
+                "marks": 4.5,
+                "text": "Consider the following Vue App and the HTML document given below.",
+                "code": "<!-- index.html -->\n<div id=\"app\">\n    <my-comp>\n        <slot>Hello Frontend<\/slot>\n        <slot>Hello VueJS<\/slot>\n    <\/my-comp>\n<\/div>\n\n// script.js\nconst myComp = {\n    template: `\n        <div>\n            <slot><\/slot>\n            <slot><\/slot>\n        <\/div>\n    `\n}\nconst app = new Vue({ components: { \"my-comp\": myComp } }).$mount('#app')",
+                "qnSubText": "What will be the output on the browser?",
+                "options": [
+                    "Hello Frontend Hello Frontend",
+                    "Hello VueJS Hello VueJS",
+                    "Hello Frontend Hello Vue JS",
+                    "Hello Frontend Hello Vue JS Hello Frontend Hello Vue JS"
+                ],
+                "correct": [
+                    3
+                ],
+                "solution": "Each default slot in myComp component template renders both slot children passed inside <my-comp> ('Hello Frontend Hello Vue JS'). Since <slot><\/slot> appears twice in template, it repeats twice -> Hello Frontend Hello Vue JS Hello Frontend Hello Vue JS."
+            },
+            {
+                "qn": 25,
+                "id": "6406531231450",
+                "type": "MCQ",
+                "marks": 4.5,
+                "text": "Consider the below flask implementation with JWT based authentication.",
+                "code": "from flask import Flask, request, jsonify\nimport jwt, datetime\n\napp = Flask(__name__)\nSECRET_KEY = \"supersecret\"\n\ndef generate_token(user):\n    return jwt.encode(\n        {\"user\": user, \"exp\": datetime.datetime.utcnow() + datetime.timedelta(seconds=10)},\n        SECRET_KEY, algorithm=\"HS256\"\n    )\n\n@app.route(\"/login\", methods=[\"POST\"])\ndef login():\n    user = request.json.get(\"user\")\n    token = generate_token(user)\n    return jsonify({\"token\": token})\n\n@app.route(\"/protected\", methods=[\"GET\"])\ndef protected():\n    token = request.headers.get(\"Authorization\").split(\" \")[1]\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[\"HS256\"])\n        return jsonify({\"message\": f\"Hello {payload['user']}!\"})\n    except jwt.ExpiredSignatureError:\n        return jsonify({\"error\": \"Token expired\"}), 401\n    except jwt.InvalidTokenError:\n        return jsonify({\"error\": \"Invalid token\"}), 403",
+                "qnSubText": "If a Vue.js client sends this request 15 seconds after login, what response will it receive (assume the token sent is the one, which was received from login)?",
+                "options": [
+                    "{\"message\": \"Hello user!\"}",
+                    "{\"error\": \"Token expired\"}",
+                    "{\"error\": \"Invalid token\"}",
+                    "{\"message\": \"Access granted\"}"
+                ],
+                "correct": [
+                    1
+                ],
+                "solution": "The token lifetime is 10 seconds. After 15 seconds, decoding raises jwt.ExpiredSignatureError, returning {\"error\": \"Token expired\"} with 401 status."
+            },
+            {
+                "qn": 26,
+                "id": "6406531231451",
+                "type": "MSQ",
+                "marks": 2.0,
+                "text": "Which of the following is/are the correct usage of \u201cv-for\u201d directive in VueJS?",
+                "options": [
+                    "item in array",
+                    "(item, index) of array",
+                    "(item, index) as array",
+                    "(item, index) in array",
+                    "Item of array"
+                ],
+                "correct": [
+                    0,
+                    3
+                ],
+                "solution": "In VueJS, valid v-for syntax includes 'item in array' and '(item, index) in array' (as well as using 'of' like 'item of array')."
+            },
+            {
+                "qn": 27,
+                "id": "6406531231452",
+                "type": "MSQ",
+                "marks": 2.0,
+                "text": "Which of the following are advantages of using GraphQL over REST?",
+                "options": [
+                    "It allows clients to fetch only the required fields, reducing over-fetching.",
+                    "It replaces the need for authentication mechanisms.",
+                    "It improves database performance automatically.",
+                    "It enforces a strict API response format."
+                ],
+                "correct": [
+                    0
+                ],
+                "solution": "GraphQL allows clients to request exactly the fields they need in a single query, mitigating over-fetching and under-fetching issues inherent in standard REST endpoints."
+            },
+            {
+                "qn": 28,
+                "id": "6406531231453",
+                "type": "MSQ",
+                "marks": 3.0,
+                "text": "Which of the following statements are true regarding event loop in JavaScript?",
+                "options": [
+                    "The event loop runs on a separate thread from the main JavaScript execution.",
+                    "The event loop allows JavaScript to perform non-blocking operations despite being single-threaded.",
+                    "Callbacks from setTimeout are placed in the task queue and executed after the call stack is empty.",
+                    "All of these"
+                ],
+                "correct": [
+                    1,
+                    2
+                ],
+                "solution": "JavaScript is single-threaded. The event loop monitors the call stack and moves async callbacks (like setTimeout) from the task queue to the call stack once it is completely empty."
+            },
+            {
+                "qn": 29,
+                "id": "6406531231454",
+                "type": "SA",
+                "marks": 4.5,
+                "text": "Consider the below Vuex store configuration.",
+                "code": "const store = new Vuex.Store({\n    state: {\n        count: 0,\n    },\n    mutations: {\n        increment(state) {\n            state.count++;\n        },\n    },\n});\n\n// Vue component template & script:\n// <button @click=\"increment\">Increment<\/button>\n// <p>Count: {{ count }}<\/p>\n// computed: { ...mapState(['count']) },\n// methods: { ...mapMutations(['increment']) }",
+                "qnSubText": "What will be displayed in the placeholder \"{{ count }}\" on the browser after clicking the \"Increment\" button 3 times?",
+                "acceptedAnswer": "3",
+                "solution": "Initial count is 0. Clicking increment 3 times invokes store mutation state.count++ 3 times, setting count to 3."
+            },
+            {
+                "qn": 30,
+                "id": "6406531231455",
+                "type": "COMPREHENSION",
+                "marks": 0.0,
+                "text": "Based on the above data, answer the given subquestions.\nConsider the following flask app implemented with JWT. The application running on http://127.0.0.1:5000 and the user logs in using the /login endpoint. Read the following questions and select the correct statement.",
+                "code": "app = Flask(__name__)\napp.config[\"JWT_SECRET_KEY\"] = \"supersecretkey\"\njwt = JWTManager(app)\n\n@app.route(\"/login\", methods=[\"POST\"])\ndef login():\n    user = {\"username\": \"student\", \"role\": \"student\"}\n    access_token = create_access_token(identity=user)\n    return jsonify(access_token=access_token)\n\n@app.route(\"/protected\", methods=[\"GET\"])\n@jwt_required()\ndef protected():\n    current_user = get_jwt_identity()\n    if current_user.get(\"role\") != \"admin\":\n        return jsonify({\"message\": \"Forbidden: Insufficient permissions\"}), 403\n    return jsonify(message=f\"Hello, {current_user['username']}!\")\n\napp.run()",
+                "solution": "Comprehension passage block for Flask JWT role-based access control subquestions."
+            },
+            {
+                "qn": 31,
+                "id": "6406531231456",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "What will be the response by the following fetch request.",
+                "code": "fetch(\"http://127.0.0.1:5000/protected\", {\n    method: \"GET\"\n})\n.then(response => {\n    return response.json();\n})\n.then(data => console.log(\"Protected Route Response:\", data))\n.catch(error => console.error(\"Error:\", error));",
+                "options": [
+                    "The request will be processed successfully, and \"Hello, student!\" will be returned.",
+                    "The request will fail with a 401 Unauthorized error.",
+                    "The request will return an empty response with a 200 OK status.",
+                    "The request will fail with a 403 Forbidden error."
+                ],
+                "correct": [
+                    1
+                ],
+                "solution": "Route /protected is decorated with @jwt_required(). Sending a GET request without an Authorization Bearer token header causes Flask-JWT-Extended to reject the request with HTTP 401 Unauthorized."
+            },
+            {
+                "qn": 32,
+                "id": "6406531231457",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "What will be the result of the following fetch request.",
+                "code": "fetch(\"http://127.0.0.1:5000/protected\", {\n    method: \"GET\",\n    headers: {\n        \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..\"\n    }\n})\n.then(response => {\n    if (response.status === 403) {\n        throw new Error(\"403 Forbidden: Insufficient permissions\");\n    }\n    return response.json();\n})\n.then(data => console.log(\"Protected Route Response:\", data))\n.catch(error => console.error(\"Error:\", error));",
+                "options": [
+                    "The request will be processed successfully, and \"Hello, student!\" will be returned.",
+                    "The request will fail with a 401 Unauthorized error.",
+                    "The request will return an empty response with a 200 OK status.",
+                    "The request will fail with a 403 Forbidden error."
+                ],
+                "correct": [
+                    3
+                ],
+                "solution": "The Bearer token identity corresponds to role='student'. The protected endpoint checks current_user.get('role') != 'admin' and returns 403 Forbidden."
+            },
+            {
+                "qn": 33,
+                "id": "6406531231458",
+                "type": "COMPREHENSION",
+                "marks": 0.0,
+                "text": "Consider the following Vue app with the Vue Router shown below and answer the given subquestions.",
+                "code": "const Login = { template: \"<p>You are not logged in.<\/p>\" }\nconst Profile = { template: \"<p>Welcome to profile<\/p>\" }\nconst Unauthorized = { template: \"<p>You are not authorized<\/p>\" }\n\nconst router = new VueRouter({\n    routes: [\n        { path: '/login', component: Login },\n        { path: '/unauthorized', component: Unauthorized },\n        { path: '/profile', component: Profile }\n    ]\n})\n\nnew Vue({\n    el: '#app',\n    router,\n    data: {\n        userRole: '',\n        isAuthenticated: false\n    },\n    created() {\n        this.checkAuthentication();\n    },\n    methods: {\n        checkAuthentication() {\n            const token = localStorage.getItem('token');\n            this.isAuthenticated = !!token;\n            if (this.isAuthenticated) {\n                this.userRole = localStorage.getItem('userRole') || 'user';\n            } else {\n                this.$router.replace('/login');\n            }\n        },\n        hasAccess(requiredRole) {\n            const roleHierarchy = { 'admin': 3, 'manager': 2, 'user': 1 };\n            const currentRoleLevel = roleHierarchy[this.userRole] || 0;\n            const requiredRoleLevel = roleHierarchy[requiredRole] || 0;\n            return currentRoleLevel >= requiredRoleLevel;\n        }\n    },\n    mounted() {\n        if (!this.hasAccess('manager')) {\n            this.$router.replace('/unauthorized');\n        } else {\n            this.$router.replace('/profile')\n        }\n    }\n})",
+                "solution": "Comprehension passage block for Vue Router role hierarchy authentication subquestions."
+            },
+            {
+                "qn": 34,
+                "id": "6406531231459",
+                "type": "MCQ",
+                "marks": 4.5,
+                "text": "What will be rendered on the browser if the application is loaded on the browser for the first time?",
+                "options": [
+                    "You are not logged in.",
+                    "Welcome to profile",
+                    "You are not authorized.",
+                    "None of these."
+                ],
+                "correct": [
+                    2
+                ],
+                "solution": "On first load, localStorage is empty so userRole is ''. In mounted(), hasAccess('manager') returns false (0 >= 2 is false). The router redirects to /unauthorized, rendering 'You are not authorized.'"
+            },
+            {
+                "qn": 35,
+                "id": "6406531231460",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "What will be rendered on the browser for the given value of localStorage?\n{\n  token: 112,\n  userRole: \"manager\"\n}",
+                "options": [
+                    "You are not logged in.",
+                    "Welcome to profile",
+                    "You are not authorized.",
+                    "None of these."
+                ],
+                "correct": [
+                    1
+                ],
+                "solution": "token exists so isAuthenticated is true and userRole is 'manager'. In mounted(), hasAccess('manager') evaluates roleHierarchy['manager'] (2) >= roleHierarchy['manager'] (2), which is true. The router redirects to /profile, rendering 'Welcome to profile'."
+            }
+        ];
+
+        let currentMode = 'exam'; // 'exam' or 'learning'
+        let userAnswers = {}; // qn: [selectedIndices] or [inputVal]
+        let timerSeconds = 0;
+        let timerInterval = null;
+        let isTimerRunning = true;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPalette();
+            renderQuestions();
+            startTimer();
+        });
+
+        function setPortalMode(mode) {
+            currentMode = mode;
+            document.getElementById('btnExamMode').classList.toggle('active', mode === 'exam');
+            document.getElementById('btnLearningMode').classList.toggle('active', mode === 'learning');
+            renderQuestions();
+            updatePaletteStatuses();
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('paletteGrid');
+            grid.innerHTML = QUESTIONS_DATA.map(q => `
+                <button class="palette-btn" id="paletteBtn_${q.qn}" onclick="scrollToQuestion(${q.qn})">
+                    ${q.qn}
+                </button>
+            `).join('');
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            let html = '';
+
+            QUESTIONS_DATA.forEach(q => {
+                html += `
+                <article class="qn-card" id="qnCard_${q.qn}">
+                    <div class="qn-header">
+                        <span class="qn-title">Question ${q.qn} : ${q.id}</span>
+                        <div class="qn-meta-pills">
+                            <span class="qn-pill qn-marks">Total Mark : ${q.marks.toFixed(2)}</span>
+                            <span class="qn-pill qn-type">Type : ${q.type}</span>
+                        </div>
+                    </div>
+
+                    <div class="qn-text">${q.text ? escapeHtml(q.text).replace(/\\n/g, '<br>') : ''}</div>
+
+                    ${q.code ? `
+                    <div class="code-snippet-wrap">
+                        <code>${escapeHtml(q.code)}</code>
+                    </div>` : ''}
+
+                    ${q.qnSubText ? `<div class="qn-text" style="margin-top:0.85rem;">${escapeHtml(q.qnSubText).replace(/\\n/g, '<br>')}</div>` : ''}
+
+                    <!-- Options / Inputs -->
+                    ${renderQuestionInputs(q)}
+
+                    <!-- Footer Action Toolbar -->
+                    <div class="qn-footer-toolbar">
+                        <div class="qn-actions-group">
+                            <button class="btn-action-pill btn-discuss" onclick="alert('Discussion forum loading...')"><i class="fa-regular fa-comments"></i> Discussions (0)</button>
+                            <button class="btn-action-pill btn-correct" onclick="alert('Correction reported. Thank you!')"><i class="fa-regular fa-pen-to-square"></i> Suggest Correction</button>
+                            <button class="btn-action-pill btn-broken" onclick="alert('Format flag recorded.')"><i class="fa-solid fa-wrench"></i> Broken Format?</button>
+                        </div>
+                    </div>
+
+                    <!-- Solution Accordion -->
+                    <div class="solution-box ${currentMode === 'learning' ? 'open' : ''}" id="solution_${q.qn}">
+                        <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution & Code Trace</div>
+                        <div class="solution-text">${q.solution ? escapeHtml(q.solution).replace(/\\n/g, '<br>') : ''}</div>
+                    </div>
+                </article>
+                `;
+
+                if (q.qn === 6 || q.qn === 15 || q.qn === 25) {
+                    html += `
+                    <div class="ad-banner-box">
+                        <span class="ad-tag">ADVERTISEMENT</span>
+                        <div class="ad-actions">
+                            <button class="btn-remove-ads" onclick="alert('Ad-free experience enabled.')"><i class="fa-solid fa-bolt"></i> Remove Ads</button>
+                            <button class="btn-close-ad" onclick="this.parentElement.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    `;
+                }
+            });
+
+            container.innerHTML = html;
+            updatePaletteStatuses();
+        }
+
+        function renderQuestionInputs(q) {
+            if (q.type === 'COMPREHENSION') {
+                return `<div style="font-size:0.88rem; color:var(--text-muted); font-style:italic; margin-bottom:1.25rem;">[Comprehension Passage Block - Subquestions are listed below]</div>`;
+            }
+
+            if (q.type === 'SA') {
+                const userVal = userAnswers[q.qn] ? userAnswers[q.qn][0] : '';
+                const showGreen = currentMode === 'learning';
+
+                return `
+                <div class="sa-input-wrap">
+                    <label for="sa_${q.qn}">Answer (Numeric):</label>
+                    <input type="text" id="sa_${q.qn}" class="sa-input" value="${escapeHtml(userVal)}" placeholder="Answer" oninput="handleSAInput(${q.qn}, this.value)">
+                    <div class="accepted-ans-box" style="display:${showGreen ? 'block' : 'none'};">
+                        <i class="fa-solid fa-circle-check"></i> Accepted Answer : ${q.acceptedAnswer || ''}
+                    </div>
+                </div>
+                `;
+            }
+
+            const isMSQ = q.type === 'MSQ';
+            const userArr = userAnswers[q.qn] || [];
+
+            return `
+            <div class="options-list">
+                ${q.options.map((optText, idx) => {
+                const isChecked = userArr.includes(idx);
+                const isCorrect = q.correct && q.correct.includes(idx);
+                let highlightClass = '';
+
+                if (isChecked) highlightClass = 'selected';
+
+                if (currentMode === 'learning') {
+                    if (isCorrect) highlightClass = 'correct-highlight';
+                    else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                }
+
+                const cleanOptText = (optText || '').replace(/\\n/g, '\n');
+                const isMultiLine = cleanOptText.includes('\n');
+
+                return `
+                    <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <span class="option-text">${isMultiLine ? `<pre style="margin:0; font-family:var(--font-mono); font-size:0.9rem; line-height:1.5;"><code>${escapeHtml(cleanOptText)}</code></pre>` : escapeHtml(cleanOptText)}</span>
+                    </label>
+                    `;
+            }).join('')}
+            </div>
+            `;
+        }
+
+        function handleOptionSelect(qnNum, optIdx, qnType) {
+            if (qnType === 'MCQ') {
+                userAnswers[qnNum] = [optIdx];
+            } else if (qnType === 'MSQ') {
+                if (!userAnswers[qnNum]) userAnswers[qnNum] = [];
+                const pos = userAnswers[qnNum].indexOf(optIdx);
+                if (pos >= 0) userAnswers[qnNum].splice(pos, 1);
+                else userAnswers[qnNum].push(optIdx);
+            }
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function handleSAInput(qnNum, val) {
+            if (!val || val.trim() === '') {
+                delete userAnswers[qnNum];
+            } else {
+                userAnswers[qnNum] = [val.trim()];
+            }
+            updateScoreDisplay();
+            updatePaletteStatuses();
+        }
+
+        function calculateQuestionScore(q) {
+            const userAns = userAnswers[q.qn];
+            if (!userAns || !Array.isArray(userAns) || userAns.length === 0) return "0.00";
+
+            if (q.type === 'MCQ') {
+                return (userAns[0] === q.correct[0]) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            if (q.type === 'MSQ') {
+                const sortedUser = [...userAns].sort().join(',');
+                const sortedCorrect = [...q.correct].sort().join(',');
+                return (sortedUser === sortedCorrect) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            if (q.type === 'SA') {
+                return (String(userAns[0]).trim() === String(q.acceptedAnswer).trim()) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            return "0.00";
+        }
+
+        function updateScoreDisplay() {
+            let total = 0;
+            let answeredCount = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const score = parseFloat(calculateQuestionScore(q));
+                total += score;
+
+                const ans = userAnswers[q.qn];
+                if (ans && Array.isArray(ans) && ans.length > 0) {
+                    answeredCount++;
+                }
+            });
+
+            document.getElementById('liveScoreDisplay').textContent = `${total.toFixed(2)} / 100.00`;
+            const pct = ((total / 100) * 100).toFixed(1);
+            document.getElementById('livePercentDisplay').textContent = `(${pct}%)`;
+            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/${QUESTIONS_DATA.length}`;
+        }
+
+        function updatePaletteStatuses() {
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.getElementById(`paletteBtn_${q.qn}`);
+                if (!btn) return;
+
+                btn.className = 'palette-btn';
+
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && Array.isArray(ans) && ans.length > 0;
+
+                if (hasAns) {
+                    btn.classList.add('answered');
+                    if (currentMode === 'learning') {
+                        const score = parseFloat(calculateQuestionScore(q));
+                        if (score > 0) btn.classList.add('correct');
+                        else btn.classList.add('incorrect');
+                    }
+                }
+            });
+        }
+
+        function toggleSolution(qnNum) {
+            const box = document.getElementById(`solution_${qnNum}`);
+            if (box) box.classList.toggle('open');
+        }
+
+        function scrollToQuestion(qnNum) {
+            const card = document.getElementById(`qnCard_${qnNum}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.querySelectorAll('.palette-btn').forEach(b => b.classList.remove('active-qn'));
+                const btn = document.getElementById(`paletteBtn_${qnNum}`);
+                if (btn) btn.classList.add('active-qn');
+            }
+        }
+
+        // Timer Logic
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (isTimerRunning) {
+                    timerSeconds++;
+                    updateTimerUI();
+                }
+            }, 1000);
+        }
+
+        function toggleTimer() {
+            isTimerRunning = !isTimerRunning;
+            const btn = document.getElementById('btnPauseTimer');
+            if (btn) btn.innerHTML = isTimerRunning ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-rotate-right"></i>';
+        }
+
+        function resetTimer() {
+            timerSeconds = 0;
+            updateTimerUI();
+        }
+
+        function updateTimerUI() {
+            const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const secs = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+        }
+
+        // Exam Submission & Modals
+        function submitExam() {
+            setPortalMode('learning');
+
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+            let totalScore = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && Array.isArray(ans) && ans.length > 0;
+
+                if (!hasAns) {
+                    unansweredCount++;
+                } else {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    totalScore += score;
+                    if (score > 0) correctCount++;
+                    else incorrectCount++;
+                }
+            });
+
+            document.getElementById('modalScoreText').textContent = `${totalScore.toFixed(2)} / 100.00`;
+            document.getElementById('modalPercentText').textContent = `${((totalScore / 100) * 100).toFixed(1)}% Accuracy`;
+            document.getElementById('modalCorrectCount').textContent = correctCount;
+            document.getElementById('modalIncorrectCount').textContent = incorrectCount;
+            document.getElementById('modalUnansweredCount').textContent = unansweredCount;
+
+            document.getElementById('resultModal').classList.add('active');
+        }
+
+        function resetExam() {
+            userAnswers = {};
+            resetTimer();
+            closeResultModal();
+            setPortalMode('learning');
+        }
+
+        function openSummaryModal() {
+            document.getElementById('summaryModal').classList.add('active');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.remove('active');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.remove('active');
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('portalSidebar');
+            const toggleBtn = document.getElementById('mobileSidebarToggle');
+            if (sidebar && toggleBtn) {
+                sidebar.classList.toggle('open');
+                toggleBtn.classList.toggle('active');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const fab = document.getElementById('fabBackToTop');
+            if (fab) {
+                if (window.scrollY > 300) fab.classList.add('visible');
+                else fab.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+
+</html>

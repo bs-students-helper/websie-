@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice AppDev2 questions : 2025 Apr13: IIT M AN EXAM QDD4 - QuizPractice | BSH</title>
+    <meta name="description"
+        content="Practice Modern Application Development II End Term question paper (13 Apr 2025 13 Apr 2025 AN - 2025 Apr13: IIT M AN EXAM QDD4) with interactive exam & learning modes, instant score calculation, detailed solutions, and question palette.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+
+    <!-- Master CSS -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/quiz-portal.css">
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('bsh-theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Site Navigation Header -->
+    <header class="site-header" id="header">
+        <div class="header-container">
+            <a href="../../index.html" class="brand-logo" aria-label="BSH Homepage">
+                <img src="../../assets/images/logo.png" alt="BSH Logo" class="logo-img">
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="../../index.html#features" class="nav-link">Features</a>
+                <a href="../../quiz_practice.html" class="nav-link active">Quiz Practice</a>
+                <a href="../../calculator.html" class="nav-link">SEC Calculator</a>
+                <a href="../../about.html" class="nav-link">About Us</a>
+                <a href="../../contact_us.html" class="nav-link">Feedback</a>
+            </nav>
+            <div class="header-actions">
+                <a href="../../end_term_practice.html" class="btn btn-secondary nav-btn-desktop"><i
+                        class="fa-solid fa-arrow-left"></i><span>Back to Papers</span></a>
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i
+                        class="fa-solid fa-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="portal-layout">
+
+            <!-- Mobile Collapsible Sidebar Toggle Button -->
+            <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()">
+                <span><i class="fa-solid fa-sliders"></i> Exam Controls & Question Menu</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <!-- Left Sidebar: Controls, Menu & Timer -->
+            <aside class="portal-sidebar" id="portalSidebar">
+
+                <!-- Header Info -->
+                <div class="exam-info-header">
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Exam :</span>
+                        <span class="exam-info-val">End Term Quiz</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Subject :</span>
+                        <span class="exam-info-val">AppDev2</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Total Marks :</span>
+                        <span class="exam-info-val">100.00</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">QP :</span>
+                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">2025 Apr13: IIT M AN
+                            EXAM QDD4</span>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher -->
+                <div>
+                    <div class="menu-heading">Portal Mode</div>
+                    <div class="mode-toggle-group">
+                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam
+                            Mode</button>
+                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning
+                            Mode</button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                        onclick="openSummaryModal()">
+                        <i class="fa-solid fa-eye"></i> View Question Paper Summary
+                    </button>
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                        onclick="window.print()">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </button>
+                </div>
+
+                <!-- Question Menu Grid -->
+                <div>
+                    <div class="menu-heading">
+                        <span>QUESTION MENU</span>
+                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/35</span>
+                    </div>
+                    <div class="palette-grid" id="paletteGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Timer Box -->
+                <div>
+                    <div class="menu-heading">TIMER</div>
+                    <div class="timer-box">
+                        <div class="timer-display" id="timerDisplay">00:00</div>
+                        <div class="timer-controls">
+                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i
+                                    class="fa-solid fa-pause"></i></button>
+                            <button class="btn-icon-sm" onclick="resetTimer()"><i
+                                    class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls & Score Box -->
+                <div>
+                    <div class="menu-heading">CONTROLS</div>
+                    <button class="btn-submit-exam" onclick="submitExam()">
+                        <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
+                    </button>
+                    <div class="score-card" style="margin-top:1rem;">
+                        <span
+                            style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">YOUR
+                            SCORE</span>
+                        <div class="score-num" id="liveScoreDisplay">0.00 / 100.00</div>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);"
+                            id="livePercentDisplay">(0.0%)</span>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Right Area: Questions List -->
+            <section class="questions-area" id="questionsContainer">
+                <!-- Dynamically Rendered by JS -->
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Floating Back to Top FAB -->
+    <button class="fab-back-to-top" id="fabBackToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;">Question Paper Summary</h3>
+                <button class="btn-icon-sm" onclick="closeSummaryModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+                Paper Title: <b>2025 Apr13: IIT M AN EXAM QDD4</b> (End Term Quiz)
+            </p>
+            <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+                <tr style="border-bottom:1px solid var(--border-light); text-align:left;">
+                    <th style="padding:0.6rem;">Question Type</th>
+                    <th style="padding:0.6rem;">Count</th>
+                    <th style="padding:0.6rem;">Total Marks</th>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MCQ (Multiple Choice)</td>
+                    <td style="padding:0.6rem;">28</td>
+                    <td style="padding:0.6rem;">-</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MSQ (Multiple Select)</td>
+                    <td style="padding:0.6rem;">4</td>
+                    <td style="padding:0.6rem;">-</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">SA (Short Answer)</td>
+                    <td style="padding:0.6rem;">2</td>
+                    <td style="padding:0.6rem;">-</td>
+                </tr>
+            </table>
+            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close
+                Summary</button>
+        </div>
+    </div>
+
+    <!-- Exam Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-card" style="text-align:center;">
+            <div
+                style="width:64px; height:64px; border-radius:50%; background:rgba(16, 185, 129, 0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 1rem;">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Exam Submitted!</h2>
+            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for AppDev2 End
+                Term Quiz (13 Apr 2025 AN)</p>
+
+            <div
+                style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
+                <div style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; font-weight:600;">
+                    Final Score</div>
+                <div style="font-family:var(--font-mono); font-size:2.8rem; font-weight:800; color:var(--accent-green);"
+                    id="modalScoreText">0.00 / 100.00</div>
+                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0%
+                    Accuracy
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem; margin-bottom:1.5rem;">
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Correct</div>
+                    <div style="font-weight:700; color:#10b981; font-size:1.2rem;" id="modalCorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Incorrect</div>
+                    <div style="font-weight:700; color:#ef4444; font-size:1.2rem;" id="modalIncorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Unanswered</div>
+                    <div style="font-weight:700; color:var(--text-secondary); font-size:1.2rem;"
+                        id="modalUnansweredCount">0</div>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:0.75rem;">
+                <button class="btn btn-secondary btn-full"
+                    onclick="closeResultModal(); setPortalMode('learning');">Review Solutions <i
+                        class="fa-solid fa-book-open"></i></button>
+                <button class="btn btn-primary btn-full" onclick="resetExam()">Retake Exam <i
+                        class="fa-solid fa-rotate-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Master Scripts -->
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        const QUESTIONS_DATA = [
+            {
+                "qn": 1,
+                "id": "6406531252562",
+                "type": "MCQ",
+                "marks": 0.0,
+                "text": "THIS IS QUESTION PAPER FOR THE SUBJECT \"DIPLOMA LEVEL : MODERN APPLICATION DEVELOPMENT II (COMPUTER BASED EXAM)\" ARE YOU SURE YOU HAVE TO WRITE EXAM FOR THIS SUBJECT? CROSS CHECK YOUR HALL TICKET TO CONFIRM THE SUBJECTS TO BE WRITTEN. (IF IT IS NOT THE CORRECT SUBJECT, PLS CHECK THE SECTION AT THE TOP FOR THE SUBJECTS REGISTERED BY YOU)",
+                "options": [
+                    "YES",
+                    "NO"
+                ],
+                "correct": [
+                    0
+                ],
+                "solution": "Subject confirmation question. Select YES to proceed."
+            },
+            {
+                "qn": 2,
+                "id": "6406531252563",
+                "type": "MCQ",
+                "marks": 2.0,
+                "text": "Which of the following statements is true regarding the \"this\" keyword in JavaScript?",
+                "options": [
+                    "\"this\" always refers to the function it is declared in.",
+                    "Arrow functions inherit \"this\" from their enclosing lexical scope.",
+                    "\"this\" inside a class method always refers to the window object.",
+                    "None of these"
+                ],
+                "correct": [
+                    1
+                ],
+                "solution": "Arrow functions do not bind their own 'this'; instead, they inherit 'this' from their enclosing lexical context."
+            },
+            {
+                "qn": 3,
+                "id": "6406531252564",
+                "type": "MCQ",
+                "marks": 2.0,
+                "text": "Which of the following correctly describes the lifecycle of a Vue.js component?",
+                "options": [
+                    "beforeCreate -> created -> beforeMount -> mounted -> beforeUpdate -> updated -> beforeUnmount -> unmounted",
+                    "beforeCreate -> created -> beforeMount -> beforeUpdate -> mounted -> updated -> beforeUnmount -> unmounted",
+                    "created -> beforeCreate -> beforeMount -> mounted -> updated -> beforeUnmount -> unmounted",
+                    "created -> beforeCreate -> beforeMount -> mounted -> beforeUnmount -> updated -> unmounted"
+                ],
+                "correct": [
+                    0
+                ],
+                "solution": "Standard Vue lifecycle hook sequence: beforeCreate -> created -> beforeMount -> mounted -> beforeUpdate -> updated -> beforeUnmount -> unmounted."
+            },
+            {
+                "qn": 4,
+                "id": "6406531252565",
+                "type": "MCQ",
+                "marks": 2.0,
+                "text": "Consider the below JavaScript program.",
+                "code": "const promise = new Promise((resolve, reject) => {\n    reject('Error!');\n    resolve('Success!');\n});\npromise.then(console.log).catch(console.log);",
+                "qnSubText": "What will be the output of the above program?",
+                "options": [
+                    "Success!Failed!",
+                    "Success!",
+                    "Failed!",
+                    "Error!"
+                ],
+                "correct": [
+                    2
+                ],
+                "solution": "According to the test key, Failed! is selected."
+            },
+            {
+                "qn": 5,
+                "id": "6406531252566",
+                "type": "MCQ",
+                "marks": 2.0,
+                "text": "What is the main advantage of using JWT over session-based authentication?",
+                "options": [
+                    "JWTs require storing tokens on the server, reducing security risks.",
+                    "JWTs are stateless and do not require server-side storage.",
+                    "JWTs are shorter and more efficient than session IDs.",
+                    "JWTs automatically expire and require no further security measures."
+                ],
+                "correct": [
+                    1
+                ],
+                "solution": "JWTs encapsulate user claims in digitally signed tokens on the client, making authentication stateless and eliminating server-side session DB lookups."
+            },
+            {
+                "qn": 6,
+                "id": "6406531252567",
+                "type": "MCQ",
+                "marks": 2.0,
+                "text": "Which of the following HTTP methods does SSE use for streaming updates to clients?",
+                "options": [
+                    "GET",
+                    "POST",
+                    "PUT",
+                    "PATCH"
+                ],
+                "correct": [
+                    0
+                ],
+                "solution": "Server-Sent Events (SSE) rely on persistent HTTP GET requests with text/event-stream headers to stream server events to clients."
+            },
+            {
+                "qn": 7,
+                "id": "6406531252568",
+                "type": "MCQ",
+                "marks": 2.0,
+                "text": "How does a webhook differ from an API call?",
+                "options": [
+                    "A webhook is triggered by an event, while an API call requires a client request.",
+                    "A webhook always returns a response body, while an API call does not.",
+                    "A webhook uses WebSockets for communication, while APIs use REST.",
+                    "A webhook only supports the HTTP GET method."
+                ],
+                "correct": [
+                    0
+                ],
+                "solution": "Webhooks are event-driven HTTP callbacks pushed automatically by the server when an event occurs, whereas traditional API calls require explicit client polling/requests."
+            },
+            {
+                "qn": 8,
+                "id": "6406531252569",
+                "type": "MCQ",
+                "marks": 2.0,
+                "text": "What is the purpose of CORS in web security?",
+                "options": [
+                    "To allow browsers to make requests to any domain without restrictions.",
+                    "To prevent the server from making requests to unauthorized origins.",
+                    "To allow a web application to request resources from a different domain securely.",
+                    "To restrict all incoming requests to the same domain."
+                ],
+                "correct": [
+                    2
+                ],
+                "solution": "CORS (Cross-Origin Resource Sharing) allows web servers to explicitly whitelist cross-origin HTTP requests securely."
+            },
+            {
+                "qn": 9,
+                "id": "6406531252570",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Consider the below JavaScript program.",
+                "code": "let arr = [4, 5, 6];\nlet sum = arr.reduce((acc, val, idx, array) => acc + (array[idx - 1] || 0), 0);\nconsole.log(sum);",
+                "qnSubText": "What will be the output of the above program?",
+                "options": [
+                    "6",
+                    "NaN",
+                    "undefined",
+                    "9",
+                    "15"
+                ],
+                "correct": [
+                    3
+                ],
+                "solution": "idx=0: array[-1]||0 = 0 -> acc=0. idx=1: array[0]||0 = 4 -> acc=4. idx=2: array[1]||0 = 5 -> acc=4+5=9. Final output: 9."
+            },
+            {
+                "qn": 10,
+                "id": "6406531252571",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Consider the below JavaScript program.",
+                "code": "const obj = {\n    num: 8,\n    multiply: function () {\n        return this.num * 3;\n    },\n};\nconst multiply = obj.multiply.bind({ num: 2 });\nconsole.log(multiply());",
+                "qnSubText": "What will be the output of the above program?",
+                "options": [
+                    "24",
+                    "6",
+                    "NaN",
+                    "NULL",
+                    "Error"
+                ],
+                "correct": [
+                    1
+                ],
+                "solution": "bind({ num: 2 }) explicitly sets 'this' to { num: 2 }. Calling multiply() executes 2 * 3 = 6."
+            },
+            {
+                "qn": 11,
+                "id": "6406531252572",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Consider the below Vuex store configuration:",
+                "code": "const store = new Vuex.Store({\n    state: {\n        items: ['Vue', 'React'],\n    },\n    mutations: {\n        removeItem(state, item) {\n            state.items = state.items.filter(i => i !== item);\n        },\n    },\n    actions: {\n        removeItemAsync({ commit }, item) {\n            setTimeout(() => {\n                commit('removeItem', item);\n            }, 500);\n        },\n    },\n});",
+                "qnSubText": "If the addItemAsync action is dispatched with the item 'Vue', what will be the state of items after 2 seconds?",
+                "options": [
+                    "[]",
+                    "['Vu', 'React']",
+                    "['React']",
+                    "[ object ]"
+                ],
+                "correct": [
+                    2
+                ],
+                "solution": "removeItemAsync dispatches commit('removeItem', 'Vue'), filtering out 'Vue' from state.items. State after resolution is ['React']."
+            },
+            {
+                "qn": 12,
+                "id": "6406531252573",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Consider the below Vue app.",
+                "code": "<div id=\"app\">\n    <router-link to=\"/home\">Go to Home<\/router-link>\n    <router-view><\/router-view>\n<\/div>\n<script>\nconst Home = { template: '<div>Home<\/div>' };\nconst About = { template: '<div>About<\/div>' };\n\nconst routes = [\n    { path: '/home', component: Home },\n    { path: '/about', component: About },\n    { path: '*', redirect: '/home' }\n];\n\nconst router = new VueRouter({ routes });\n\nnew Vue({\n    el: '#app',\n    router\n});\n<\/script>",
+                "qnSubText": "What happens when the user navigates to an undefined route like \"/random\"?",
+                "options": [
+                    "Browser navigates to /random and shows a blank page.",
+                    "Browser navigates to /random but renders nothing.",
+                    "Browser redirects to /home and displays \"Home\".",
+                    "Error: No matching route."
+                ],
+                "correct": [
+                    2
+                ],
+                "solution": "The catch-all route { path: '*', redirect: '/home' } intercepts any unmatched path (e.g. '/random') and redirects to '/home', rendering the Home component."
+            },
+            {
+                "qn": 13,
+                "id": "6406531252574",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Consider the following Vue component:",
+                "code": "Vue.component('search-component', {\n    data() {\n        return {\n            searchQuery: ''\n        }\n    },\n    watch: {\n        searchQuery(newQuery, oldQuery) {\n            this.fetchResults(newQuery)\n        }\n    },\n    methods: {\n        fetchResults(query) {\n            // Fetch search results\n        }\n    }\n})",
+                "qnSubText": "Which of the following statements is true?",
+                "options": [
+                    "The fetchResults method will be called immediately when the component is created.",
+                    "The fetchResults method will be called only when searchQuery changes.",
+                    "The watch property can detect changes even if the new value is the same as the old value.",
+                    "All of these."
+                ],
+                "correct": [
+                    1
+                ],
+                "solution": "Standard Vue watchers fire only when the watched property changes value (unless immediate: true is configured)."
+            },
+            {
+                "qn": 14,
+                "id": "6406531252575",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Which scenario is best suited for a task queue system like Celery or RabbitMQ?",
+                "options": [
+                    "A real-time chat application that requires low-latency message delivery.",
+                    "A weather API that provides instant weather data upon request.",
+                    "A system where a webhook sends an immediate notification to a client when an event occurs.",
+                    "A system where a user uploads a video, and it needs to be processed asynchronously."
+                ],
+                "correct": [
+                    3
+                ],
+                "solution": "Heavy CPU-bound or long-running tasks like video processing should be offloaded to asynchronous background task queues (Celery/RabbitMQ) to avoid blocking web server request workers."
+            },
+            {
+                "qn": 15,
+                "id": "6406531252576",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Consider the following JavaScript code.",
+                "code": "function processArray(arr) {\n    let result = arr.filter(item => item > 5)\n                    .map(item => item * 2)\n                    .reduce((sum, item) => sum + item, 0);\n    return result;\n}",
+                "qnSubText": "What will be returned when processArray([2, 6, 4, 8, 3]) is called?",
+                "options": [
+                    "[12, 16]",
+                    "28",
+                    "46",
+                    "[6, 8]"
+                ],
+                "correct": [
+                    1
+                ],
+                "solution": "filter(item > 5) yields [6, 8]. map(item * 2) yields [12, 16]. reduce(sum + item) computes 12 + 16 = 28."
+            },
+            {
+                "qn": 16,
+                "id": "6406531252577",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Examine the following JavaScript code.",
+                "code": "function processData() {\n    let data = [1, 2, 3, 4];\n    let result = data.forEach(item => {\n        if (item % 2 === 0) {\n            return item * 10;\n        }\n    });\n    return result;\n}",
+                "qnSubText": "What will be returned when processData() is called?",
+                "options": [
+                    "[20, 40]",
+                    "[1, 20, 3, 40]",
+                    "[10, 20, 30, 40]",
+                    "undefined"
+                ],
+                "correct": [
+                    3
+                ],
+                "solution": "Array.prototype.forEach always returns undefined regardless of return statements inside its callback function."
+            },
+            {
+                "qn": 17,
+                "id": "6406531252578",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Consider the following JavaScript code.",
+                "code": "var value = 30;\nconst firstObj = {\n    value: 10,\n    displayValue: function() {\n        return this.value;\n    }\n};\n\nconst secondObj = {\n    value: 20\n};\n\nconst displayValue1 = firstObj.displayValue.apply(secondObj);\nconst displayValue2 = firstObj.displayValue.apply();\nconst displayValue3 = function() {\n    return firstObj.displayValue.apply(this);\n}.call(secondObj);\n\nconsole.log(\"val1\", displayValue1);\nconsole.log(\"val2\", displayValue2);\nconsole.log(\"val3\", displayValue3);",
+                "qnSubText": "What will be the output of the above code on the browser's console?",
+                "options": [
+                    "10, 30, 20",
+                    "20, undefined, 20",
+                    "20, 30, 20",
+                    "20, 30, 10"
+                ],
+                "correct": [
+                    2
+                ],
+                "solution": "displayValue1 calls displayValue with this=secondObj (20). displayValue2 calls apply() with default global this (window.value = 30). displayValue3 calls with this=secondObj (20). Output: 20, 30, 20."
+            },
+            {
+                "qn": 18,
+                "id": "6406531252579",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Consider the following JavaScript code.",
+                "code": "export default {\n    data() {\n        return {\n            loginToken: '',\n        };\n    },\n    mounted() {\n        this.loginToken = sessionStorage.getItem('authToken') || '';\n    },\n    methods: {\n        updateToken(newToken) {\n            this.loginToken = newToken;\n            sessionStorage.setItem('authToken', newToken);\n        }\n    }\n};",
+                "qnSubText": "What will happen when a user calls the updateToken method with a new value and then refreshes the page?",
+                "options": [
+                    "The new token will be lost, and the \"loginToken\" data property will be reset to an empty string.",
+                    "The new token will be preserved in session storage, and the \"loginToken\" data property will be populated with the stored value on page refresh.",
+                    "The method will throw an error because sessionStorage cannot be modified directly.",
+                    "The \"loginToken\" data property will be updated, but the session storage will remain unchanged."
+                ],
+                "correct": [
+                    1
+                ],
+                "solution": "sessionStorage persists key-value pairs throughout the browser session tab duration. On page refresh in the same tab, mounted() reads the stored authToken from sessionStorage."
+            },
+            {
+                "qn": 19,
+                "id": "6406531252580",
+                "type": "MCQ",
+                "marks": 4.5,
+                "text": "Consider the below Vuex setup.",
+                "code": "const store = new Vuex.Store({\n    state: {\n        number: 10\n    },\n    mutations: {\n        updateNumber(state, payload) {\n            state.number = payload;\n        }\n    },\n    actions: {\n        async fetchNumber({ commit }) {\n            const fetchedValue = await getData();\n            commit('updateNumber', fetchedValue);\n        }\n    }\n});\n\nfunction getData() {\n    return new Promise(resolve => {\n        setTimeout(() => resolve(100), 1500);\n    });\n}\n\nstore.dispatch('fetchNumber');\nconsole.log(store.state.number);",
+                "qnSubText": "What is logged to the console immediately after dispatching the action?",
+                "options": [
+                    "0",
+                    "10",
+                    "100",
+                    "Undefined behavior",
+                    "Error: Action did not resolve"
+                ],
+                "correct": [
+                    1
+                ],
+                "solution": "store.dispatch('fetchNumber') is async. Immediately following dispatch, store.state.number remains its initial value of 10."
+            },
+            {
+                "qn": 20,
+                "id": "6406531252581",
+                "type": "MCQ",
+                "marks": 4.5,
+                "text": "Consider the below flask SSE implementation.",
+                "code": "from flask import Flask, Response\nimport time\n\napp = Flask(__name__)\n\ndef event_stream():\n    for i in range(5):\n        yield f\"data: Message {i}\\n\\n\"\n        time.sleep(1)\n\n@app.route('/events')\ndef sse():\n    return Response(event_stream(), mimetype=\"text/event-stream\")\n\n# Vue.js frontend EventSource listening on http://localhost:5000/events",
+                "qnSubText": "What will happen when a user opens this page?",
+                "options": [
+                    "The client will receive 5 messages, one per second.",
+                    "The client will receive all 5 messages instantly.",
+                    "The client will not receive any messages due to CORS issues.",
+                    "The server will crash because Flask cannot handle SSE."
+                ],
+                "correct": [
+                    0
+                ],
+                "solution": "The Flask generator yields SSE chunked messages spaced by time.sleep(1). The client EventSource listener receives 5 messages, 1 per second."
+            },
+            {
+                "qn": 21,
+                "id": "6406531252582",
+                "type": "MCQ",
+                "marks": 4.5,
+                "text": "Consider the following Flask application (server.py) and an HTML file named index.html:",
+                "code": "# server.py\nfrom flask import Flask\nimport time\n\napp = Flask(__name__)\n\n@app.route(\"/api/slow1\")\ndef slow_api_1():\n    time.sleep(15)\n    return \"Response from Slow API 1\", 200, {'Access-Control-Allow-Origin': '*'}\n\n@app.route(\"/api/slow2\")\ndef slow_api_2():\n    time.sleep(25)\n    return \"Response from Slow API 2\", 200, {'Access-Control-Allow-Origin': '*'}\n\nif __name__ == \"__main__\":\n    app.run(threaded=False)",
+                "qnSubText": "The application runs on http://localhost:5000.\nA client makes two requests, one to http://localhost:5000/data/apple and another to http://localhost:5000/data/orange, both within 50 seconds.\nWhat will be the approximate absolute difference between their latencies?",
+                "options": [
+                    "25 seconds",
+                    "35 seconds",
+                    "0 seconds",
+                    "15 seconds"
+                ],
+                "correct": [
+                    2
+                ],
+                "solution": "According to the test key, 0 seconds is marked correct."
+            },
+            {
+                "qn": 22,
+                "id": "6406531252583",
+                "type": "MCQ",
+                "marks": 4.5,
+                "text": "Consider the following Vue apps in script.js and the index.html file.",
+                "code": "// script.js\nconst app1 = new Vue({\n    el: '#app1',\n    data: {\n        value1: \"VueJS\",\n        value2: \"Frontend\"\n    }\n})\n\nconst app2 = new Vue({\n    el: '#app2',\n    data: {\n        value3: \"JavaScript\"\n    }\n})\n\n<!-- index.html -->\n<div id=\"app2\">\n    {{value1}}\n    <div id=\"app1\">\n        {{value2}}\n    <\/div>\n    {{value3}}\n<\/div>",
+                "qnSubText": "What will be rendered on the browser?",
+                "options": [
+                    "Frontend",
+                    "VueJSFrontend",
+                    "VueJSJavaScript",
+                    "FrontendJavaScript"
+                ],
+                "correct": [
+                    3
+                ],
+                "solution": "Outer {{value1}} is missing from app2 data (empty). Inner app1 renders {{value2}} ('Frontend'). Outer app2 renders {{value3}} ('JavaScript'). Output: FrontendJavaScript."
+            },
+            {
+                "qn": 23,
+                "id": "6406531252584",
+                "type": "MCQ",
+                "marks": 4.5,
+                "text": "Consider the following Vue App and the HTML document given below.",
+                "code": "<!-- index.html -->\n<div id=\"app\">\n    <my-comp>\n        <slot>Hello Frontend<\/slot>\n        <slot>Hello VueJS<\/slot>\n    <\/my-comp>\n<\/div>\n\n// script.js\nconst myComp = {\n    template: `\n        <div>\n            <slot><\/slot>\n            <slot><\/slot>\n        <\/div>\n    `\n}\nconst app = new Vue({ components: { \"my-comp\": myComp } }).$mount('#app')",
+                "qnSubText": "What will be the output on the browser?",
+                "options": [
+                    "Hello Frontend Hello Frontend",
+                    "Hello VueJS Hello VueJS",
+                    "Hello Frontend Hello Vue JS",
+                    "Hello Frontend Hello Vue JS Hello Frontend Hello Vue JS"
+                ],
+                "correct": [
+                    3
+                ],
+                "solution": "Each default slot in myComp template renders both slot children ('Hello Frontend Hello Vue JS'). Repeating <slot><\/slot> twice produces: Hello Frontend Hello Vue JS Hello Frontend Hello Vue JS."
+            },
+            {
+                "qn": 24,
+                "id": "6406531252585",
+                "type": "MSQ",
+                "marks": 2.0,
+                "text": "Which of the following is/are the correct usage of \u201cv-for\u201d directive in VueJS?",
+                "options": [
+                    "item in array",
+                    "(item, index) of array",
+                    "(item, index) as array",
+                    "(item, index) in array",
+                    "Item of array"
+                ],
+                "correct": [
+                    0,
+                    3
+                ],
+                "solution": "Valid VueJS v-for directives include 'item in array' and '(item, index) in array'."
+            },
+            {
+                "qn": 25,
+                "id": "6406531252586",
+                "type": "MSQ",
+                "marks": 3.0,
+                "text": "In a Single Page Application (SPA), what are the benefits of client-side routing over server-side routing?",
+                "options": [
+                    "Faster navigation between pages",
+                    "Less strain on the backend server",
+                    "Improved SEO by default",
+                    "Full-page reloads occur on every navigation"
+                ],
+                "correct": [
+                    0,
+                    1
+                ],
+                "solution": "Client-side routing eliminates full page reloads, making navigation faster and reducing unnecessary page HTML generation load on the backend server."
+            },
+            {
+                "qn": 26,
+                "id": "6406531252587",
+                "type": "MSQ",
+                "marks": 3.0,
+                "text": "In an SSE connection, how does the client handle incoming messages?",
+                "options": [
+                    "The client polls the server at regular intervals.",
+                    "The client listens to a WebSocket stream.",
+                    "The client registers an \u201conmessage\u201d event listener on the EventSource object.",
+                    "The client sends a POST request for each new event."
+                ],
+                "correct": [
+                    2
+                ],
+                "solution": "Client-side SSE handles inbound server push messages by assigning an onmessage handler (or addEventListener('message')) to the EventSource instance."
+            },
+            {
+                "qn": 27,
+                "id": "6406531252588",
+                "type": "MSQ",
+                "marks": 3.0,
+                "text": "Consider the following Vue Router configuration:",
+                "code": "const router = new VueRouter({\n    routes: [\n        { path: '/', component: Home },\n        { path: '/user/:id', component: User },\n        { path: '/about', component: About },\n        { path: '*', component: NotFound }\n    ]\n})",
+                "qnSubText": "Which URL/URLs would render the NotFound component?",
+                "options": [
+                    "/user",
+                    "/user/123",
+                    "/contact",
+                    "/about/team"
+                ],
+                "correct": [
+                    0,
+                    2,
+                    3
+                ],
+                "solution": "/user/123 matches /user/:id (User). /user, /contact, and /about/team do not match configured static/dynamic routes and trigger wildcard route '*', rendering NotFound."
+            },
+            {
+                "qn": 28,
+                "id": "6406531252589",
+                "type": "SA",
+                "marks": 4.5,
+                "text": "Consider the below Vuex store configuration.",
+                "code": "const store = new Vuex.Store({\n    state: {\n        count: 5,\n    },\n    mutations: {\n        decrement(state) {\n            state.count--;\n        },\n    },\n});\n\n// Vue component template & script:\n// <button @click=\"decrement\">Decrement<\/button>\n// <p>Count: {{ count }}<\/p>",
+                "qnSubText": "What will be displayed in the placeholder \"{{ count }}\" on the browser after clicking the \"Decrement\" button 4 times?",
+                "acceptedAnswer": "1",
+                "solution": "Initial count is 5. Decrementing 4 times reduces count: 5 - 4 = 1."
+            },
+            {
+                "qn": 29,
+                "id": "6406531252590",
+                "type": "SA",
+                "marks": 3.0,
+                "text": "How many times will \"Render\" be logged in the console when the Vue component below is mounted?",
+                "code": "<div id=\"app\">\n    <div>{{ computedValue }}<\/div>\n<\/div>\n<script>\nnew Vue({\n    el: \"#app\",\n    data() {\n        return { count: 0 };\n    },\n    computed: {\n        computedValue() {\n            console.log(\"Render\");\n            return this.count * 2;\n        }\n    },\n    mounted() {\n        this.count++;\n        this.count++;\n    }\n});\n<\/script>",
+                "acceptedAnswer": "2",
+                "solution": "The computed property evaluates once during initial DOM render ('Render' logged). In mounted(), count is updated. Vue batches reactive updates, re-evaluating computedValue once during the DOM update tick ('Render' logged again). Total logs = 2."
+            },
+            {
+                "qn": 30,
+                "id": "6406531252591",
+                "type": "COMPREHENSION",
+                "marks": 0.0,
+                "text": "Consider the following flask app implemented with JWT. The application running on http://127.0.0.1:5000 and the user logs in using the /login endpoint. Read the given subquestions and select the correct statement.",
+                "code": "app = Flask(__name__)\napp.config[\"JWT_SECRET_KEY\"] = \"supersecretkey\"\njwt = JWTManager(app)\n\n@app.route(\"/login\", methods=[\"POST\"])\ndef login():\n    user = {\"username\": \"student\", \"role\": \"student\"}\n    access_token = create_access_token(identity=user)\n    return jsonify(access_token=access_token)\n\n@app.route(\"/protected\", methods=[\"GET\"])\n@jwt_required()\ndef protected():\n    current_user = get_jwt_identity()\n    if current_user.get(\"role\") != \"admin\":\n        return jsonify({\"message\": \"Forbidden: Insufficient permissions\"}), 403\n    return jsonify(message=f\"Hello, {current_user['username']}!\")\n\napp.run()",
+                "solution": "Comprehension passage block for Flask JWT role authorization subquestions."
+            },
+            {
+                "qn": 31,
+                "id": "6406531252592",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "Which of the following statements is correct for the following fetch request.",
+                "code": "fetch(\"http://127.0.0.1:5000/protected\", {\n    method: \"GET\"\n})\n.then(response => {\n    return response.json();\n})\n.then(data => console.log(\"Protected Route Response:\", data))\n.catch(error => console.error(\"Error:\", error));",
+                "options": [
+                    "The request will be processed successfully, and \"Hello, student!\" will be returned.",
+                    "The request will fail with a 401 Unauthorized error.",
+                    "The request will return an empty response with a 200 OK status.",
+                    "The request will fail with a 403 Forbidden error."
+                ],
+                "correct": [
+                    1
+                ],
+                "solution": "Without a valid JWT Authorization header, @jwt_required() rejects the request with HTTP 401 Unauthorized."
+            },
+            {
+                "qn": 32,
+                "id": "6406531252593",
+                "type": "MCQ",
+                "marks": 4.5,
+                "text": "What will be the result of the following fetch request.",
+                "code": "fetch(\"http://127.0.0.1:5000/protected\", {\n    method: \"GET\",\n    headers: {\n        \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..\"\n    }\n})\n.then(response => {\n    if (response.status === 403) {\n        throw new Error(\"403 Forbidden: Insufficient permissions\");\n    }\n    return response.json();\n})\n.then(data => console.log(\"Protected Route Response:\", data))\n.catch(error => console.error(\"Error:\", error));",
+                "options": [
+                    "The request will be processed successfully, and \"Hello, student!\" will be returned.",
+                    "The request will fail with a 401 Unauthorized error.",
+                    "The request will return an empty response with a 200 OK status.",
+                    "The request will fail with a 403 Forbidden error."
+                ],
+                "correct": [
+                    3
+                ],
+                "solution": "The token identity role is 'student'. Endpoint checks current_user.get('role') != 'admin' and returns HTTP 403 Forbidden."
+            },
+            {
+                "qn": 33,
+                "id": "6406531252594",
+                "type": "COMPREHENSION",
+                "marks": 0.0,
+                "text": "Consider the following Vue app with the Vue Router shown below and answer the given subquestions.",
+                "code": "const Login = { template: \"<p>You are not logged in.<\/p>\" }\nconst Profile = { template: \"<p>Welcome to profile<\/p>\" }\nconst Unauthorized = { template: \"<p>You are not authorized<\/p>\" }\n\nconst router = new VueRouter({\n    routes: [\n        { path: '/login', component: Login },\n        { path: '/unauthorized', component: Unauthorized },\n        { path: '/profile', component: Profile }\n    ]\n})\n\nnew Vue({\n    el: '#app',\n    router,\n    data: {\n        userRole: '',\n        isAuthenticated: false\n    },\n    created() {\n        this.checkAuthentication();\n    },\n    methods: {\n        checkAuthentication() {\n            const token = localStorage.getItem('token');\n            this.isAuthenticated = !!token;\n            if (this.isAuthenticated) {\n                this.userRole = localStorage.getItem('userRole') || 'user';\n            } else {\n                this.$router.replace('/login');\n            }\n        },\n        hasAccess(requiredRole) {\n            const roleHierarchy = { 'admin': 3, 'manager': 2, 'user': 1 };\n            const currentRoleLevel = roleHierarchy[this.userRole] || 0;\n            const requiredRoleLevel = roleHierarchy[requiredRole] || 0;\n            return currentRoleLevel >= requiredRoleLevel;\n        }\n    },\n    mounted() {\n        if (!this.hasAccess('manager')) {\n            this.$router.replace('/unauthorized');\n        } else {\n            this.$router.replace('/profile')\n        }\n    }\n})",
+                "solution": "Comprehension passage block for Vue Router role hierarchy authentication subquestions."
+            },
+            {
+                "qn": 34,
+                "id": "6406531252595",
+                "type": "MCQ",
+                "marks": 4.5,
+                "text": "What will be rendered on the browser if the application is loaded on the browser for the first time?",
+                "options": [
+                    "You are not logged in.",
+                    "Welcome to profile",
+                    "You are not authorized.",
+                    "None of these."
+                ],
+                "correct": [
+                    2
+                ],
+                "solution": "First load has empty localStorage. hasAccess('manager') returns false. Component redirects to /unauthorized, rendering 'You are not authorized.'"
+            },
+            {
+                "qn": 35,
+                "id": "6406531252596",
+                "type": "MCQ",
+                "marks": 3.0,
+                "text": "What will be rendered on the browser for the given value of localStorage?\n{\n  token: 112,\n  userRole: \"admin\"\n}",
+                "options": [
+                    "You are not logged in.",
+                    "Welcome to profile",
+                    "You are not authorized.",
+                    "None of these."
+                ],
+                "correct": [
+                    1
+                ],
+                "solution": "token exists and userRole is 'admin' (level 3 >= required level 2 for manager). In mounted(), hasAccess('manager') evaluates true and redirects to /profile, rendering 'Welcome to profile'."
+            }
+        ];
+
+        let currentMode = 'exam'; // 'exam' or 'learning'
+        let userAnswers = {}; // qn: [selectedIndices] or [inputVal]
+        let timerSeconds = 0;
+        let timerInterval = null;
+        let isTimerRunning = true;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPalette();
+            renderQuestions();
+            startTimer();
+        });
+
+        function setPortalMode(mode) {
+            currentMode = mode;
+            document.getElementById('btnExamMode').classList.toggle('active', mode === 'exam');
+            document.getElementById('btnLearningMode').classList.toggle('active', mode === 'learning');
+            renderQuestions();
+            updatePaletteStatuses();
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('paletteGrid');
+            grid.innerHTML = QUESTIONS_DATA.map(q => `
+                <button class="palette-btn" id="paletteBtn_${q.qn}" onclick="scrollToQuestion(${q.qn})">
+                    ${q.qn}
+                </button>
+            `).join('');
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            let html = '';
+
+            QUESTIONS_DATA.forEach(q => {
+                html += `
+                <article class="qn-card" id="qnCard_${q.qn}">
+                    <div class="qn-header">
+                        <span class="qn-title">Question ${q.qn} : ${q.id}</span>
+                        <div class="qn-meta-pills">
+                            <span class="qn-pill qn-marks">Total Mark : ${q.marks.toFixed(2)}</span>
+                            <span class="qn-pill qn-type">Type : ${q.type}</span>
+                        </div>
+                    </div>
+
+                    <div class="qn-text">${q.text ? escapeHtml(q.text).replace(/\\n/g, '<br>') : ''}</div>
+
+                    ${q.code ? `
+                    <div class="code-snippet-wrap">
+                        <code>${escapeHtml(q.code)}</code>
+                    </div>` : ''}
+
+                    ${q.qnSubText ? `<div class="qn-text" style="margin-top:0.85rem;">${escapeHtml(q.qnSubText).replace(/\\n/g, '<br>')}</div>` : ''}
+
+                    <!-- Options / Inputs -->
+                    ${renderQuestionInputs(q)}
+
+                    <!-- Footer Action Toolbar -->
+                    <div class="qn-footer-toolbar">
+                        <div class="qn-actions-group">
+                            <button class="btn-action-pill btn-discuss" onclick="alert('Discussion forum loading...')"><i class="fa-regular fa-comments"></i> Discussions (0)</button>
+                            <button class="btn-action-pill btn-correct" onclick="alert('Correction reported. Thank you!')"><i class="fa-regular fa-pen-to-square"></i> Suggest Correction</button>
+                            <button class="btn-action-pill btn-broken" onclick="alert('Format flag recorded.')"><i class="fa-solid fa-wrench"></i> Broken Format?</button>
+                        </div>
+                    </div>
+
+                    <!-- Solution Accordion -->
+                    <div class="solution-box ${currentMode === 'learning' ? 'open' : ''}" id="solution_${q.qn}">
+                        <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution & Code Trace</div>
+                        <div class="solution-text">${q.solution ? escapeHtml(q.solution).replace(/\\n/g, '<br>') : ''}</div>
+                    </div>
+                </article>
+                `;
+
+                if (q.qn === 6 || q.qn === 15 || q.qn === 25) {
+                    html += `
+                    <div class="ad-banner-box">
+                        <span class="ad-tag">ADVERTISEMENT</span>
+                        <div class="ad-actions">
+                            <button class="btn-remove-ads" onclick="alert('Ad-free experience enabled.')"><i class="fa-solid fa-bolt"></i> Remove Ads</button>
+                            <button class="btn-close-ad" onclick="this.parentElement.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    `;
+                }
+            });
+
+            container.innerHTML = html;
+            updatePaletteStatuses();
+        }
+
+        function renderQuestionInputs(q) {
+            if (q.type === 'COMPREHENSION') {
+                return `<div style="font-size:0.88rem; color:var(--text-muted); font-style:italic; margin-bottom:1.25rem;">[Comprehension Passage Block - Subquestions are listed below]</div>`;
+            }
+
+            if (q.type === 'SA') {
+                const userVal = userAnswers[q.qn] ? userAnswers[q.qn][0] : '';
+                const showGreen = currentMode === 'learning';
+
+                return `
+                <div class="sa-input-wrap">
+                    <label for="sa_${q.qn}">Answer (Numeric):</label>
+                    <input type="text" id="sa_${q.qn}" class="sa-input" value="${escapeHtml(userVal)}" placeholder="Answer" oninput="handleSAInput(${q.qn}, this.value)">
+                    <div class="accepted-ans-box" style="display:${showGreen ? 'block' : 'none'};">
+                        <i class="fa-solid fa-circle-check"></i> Accepted Answer : ${q.acceptedAnswer || ''}
+                    </div>
+                </div>
+                `;
+            }
+
+            const isMSQ = q.type === 'MSQ';
+            const userArr = userAnswers[q.qn] || [];
+
+            return `
+            <div class="options-list">
+                ${q.options.map((optText, idx) => {
+                const isChecked = userArr.includes(idx);
+                const isCorrect = q.correct && q.correct.includes(idx);
+                let highlightClass = '';
+
+                if (isChecked) highlightClass = 'selected';
+
+                if (currentMode === 'learning') {
+                    if (isCorrect) highlightClass = 'correct-highlight';
+                    else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                }
+
+                const cleanOptText = (optText || '').replace(/\\n/g, '\n');
+                const isMultiLine = cleanOptText.includes('\n');
+
+                return `
+                    <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <span class="option-text">${isMultiLine ? `<pre style="margin:0; font-family:var(--font-mono); font-size:0.9rem; line-height:1.5;"><code>${escapeHtml(cleanOptText)}</code></pre>` : escapeHtml(cleanOptText)}</span>
+                    </label>
+                    `;
+            }).join('')}
+            </div>
+            `;
+        }
+
+        function handleOptionSelect(qnNum, optIdx, qnType) {
+            if (qnType === 'MCQ') {
+                userAnswers[qnNum] = [optIdx];
+            } else if (qnType === 'MSQ') {
+                if (!userAnswers[qnNum]) userAnswers[qnNum] = [];
+                const pos = userAnswers[qnNum].indexOf(optIdx);
+                if (pos >= 0) userAnswers[qnNum].splice(pos, 1);
+                else userAnswers[qnNum].push(optIdx);
+            }
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function handleSAInput(qnNum, val) {
+            if (!val || val.trim() === '') {
+                delete userAnswers[qnNum];
+            } else {
+                userAnswers[qnNum] = [val.trim()];
+            }
+            updateScoreDisplay();
+            updatePaletteStatuses();
+        }
+
+        function calculateQuestionScore(q) {
+            const userAns = userAnswers[q.qn];
+            if (!userAns || !Array.isArray(userAns) || userAns.length === 0) return "0.00";
+
+            if (q.type === 'MCQ') {
+                return (userAns[0] === q.correct[0]) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            if (q.type === 'MSQ') {
+                const sortedUser = [...userAns].sort().join(',');
+                const sortedCorrect = [...q.correct].sort().join(',');
+                return (sortedUser === sortedCorrect) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            if (q.type === 'SA') {
+                return (String(userAns[0]).trim() === String(q.acceptedAnswer).trim()) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            return "0.00";
+        }
+
+        function updateScoreDisplay() {
+            let total = 0;
+            let answeredCount = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const score = parseFloat(calculateQuestionScore(q));
+                total += score;
+
+                const ans = userAnswers[q.qn];
+                if (ans && Array.isArray(ans) && ans.length > 0) {
+                    answeredCount++;
+                }
+            });
+
+            document.getElementById('liveScoreDisplay').textContent = `${total.toFixed(2)} / 100.00`;
+            const pct = ((total / 100) * 100).toFixed(1);
+            document.getElementById('livePercentDisplay').textContent = `(${pct}%)`;
+            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/${QUESTIONS_DATA.length}`;
+        }
+
+        function updatePaletteStatuses() {
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.getElementById(`paletteBtn_${q.qn}`);
+                if (!btn) return;
+
+                btn.className = 'palette-btn';
+
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && Array.isArray(ans) && ans.length > 0;
+
+                if (hasAns) {
+                    btn.classList.add('answered');
+                    if (currentMode === 'learning') {
+                        const score = parseFloat(calculateQuestionScore(q));
+                        if (score > 0) btn.classList.add('correct');
+                        else btn.classList.add('incorrect');
+                    }
+                }
+            });
+        }
+
+        function toggleSolution(qnNum) {
+            const box = document.getElementById(`solution_${qnNum}`);
+            if (box) box.classList.toggle('open');
+        }
+
+        function scrollToQuestion(qnNum) {
+            const card = document.getElementById(`qnCard_${qnNum}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.querySelectorAll('.palette-btn').forEach(b => b.classList.remove('active-qn'));
+                const btn = document.getElementById(`paletteBtn_${qnNum}`);
+                if (btn) btn.classList.add('active-qn');
+            }
+        }
+
+        // Timer Logic
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (isTimerRunning) {
+                    timerSeconds++;
+                    updateTimerUI();
+                }
+            }, 1000);
+        }
+
+        function toggleTimer() {
+            isTimerRunning = !isTimerRunning;
+            const btn = document.getElementById('btnPauseTimer');
+            if (btn) btn.innerHTML = isTimerRunning ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-rotate-right"></i>';
+        }
+
+        function resetTimer() {
+            timerSeconds = 0;
+            updateTimerUI();
+        }
+
+        function updateTimerUI() {
+            const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const secs = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+        }
+
+        // Exam Submission & Modals
+        function submitExam() {
+            setPortalMode('learning');
+
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+            let totalScore = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && Array.isArray(ans) && ans.length > 0;
+
+                if (!hasAns) {
+                    unansweredCount++;
+                } else {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    totalScore += score;
+                    if (score > 0) correctCount++;
+                    else incorrectCount++;
+                }
+            });
+
+            document.getElementById('modalScoreText').textContent = `${totalScore.toFixed(2)} / 100.00`;
+            document.getElementById('modalPercentText').textContent = `${((totalScore / 100) * 100).toFixed(1)}% Accuracy`;
+            document.getElementById('modalCorrectCount').textContent = correctCount;
+            document.getElementById('modalIncorrectCount').textContent = incorrectCount;
+            document.getElementById('modalUnansweredCount').textContent = unansweredCount;
+
+            document.getElementById('resultModal').classList.add('active');
+        }
+
+        function resetExam() {
+            userAnswers = {};
+            resetTimer();
+            closeResultModal();
+            setPortalMode('learning');
+        }
+
+        function openSummaryModal() {
+            document.getElementById('summaryModal').classList.add('active');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.remove('active');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.remove('active');
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('portalSidebar');
+            const toggleBtn = document.getElementById('mobileSidebarToggle');
+            if (sidebar && toggleBtn) {
+                sidebar.classList.toggle('open');
+                toggleBtn.classList.toggle('active');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const fab = document.getElementById('fabBackToTop');
+            if (fab) {
+                if (window.scrollY > 300) fab.classList.add('visible');
+                else fab.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+
+</html>
