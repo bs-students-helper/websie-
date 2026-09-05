@@ -107,7 +107,8 @@
                     </div>
                     <div class="exam-info-row">
                         <span class="exam-info-label">QP :</span>
-                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">2025 Aug31: IIT M AN EXAM QDF4</span>
+                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">2025 Aug31: IIT M AN
+                            EXAM QDF4</span>
                     </div>
                 </div>
 
@@ -166,9 +167,12 @@
                         <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
                     </button>
                     <div class="score-card" style="margin-top:1rem;">
-                        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">YOUR SCORE</span>
+                        <span
+                            style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">YOUR
+                            SCORE</span>
                         <div class="score-num" id="liveScoreDisplay">0.00 / 50.00</div>
-                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);" id="livePercentDisplay">(0.0%)</span>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);"
+                            id="livePercentDisplay">(0.0%)</span>
                     </div>
                 </div>
 
@@ -219,7 +223,8 @@
                     <td style="padding:0.6rem;">17.00</td>
                 </tr>
             </table>
-            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close Summary</button>
+            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close
+                Summary</button>
         </div>
     </div>
 
@@ -231,7 +236,8 @@
                 <i class="fa-solid fa-trophy"></i>
             </div>
             <h2 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Exam Submitted!</h2>
-            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for Machine Learning Techniques End Term Quiz (31 Aug 2025)</p>
+            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for Machine
+                Learning Techniques End Term Quiz (31 Aug 2025)</p>
 
             <div
                 style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
@@ -239,7 +245,8 @@
                     Final Score</div>
                 <div style="font-family:var(--font-mono); font-size:2.8rem; font-weight:800; color:var(--accent-green);"
                     id="modalScoreText">0.00 / 50.00</div>
-                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0% Accuracy
+                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0%
+                    Accuracy
                 </div>
             </div>
 
@@ -381,13 +388,13 @@
                 marks: 3.00,
                 question: "Consider a 1D dataset which consists of 2 positive data points (points with label 1) $\\{1, 2\\}$ and 3 negative data points (points with label $-1$) $\\{-3, -2, -1\\}$. Suppose that we want to learn a soft-margin linear SVM for this data set. Consider the formulation of the soft-margin SVM:<br><br>$$\\min_{w, \\epsilon} \\frac{1}{2} ||w||^2 + C \\sum_{i=1}^n \\epsilon_i, \\quad C \\ge 0$$<br>$$\\text{subject to } (w^T x_i) y_i + \\epsilon_i \\ge 1, \\quad \\forall i$$<br>$$\\epsilon_i \\ge 0, \\quad \\forall i.$$<br><br>Select the correct options from the following:",
                 options: [
-                    "Number of support vectors for C = 0 is 0.",
-                    "Number of support vectors for C = 0 is 2.",
-                    "Number of support vectors for C = \\infty is 5.",
-                    "Number of support vectors for C = \\infty is 2."
+                    "Number of support vectors for $C = 0$ is 0.",
+                    "Number of support vectors for $C = 0$ is 2.",
+                    "Number of support vectors for $C = \\infty$ is 5.",
+                    "Number of support vectors for $C = \\infty$ is 2."
                 ],
-                correct: [3],
-                solution: "<strong>Explanation:</strong><br>When $C = \\infty$, the soft-margin formulation reduces strictly to a hard-margin SVM.<br>On the 1D dataset with positive points $\\{1, 2\\}$ and negative points $\\{-3, -2, -1\\}$, the boundary closest positive point is $x=1$ ($y=+1$) and closest negative point is $x=-1$ ($y=-1$).<br>The optimal separating hyperplane is $w=1, b=0$ with margin boundary $y_i(1 \\cdot x_i + 0) = 1$.<br>Only $x=1$ and $x=-1$ satisfy $y_i(w x_i + b) = 1$, making them the 2 support vectors.<br>Hence, <strong>Number of support vectors for $C = \\infty$ is 2</strong> is correct."
+                correct: [0, 3],
+                solution: "<strong>Explanation:</strong><br>1. <strong>Case $C = 0$:</strong><br>When $C = 0$, the soft-margin objective function becomes $\\min_{w} \\frac{1}{2}||w||^2$ with no penalty for slack variables $\\epsilon_i \\ge 0$. The optimal solution is $w = 0$. In the dual formulation, $0 \\le \\alpha_i \\le C \\implies \\alpha_i = 0$ for all $i$. Since support vectors are points with non-zero Lagrange multipliers ($\\alpha_i > 0$), there are no support vectors (0 support vectors).<br>Hence, <strong>Number of support vectors for $C = 0$ is 0</strong> is correct.<br><br>2. <strong>Case $C = \\infty$:</strong><br>When $C = \\infty$, the soft-margin formulation reduces strictly to a hard-margin SVM.<br>On the 1D dataset with positive points $\\{1, 2\\}$ and negative points $\\{-3, -2, -1\\}$, the boundary positive point closest to origin is $x=1$ ($y=+1$) and negative point closest to origin is $x=-1$ ($y=-1$).<br>The optimal separating hyperplane is $w=1, b=0$ with margin boundary $y_i(1 \\cdot x_i + 0) = 1$.<br>Only $x=1$ and $x=-1$ satisfy $y_i(w x_i + b) = 1$, making them the 2 support vectors.<br>Hence, <strong>Number of support vectors for $C = \\infty$ is 2</strong> is correct."
             },
             {
                 qn: 9,
