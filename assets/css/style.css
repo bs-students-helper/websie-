@@ -2679,7 +2679,7 @@ svg.grade-ring-svg {
     max-width: 100%;
     object-fit: contain;
     display: block;
-    filter: var(--logo-filter, none);
+    filter: invert(0.92) contrast(1.1);
     transition: filter var(--transition-base);
 }
 
