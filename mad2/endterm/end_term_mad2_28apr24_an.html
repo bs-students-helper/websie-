@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice AppDev2 questions : 2024 Apr28: IIT M AN EXAM QDF3 - QuizPractice | BSH</title>
+    <meta name="description"
+        content="Practice Modern Application Development II End Term question paper (28 Apr 2024 AN QDF3) with interactive exam & learning modes, instant score calculation, detailed solutions, and question palette.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Non-Blocking Asynchronous Load -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+
+    <!-- Master CSS -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/quiz-portal.css">
+
+    <!-- Theme Detection -->
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('bsh-theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Site Navigation Header -->
+    <header class="site-header" id="header">
+        <div class="header-container">
+            <a href="../../index.html" class="brand-logo" aria-label="BSH Homepage">
+                <img src="../../assets/images/logo.webp" width="160" height="58" alt="BSH Logo" class="logo-img">
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="../../index.html#features" class="nav-link">Features</a>
+                <a href="../../quiz_practice.html" class="nav-link active">Quiz Practice</a>
+                <a href="../../calculator.html" class="nav-link">SEC Calculator</a>
+                <a href="../../about.html" class="nav-link">About Us</a>
+                <a href="../../contact_us.html" class="nav-link">Feedback</a>
+            </nav>
+            <div class="header-actions">
+                <a href="../../end_term_practice.html" class="btn btn-secondary nav-btn-desktop"><i
+                        class="fa-solid fa-arrow-left"></i><span>Back to Papers</span></a>
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i
+                        class="fa-solid fa-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="portal-layout">
+
+            <!-- Mobile Collapsible Sidebar Toggle Button -->
+            <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()">
+                <span><i class="fa-solid fa-sliders"></i> Exam Controls & Question Menu</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <!-- Left Sidebar: Controls, Menu & Timer -->
+            <aside class="portal-sidebar" id="portalSidebar">
+
+                <!-- Header Info -->
+                <div class="exam-info-header">
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Exam :</span>
+                        <span class="exam-info-val">End Term Quiz</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Subject :</span>
+                        <span class="exam-info-val">AppDev2</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Total Marks :</span>
+                        <span class="exam-info-val">100.00</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">QP :</span>
+                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">2024 Apr28: IIT M AN EXAM QDF3</span>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher -->
+                <div>
+                    <div class="menu-heading">Portal Mode</div>
+                    <div class="mode-toggle-group">
+                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam Mode</button>
+                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning Mode</button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                        onclick="openSummaryModal()">
+                        <i class="fa-solid fa-eye"></i> View Question Paper Summary
+                    </button>
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                        onclick="window.print()">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </button>
+                </div>
+
+                <!-- Question Menu Grid -->
+                <div>
+                    <div class="menu-heading">
+                        <span>QUESTION MENU</span>
+                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/33</span>
+                    </div>
+                    <div class="palette-grid" id="paletteGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Timer Box -->
+                <div>
+                    <div class="menu-heading">TIMER</div>
+                    <div class="timer-box">
+                        <div class="timer-display" id="timerDisplay">00:00</div>
+                        <div class="timer-controls">
+                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i
+                                    class="fa-solid fa-pause"></i></button>
+                            <button class="btn-icon-sm" onclick="resetTimer()"><i
+                                    class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls & Score Box -->
+                <div>
+                    <div class="menu-heading">CONTROLS</div>
+                    <button class="btn-submit-exam" onclick="submitExam()">
+                        <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
+                    </button>
+                    <div class="score-card" style="margin-top:1rem;">
+                        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">YOUR SCORE</span>
+                        <div class="score-num" id="liveScoreDisplay">0.00 / 100.00</div>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);"
+                            id="livePercentDisplay">(0.0%)</span>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Right Area: Questions List -->
+            <section class="questions-area" id="questionsContainer">
+                <!-- Dynamically Rendered by JS -->
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Floating Back to Top FAB -->
+    <button class="fab-back-to-top" id="fabBackToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;">Question Paper Summary</h3>
+                <button class="btn-icon-sm" onclick="closeSummaryModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+                Paper Title: <b>2024 Apr28: IIT M AN EXAM QDF3</b> (MAD2 End Term Quiz)
+            </p>
+            <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+                <tr style="border-bottom:1px solid var(--border-light); text-align:left;">
+                    <th style="padding:0.6rem;">Question Type</th>
+                    <th style="padding:0.6rem;">Count</th>
+                    <th style="padding:0.6rem;">Total Marks</th>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MCQ (Multiple Choice)</td>
+                    <td style="padding:0.6rem;">26</td>
+                    <td style="padding:0.6rem;">82.00</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MSQ (Multiple Select)</td>
+                    <td style="padding:0.6rem;">7</td>
+                    <td style="padding:0.6rem;">18.00</td>
+                </tr>
+            </table>
+            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close Summary</button>
+        </div>
+    </div>
+
+    <!-- Exam Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-card" style="text-align:center;">
+            <div
+                style="width:64px; height:64px; border-radius:50%; background:rgba(16, 185, 129, 0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 1rem;">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Exam Submitted!</h2>
+            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for MAD2 End Term Quiz (28 Apr 2024 AN)</p>
+
+            <div
+                style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
+                <div style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; font-weight:600;">
+                    Final Score</div>
+                <div style="font-family:var(--font-mono); font-size:2.8rem; font-weight:800; color:var(--accent-green);"
+                    id="modalScoreText">0.00 / 100.00</div>
+                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0% Accuracy
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem; margin-bottom:1.5rem;">
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Correct</div>
+                    <div style="font-weight:700; color:#10b981; font-size:1.2rem;" id="modalCorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Incorrect</div>
+                    <div style="font-weight:700; color:#ef4444; font-size:1.2rem;" id="modalIncorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Unanswered</div>
+                    <div style="font-weight:700; color:var(--text-secondary); font-size:1.2rem;"
+                        id="modalUnansweredCount">0</div>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:0.75rem;">
+                <button class="btn btn-secondary btn-full"
+                    onclick="closeResultModal(); setPortalMode('learning');">Review Solutions <i
+                        class="fa-solid fa-book-open"></i></button>
+                <button class="btn btn-primary btn-full" onclick="resetExam()">Retake Exam <i
+                        class="fa-solid fa-rotate-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Master Scripts -->
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        // ==========================================================================
+        // MAD2 END TERM QUIZ (28 APR 2024 AN QDF3) QUESTION DATA
+        // ==========================================================================
+        const QUESTIONS_DATA = [
+            {
+                qn: 1,
+                id: "640653816158",
+                type: "MCQ",
+                marks: 0.00,
+                text: "THIS IS QUESTION PAPER FOR THE SUBJECT \"DIPLOMA LEVEL : MODERN APPLICATION DEVELOPMENT II (COMPUTER BASED EXAM)\" ARE YOU SURE YOU HAVE TO WRITE EXAM FOR THIS SUBJECT? CROSS CHECK YOUR HALL TICKET TO CONFIRM THE SUBJECTS TO BE WRITTEN. (IF IT IS NOT THE CORRECT SUBJECT, PLS CHECK THE SECTION AT THE TOP FOR THE SUBJECTS REGISTERED BY YOU)",
+                options: [
+                    "YES",
+                    "NO"
+                ],
+                correct: [0],
+                solution: "Instruction acknowledgment question."
+            },
+            {
+                qn: 2,
+                id: "640653816159",
+                type: "MCQ",
+                marks: 2.00,
+                text: "Consider the following Script embedded in an HTML document.",
+                code: `let langName = 'Python';
+function showLanguage() {
+    let langName = "JavaScript";
+    let message = 'Learn ' + langName;
+    console.log(message);
+}
+
+let message = 'Learn ' + langName;
+console.log(message);
+console.log(showLanguage());`,
+                qnSubText: "What will be the output on console, if the HTML document is rendered using a browser?",
+                options: [
+                    "Learn JavaScript\nLearn Python",
+                    "Learn JavaScript\nLearn JavaScript\nundefined",
+                    "Learn Python\nLearn JavaScript",
+                    "Learn Python\nLearn JavaScript\nundefined"
+                ],
+                correct: [3],
+                solution: `Execution trace:
+1. Global message = 'Learn ' + 'Python' -> "Learn Python". console.log(message) prints "Learn Python".
+2. showLanguage() runs: local langName = "JavaScript", local message = 'Learn JavaScript'. Logs "Learn JavaScript".
+3. showLanguage() has no return statement (returns undefined). console.log(showLanguage()) logs undefined.
+Output:
+Learn Python
+Learn JavaScript
+undefined`
+            },
+            {
+                qn: 3,
+                id: "640653816160",
+                type: "MCQ",
+                marks: 2.00,
+                text: "Consider the following Script embedded in an HTML document.",
+                code: `let x = [1, 'p', a => a + 1];
+
+for (const i = 0; i < x.length; i++) {
+    console.log(i, x[i], typeof(x[i]))
+}`,
+                qnSubText: "Which of the following statement is correct, if the HTML document is rendered using a browser?",
+                options: [
+                    "It will throw error on the console for the very first iteration.",
+                    "It will display the index, value and type of the value for the first item of array and then will throw error for the next value.",
+                    "It will display the indices, values and types of all the items of the array.",
+                    "None of these."
+                ],
+                correct: [1],
+                solution: `1. In the first loop iteration (i = 0), i is declared with const. console.log(0, 1, 'number') executes cleanly.
+2. At the end of iteration 1, the loop increment i++ attempts to reassign constant variable i.
+3. This throws a TypeError: Assignment to constant variable, terminating execution.`
+            },
+            {
+                qn: 4,
+                id: "640653816166",
+                type: "MCQ",
+                marks: 2.00,
+                text: "Assuming the URL gives a valid json response, what will be the output in the console?",
+                code: `fetch('https://study.iitm.ac.in/api/data')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
+
+console.log('End of script');`,
+                qnSubText: "Choose the correct option.",
+                options: [
+                    "The JSON data from the specified URL followed by \"End of script\".",
+                    "\"End of script\" will be logged first, followed by the JSON data.",
+                    "An error will be logged, and the script will terminate.",
+                    "\"End of script\" will be logged, but the JSON data retrieval will fail."
+                ],
+                correct: [1],
+                solution: `fetch() is an asynchronous operation that pushes callbacks to the microtask queue. The synchronous statement console.log('End of script') executes immediately, after which the resolved JSON data is logged.`
+            },
+            {
+                qn: 5,
+                id: "640653816172",
+                type: "MCQ",
+                marks: 2.00,
+                text: "Which of the following statements is false regarding JavaScript and its behavior?",
+                options: [
+                    "The language supports both first class and higher order functions.",
+                    "The language supports higher order functions, but not first class functions.",
+                    "A variable declared without keywords \"var\", \"let\" or \"const\" is not hoisted at all.",
+                    "The variables declared using keywords \"let\" and \"const\" are also hoisted."
+                ],
+                correct: [1],
+                solution: `JavaScript supports first-class functions (functions can be passed as parameters, assigned to variables, and returned from other functions). Saying it does not support first class functions is FALSE.`
+            },
+            {
+                qn: 6,
+                id: "640653816174",
+                type: "MCQ",
+                marks: 2.00,
+                text: "Where is system state commonly stored in a web application?",
+                options: [
+                    "Client Side local storage",
+                    "In Memory Cache",
+                    "Session Cookies",
+                    "Server Side Database"
+                ],
+                correct: [3],
+                solution: `Server-Side Database acts as the primary source of truth and persistent system state for web applications.`
+            },
+            {
+                qn: 7,
+                id: "640653816175",
+                type: "MCQ",
+                marks: 2.00,
+                text: "Which technology is commonly used to manage application state in a Vue.js application?",
+                options: [
+                    "Vue.js",
+                    "React.js",
+                    "Vuex",
+                    "Redux",
+                    "Express.js",
+                    "Angular"
+                ],
+                correct: [2],
+                solution: `Vuex is the official state management pattern + library for Vue.js applications.`
+            },
+            {
+                qn: 8,
+                id: "640653816161",
+                type: "MSQ",
+                marks: 3.00,
+                text: "Consider the following Script embedded in an HTML document.",
+                code: `let myQual = {
+    degree: "B-tech",
+    college: "IIT Delhi",
+    get qualification(){
+        return \`degree: \${this.degree}, college: \${this.college}\`
+    },
+    set qualification(q){
+        let components = q.split(' ');
+        this.degree = components[0];
+        this.college = components[1];
+    }
+}`,
+                qnSubText: "Which of the following statements will throw an error on the console when the HTML document is rendered using a browser?",
+                options: [
+                    "console.log(myQual.qualification())",
+                    "console.log(myQual.qualification)",
+                    "console.log(myQual.qualification = 'M-tech IIT-Madras')",
+                    "console.log(myQual.qualification('M-tech IIT-Madras'))"
+                ],
+                correct: [0, 3],
+                solution: `qualification is a getter/setter property, not a method. Invoking myQual.qualification() or myQual.qualification('...') like a function causes a TypeError: myQual.qualification is not a function.`
+            },
+            {
+                qn: 9,
+                id: "640653816169",
+                type: "MSQ",
+                marks: 3.00,
+                text: "Consider the following two HTML documents and the Vue app created in script.js file and select the correct option(s).",
+                code: `index1.html:
+<body>
+    <div id="app">
+        <h1 v-if="result">Hello am I visible?</h1>
+    </div>
+    <script src="./script.js"><\/script>
+</body>
+
+index2.html:
+<body>
+    <div id="app">
+        <h1 v-show="final">Hello am I visible?</h1>
+    </div>
+    <script src="./script.js"><\/script>
+</body>
+
+script.js:
+var app = new Vue({
+    el: '#app',
+    data: {
+        result: false,
+        final: false
+    }
+})`,
+                qnSubText: "Choose the correct option(s).",
+                options: [
+                    "The raw HTML created with index1.html and index2.html will be exactly the same for the current state of data.",
+                    "When the directive v-if is falsy, it removes the entire element from the DOM.",
+                    "When the directive v-show is falsy, it removes the entire element from the DOM.",
+                    "The raw HTML created with index1.html and index2.html will be exactly the same when the values of both \"result\" and \"final\" are set to true."
+                ],
+                correct: [1, 3],
+                solution: `1. v-if physically removes/adds elements from the DOM.
+2. v-show toggles the display: none CSS property without removing the element.
+3. When both are true, both render <h1>Hello am I visible?</h1> inside <div id="app">.`
+            },
+            {
+                qn: 10,
+                id: "640653816170",
+                type: "MSQ",
+                marks: 3.00,
+                text: "Consider the following Vue application and the rendered HTML output below.",
+                code: `Filename: script.js
+var app = new Vue({
+    el: '#app',
+    data: {
+        items:[
+            {id: 1, name:"mad 1"},
+            {id: 2, name:"mad 2"},
+            {id: 3, name:"mad 3"}
+        ]
+    }
+})
+
+Rendered output:
+mad 1
+mad 2
+mad 3`,
+                qnSubText: "What should be the content of <div id = \"app\"></div> in index.html that generates the given rendered output?",
+                options: [
+                    "<h2 v-for=\"item in items\">{{item.name}}</h2>",
+                    "<h2 v-for=\"item in items\" {{item.id}}>{{item.name}}</h2>",
+                    "<h2 v-for=\"item in items\" :id=\"item.id\">{{item.name}}</h2>",
+                    "<h2 v-for=\"items\" :id=\"item.id\">item.name</h2>"
+                ],
+                correct: [0, 2],
+                solution: `Both option 1 (<h2 v-for="item in items">{{item.name}}</h2>) and option 3 (<h2 v-for="item in items" :id="item.id">{{item.name}}</h2>) correctly iterate over items and display item.name inside <h2> tags.`
+            },
+            {
+                qn: 11,
+                id: "640653816180",
+                type: "MSQ",
+                marks: 3.00,
+                text: "Which of the following HTTP status code(s) is/are commonly used in RESTful APIs for successful responses?",
+                options: [
+                    "200",
+                    "201",
+                    "400",
+                    "404",
+                    "500"
+                ],
+                correct: [0, 1],
+                solution: `200 (OK) and 201 (Created) indicate successful HTTP requests. 400 and 404 are client errors; 500 is a server error.`
+            },
+            {
+                qn: 12,
+                id: "640653816186",
+                type: "MSQ",
+                marks: 3.00,
+                text: "Which of the following is/are potential benefit(s) of using caching in web applications?",
+                options: [
+                    "Reduced latency and faster response times",
+                    "Lower server load and reduced bandwidth usage",
+                    "Improved scalability and better handling of traffic spikes",
+                    "Enhanced security and protection against DDoS attacks"
+                ],
+                correct: [0, 1, 2],
+                solution: `Caching stores copies of data to reduce latency, lower server load, and improve scalability. It is not an anti-DDoS security mechanism.`
+            },
+            {
+                qn: 13,
+                id: "640653816162",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the following Script embedded in an HTML document.",
+                code: `class Twowheeler {
+    constructor(name){
+        this.name = name;
+        this.gear = 4;
+        this.seating = 2;
+    }
+    get description(){
+        return \`\${this.name} has \${this.gear} gear and has \${this.engine} engine.\`
+    }
+}
+
+class Moped extends Twowheeler {
+    constructor(name){
+        super(name);
+        this.engine = '4 stroke'
+    }
+}
+
+let myBike = new Twowheeler("Discover")
+let myDrive = new Moped("Activa")
+console.log(myDrive.description)
+console.log(myBike.description)`,
+                qnSubText: "What will be the output on console, if the HTML document is rendered using a browser?",
+                options: [
+                    "Discover has 4 gear and has 4 stroke engine.\nActiva has 4 gear and has 4 stroke engine.",
+                    "Activa has 4 gear and has undefined engine.\nDiscover has 4 gear and has 4 stroke engine.",
+                    "Activa has 4 gear and has 4 stroke engine.\nDiscover has 4 gear and has undefined engine.",
+                    "Discover has 4 gear and has undefined engine.\nActiva has 4 gear and has undefined engine."
+                ],
+                correct: [2],
+                solution: `1. myDrive is a Moped("Activa") instance where engine = '4 stroke'. Description outputs "Activa has 4 gear and has 4 stroke engine."
+2. myBike is a Twowheeler("Discover") instance where engine property is never initialized (undefined). Description outputs "Discover has 4 gear and has undefined engine."`
+            },
+            {
+                qn: 14,
+                id: "640653816164",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the following Script embedded in an HTML document.",
+                code: `function parentFunc(name) {
+    return {
+        sayHello: () => "Hi! " + name,
+        sayBye: () => "Bye! " + name,
+        changeName: (newName) => {
+            name = newName;
+        },
+    };
+}
+const arpan = parentFunc("Arpan");
+const beli = parentFunc("Beli");
+
+console.log(arpan.sayHello());
+console.log(beli.sayHello());
+arpan.changeName("Beli");
+console.log(arpan.sayBye());`,
+                qnSubText: "What will be the output on console, if the HTML document is rendered using a browser?",
+                options: [
+                    "Hi! Arpan\nBye! Arpan",
+                    "Hi! Arpan\nHi! Beli\nBye! Beli",
+                    "Hi! Arpan\nreference Error",
+                    "Reference Error"
+                ],
+                correct: [1],
+                solution: `1. arpan.sayHello() prints "Hi! Arpan".
+2. beli.sayHello() prints "Hi! Beli".
+3. arpan.changeName("Beli") updates the closure variable name for arpan.
+4. arpan.sayBye() prints "Bye! Beli".`
+            },
+            {
+                qn: 15,
+                id: "640653816165",
+                type: "MCQ",
+                marks: 3.00,
+                text: "What will be the text displayed in a web page if the Vue app given below is running in a development mode?",
+                code: `Filename: index.html
+<div id="app1">
+    <h1>{{ title }}</h1>
+    <h4>{{ greetings() }}</h4>
+</div>
+<div id="app2">
+    <h1>{{ title }}</h1>
+    <h4>{{ greetings }}</h4>
+</div>
+
+Filename: app.js
+new Vue({
+    el: "#app1",
+    data: { title: "App No 1" },
+    computed: {
+        greetings() {
+            return "hello from " + this.title;
+        },
+    },
+});
+
+new Vue({
+    el: "#app2",
+    data: { title: "App No 2" },
+    computed: {
+        greetings() {
+            return "hello from " + this.title;
+        },
+    },
+});`,
+                qnSubText: "Choose the correct option.",
+                options: [
+                    "App No 1\nhello from App No 1\n\nApp No 2\nhello from App No 2",
+                    "App No 2\nhello from App No 2",
+                    "App No 1\nApp No 2",
+                    "Blank page"
+                ],
+                correct: [1],
+                solution: `In app1 template, greetings() tries to call computed property greetings as a function, throwing a rendering error and crashing app1. app2 compiles correctly, rendering "App No 2" and "hello from App No 2".`
+            },
+            {
+                qn: 16,
+                id: "640653816168",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the following Script embedded in an HTML document.",
+                code: `var var1 = 25;
+var var2 = 35;
+
+const myObj = {
+    var2: 45,
+    var1: 35,
+    ObjFunc: function(var3){
+        let var4 = var3**2;
+        return 10 + this.var2 + var4;
+    }
+}
+
+let m = myObj.ObjFunc
+console.log(m.bind()(5))
+console.log(m.call(myObj,6))`,
+                qnSubText: "What will be the output on console, if the HTML document is rendered using a browser?",
+                options: [
+                    "70\n81",
+                    "70\n91",
+                    "80\n81",
+                    "80\n91"
+                ],
+                correct: [1],
+                solution: `1. m.bind()(5) binds this to window (where window.var2 = 35). 10 + 35 + 25 = 70.
+2. m.call(myObj, 6) binds this to myObj (where myObj.var2 = 45). 10 + 45 + 36 = 91.
+Output:
+70
+91`
+            },
+            {
+                qn: 17,
+                id: "640653816178",
+                type: "MCQ",
+                marks: 3.00,
+                text: "What does the \"finally\" method do in promises?",
+                options: [
+                    "The method is executed when the promise is fulfilled.",
+                    "The method is executed when the promise is rejected.",
+                    "The method is executed regardless of whether the promise is fulfilled or rejected.",
+                    "The method can not be used with promises at all."
+                ],
+                correct: [2],
+                solution: `The .finally() block always executes when a promise is settled (either fulfilled or rejected).`
+            },
+            {
+                qn: 18,
+                id: "640653816181",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Which of the following statements regarding Celery task execution is correct?",
+                options: [
+                    "Celery tasks are executed synchronously by default.",
+                    "Celery tasks can only be executed on the same machine where the flask application is running.",
+                    "Celery tasks are executed asynchronously by default.",
+                    "Celery tasks can only be executed once they are defined as part of a flask application."
+                ],
+                correct: [2],
+                solution: `Celery is an asynchronous task queue designed to execute background jobs asynchronously.`
+            },
+            {
+                qn: 19,
+                id: "640653816182",
+                type: "MCQ",
+                marks: 3.00,
+                text: "What is the primary objective of using a message broker?",
+                options: [
+                    "Eliminates the need for network communication",
+                    "Decouples producers and consumers",
+                    "Decreases CPU utilization",
+                    "Reduces the need for data serialization"
+                ],
+                correct: [1],
+                solution: `Message brokers decouple producers (senders) and consumers (receivers) in distributed architectures.`
+            },
+            {
+                qn: 20,
+                id: "640653816183",
+                type: "MCQ",
+                marks: 3.00,
+                text: "In a message broker system, what does the term \"topic\" refer to?",
+                options: [
+                    "The physical location where messages are stored.",
+                    "A unique identifier for a message.",
+                    "The process of encrypting messages.",
+                    "A channel to which messages are published."
+                ],
+                correct: [3],
+                solution: `In publish-subscribe message systems, a topic represents a named channel or category to which messages are published.`
+            },
+            {
+                qn: 21,
+                id: "640653816184",
+                type: "MCQ",
+                marks: 3.00,
+                text: "What is the primary advantage of using server-sent events over traditional polling?",
+                options: [
+                    "Server-sent events support bidirectional communication.",
+                    "Server-sent events can handle larger payloads.",
+                    "Server-sent events reduce server load by eliminating the need for frequent polling.",
+                    "Server-sent events provide lower latency compared to polling."
+                ],
+                correct: [2],
+                solution: `Server-Sent Events (SSE) maintain a single persistent HTTP connection, avoiding continuous request overhead and server load caused by short-polling.`
+            },
+            {
+                qn: 22,
+                id: "640653816185",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Which of the following protocols is commonly used for implementing polling?",
+                options: [
+                    "HTTP",
+                    "Web Sockets",
+                    "FTP",
+                    "SMTP"
+                ],
+                correct: [0],
+                solution: `Traditional polling uses standard HTTP GET requests repeated at intervals.`
+            },
+            {
+                qn: 23,
+                id: "640653816187",
+                type: "MCQ",
+                marks: 3.00,
+                text: "What is the primary purpose of CORS in web security?",
+                options: [
+                    "To prevent unauthorized access to confidential data",
+                    "To mitigate cross-site scripting (XSS) attacks",
+                    "To enable controlled access to resources from different origins",
+                    "To protect against SQL injection attacks"
+                ],
+                correct: [2],
+                solution: `Cross-Origin Resource Sharing (CORS) allows servers to explicitly declare which foreign origins are permitted to access their resources.`
+            },
+            {
+                qn: 24,
+                id: "640653816163",
+                type: "MCQ",
+                marks: 4.50,
+                text: "Consider the following Script embedded in an HTML document.",
+                code: `let Obj1 = {
+    subject: 'Mechanics',
+    stream: 'Physics'
+}
+
+let Obj2 = Obj1;
+let Obj3 = {};
+
+for (let key in Obj1){
+    Obj3[key] = Obj1[key];
+}
+
+Obj2.subject = 'Thermodynamics'
+Obj3.stream = 'Chemistry'
+
+console.log(Obj1)`,
+                qnSubText: "What will be the output on console, if the HTML document is rendered using a browser?",
+                options: [
+                    "{ subject: 'Thermodynamics', stream: 'Physics' }",
+                    "{ subject: 'Mechanics', stream: 'Chemistry' }",
+                    "{ subject: 'Mechanics', stream: 'Physics' }",
+                    "{ subject: 'Thermodynamics', stream: 'Chemistry' }"
+                ],
+                correct: [0],
+                solution: `1. Obj2 = Obj1 creates a reference to the same object as Obj1. Modifying Obj2.subject = 'Thermodynamics' changes Obj1.subject.
+2. Obj3 is a new object created by copying properties. Modifying Obj3.stream does not affect Obj1.
+3. console.log(Obj1) outputs { subject: 'Thermodynamics', stream: 'Physics' }.`
+            },
+            {
+                qn: 25,
+                id: "640653816167",
+                type: "MCQ",
+                marks: 4.50,
+                text: "Consider the following Script embedded in an HTML document.",
+                code: `var var1 = 25;
+
+const exObj = {
+    var2: 45,
+    var1: 35,
+    inObj : {
+        var1: 45,
+        inObjFunc: ()=>{
+            return "Value is " + this.var1;
+        }
+    },
+    exObjFunc: function(){
+        let var2 = 10;
+        return "Value is " + this.var2;
+    }
+}
+
+let x = exObj.inObj
+console.log(x.inObjFunc())
+console.log(exObj.exObjFunc())`,
+                qnSubText: "What will be the output on console, if the HTML document is rendered using a browser?",
+                options: [
+                    "Value is 35\nValue is 10",
+                    "Value is 35\nValue is 45",
+                    "Value is 25\nValue is 10",
+                    "Value is 25\nValue is 45"
+                ],
+                correct: [3],
+                solution: `1. Arrow function inObjFunc retains lexical this from enclosing scope (window, where var var1 = 25). Returns "Value is 25".
+2. Regular function exObjFunc bound to exObj uses exObj.var2 = 45. Returns "Value is 45".
+Output:
+Value is 25
+Value is 45`
+            },
+            {
+                qn: 26,
+                id: "640653816171",
+                type: "MCQ",
+                marks: 4.50,
+                text: "Consider the following Script \"script.js\" embedded in an HTML document, \"index.html\" and an external script \"app.js\" given below.",
+                code: `Filename: index.html
+<html lang="en">
+<head></head>
+<body>
+    <script src="./script.js"><\/script>
+</body>
+</html>
+
+Filename: script.js
+function loadScript(src, cbf){
+    let script = document.createElement('script');
+    script.src = src;
+    script.onload = () => cbf();
+    document.head.append(script);
+}
+
+let cbf = function(){
+    console.log("callback function executed here.");
+    extFunc()
+}
+
+loadScript("./support_m6.js", cbf)
+extFunc()
+
+Filename: app.js
+console.log("Now I am loaded, let's support")
+
+function extFunc(){
+    console.log("loaded and run from external script")
+}`,
+                qnSubText: "What will be the output on console, if the HTML document is rendered using a browser?",
+                options: [
+                    "Now I am loaded, let's support\ncallback function executed here.\nloaded and run from external script\nloaded and run from external script",
+                    "loaded and run from external script\nNow I am loaded, let's support\ncallback function executed here.\nloaded and run from external script",
+                    "Now I am loaded, let's support\ncallback function executed here.\nloaded and run from external script\nUncaught ReferenceError: extFunc is not defined",
+                    "Uncaught ReferenceError: extFunc is not defined\nNow I am loaded, let's support\ncallback function executed here.\nloaded and run from external script"
+                ],
+                correct: [3],
+                solution: `1. When script.js executes synchronously, extFunc() is called before the dynamic script tag loads, throwing Uncaught ReferenceError: extFunc is not defined immediately.
+2. When the dynamic script finishes loading asynchronously, it logs "Now I am loaded, let's support".
+3. onload callback executes, logging "callback function executed here." followed by "loaded and run from external script".`
+            },
+            {
+                qn: 27,
+                id: "640653816173",
+                type: "MCQ",
+                marks: 4.50,
+                text: "Consider the below JavaScript program.",
+                code: `Array.prototype.double = function (arr) {
+    const res = [];
+    for (let i=0; i<placeholder.length; i++)
+        res.push(placeholder[i] * 2);
+    return res;
+}
+
+const arr = [2, 3, 7, 8];
+console.log(arr.double());`,
+                qnSubText: "What of the following can be used in place of \"placeholder\" in the above program so that the program yields the below output array?\n[4, 6, 14, 16]",
+                options: [
+                    "arr",
+                    "Array",
+                    "this",
+                    "The program cannot yield such an output, and is implemented in a wrong way."
+                ],
+                correct: [2],
+                solution: `Inside an Array prototype method, keyword 'this' references the calling array instance (arr = [2, 3, 7, 8]).`
+            },
+            {
+                qn: 28,
+                id: "640653816177",
+                type: "MCQ",
+                marks: 4.50,
+                text: "Consider the below JavaScript program.",
+                code: `const fetchData = (url) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (url.includes("success")) {
+                resolve(\`Data fetched successfully from: \${url}\`);
+            } else {
+                reject(\`Error fetching data: \${url}\`);
+            }
+        }, 1000);
+    });
+};
+
+const processData = (data) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(\`Processed data: \${data.toUpperCase()}\`);
+        }, 500);
+    });
+};
+
+const handleError = (error) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(\`Handled Error: \${error}\`);
+        }, 300);
+    });
+};
+
+fetchData("https://example.com/success")
+    .then(processData)
+    .then(fetchData)
+    .then(handleError)
+    .then((result) => {
+        console.log(result);
+    })
+    .catch((error) => {
+        console.error(error);
+    });`,
+                qnSubText: "What will be the output of the above program, if executed?",
+                options: [
+                    "Handled Error: Processed data: DATA FETCHED SUCCESSFULLY FROM: HTTPS://EXAMPLE.COM/SUCCESS",
+                    "Error fetching data: Processed data: DATA FETCHED SUCCESSFULLY FROM: HTTPS://EXAMPLE.COM/SUCCESS",
+                    "Handled Error: ERROR FETCHING DATA FROM: UNDEFINED",
+                    "Handled Error: ERROR FETCHING DATA FROM: HTTPS://EXAMPLE.COM/SUCCESS"
+                ],
+                correct: [1],
+                solution: `Promise chain execution:
+1. fetchData(".../success") resolves to "Data fetched successfully from: https://example.com/success".
+2. processData converts data to uppercase: "Processed data: DATA FETCHED SUCCESSFULLY FROM: HTTPS://EXAMPLE.COM/SUCCESS".
+3. Second fetchData receives this string, which lacks "success". It rejects with: "Error fetching data: Processed data: DATA FETCHED SUCCESSFULLY FROM: HTTPS://EXAMPLE.COM/SUCCESS".
+4. Rejection skips remaining .then handlers directly to .catch, logging the error.`
+            },
+            {
+                qn: 29,
+                id: "640653816179",
+                type: "MCQ",
+                marks: 4.50,
+                text: "Consider the following Vuex module definition for managing a shopping cart.",
+                code: `const cartModule = {
+    state: {
+        items: []
+    },
+    mutations: {
+        addItem(state, item) {
+            state.items.push(item);
+        },
+    },
+    actions: {
+        async addToCart({ commit }, item) {
+            // TODO: Implement adding item to cart
+        },
+    },
+}`,
+                qnSubText: "Which of the following options correctly completes the code for the \"addToCart\" action function?",
+                options: [
+                    "addToCart({ commit }, item) {\n    commit('addItem', item);\n}",
+                    "addToCart({ state, commit }, item) {\n    const existingItem = state.items.find(i => i.id === item.id);\n    if (existingItem) {\n        commit('addItem', existingItem);\n    } else {\n        commit('addItem', item);\n    }\n}",
+                    "addToCart({ commit }, item) {\n    commit('addItem', { ...item });\n}",
+                    "All of these"
+                ],
+                correct: [0],
+                solution: `In Vuex actions, calling commit('addItem', item) triggers the state mutation to add the item into the state array.`
+            },
+            {
+                qn: 30,
+                id: "640653816188",
+                type: "MCQ",
+                marks: 4.50,
+                text: "Consider the following Vue application with markup \"index.html\" and JavaScript file \"app.js\".",
+                code: `Filename: index.html
+<div id = "app">
+    <input v-model = "subject" @input = "compute_marks">
+    <p> {{marks}} </p>
+</div>
+<script src = "app.js"><\/script>
+
+Filename: app.js
+new Vue({
+    el : "#app",
+    data : {
+        subject : "AppDev",
+        marks : 50,
+    },
+
+    mounted () {
+        this.subject += "1";
+        this.marks = 50;
+
+        if (localStorage.marks) {
+            this.subject += "1";
+            this.marks = parseInt(localStorage.marks) + 20;
+            localStorage.marks = this.marks;
+            localStorage.subject = this.subject;
+        }
+        else {
+            this.subject += "2";
+            this.marks += 20;
+        }
+    },
+
+    methods : {
+        compute_marks() {
+            localStorage.setItem("subject", this.subject);
+            localStorage.setItem("marks", this.marks + 10);
+        }
+    }
+})`,
+                qnSubText: "Suppose you open \"index.html\" file in a browser, and type the text \"EndTermExam\" in the text box shown (after removing the previous text, if any), and hard refresh the page thrice, without clicking anywhere. What will be the value shown in the text box, and the \"marks\" placeholder, respectively?",
+                options: [
+                    "AppDev1, 120",
+                    "AppDev2, 120",
+                    "AppDev1, 140",
+                    "AppDev2, 140"
+                ],
+                correct: [2],
+                solution: `1. User input triggers compute_marks(): stores localStorage.marks = 80.
+2. Hard refresh 1: mounted() evaluates if(localStorage.marks), adding 20 -> marks = 100.
+3. Hard refresh 2: marks = 120.
+4. Hard refresh 3: marks = 140, subject = "AppDev1".
+Final displayed values: AppDev1, 140.`
+            },
+            {
+                qn: 31,
+                id: "640653816189",
+                type: "MCQ",
+                marks: 4.50,
+                text: "Consider the following Vue application with markup \"index.html\" and JavaScript file \"app.js\".",
+                code: `Filename: index.html
+<div id="app">
+    <router-link :to="{ name: 'user', params: { id: 'Jyoti' }}">User Profile</router-link>
+    <router-view></router-view>
+</div>
+<script src="app.js"><\/script>
+
+Filename: app.js
+const UserProfile = {
+    template: \`
+        <div>
+            <h1>User Profile</h1>
+            <p>User ID: {{ id }}</p>
+        </div>
+    \`,
+    props: ['id']
+};
+
+const routes = [
+    { path: '/user/:id', name: 'user', component: UserProfile, props: true }
+];
+
+const router = new VueRouter({
+    routes
+});
+
+new Vue({
+    el: '#app',
+    router,
+});`,
+                qnSubText: "Based on this setup, what will be displayed in the browser when the user clicks on the \"User Profile\" link?",
+                options: [
+                    "An error indicating that the id prop is not defined.",
+                    "User Profile\nUser ID: Jyoti",
+                    "An error indicating that the data object is not defined.",
+                    "An error indicating that the route does not exist."
+                ],
+                correct: [1],
+                solution: `Setting props: true in Vue Router maps route params directly as component props. Clicking the link renders "User Profile" and "User ID: Jyoti".`
+            },
+            {
+                qn: 32,
+                id: "640653816176",
+                type: "MSQ",
+                marks: 2.00,
+                text: "Which of the following is/are built in Vue.js lifecycle hook(s)?",
+                options: [
+                    "beforeLoad",
+                    "preUpdate",
+                    "mounted",
+                    "updated"
+                ],
+                correct: [2, 3],
+                solution: `Vue.js lifecycle hooks include beforeCreate, created, beforeMount, mounted, beforeUpdate, updated, beforeDestroy/beforeUnmount, destroyed/unmounted.`
+            },
+            {
+                qn: 33,
+                id: "640653816190",
+                type: "MSQ",
+                marks: 2.00,
+                text: "Which of the following JavaScript method(s) is/are used to remove data from the session storage?",
+                options: [
+                    "clear()",
+                    "removeItem()",
+                    "deleteItem()",
+                    "unSet()"
+                ],
+                correct: [0, 1],
+                solution: `Web Storage API methods:
+- sessionStorage.removeItem('key') removes a specific key.
+- sessionStorage.clear() clears all keys.`
+            }
+        ];
+
+        // ==========================================================================
+        // PORTAL ENGINE CORE SCRIPT
+        // ==========================================================================
+        let currentMode = 'exam';
+        let userAnswers = {};
+        let timerInterval = null;
+        let timerSeconds = 0;
+        let isTimerRunning = true;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initPortal();
+        });
+
+        function initPortal() {
+            renderPalette();
+            renderQuestions();
+            updateScoreDisplay();
+            startTimer();
+        }
+
+        function setPortalMode(mode) {
+            currentMode = mode;
+            document.getElementById('btnExamMode').classList.toggle('active', mode === 'exam');
+            document.getElementById('btnLearningMode').classList.toggle('active', mode === 'learning');
+
+            renderQuestions();
+            updatePaletteStatuses();
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('paletteGrid');
+            grid.innerHTML = '';
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.createElement('button');
+                btn.className = 'palette-btn';
+                btn.id = `paletteBtn_${q.qn}`;
+                btn.textContent = q.qn;
+                btn.onclick = () => scrollToQuestion(q.qn);
+                grid.appendChild(btn);
+            });
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            let html = '';
+
+            QUESTIONS_DATA.forEach((q) => {
+                html += `
+                <article class="qn-card" id="qnCard_${q.qn}">
+                    <div class="qn-header-container">
+                        <div class="qn-header-top">
+                            <div class="qn-title-main">
+                                Question ${q.qn} : ${q.id}
+                            </div>
+                            <button class="btn-solution-pill" onclick="toggleSolution(${q.qn})">
+                                <i class="fa-regular fa-circle-check"></i> View Solutions (0)
+                            </button>
+                        </div>
+                        <div class="qn-header-sub">
+                            <span class="qn-id-tag">Question ${q.qn} : ${q.id}</span>
+                            <span class="qn-meta-info">Total Mark : ${q.marks.toFixed(2)} | Type : ${q.type}</span>
+                        </div>
+                    </div>
+
+                    <div class="qn-text">${q.text ? escapeHtml(q.text).replace(/\\n/g, '<br>').replace(/\n/g, '<br>') : ''}</div>
+
+                    ${q.code ? `
+                    <div class="code-snippet-wrap">
+                        <code>${escapeHtml(q.code)}</code>
+                    </div>` : ''}
+
+                    ${q.qnSubText ? `<div class="qn-text" style="margin-top:0.85rem;">${escapeHtml(q.qnSubText).replace(/\\n/g, '<br>').replace(/\n/g, '<br>')}</div>` : ''}
+
+                    <!-- Options / Inputs -->
+                    ${renderQuestionInputs(q)}
+
+                    <!-- Footer Action Toolbar -->
+                    <div class="qn-footer-toolbar">
+                        <div class="qn-actions-group">
+                            <button class="btn-action-pill btn-discuss" onclick="alert('Discussion forum loading...')"><i class="fa-regular fa-comments"></i> Discussions (0)</button>
+                            <button class="btn-action-pill btn-correct" onclick="alert('Correction reported. Thank you!')"><i class="fa-regular fa-pen-to-square"></i> Suggest Correction</button>
+                            <button class="btn-action-pill btn-broken" onclick="alert('Format flag recorded.')"><i class="fa-solid fa-wrench"></i> Broken Format?</button>
+                        </div>
+                    </div>
+
+                    <!-- Solution Accordion -->
+                    <div class="solution-box ${currentMode === 'learning' ? 'open' : ''}" id="solution_${q.qn}">
+                        <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution & Code Trace</div>
+                        <div class="solution-text">${q.solution ? escapeHtml(q.solution).replace(/\\n/g, '<br>').replace(/\n/g, '<br>') : ''}</div>
+                    </div>
+                </article>
+                `;
+
+                if (q.qn === 7 || q.qn === 18) {
+                    html += `
+                    <div class="ad-banner-box">
+                        <span class="ad-tag">ADVERTISEMENT</span>
+                        <div class="ad-actions">
+                            <button class="btn-remove-ads" onclick="alert('Ad-free experience enabled.')"><i class="fa-solid fa-bolt"></i> Remove Ads</button>
+                            <button class="btn-close-ad" onclick="this.parentElement.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    `;
+                }
+            });
+
+            container.innerHTML = html;
+            updatePaletteStatuses();
+        }
+
+        function renderQuestionInputs(q) {
+            const isMSQ = q.type === 'MSQ';
+            const userArr = userAnswers[q.qn] || [];
+
+            return `
+            <div class="options-list">
+                ${q.options.map((optText, idx) => {
+                    const isChecked = userArr.includes(idx);
+                    const isCorrect = q.correct.includes(idx);
+                    let highlightClass = '';
+
+                    if (isChecked) highlightClass = 'selected';
+
+                    if (currentMode === 'learning') {
+                        if (isCorrect) highlightClass = 'correct-highlight';
+                        else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                    }
+
+                    const cleanOptText = (optText || '').replace(/\\n/g, '\n');
+                    const isMultiLine = cleanOptText.includes('\n');
+
+                    return `
+                    <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <span class="option-text">${isMultiLine ? `<pre style="margin:0; font-family:var(--font-mono); font-size:0.9rem; line-height:1.5;"><code>${escapeHtml(cleanOptText)}</code></pre>` : escapeHtml(cleanOptText)}</span>
+                    </label>
+                    `;
+                }).join('')}
+            </div>
+            `;
+        }
+
+        function handleOptionSelect(qnNum, optIdx, qnType) {
+            if (qnType === 'MCQ') {
+                userAnswers[qnNum] = [optIdx];
+            } else if (qnType === 'MSQ') {
+                if (!userAnswers[qnNum]) userAnswers[qnNum] = [];
+                const pos = userAnswers[qnNum].indexOf(optIdx);
+                if (pos >= 0) userAnswers[qnNum].splice(pos, 1);
+                else userAnswers[qnNum].push(optIdx);
+            }
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function calculateQuestionScore(q) {
+            const userAns = userAnswers[q.qn];
+            if (!userAns || !Array.isArray(userAns) || userAns.length === 0) return "0.00";
+
+            if (q.type === 'MCQ') {
+                return (userAns[0] === q.correct[0]) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            if (q.type === 'MSQ') {
+                const sortedUser = [...userAns].sort().join(',');
+                const sortedCorrect = [...q.correct].sort().join(',');
+                return (sortedUser === sortedCorrect) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            return "0.00";
+        }
+
+        function updateScoreDisplay() {
+            let total = 0;
+            let answeredCount = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const score = parseFloat(calculateQuestionScore(q));
+                total += score;
+
+                const ans = userAnswers[q.qn];
+                if (ans && Array.isArray(ans) && ans.length > 0) {
+                    answeredCount++;
+                }
+            });
+
+            document.getElementById('liveScoreDisplay').textContent = `${total.toFixed(2)} / 100.00`;
+            const pct = ((total / 100) * 100).toFixed(1);
+            document.getElementById('livePercentDisplay').textContent = `(${pct}%)`;
+            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/${QUESTIONS_DATA.length}`;
+        }
+
+        function updatePaletteStatuses() {
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.getElementById(`paletteBtn_${q.qn}`);
+                if (!btn) return;
+
+                btn.className = 'palette-btn';
+
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && Array.isArray(ans) && ans.length > 0;
+
+                if (hasAns) {
+                    btn.classList.add('answered');
+                    if (currentMode === 'learning') {
+                        const score = parseFloat(calculateQuestionScore(q));
+                        if (score > 0) btn.classList.add('correct');
+                        else btn.classList.add('incorrect');
+                    }
+                }
+            });
+        }
+
+        function toggleSolution(qnNum) {
+            const box = document.getElementById(`solution_${qnNum}`);
+            if (box) box.classList.toggle('open');
+        }
+
+        function scrollToQuestion(qnNum) {
+            const card = document.getElementById(`qnCard_${qnNum}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                document.querySelectorAll('.palette-btn').forEach(b => b.classList.remove('active-qn'));
+                const btn = document.getElementById(`paletteBtn_${qnNum}`);
+                if (btn) btn.classList.add('active-qn');
+            }
+        }
+
+        // Timer Logic
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (isTimerRunning) {
+                    timerSeconds++;
+                    updateTimerUI();
+                }
+            }, 1000);
+        }
+
+        function toggleTimer() {
+            isTimerRunning = !isTimerRunning;
+            const btn = document.getElementById('btnPauseTimer');
+            if (btn) btn.innerHTML = isTimerRunning ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+        }
+
+        function resetTimer() {
+            timerSeconds = 0;
+            updateTimerUI();
+        }
+
+        function updateTimerUI() {
+            const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const secs = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+        }
+
+        // Exam Submission & Modals
+        function submitExam() {
+            setPortalMode('learning');
+
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+            let totalScore = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && Array.isArray(ans) && ans.length > 0;
+
+                if (!hasAns) {
+                    unansweredCount++;
+                } else {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    totalScore += score;
+                    if (score > 0) correctCount++;
+                    else incorrectCount++;
+                }
+            });
+
+            document.getElementById('modalScoreText').textContent = `${totalScore.toFixed(2)} / 100.00`;
+            document.getElementById('modalPercentText').textContent = `${((totalScore / 100) * 100).toFixed(1)}% Accuracy`;
+            document.getElementById('modalCorrectCount').textContent = correctCount;
+            document.getElementById('modalIncorrectCount').textContent = incorrectCount;
+            document.getElementById('modalUnansweredCount').textContent = unansweredCount;
+
+            document.getElementById('resultModal').classList.add('active');
+        }
+
+        function resetExam() {
+            userAnswers = {};
+            resetTimer();
+            closeResultModal();
+            setPortalMode('learning');
+        }
+
+        function openSummaryModal() {
+            document.getElementById('summaryModal').classList.add('active');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.remove('active');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.remove('active');
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('portalSidebar');
+            const toggleBtn = document.getElementById('mobileSidebarToggle');
+            if (sidebar && toggleBtn) {
+                sidebar.classList.toggle('open');
+                toggleBtn.classList.toggle('active');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const fab = document.getElementById('fabBackToTop');
+            if (fab) {
+                if (window.scrollY > 300) fab.classList.add('visible');
+                else fab.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+
+</html>

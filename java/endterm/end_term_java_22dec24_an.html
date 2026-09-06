@@ -1319,14 +1319,14 @@ public class Test {
                         </div>
                     </div>
 
-                    <div class="qn-text">${q.text ? q.text.replace(/\\n/g, '<br>').replace(/\n/g, '<br>') : ''}</div>
+                    <div class="qn-text">${q.text ? escapeHtml(q.text).replace(/\\n/g, '<br>').replace(/\n/g, '<br>') : ''}</div>
 
                     ${q.code ? `
                     <div class="code-snippet-wrap">
                         <code>${escapeHtml(q.code)}</code>
                     </div>` : ''}
 
-                    ${q.qnSubText ? `<div class="qn-text" style="margin-top:0.85rem;">${q.qnSubText.replace(/\\n/g, '<br>').replace(/\n/g, '<br>')}</div>` : ''}
+                    ${q.qnSubText ? `<div class="qn-text" style="margin-top:0.85rem;">${escapeHtml(q.qnSubText).replace(/\\n/g, '<br>').replace(/\n/g, '<br>')}</div>` : ''}
 
                     <!-- Options / Inputs -->
                     ${renderQuestionInputs(q)}
@@ -1343,7 +1343,7 @@ public class Test {
                     <!-- Solution Accordion -->
                     <div class="solution-box ${currentMode === 'learning' ? 'open' : ''}" id="solution_${q.qn}">
                         <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution & Code Trace</div>
-                        <div class="solution-text">${q.solution ? q.solution.replace(/\\n/g, '<br>').replace(/\n/g, '<br>') : ''}</div>
+                        <div class="solution-text">${q.solution ? escapeHtml(q.solution).replace(/\\n/g, '<br>').replace(/\n/g, '<br>') : ''}</div>
                     </div>
                 </article>
                 `;
