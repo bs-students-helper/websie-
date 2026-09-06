@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Java questions : 2024 Dec22: IIT M AN EXAM QDD4 - QuizPractice | BSH</title>
+    <meta name="description"
+        content="Practice Programming Concepts Using Java End Term question paper (22 Dec 2024 AN QDD4) with interactive exam & learning modes, instant score calculation, detailed solutions, and question palette.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Non-Blocking Asynchronous Load -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+
+    <!-- Master CSS -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/quiz-portal.css">
+
+    <!-- Theme Detection -->
+    <script>
+        (function () {
+            const saved = localStorage.getItem('bsh-theme');
+            if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+            else document.documentElement.setAttribute('data-theme', 'light');
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Site Navigation Header -->
+    <header class="site-header" id="header">
+        <div class="header-container">
+            <a href="../../index.html" class="brand-logo" aria-label="BSH Homepage">
+                <img src="../../assets/images/logo.webp" width="160" height="58" alt="BSH Logo" class="logo-img">
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="../../index.html#features" class="nav-link">Features</a>
+                <a href="../../quiz_practice.html" class="nav-link active">Quiz Practice</a>
+                <a href="../../calculator.html" class="nav-link">SEC Calculator</a>
+                <a href="../../about.html" class="nav-link">About Us</a>
+                <a href="../../contact_us.html" class="nav-link">Feedback</a>
+            </nav>
+            <div class="header-actions">
+                <a href="../../end_term_practice.html" class="btn btn-secondary nav-btn-desktop"><i
+                        class="fa-solid fa-arrow-left"></i><span>Back to Papers</span></a>
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i
+                        class="fa-solid fa-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="portal-layout">
+
+            <!-- Mobile Collapsible Sidebar Toggle Button -->
+            <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()">
+                <span><i class="fa-solid fa-sliders"></i> Exam Controls & Question Menu</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <!-- Left Sidebar: Controls, Menu & Timer -->
+            <aside class="portal-sidebar" id="portalSidebar">
+
+                <!-- Header Info -->
+                <div class="exam-info-header">
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Exam :</span>
+                        <span class="exam-info-val">End Term Quiz</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Subject :</span>
+                        <span class="exam-info-val">Java</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Total Marks :</span>
+                        <span class="exam-info-val">100.00</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">QP :</span>
+                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">2024 Dec22: IIT M AN EXAM QDD4</span>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher -->
+                <div>
+                    <div class="menu-heading">Portal Mode</div>
+                    <div class="mode-toggle-group">
+                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam Mode</button>
+                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning Mode</button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                        onclick="openSummaryModal()">
+                        <i class="fa-solid fa-eye"></i> View Question Paper Summary
+                    </button>
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;"
+                        onclick="window.print()">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </button>
+                </div>
+
+                <!-- Question Menu Grid -->
+                <div>
+                    <div class="menu-heading">
+                        <span>QUESTION MENU</span>
+                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/24</span>
+                    </div>
+                    <div class="palette-grid" id="paletteGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Timer Box -->
+                <div>
+                    <div class="menu-heading">TIMER</div>
+                    <div class="timer-box">
+                        <div class="timer-display" id="timerDisplay">00:00</div>
+                        <div class="timer-controls">
+                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i
+                                    class="fa-solid fa-pause"></i></button>
+                            <button class="btn-icon-sm" onclick="resetTimer()"><i
+                                    class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls & Score Box -->
+                <div>
+                    <div class="menu-heading">CONTROLS</div>
+                    <button class="btn-submit-exam" onclick="submitExam()">
+                        <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
+                    </button>
+                    <div class="score-card" style="margin-top:1rem;">
+                        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">YOUR SCORE</span>
+                        <div class="score-num" id="liveScoreDisplay">0.00 / 100.00</div>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);"
+                            id="livePercentDisplay">(0.0%)</span>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Right Area: Questions List -->
+            <section class="questions-area" id="questionsContainer">
+                <!-- Dynamically Rendered by JS -->
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Floating Back to Top FAB -->
+    <button class="fab-back-to-top" id="fabBackToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;">Question Paper Summary</h3>
+                <button class="btn-icon-sm" onclick="closeSummaryModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+                Paper Title: <b>2024 Dec22: IIT M AN EXAM QDD4</b> (Java End Term Quiz)
+            </p>
+            <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+                <tr style="border-bottom:1px solid var(--border-light); text-align:left;">
+                    <th style="padding:0.6rem;">Question Type</th>
+                    <th style="padding:0.6rem;">Count</th>
+                    <th style="padding:0.6rem;">Total Marks</th>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MCQ (Multiple Choice)</td>
+                    <td style="padding:0.6rem;">20</td>
+                    <td style="padding:0.6rem;">82.00</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MSQ (Multiple Select)</td>
+                    <td style="padding:0.6rem;">4</td>
+                    <td style="padding:0.6rem;">18.00</td>
+                </tr>
+            </table>
+            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close Summary</button>
+        </div>
+    </div>
+
+    <!-- Exam Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-card" style="text-align:center;">
+            <div
+                style="width:64px; height:64px; border-radius:50%; background:rgba(16, 185, 129, 0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 1rem;">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Exam Submitted!</h2>
+            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for Java End Term Quiz (22 Dec 2024 AN)</p>
+
+            <div
+                style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
+                <div style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; font-weight:600;">
+                    Final Score</div>
+                <div style="font-family:var(--font-mono); font-size:2.8rem; font-weight:800; color:var(--accent-green);"
+                    id="modalScoreText">0.00 / 100.00</div>
+                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0% Accuracy
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem; margin-bottom:1.5rem;">
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Correct</div>
+                    <div style="font-weight:700; color:#10b981; font-size:1.2rem;" id="modalCorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Incorrect</div>
+                    <div style="font-weight:700; color:#ef4444; font-size:1.2rem;" id="modalIncorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Unanswered</div>
+                    <div style="font-weight:700; color:var(--text-secondary); font-size:1.2rem;"
+                        id="modalUnansweredCount">0</div>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:0.75rem;">
+                <button class="btn btn-secondary btn-full"
+                    onclick="closeResultModal(); setPortalMode('learning');">Review Solutions <i
+                        class="fa-solid fa-book-open"></i></button>
+                <button class="btn btn-primary btn-full" onclick="resetExam()">Retake Exam <i
+                        class="fa-solid fa-rotate-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Master Scripts -->
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        // ==========================================================================
+        // JAVA END TERM QUIZ (22 DEC 2024 AN QDD4) QUESTION DATA
+        // ==========================================================================
+        const QUESTIONS_DATA = [
+            {
+                qn: 1,
+                id: "6406531046668",
+                type: "MCQ",
+                marks: 0.00,
+                text: "THIS IS QUESTION PAPER FOR THE SUBJECT \"DIPLOMA LEVEL : PROGRAMMING CONCEPTS USING JAVA (COMPUTER BASED EXAM)\" ARE YOU SURE YOU HAVE TO WRITE EXAM FOR THIS SUBJECT? CROSS CHECK YOUR HALL TICKET TO CONFIRM THE SUBJECTS TO BE WRITTEN. (IF IT IS NOT THE CORRECT SUBJECT, PLS CHECK THE SECTION AT THE TOP FOR THE SUBJECTS REGISTERED BY YOU)",
+                options: [
+                    "YES",
+                    "NO"
+                ],
+                correct: [0],
+                solution: "Instruction acknowledgment question."
+            },
+            {
+                qn: 2,
+                id: "6406531046676",
+                type: "MSQ",
+                marks: 4.00,
+                text: "Consider the following Java code.",
+                code: `1. class Fridge {
+2.     public final void cool() {
+3.         System.out.println("Cools the fridge");
+4.     }
+5. }
+6. class Compressor {
+7.     public final void start() {
+8.         System.out.println("Starts compressor");
+9.     }
+10. }
+11. class DoubleDoorFridge extends Fridge, Compressor {
+12.     public void cool() {
+13.         System.out.println("Cools the double door fridge");
+14.     }
+15. }
+16. public class Test {
+17.     public static void main(String[] args) {
+18.         DoubleDoorFridge f1 = new Fridge();
+19.         DoubleDoorFridge f2 = new Compressor();
+20.     }
+21. }`,
+                qnSubText: "Identify the line/s which has/have error.",
+                options: [
+                    "Line 2",
+                    "Line 7",
+                    "Line 11",
+                    "Line 12",
+                    "Line 18",
+                    "Line 19"
+                ],
+                correct: [2, 3, 4, 5],
+                solution: `Analysis of error lines:
+1. Line 11: Java does not support multiple class inheritance (extends Fridge, Compressor is illegal).
+2. Line 12: Cannot override final method cool() declared in Fridge.
+3. Line 18: Cannot assign a superclass object (new Fridge()) to a subclass reference (DoubleDoorFridge f1).
+4. Line 19: Cannot assign an unrelated type (new Compressor()) to DoubleDoorFridge f2.`
+            },
+            {
+                qn: 3,
+                id: "6406531046686",
+                type: "MSQ",
+                marks: 4.00,
+                text: "Consider the Java code given below.",
+                code: `package week12;
+
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+class ButtonDemo extends JFrame implements ActionListener {
+    JButton btnGo, btnWait;
+    JLabel label;
+    JPanel p1, p2;
+    public ButtonDemo() {
+        p1 = new JPanel();
+        p2 = new JPanel();
+
+        btnGo = new JButton("Go");
+        btnWait = new JButton("Wait");
+        label = new JLabel("Click a button");
+
+        p1.add(btnGo);
+        p1.add(btnWait);
+        p2.add(label);
+
+        add(p1,"Center");
+        add(p2,"South");
+
+        btnGo.setActionCommand("Go");
+        btnWait.setActionCommand("Wait");
+        btnGo.addActionListener(this);
+        btnWait.addActionListener(this);
+        setSize(300, 150);
+        setVisible(true);
+    }
+    public void actionPerformed(ActionEvent e) {
+        // CODE SEGMENT
+    }
+}
+public class GUITest {
+    public static void main(String[] args) {
+        new ButtonDemo();
+    }
+}`,
+                qnSubText: `Choose the correct code segment to be filled inside method actionPerformed() such that on clicking the Go button, the label text changes to Going and on clicking the Wait button, the label text changes to Waiting.`,
+                options: [
+                    "if(e.getSource().equals(btnGo))\n    label.setText(\"Going\");\nelse if(e.getSource().equals(btnWait))\n    label.setText(\"Waiting\");",
+                    "if(e.getActionCommand().equals(\"Go\"))\n    label.setText(\"Going\");\nelse if(e.getActionCommand().equals(\"Wait\"))\n    label.setText(\"Waiting\");",
+                    "if(e.getActionCommand().equals(Go))\n    label.setText(\"Going\");\nelse if(e.getActionCommand().equals(Wait))\n    label.setText(\"Waiting\");",
+                    "if(e.getSource().equals(\"Go\"))\n    label.setText(\"Going\");\nelse if(e.getSource().equals(\"Wait\"))\n    label.setText(\"Waiting\");"
+                ],
+                correct: [0, 1],
+                solution: `Both e.getSource().equals(btnGo) (comparing Component object references) and e.getActionCommand().equals("Go") (comparing ActionCommand strings) are valid event handling approaches in AWT/Swing.`
+            },
+            {
+                qn: 4,
+                id: "6406531046670",
+                type: "MSQ",
+                marks: 5.00,
+                text: "Consider the code given below.",
+                code: `import java.util.concurrent.locks.ReentrantLock;
+class Hotel {
+    int roomsAvailable = 5;
+    private final ReentrantLock lock = new ReentrantLock();
+
+    public void bookRoom(String cN, int rR) {
+        lock.lock();
+        try {
+            if (roomsAvailable >= rR) {
+                roomsAvailable -= rR;
+                System.out.println(cN + " successfully booked " + rR + " rooms.");
+            } else {
+                System.out.println(cN + " cannot book " + rR + " rooms.");
+            }
+        } finally {
+            lock.unlock();
+        }
+    }
+}
+
+class HotelGuest implements Runnable {
+    Hotel hotel;
+    String customerName;
+    int roomsRequested;
+    // Constructor is defined here
+    public void run() {
+        hotel.bookRoom(customerName, roomsRequested);
+    }
+}
+
+public class HotelBooking {
+    public static void main(String[] args) throws InterruptedException {
+        Hotel hotel = new Hotel();
+        HotelGuest g1 = new HotelGuest(hotel, "Kiran", 3);
+        HotelGuest g2 = new HotelGuest(hotel, "Ameen", 4);
+        Thread t1 = new Thread(g1);
+        Thread t2 = new Thread(g2);
+        t1.start();
+        t2.start();
+    }
+}`,
+                qnSubText: "Which of the following options is/are possible result/s of the above code?",
+                options: [
+                    "This code generates the output:\nKiran successfully booked 3 rooms.\nAmeen successfully booked 4 rooms.",
+                    "This code generates the output:\nKiran successfully booked 3 rooms.\nAmeen cannot book 4 rooms.",
+                    "This code generates the output:\nAmeen successfully booked 4 rooms.\nKiran cannot book 3 rooms.",
+                    "This code generates InterruptedException"
+                ],
+                correct: [1, 2],
+                solution: `Initial roomsAvailable = 5. Kiran requests 3 rooms, Ameen requests 4 rooms (total 7 > 5).
+Because bookRoom() is synchronized with ReentrantLock:
+- If Kiran thread runs first: Kiran gets 3 rooms (2 left). Ameen then fails to get 4 rooms ("Ameen cannot book 4 rooms.").
+- If Ameen thread runs first: Ameen gets 4 rooms (1 left). Kiran then fails to get 3 rooms ("Kiran cannot book 3 rooms.").`
+            },
+            {
+                qn: 5,
+                id: "6406531046672",
+                type: "MSQ",
+                marks: 5.00,
+                text: "Consider the Java code given below that prints the most expensive product from a collection of Product objects. From among the options, identify the appropriate function header for function printExpensiveProduct that takes as input list of Product objects and prints the most expensive product among them.",
+                code: `abstract class Product {
+    public abstract double cost();
+}
+class Electronics extends Product {
+    // Constructor
+    // method cost() that returns the cost of the product
+}
+class Furniture extends Product {
+    // Constructor
+    // method cost() that returns the cost of the furniture
+}
+public class ProductCostFinder {
+    // LINE 1: FUNCTION HEADER
+    {
+        // Iterates through the list of products and prints the most expensive product.
+    }
+    public static void main(String[] args) {
+        List<Product> products = Arrays.asList(new Electronics(10000),
+                                              new Furniture(30000), new Electronics(15000));
+        
+        printExpensiveProduct(products);
+    }
+}`,
+                qnSubText: "Choose the correct option(s).",
+                options: [
+                    "public static <T extends Product> void printExpensiveProduct(List<T> p)",
+                    "public static void printExpensiveProduct(List<? extends Product> p)",
+                    "public static void printExpensiveProduct(List<T> p)",
+                    "public static void printExpensiveProduct(List<?> p)"
+                ],
+                correct: [0, 1],
+                solution: `Both generic method declarations:
+1. public static <T extends Product> void printExpensiveProduct(List<T> p)
+2. public static void printExpensiveProduct(List<? extends Product> p)
+correctly specify that elements in List p are instances of Product (or its subclasses), allowing invocation of cost().`
+            },
+            {
+                qn: 6,
+                id: "6406531046671",
+                type: "MCQ",
+                marks: 5.00,
+                text: "Consider the Java code given below, and answer the question that follows:",
+                code: `abstract class Operation implements Runnable {
+    static int divide = 10;
+}
+class Operation1 extends Operation {
+    public void run() {
+        if (divide != 2) {
+            divide = divide / 2;
+        }
+    }
+}
+class Operation2 extends Operation {
+    public void run() {
+        if (divide != 5) {
+            divide = divide / 5;
+        }
+    }
+}
+public class RaceConditionDecrement {
+    public static void main(String[] args) {
+        Operation op1 = new Operation1();
+        Operation op2 = new Operation2();
+        Thread t1 = new Thread(op1);
+        Thread t2 = new Thread(op2);
+        t1.start();
+        t2.start();
+        System.out.println(Operation.divide);
+    }
+}`,
+                qnSubText: "Choose the correct option.",
+                options: [
+                    "The program will never generate the output: 2",
+                    "The program will never generate the output: 5",
+                    "The program will never generate the output: 10",
+                    "The output can be 2 or 5 or 10."
+                ],
+                correct: [3],
+                solution: `Depending on thread scheduling and timing before main prints divide:
+- If main prints before either thread finishes: output is 10.
+- If t1 runs first (10 / 2 = 5): output can be 5.
+- If t2 runs first (10 / 5 = 2): output can be 2.
+Thus, output can be 2 or 5 or 10.`
+            },
+            {
+                qn: 7,
+                id: "6406531046673",
+                type: "MCQ",
+                marks: 5.00,
+                text: "Consider the Java code given below.",
+                code: `class Exam {
+    public void details() {
+        System.out.println("General exam details");
+    }
+    public void duration() {
+        System.out.println("Duration not set");
+    }
+}
+class WrittenExam extends Exam {
+    public void details() {
+        System.out.println("Written exam with pen and paper");
+    }
+    public void duration() {
+        System.out.println("Duration: 3 hours");
+    }
+}
+class OnlineExam extends WrittenExam {
+    public void details() {
+        System.out.println("Online exam conducted on a computer");
+    }
+    public void platform() {
+        System.out.println("Platform: Exam Portal");
+    }
+}
+public class ExamPortalTest {
+    public static void main(String[] args) {
+        WrittenExam exam = new OnlineExam(); // LINE 1
+        exam.details();
+        exam.duration();
+        exam.platform(); // LINE 2
+    }
+}`,
+                qnSubText: "Choose the correct option.",
+                options: [
+                    "This program generates the output:\nWritten exam with pen and paper\nDuration: 3 hours\nPlatform: Exam Portal",
+                    "This program generates the output:\nOnline exam conducted on a computer\nDuration: 3 hours\nPlatform: Exam Portal",
+                    "LINE 1 generates compilation error because a variable of type WrittenExam cannot refer to an object of type OnlineExam.",
+                    "LINE 2 generates compilation error because the method platform() is not defined in the WrittenExam class."
+                ],
+                correct: [3],
+                solution: `The reference type of variable exam is WrittenExam. Method platform() is declared only in subclass OnlineExam, not in WrittenExam. In Java, methods invoked on a reference must exist in the reference type at compile time. Hence LINE 2 causes a compilation error.`
+            },
+            {
+                qn: 8,
+                id: "6406531046674",
+                type: "MCQ",
+                marks: 5.00,
+                text: "Consider the following Java code that uses chained exceptions.",
+                code: `class AuthenticationException extends Exception {
+    public AuthenticationException(String message) {
+        super(message);
+    }
+}
+
+class InvalidCredentialsException extends Exception {
+    public InvalidCredentialsException(String message) {
+        super(message);
+    }
+}
+
+public class UserAuthenticationTest {
+    public static void main(String[] args) {
+        try {
+            authenticateUser();
+        } catch (AuthenticationException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.getCause().getMessage());
+        }
+    }
+
+    public static void authenticateUser() throws AuthenticationException {
+        try {
+            validateCredentials();
+        } catch (InvalidCredentialsException e) {
+            AuthenticationException ae = new AuthenticationException("User authentication failed");
+            ae.initCause(e);
+            throw ae;
+        }
+    }
+
+    public static void validateCredentials() throws InvalidCredentialsException {
+        throw new InvalidCredentialsException("Invalid username or password");
+    }
+}`,
+                qnSubText: "What is the output of this code?",
+                options: [
+                    "Exception in thread \"main\" AuthenticationException: User authentication failed\nCaused by: InvalidCredentialsException: Invalid username or password",
+                    "Exception in thread \"main\" InvalidCredentialsException: Invalid username or password\nCaused by: AuthenticationException: User authentication failed",
+                    "User authentication failed\nInvalid username or password",
+                    "Invalid username or password\nUser authentication failed"
+                ],
+                correct: [2],
+                solution: `1. authenticateUser() catches InvalidCredentialsException e ("Invalid username or password") and wraps it inside AuthenticationException ae ("User authentication failed").
+2. main catches ae.
+3. System.out.println(e.getMessage()) prints "User authentication failed".
+4. System.out.println(e.getCause().getMessage()) prints "Invalid username or password".`
+            },
+            {
+                qn: 9,
+                id: "6406531046675",
+                type: "MCQ",
+                marks: 5.00,
+                text: "Consider the following Java code.",
+                code: `class Rectangle{
+    // len = length, bre = breadth
+    private double len, bre;
+    public Rectangle(double l, double b) {
+        len = l;
+        bre = b;
+    }
+    public double area() {
+        assert len * bre > 0; // assert-1
+        assert len + bre > 0; // assert-2
+        assert len > 2; // assert-3
+        assert bre > 2; // assert-4
+        return (len * bre);
+    }
+}
+public class AssertTest {
+    public static void main(String[] args) {
+        Rectangle obj = new Rectangle(10, 1);
+        System.out.println(obj.area());
+    }
+}`,
+                qnSubText: "Identify the first assert statement that throws the AssertionError when the class is executed as:\njava -ea AssertTest",
+                options: [
+                    "assert-1",
+                    "assert-2",
+                    "assert-3",
+                    "assert-4"
+                ],
+                correct: [3],
+                solution: `Given len = 10, bre = 1:
+- assert-1: 10 * 1 = 10 > 0 (True)
+- assert-2: 10 + 1 = 11 > 0 (True)
+- assert-3: 10 > 2 (True)
+- assert-4: bre > 2 -> 1 > 2 is FALSE! Throws AssertionError.`
+            },
+            {
+                qn: 10,
+                id: "6406531046684",
+                type: "MCQ",
+                marks: 5.00,
+                text: "Consider the code given below.",
+                code: `class Library implements Cloneable {
+    String name;
+    String[] books;
+    public Library(String name, String[] books) {
+        this.name = name;
+        this.books = books;
+    }
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
+public class CloningLibrary {
+    public static void main(String[] args) throws CloneNotSupportedException {
+        String[] bookList = {"Math", "Science", "History"};
+        Library lib1 = new Library("Central", bookList);
+        Library lib2 = (Library) lib1.clone();
+        lib2.books[0] = "Physics";
+        lib1.name = "Community";
+        System.out.println(lib1.name + " " + lib1.books[0]);
+        System.out.println(lib2.name + " " + lib2.books[0]);
+    }
+}`,
+                qnSubText: "What will the output be?",
+                options: [
+                    "Community Physics\nCentral Physics",
+                    "Central Physics\nCentral Math",
+                    "Community Math\nCommunity Physics",
+                    "Community Physics\nCentral Physics"
+                ],
+                correct: [0],
+                solution: `super.clone() performs a shallow copy:
+- lib1 and lib2 receive distinct String name fields ("Community" vs "Central").
+- However, lib2.books shares the exact same array reference as lib1.books.
+- Modifying lib2.books[0] = "Physics" mutates books[0] for both objects.
+Output:
+Community Physics
+Central Physics`
+            },
+            {
+                qn: 11,
+                id: "6406531046688",
+                type: "MCQ",
+                marks: 5.00,
+                text: "Consider the code given below.",
+                code: `import java.io.*;
+class Employee implements Serializable {
+    private double salary;
+    private transient String department;
+    private transient int empCode;
+    // Constructor to initialize instance variables
+    public String toString() {
+        return "salary=" + salary + ", department=" + department + ", empCode=" + empCode;
+    }
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+        out.writeInt(empCode * 1000);
+    }
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        empCode = in.readInt() / 1000;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        var fos = new FileOutputStream("EmployeeData.txt");
+        var oos = new ObjectOutputStream(fos);
+
+        Employee employee = new Employee(85000.75, "HR", 56789);
+        oos.writeObject(employee);
+        oos.close();
+        fos.close();
+
+        var fis = new FileInputStream("EmployeeData.txt");
+        var ois = new ObjectInputStream(fis);
+
+        Employee obj = (Employee) ois.readObject();
+        ois.close();
+        fis.close();
+
+        System.out.println(obj);
+    }
+}`,
+                qnSubText: "What will the output be?",
+                options: [
+                    "salary=85000.75, department=null, empCode=0",
+                    "salary=85000.75, department=HR, empCode=56789",
+                    "salary=85000.75, department=null, empCode=56789",
+                    "salary=85000.75, department=HR, empCode=0"
+                ],
+                correct: [2],
+                solution: `1. department is transient and not written in writeObject, so it deserializes to default null.
+2. empCode is transient but explicitly saved/restored in custom writeObject/readObject methods (56789 * 1000 / 1000 = 56789).
+Result: salary=85000.75, department=null, empCode=56789.`
+            },
+            {
+                qn: 12,
+                id: "6406531046689",
+                type: "MCQ",
+                marks: 5.00,
+                text: "Consider the code given below.\nAssume that, before execution of the given code, the files \"file1.txt\" and \"file2.txt\" have the following text in them:\nDear Student",
+                code: `public class FileTest {
+    public static void main(String[] args) {
+        try {
+            var out = new FileOutputStream("file1.txt", true);
+            var dout = new DataOutputStream(out);
+            dout.writeBytes(", All the best for your exam!");
+            dout.close();
+
+            var out2 = new FileOutputStream("file2.txt", false);
+            var dout2 = new DataOutputStream(out2);
+            dout2.writeBytes(", All the best for your exam!");
+            dout2.close();
+        }
+        catch(IOException e) {
+            System.out.println(e);
+        }
+    }
+}`,
+                qnSubText: "Choose the correct option regarding the contents of file1.txt and file2.txt after the program finishes execution.",
+                options: [
+                    "file1.txt:\n, All the best for your exam!\nfile2.txt:\nDear Student, All the best for your exam!",
+                    "file1.txt and file2.txt\nDear Student, All the best for your exam!",
+                    "file1.txt:\nDear Student, All the best for your exam!\nfile2.txt:\n, All the best for your exam!",
+                    "file1.txt and file2.txt\n, All the best for your exam!"
+                ],
+                correct: [2],
+                solution: `- FileOutputStream("file1.txt", true) opens in append mode, preserving "Dear Student" and appending ", All the best for your exam!".
+- FileOutputStream("file2.txt", false) opens in overwrite mode, truncating previous content and writing ", All the best for your exam!".`
+            },
+            {
+                qn: 13,
+                id: "6406531046677",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the Java code given below.",
+                code: `public class ArrayExample{
+    public <T extends Number> void addElements(T[] obj){
+        // add elements of array
+    }
+    public <T> void elementDisplay(T[] arr){
+        // Displays elements of array
+    }
+}`,
+                qnSubText: "How does class ArrayExample look after type erasure?",
+                options: [
+                    "public class ArrayExample{\n    public void addElements(Object[] obj){\n        // add elements of array\n    }\n    public void elementDisplay(Object[] arr){\n        // Displays elements of array\n    }\n}",
+                    "public class ArrayExample{\n    public void addElements(Number[] obj){\n        // add elements of array\n    }\n    public void elementDisplay(Number[] arr){\n        // Displays elements of array\n    }\n}",
+                    "public class ArrayExample{\n    public void addElements(Number[] obj){\n        // add elements of array\n    }\n    public void elementDisplay(Object[] arr){\n        // Displays elements of array\n    }\n}",
+                    "public class ArrayExample{\n    public void addElements(Object[] obj){\n        // add elements of array\n    }\n    public void elementDisplay(Number[] arr){\n        // Displays elements of array\n    }\n}"
+                ],
+                correct: [2],
+                solution: `Type erasure rules in Java generics:
+1. <T extends Number> erases to its upper bound Number[].
+2. Unbounded type parameter <T> erases to Object[].`
+            },
+            {
+                qn: 14,
+                id: "6406531046669",
+                type: "MCQ",
+                marks: 4.00,
+                text: `Match the following:\n\nA. Dynamic Lookup       I. Region of the program where a variable is available for use\nB. Activation Record     II. Stores only instance variables\nC. Scope                III. Duration/time during which a variable is available in the memory\nD. Abstraction          IV. Stores the local variables\n                        V. Choice of method implementation is determined at run-time\n                        VI. Hiding the implementation details`,
+                options: [
+                    "A-V, B-IV, C-I, D-VI",
+                    "A-VI, B-II, C-III, D-V",
+                    "A-V, B-II, C-I, D-VI",
+                    "A-VI, B-IV, C-III, D-V"
+                ],
+                correct: [0],
+                solution: `Matching definitions:
+- A. Dynamic Lookup -> V (Choice of method implementation determined at run-time)
+- B. Activation Record -> IV (Stores local variables during method execution frame)
+- C. Scope -> I (Region of program where variable is accessible)
+- D. Abstraction -> VI (Hiding implementation details)`
+            },
+            {
+                qn: 15,
+                id: "6406531046678",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the three Java files given below.",
+                code: `// Bank.java:
+package pack1;
+public class Bank {
+    public double deposit(double amount) {
+        return amount;
+    }
+    protected double withdraw(double amount) {
+        return amount;
+    }
+    private double balance(double amount) {
+        return amount;
+    }
+}
+
+// Customer.java:
+package pack2;
+import pack1.*;
+public class Customer extends Bank {
+    public void info() {
+        System.out.println("Customer info");
+    }
+}
+
+// Test.java:
+package pack1;
+import pack2.*;
+public class Test {
+    public static void main(String[] args) {
+        Bank myBank = new Customer();
+        System.out.println(myBank.deposit(1000)); // LINE 1
+        System.out.println(myBank.withdraw(500)); // LINE 2
+        System.out.println(myBank.balance(1500)); // LINE 3
+    }
+}`,
+                qnSubText: "Choose the correct option.",
+                options: [
+                    "This program generates the output:\n1000\nCustomer info\n500\n1500",
+                    "LINE 1 and LINE 2 generate compilation errors.",
+                    "LINE 1 and LINE 3 generate compilation errors.",
+                    "Only LINE 3 generates compilation error."
+                ],
+                correct: [3],
+                solution: `Access modifier rules:
+- Test and Bank are in the same package (pack1).
+- deposit() is public -> LINE 1 compiles.
+- withdraw() is protected -> Accessible within package pack1 -> LINE 2 compiles.
+- balance() is private -> Accessible only inside Bank class -> LINE 3 throws compilation error.`
+            },
+            {
+                qn: 16,
+                id: "6406531046679",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the code given below.",
+                code: `import java.util.*;
+import java.util.concurrent.*;
+class Example extends Thread{
+    private Map siMap;
+    public Example(Map m){
+        this.siMap = m;
+    }
+    public void run(){
+        siMap.put("Chennai", 4);
+    }
+}
+public class Test{
+    public static void main (String[] args) throws InterruptedException{
+        Map<String, Integer> siMap = new LinkedHashMap<String, Integer>();
+        String[] str = {"Mumbai", "Delhi", "Bangalore"};
+        Integer[] arr = {1, 2, 3};
+        for(int i = 0; i < str.length; i++){
+            siMap.put(str[i],arr[i]);
+        }
+        Example t = new Example(siMap);
+        t.start();
+        t.join();
+        Set s = siMap.entrySet();
+        Iterator itr = s.iterator();
+        while(itr.hasNext()){
+            Map.Entry m = (Map.Entry)itr.next();
+            System.out.println(m.getKey() + " => " + m.getValue());
+        }
+    }
+}`,
+                qnSubText: "Which of the following is true about the output of given code?",
+                options: [
+                    "This program may generate ConcurrentModificationException.",
+                    "This program generates the output:\nMumbai => 1\nDelhi => 2\nBangalore => 3\nChennai => 4",
+                    "This program results in a deadlock.",
+                    "This program generates the output:\nMumbai => 1\nDelhi => 2\nBangalore => 3"
+                ],
+                correct: [1],
+                solution: `t.join() blocks the main thread until worker thread t finishes execution (adding "Chennai" => 4). Iteration begins strictly after thread completion, avoiding ConcurrentModificationException.`
+            },
+            {
+                qn: 17,
+                id: "6406531046680",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the Java code given below.",
+                code: `class Printer {
+    public <T> void print(T document) {
+        System.out.println("Printing document: " + document);
+    }
+
+    public <U> void print(U image) { // LINE 1
+        System.out.println("Printing image: " + image);
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Printer printer = new Printer();
+        printer.print("Report.pdf");
+        printer.print("Landscape.png");
+    }
+}`,
+                qnSubText: "Choose the correct option.",
+                options: [
+                    "LINE 1 generates compilation error because method print() is already defined.",
+                    "This program generates output:\nPrinting document: Report.pdf\nPrinting document: Landscape.png",
+                    "This program generates output:\nPrinting image: Report.pdf\nPrinting image: Landscape.png",
+                    "This program generates output:\nPrinting document: Report.pdf\nPrinting image: Landscape.png"
+                ],
+                correct: [0],
+                solution: `Both generic methods <T> void print(T) and <U> void print(U) erase to print(Object). In Java, two methods in the same class cannot have identical erased signatures.`
+            },
+            {
+                qn: 18,
+                id: "6406531046681",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the Java code given below.",
+                code: `class Associate {
+    String name;
+    public Associate(String n) {
+        this.name = n;
+    }
+    public String toString() {
+        return "name = " + name;
+    }
+}
+class Officer extends Associate {
+    int taskCount;
+    public Officer(String n, int t) {
+        super(n);
+        taskCount = t;
+    }
+    public Officer(Officer o) {
+        super(o.name);
+        taskCount = o.taskCount;
+    }
+    public String toString() {
+        return super.toString() + ", taskCount = " + taskCount;
+    }
+}
+
+public class Organization {
+    public static void main(String args[]) {
+        Associate o1 = new Officer("Aarav", 8);
+        Associate o2 = new Officer((Officer) o1);
+        o2.name = "Kavya";
+        System.out.println(o1 + "\\n" + o2);
+    }
+}`,
+                qnSubText: "What will the output be?",
+                options: [
+                    "name = Kavya\nname = Kavya",
+                    "name = Kavya, taskCount = 8\nname = Kavya, taskCount = 8",
+                    "name = Aarav, taskCount = 8\nname = Kavya, taskCount = 8",
+                    "name = Aarav\nname = Kavya"
+                ],
+                correct: [2],
+                solution: `Copy constructor new Officer((Officer) o1) allocates a distinct instance for o2. Updating o2.name = "Kavya" leaves o1.name as "Aarav".
+Output:
+name = Aarav, taskCount = 8
+name = Kavya, taskCount = 8`
+            },
+            {
+                qn: 19,
+                id: "6406531046682",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the Java code given below in the problem statement.",
+                code: `interface Connectable {
+    void connect();
+}
+abstract class Smartwatch implements Connectable { // Line 1
+    public abstract void trackHealth();
+}
+class AppleWatch extends Smartwatch {
+    public void connect() {
+        System.out.println("Apple Watch connected");
+    }
+    public void trackHealth() {
+        System.out.println("Apple Watch tracking health");
+    }
+}
+class GalaxyWatch extends Smartwatch {
+    public void connect() {
+        System.out.println("Galaxy Watch connected");
+    }
+    public void trackHealth() {
+        System.out.println("Galaxy Watch tracking health");
+    }
+}
+public class User {
+    public static void showDetails(Smartwatch obj) { // Line 2
+        obj.connect();
+        obj.trackHealth();
+    }
+    public static void main(String[] args) {
+        showDetails(new AppleWatch());
+        showDetails(new GalaxyWatch());
+    }
+}`,
+                qnSubText: "Choose the correct option regarding the code.",
+                options: [
+                    "Compiler error at Line 2 because the method trackHealth cannot be invoked on Smartwatch object",
+                    "Compiler error at Line 2 because the method connect cannot be invoked on Smartwatch object",
+                    "The code generates the output:\nApple Watch connected\nApple Watch tracking health\nGalaxy Watch connected\nGalaxy Watch tracking health",
+                    "Compiler error at Line 1 because method connect is not defined in class Smartwatch"
+                ],
+                correct: [2],
+                solution: `Smartwatch implements Connectable, inheriting abstract connect(). Both AppleWatch and GalaxyWatch implement connect() and trackHealth(). Dynamic polymorphism resolves methods cleanly at runtime.`
+            },
+            {
+                qn: 20,
+                id: "6406531046683",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Method Stream.iterate(e, f) returns an infinite sequential ordered Stream produced by iterative application of a function f to an initial element e, producing a Stream consisting of e, f(e), f(f(e)), etc. Based on the above information, consider the code given below, and answer the question that follows.",
+                code: `import java.util.stream.Stream;
+public class Test {
+    public static void main(String[] args) {
+        Stream.iterate(1, n -> n + 1)
+              .map(n -> n * n)
+              .filter(n -> n % 2 == 0)
+              .limit(3)
+              .forEach((x) -> System.out.print(x + " "));
+    }
+}`,
+                qnSubText: "What will the output be?",
+                options: [
+                    "4 6 8",
+                    "2 4",
+                    "4 9 16",
+                    "4 16 36"
+                ],
+                correct: [3],
+                solution: `Stream pipeline evaluation:
+1. iterate: 1, 2, 3, 4, 5, 6...
+2. map(n*n): 1, 4, 9, 16, 25, 36...
+3. filter(even): 4, 16, 36...
+4. limit(3): first 3 matching elements -> 4 16 36.`
+            },
+            {
+                qn: 21,
+                id: "6406531046685",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the Java code given below.",
+                code: `interface Vehicle {
+    void startEngine();
+}
+class Garage {
+    public Car getVehicle1() {
+        return new Car();
+    }
+    public SportsCar getVehicle2() {
+        return new SportsCar();
+    }
+    private class Car implements Vehicle {
+        public void startEngine() {
+            System.out.println("Starting car engine");
+        }
+    }
+    private class SportsCar extends Car {
+        public void startEngine() {
+            System.out.println("Starting sports car engine");
+        }
+    }
+}
+public class GarageTest {
+    public static void main(String[] args) {
+        Garage g = new Garage();
+        // CODE BLOCK
+        obj1.startEngine();
+        obj2.startEngine();
+    }
+}`,
+                qnSubText: "Choose the correct option to fill in place of CODE BLOCK so that the output is:\nStarting car engine\nStarting sports car engine",
+                options: [
+                    "Car obj1 = new Car();\nSportsCar obj2 = new SportsCar();",
+                    "Vehicle obj1 = g.getVehicle1();\nVehicle obj2 = g.getVehicle2();",
+                    "Vehicle obj1 = g.getVehicle1();\nVehicle obj2 = g.getVehicle2();",
+                    "Car obj1 = g.getVehicle1();\nSportsCar obj2 = g.getVehicle2();"
+                ],
+                correct: [1],
+                solution: `Car and SportsCar are private inner classes of Garage and cannot be directly referenced or instantiated outside Garage. Accessing them via public getter methods return type interface Vehicle (g.getVehicle1(), g.getVehicle2()) works correctly.`
+            },
+            {
+                qn: 22,
+                id: "6406531046687",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Method Optional.ofNullable(T value) returns an Optional describing the specified value, if non-null, otherwise returns an empty Optional. Based on this description, consider the code given below, and answer the question that follows.",
+                code: `import java.util.*;
+class Product {
+    String name;
+    Double price;
+    // Constructor to initialize instance variables
+    Product(String name, Double price) {
+        this.name = name;
+        this.price = price;
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        var productList = new ArrayList<Product>();
+        productList.add(new Product("Laptop", 1200.00));
+        productList.add(new Product("Mouse", null));
+        for (Product product : productList) {
+            Optional<Double> optionalPrice = Optional.ofNullable(product.price);
+            optionalPrice.ifPresent(price -> System.out.println(price));
+        }
+    }
+}`,
+                qnSubText: "Choose the correct option.",
+                options: [
+                    "This program generates the output:\n1200.0\nnull",
+                    "This program generates the output:\n1200.0",
+                    "This program terminates abnormally due to NullPointerException without printing any value.",
+                    "This program terminates abnormally due to NullPointerException after printing the value:\n1200.0"
+                ],
+                correct: [1],
+                solution: `Optional.ofNullable(null) returns Optional.empty(). ifPresent() executes consumer lambda only when Optional is present, so null price is safely skipped without NPE.`
+            },
+            {
+                qn: 23,
+                id: "6406531046690",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Method Collectors.summarizingInt(mapping function) returns a Collector which applies an int-producing mapping function to each input element, and returns summary statistics, such as count, min, max, sum, and average, for the resulting values.",
+                code: `import java.util.*;
+import java.util.stream.Collectors;
+public class Main {
+    public static void main(String[] args) {
+        var list = new ArrayList<Integer>();
+        for (int i = 3; i <= 30; i += 3) {
+            list.add(i);
+        }
+        IntSummaryStatistics stat = list.stream()
+            .collect(Collectors.summarizingInt(x -> x));
+
+        System.out.println(stat.getAverage() + "\\n" +
+                           stat.getSum() + "\\n" +
+                           stat.getMax() + "\\n" +
+                           stat.getMin());
+    }
+}`,
+                qnSubText: "Choose the correct option.",
+                options: [
+                    "This program generates the output:\n16.5\n165\n30\n3",
+                    "This program generates the output:\n16\n165\n30\n3",
+                    "This program gives compile time error because a list cannot be converted to a stream.",
+                    "This program generates compile time error with the message:\nincompatible types: possible lossy conversion from double to int"
+                ],
+                correct: [0],
+                solution: `List elements: [3, 6, 9, 12, 15, 18, 21, 24, 27, 30] (count = 10).
+- Sum = 165
+- Average = 165 / 10 = 16.5
+- Max = 30
+- Min = 3`
+            },
+            {
+                qn: 24,
+                id: "6406531046691",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the Java code given below.",
+                code: `import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> l1 = new LinkedList<String>();
+        List<String> al = new ArrayList<String>();
+        al.add("kiwi");
+        al.add("papaya");
+        l1 = al; // LINE-1
+        al.remove(1);
+        System.out.println(l1);
+    }
+}`,
+                qnSubText: "What will the output be?",
+                options: [
+                    "Compiler error because objects of type ArrayList<String> and LinkedList<String> cannot be assigned to variables of type List<String>.",
+                    "Compiler error in LINE-1 because an object of type ArrayList<String> cannot be assigned to an object of type LinkedList<String>.",
+                    "This generates the output:\n[kiwi]",
+                    "This generates the output:\n[kiwi, papaya]"
+                ],
+                correct: [2],
+                solution: `Both l1 and al are references of type List<String>. l1 = al points l1 to the same ArrayList instance as al. Removing index 1 ("papaya") leaves ["kiwi"], which is printed.`
+            }
+        ];
+
+        // ==========================================================================
+        // PORTAL ENGINE CORE SCRIPT
+        // ==========================================================================
+        let currentMode = 'exam';
+        let userAnswers = {};
+        let timerInterval = null;
+        let timerSeconds = 0;
+        let isTimerRunning = true;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initPortal();
+        });
+
+        function initPortal() {
+            renderPalette();
+            renderQuestions();
+            updateScoreDisplay();
+            startTimer();
+        }
+
+        function setPortalMode(mode) {
+            currentMode = mode;
+            document.getElementById('btnExamMode').classList.toggle('active', mode === 'exam');
+            document.getElementById('btnLearningMode').classList.toggle('active', mode === 'learning');
+
+            document.querySelectorAll('.question-card').forEach(card => {
+                if (mode === 'learning') card.classList.add('learning-mode');
+                else card.classList.remove('learning-mode');
+            });
+
+            updatePaletteStatuses();
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('paletteGrid');
+            grid.innerHTML = '';
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.createElement('button');
+                btn.className = 'palette-btn';
+                btn.id = `paletteBtn_${q.qn}`;
+                btn.textContent = q.qn;
+                btn.onclick = () => scrollToQuestion(q.qn);
+                grid.appendChild(btn);
+            });
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            let html = '';
+
+            QUESTIONS_DATA.forEach((q) => {
+                html += `
+                <article class="qn-card" id="qnCard_${q.qn}">
+                    <div class="qn-header-container">
+                        <div class="qn-header-top">
+                            <div class="qn-title-main">
+                                Question ${q.qn} : ${q.id}
+                            </div>
+                            <button class="btn-solution-pill" onclick="toggleSolution(${q.qn})">
+                                <i class="fa-regular fa-circle-check"></i> View Solutions (0)
+                            </button>
+                        </div>
+                        <div class="qn-header-sub">
+                            <span class="qn-id-tag">Question ${q.qn} : ${q.id}</span>
+                            <span class="qn-meta-info">Total Mark : ${q.marks.toFixed(2)} | Type : ${q.type}</span>
+                        </div>
+                    </div>
+
+                    <div class="qn-text">${q.text ? q.text.replace(/\\n/g, '<br>').replace(/\n/g, '<br>') : ''}</div>
+
+                    ${q.code ? `
+                    <div class="code-snippet-wrap">
+                        <code>${escapeHtml(q.code)}</code>
+                    </div>` : ''}
+
+                    ${q.qnSubText ? `<div class="qn-text" style="margin-top:0.85rem;">${q.qnSubText.replace(/\\n/g, '<br>').replace(/\n/g, '<br>')}</div>` : ''}
+
+                    <!-- Options / Inputs -->
+                    ${renderQuestionInputs(q)}
+
+                    <!-- Footer Action Toolbar -->
+                    <div class="qn-footer-toolbar">
+                        <div class="qn-actions-group">
+                            <button class="btn-action-pill btn-discuss" onclick="alert('Discussion forum loading...')"><i class="fa-regular fa-comments"></i> Discussions (0)</button>
+                            <button class="btn-action-pill btn-correct" onclick="alert('Correction reported. Thank you!')"><i class="fa-regular fa-pen-to-square"></i> Suggest Correction</button>
+                            <button class="btn-action-pill btn-broken" onclick="alert('Format flag recorded.')"><i class="fa-solid fa-wrench"></i> Broken Format?</button>
+                        </div>
+                    </div>
+
+                    <!-- Solution Accordion -->
+                    <div class="solution-box ${currentMode === 'learning' ? 'open' : ''}" id="solution_${q.qn}">
+                        <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution & Code Trace</div>
+                        <div class="solution-text">${q.solution ? q.solution.replace(/\\n/g, '<br>').replace(/\n/g, '<br>') : ''}</div>
+                    </div>
+                </article>
+                `;
+
+                if (q.qn === 6 || q.qn === 15) {
+                    html += `
+                    <div class="ad-banner-box">
+                        <span class="ad-tag">ADVERTISEMENT</span>
+                        <div class="ad-actions">
+                            <button class="btn-remove-ads" onclick="alert('Ad-free experience enabled.')"><i class="fa-solid fa-bolt"></i> Remove Ads</button>
+                            <button class="btn-close-ad" onclick="this.parentElement.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    `;
+                }
+            });
+
+            container.innerHTML = html;
+            updatePaletteStatuses();
+        }
+
+        function renderQuestionInputs(q) {
+            const isMSQ = q.type === 'MSQ';
+            const userArr = userAnswers[q.qn] || [];
+
+            return `
+            <div class="options-list">
+                ${q.options.map((optText, idx) => {
+                    const isChecked = userArr.includes(idx);
+                    const isCorrect = q.correct.includes(idx);
+                    let highlightClass = '';
+
+                    if (isChecked) highlightClass = 'selected';
+
+                    if (currentMode === 'learning') {
+                        if (isCorrect) highlightClass = 'correct-highlight';
+                        else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                    }
+
+                    const cleanOptText = (optText || '').replace(/\\n/g, '\n');
+                    const isMultiLine = cleanOptText.includes('\n');
+
+                    return `
+                    <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <span class="option-text">${isMultiLine ? `<pre style="margin:0; font-family:var(--font-mono); font-size:0.9rem; line-height:1.5;"><code>${escapeHtml(cleanOptText)}</code></pre>` : escapeHtml(cleanOptText)}</span>
+                    </label>
+                    `;
+                }).join('')}
+            </div>
+            `;
+        }
+
+        function handleOptionSelect(qnNum, optIdx, qnType) {
+            if (qnType === 'MCQ') {
+                userAnswers[qnNum] = [optIdx];
+            } else if (qnType === 'MSQ') {
+                if (!userAnswers[qnNum]) userAnswers[qnNum] = [];
+                const pos = userAnswers[qnNum].indexOf(optIdx);
+                if (pos >= 0) userAnswers[qnNum].splice(pos, 1);
+                else userAnswers[qnNum].push(optIdx);
+            }
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function calculateQuestionScore(q) {
+            const userAns = userAnswers[q.qn];
+            if (!userAns || !Array.isArray(userAns) || userAns.length === 0) return "0.00";
+
+            if (q.type === 'MCQ') {
+                return (userAns[0] === q.correct[0]) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            if (q.type === 'MSQ') {
+                const sortedUser = [...userAns].sort().join(',');
+                const sortedCorrect = [...q.correct].sort().join(',');
+                return (sortedUser === sortedCorrect) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            return "0.00";
+        }
+
+        function updateScoreDisplay() {
+            let total = 0;
+            let answeredCount = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const score = parseFloat(calculateQuestionScore(q));
+                total += score;
+
+                const ans = userAnswers[q.qn];
+                if (ans && Array.isArray(ans) && ans.length > 0) {
+                    answeredCount++;
+                }
+            });
+
+            document.getElementById('liveScoreDisplay').textContent = `${total.toFixed(2)} / 100.00`;
+            const pct = ((total / 100) * 100).toFixed(1);
+            document.getElementById('livePercentDisplay').textContent = `(${pct}%)`;
+            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/${QUESTIONS_DATA.length}`;
+        }
+
+        function updatePaletteStatuses() {
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.getElementById(`paletteBtn_${q.qn}`);
+                if (!btn) return;
+
+                btn.className = 'palette-btn';
+
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && Array.isArray(ans) && ans.length > 0;
+
+                if (hasAns) {
+                    btn.classList.add('answered');
+                    if (currentMode === 'learning') {
+                        const score = parseFloat(calculateQuestionScore(q));
+                        if (score > 0) btn.classList.add('correct');
+                        else btn.classList.add('incorrect');
+                    }
+                }
+            });
+        }
+
+        function toggleSolution(qnNum) {
+            const box = document.getElementById(`solution_${qnNum}`);
+            if (box) box.classList.toggle('open');
+        }
+
+        function scrollToQuestion(qnNum) {
+            const card = document.getElementById(`qnCard_${qnNum}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                document.querySelectorAll('.palette-btn').forEach(b => b.classList.remove('active-qn'));
+                const btn = document.getElementById(`paletteBtn_${qnNum}`);
+                if (btn) btn.classList.add('active-qn');
+            }
+        }
+
+        // Timer Logic
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (isTimerRunning) {
+                    timerSeconds++;
+                    updateTimerUI();
+                }
+            }, 1000);
+        }
+
+        function toggleTimer() {
+            isTimerRunning = !isTimerRunning;
+            const btn = document.getElementById('btnPauseTimer');
+            if (btn) btn.innerHTML = isTimerRunning ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+        }
+
+        function resetTimer() {
+            timerSeconds = 0;
+            updateTimerUI();
+        }
+
+        function updateTimerUI() {
+            const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const secs = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+        }
+
+        // Exam Submission & Modals
+        function submitExam() {
+            setPortalMode('learning');
+
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+            let totalScore = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && Array.isArray(ans) && ans.length > 0;
+
+                if (!hasAns) {
+                    unansweredCount++;
+                } else {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    totalScore += score;
+                    if (score > 0) correctCount++;
+                    else incorrectCount++;
+                }
+            });
+
+            document.getElementById('modalScoreText').textContent = `${totalScore.toFixed(2)} / 100.00`;
+            document.getElementById('modalPercentText').textContent = `${((totalScore / 100) * 100).toFixed(1)}% Accuracy`;
+            document.getElementById('modalCorrectCount').textContent = correctCount;
+            document.getElementById('modalIncorrectCount').textContent = incorrectCount;
+            document.getElementById('modalUnansweredCount').textContent = unansweredCount;
+
+            document.getElementById('resultModal').classList.add('active');
+        }
+
+        function resetExam() {
+            userAnswers = {};
+            resetTimer();
+            closeResultModal();
+            setPortalMode('learning');
+        }
+
+        function openSummaryModal() {
+            document.getElementById('summaryModal').classList.add('active');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.remove('active');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.remove('active');
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('portalSidebar');
+            const toggleBtn = document.getElementById('mobileSidebarToggle');
+            if (sidebar && toggleBtn) {
+                sidebar.classList.toggle('open');
+                toggleBtn.classList.toggle('active');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const fab = document.getElementById('fabBackToTop');
+            if (fab) {
+                if (window.scrollY > 300) fab.classList.add('visible');
+                else fab.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+
+</html>

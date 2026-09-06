@@ -406,23 +406,42 @@
     font-weight: 500;
 }
 
-/* Code Snippet Wrapper */
-.code-snippet-wrap {
+/* Code Snippet & Java Code Block Styling */
+.code-snippet-wrap,
+.code-block {
     background: #0f172a;
     color: #f8fafc;
-    border-radius: var(--radius-md);
-    padding: 1rem 1.25rem;
-    font-family: var(--font-mono);
-    font-size: 0.92rem;
-    line-height: 1.6;
+    border-radius: var(--radius-lg, 12px);
+    padding: 1.25rem 1.5rem;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, 'Courier New', monospace;
+    font-size: 0.93rem;
+    line-height: 1.65;
     overflow-x: auto;
+    margin-top: 0.75rem;
     margin-bottom: 1.25rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.15);
+    tab-size: 4;
+    -moz-tab-size: 4;
 }
 
-.code-snippet-wrap code {
+[data-theme="light"] .code-snippet-wrap,
+[data-theme="light"] .code-block {
+    background: #f8fafc;
+    color: #0f172a;
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.code-snippet-wrap code,
+.code-block code {
     font-family: inherit;
+    font-size: inherit;
+    color: inherit;
     white-space: pre;
+    background: transparent;
+    padding: 0;
+    border: none;
 }
 
 /* Option List & Quiz Option Cards */
