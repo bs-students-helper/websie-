@@ -16,8 +16,11 @@
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
     <!-- FontAwesome Non-Blocking Asynchronous Load -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../../assets/icons/favicon.ico">
@@ -93,7 +96,8 @@
                     </div>
                     <div class="exam-info-row">
                         <span class="exam-info-label">QP :</span>
-                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">2024 Apr28: IIT M AN EXAM QDF3</span>
+                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">2024 Apr28: IIT M AN
+                            EXAM QDF3</span>
                     </div>
                 </div>
 
@@ -101,8 +105,10 @@
                 <div>
                     <div class="menu-heading">Portal Mode</div>
                     <div class="mode-toggle-group">
-                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam Mode</button>
-                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning Mode</button>
+                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam
+                            Mode</button>
+                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning
+                            Mode</button>
                     </div>
                 </div>
 
@@ -150,7 +156,9 @@
                         <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
                     </button>
                     <div class="score-card" style="margin-top:1rem;">
-                        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">YOUR SCORE</span>
+                        <span
+                            style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">YOUR
+                            SCORE</span>
                         <div class="score-num" id="liveScoreDisplay">0.00 / 100.00</div>
                         <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);"
                             id="livePercentDisplay">(0.0%)</span>
@@ -199,7 +207,8 @@
                     <td style="padding:0.6rem;">18.00</td>
                 </tr>
             </table>
-            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close Summary</button>
+            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close
+                Summary</button>
         </div>
     </div>
 
@@ -211,7 +220,8 @@
                 <i class="fa-solid fa-trophy"></i>
             </div>
             <h2 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Exam Submitted!</h2>
-            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for MAD2 End Term Quiz (28 Apr 2024 AN)</p>
+            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for MAD2 End Term
+                Quiz (28 Apr 2024 AN)</p>
 
             <div
                 style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
@@ -219,7 +229,8 @@
                     Final Score</div>
                 <div style="font-family:var(--font-mono); font-size:2.8rem; font-weight:800; color:var(--accent-green);"
                     id="modalScoreText">0.00 / 100.00</div>
-                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0% Accuracy
+                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0%
+                    Accuracy
                 </div>
             </div>
 
@@ -437,7 +448,7 @@ console.log('End of script');`,
 </body> 
 
 index2.html:
-<body>
+<body> 
     <div id="app">
         <h1 v-show="final">Hello am I visible?</h1>
     </div>
@@ -1278,27 +1289,27 @@ new Vue({
             return `
             <div class="options-list">
                 ${q.options.map((optText, idx) => {
-                    const isChecked = userArr.includes(idx);
-                    const isCorrect = q.correct.includes(idx);
-                    let highlightClass = '';
+                const isChecked = userArr.includes(idx);
+                const isCorrect = q.correct.includes(idx);
+                let highlightClass = '';
 
-                    if (isChecked) highlightClass = 'selected';
+                if (isChecked) highlightClass = 'selected';
 
-                    if (currentMode === 'learning') {
-                        if (isCorrect) highlightClass = 'correct-highlight';
-                        else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
-                    }
+                if (currentMode === 'learning') {
+                    if (isCorrect) highlightClass = 'correct-highlight';
+                    else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                }
 
-                    const cleanOptText = (optText || '').replace(/\\n/g, '\n');
-                    const isMultiLine = cleanOptText.includes('\n');
+                const cleanOptText = (optText || '').replace(/\\n/g, '\n');
+                const isMultiLine = cleanOptText.includes('\n');
 
-                    return `
+                return `
                     <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
                         <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
                         <span class="option-text">${isMultiLine ? `<pre style="margin:0; font-family:var(--font-mono); font-size:0.9rem; line-height:1.5;"><code>${escapeHtml(cleanOptText)}</code></pre>` : escapeHtml(cleanOptText)}</span>
                     </label>
                     `;
-                }).join('')}
+            }).join('')}
             </div>
             `;
         }
