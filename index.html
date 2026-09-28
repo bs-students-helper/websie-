@@ -37,14 +37,14 @@
         content="BSH (BS Students Helper) is the premier student-driven portal for IIT Madras BS in Data Science & Applications. Access quiz practice engines, SEC grade calculators, and previous year questions.">
     <meta property="og:url" content="https://bsstudentshelper.vercel.app/">
     <meta property="og:site_name" content="BS Students Helper">
-    <meta property="og:image" content="https://bsstudentshelper.vercel.app/assets/images/logo.png">
+    <meta property="og:image" content="https://bsstudentshelper.vercel.app/assets/images/logo.webp">
 
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="BSH - IIT Madras BS Students | Quiz Practice & SEC Grade Calculator">
     <meta name="twitter:description"
         content="BSH (BS Students Helper) is the premier student-driven portal for IIT Madras BS in Data Science & Applications. Access quiz practice engines, SEC grade calculators, and previous year questions.">
-    <meta name="twitter:image" content="https://bsstudentshelper.vercel.app/assets/images/logo.png">
+    <meta name="twitter:image" content="https://bsstudentshelper.vercel.app/assets/images/logo.webp">
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -146,7 +146,7 @@
           "@id": "https://bsstudentshelper.vercel.app/#organization",
           "name": "BSH - BS Students Helper",
           "url": "https://bsstudentshelper.vercel.app/",
-          "logo": "https://bsstudentshelper.vercel.app/assets/images/logo.png",
+          "logo": "https://bsstudentshelper.vercel.app/assets/images/logo.webp",
           "description": "Community portal providing grade calculators, quiz practice engines, and study resources for IIT Madras BS students."
         },
         {
@@ -266,51 +266,7 @@
     </div> -->
 
     <!-- Navigation Header -->
-    <header class="site-header" id="header">
-        <div class="header-container">
-            <!-- BSH Brand Logo -->
-            <a href="index.html" class="brand-logo" aria-label="BSH Homepage">
-                <img src="assets/images/logo.webp" alt="BSH - Portal for IIT Madras BS Students" class="logo-img"
-                    width="160" height="58">
-            </a>
-
-            <!-- Navigation Links & Mobile Menu Drawer -->
-            <nav class="nav-menu" id="navMenu">
-                <a href="#features" class="nav-link">Features</a>
-                <a href="quiz_practice.html" class="nav-link">Quiz Practice</a>
-                <a href="oppe/" class="nav-link">OPPE Lab</a>
-                <a href="calculator.html" class="nav-link">SEC Calculator</a>
-                <a href="about.html" class="nav-link">About Us</a>
-                <a href="#reviews" class="nav-link">Reviews</a>
-                <a href="contact_us.html" class="nav-link">Feedback</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <div class="mobile-menu-actions">
-                    <a href="quiz_practice.html" class="btn btn-secondary btn-full">Practice Quiz</a>
-                    <a href="oppe/" class="btn btn-outline btn-full">OPPE Practice Lab</a>
-                    <a href="calculator.html" class="btn btn-primary btn-full">Calculate SEC Grade</a>
-                </div>
-            </nav>
-
-            <!-- Desktop Header Actions -->
-            <div class="header-actions">
-                <a href="quiz_practice.html" class="btn btn-outline nav-btn-desktop">
-                    <i class="fa-solid fa-gamepad"></i>
-                    <span>Practice Quiz</span>
-                </a>
-                <a href="calculator.html" class="btn btn-primary nav-btn-desktop">
-                    <span>Calculate SEC Grade</span>
-                    <i class="fa-solid fa-calculator"></i>
-                </a>
-                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Light/Dark Theme"
-                    title="Toggle Theme">
-                    <i class="fa-solid fa-moon"></i>
-                </button>
-                <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </header>
+    <header class="site-header" id="header" data-active-page="home"></header>
 
     <main>
         <!-- Hero Section -->
@@ -432,241 +388,117 @@
             </div>
         </section>
 
-        <!-- Interactive Quiz Teaser Section -->
-        <section class="section quiz-section" id="quiz-preview">
-            <div class="container">
-                <div class="section-header text-center">
-                    <div class="pill-badge mb-3">
-                        <i class="fa-solid fa-gamepad"></i> INTERACTIVE PRACTICE ENGINE
-                    </div>
-                    <h2 class="section-title">Test Your IITM BS Prep Right Now</h2>
-                    <p class="section-subtitle">
-                        Experience our high-speed quiz interface designed with authentic IIT Madras BS question
-                        patterns, instant timer tracking, detailed step-by-step hints, and mathematical explanations.
-                    </p>
-                </div>
 
-                <div class="quiz-container">
-                    <div class="quiz-card">
-                        <div class="quiz-card-header">
-                            <span class="live-indicator">🔴 Demo Mode</span>
-                            <div class="subject-tag">
-                                <i class="fa-solid fa-square-root-variable"></i>
-                                <span id="quizSubject">Mathematics for Data Science I</span>
-                            </div>
-                            <div class="quiz-timer">
-                                <i class="fa-regular fa-clock"></i>
-                                <span id="quizTime">01:45</span>
-                            </div>
-                        </div>
 
-                        <div class="quiz-progress-line">
-                            <div class="quiz-progress-fill" id="quizProgressBar" style="width: 33%;"></div>
-                        </div>
-
-                        <div class="quiz-body">
-                            <div class="quiz-step-indicator">Question <span id="quizCurrentStep">1</span> of 3</div>
-                            <h3 class="quiz-question-text" id="quizQuestion">
-                                Given a random variable $X$ representing student test scores with mean $\mu = 75$ and
-                                standard deviation $\sigma = 10$, what is the Z-score for a student scoring 95?
-                            </h3>
-
-                            <div class="quiz-options-list" id="quizOptions">
-                                <!-- Options will be populated via JS -->
-                            </div>
-
-                            <div class="quiz-feedback-box hidden" id="quizFeedback">
-                                <div class="feedback-icon" id="feedbackIcon"></div>
-                                <div class="feedback-content">
-                                    <div class="feedback-title" id="feedbackTitle"></div>
-                                    <div class="feedback-text" id="feedbackText"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="quiz-card-footer">
-                            <button class="btn btn-outline" id="quizHintBtn">
-                                <i class="fa-regular fa-lightbulb"></i> Show Formula Hint
-                            </button>
-                            <button class="btn btn-primary" id="quizNextBtn" disabled>
-                                <span>Submit Answer</span>
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Formula Hint Popover -->
-                    <div class="hint-card hidden" id="hintCard">
-                        <div class="hint-header">
-                            <i class="fa-solid fa-circle-info"></i> Formula & Concept Hint
-                        </div>
-                        <p class="hint-body" id="hintText">
-                            $Z = \frac{X - \mu}{\sigma}$. Substitute $X = 95$, $\mu = 75$, $\sigma = 10$.
-                        </p>
-                    </div>
-                </div>
+        <!-- All-in-One 3D Learning Hub Section -->
+        <section class="section learning-hub-section" id="features">
+            <!-- Background Voxel Decorative Elements -->
+            <div class="hub-bg-decorations" aria-hidden="true">
+                <div class="hub-bg-blob blob-1"></div>
+                <div class="hub-bg-blob blob-2"></div>
             </div>
-        </section>
 
-        <!-- Interactive SEC Grade Estimator Section -->
-        <section class="section calculator-section" id="grade-calculator">
-            <div class="container">
+            <div class="container relative-container">
                 <div class="section-header text-center">
                     <div class="pill-badge mb-3">
-                        <i class="fa-solid fa-calculator"></i> REAL-TIME GRADE ANALYTICS
+                        <i class="fa-solid fa-sparkles"></i> All-in-One Learning Companion
                     </div>
-                    <h2 class="section-title">IITM BS SEC Grade Predictor</h2>
+                    <h2 class="section-title">Everything You Need,<br><span class="title-highlight">In One Place.</span></h2>
                     <p class="section-subtitle">
-                        Stop guessing your final course grade. Adjust your Weekly Assignment averages, Quiz 1, Quiz 2,
-                        and expected End Term scores to see your live estimated Subject Grade (S, A, B, C, D, E, F).
+                        Practice quizzes, calculate your grades, explore labs, and more — built by an IITM BS student, for IITM BS students.
                     </p>
                 </div>
 
-                <div class="calculator-grid">
-                    <!-- Controls Column -->
-                    <div class="calc-card calc-controls-card">
-                        <h3 class="calc-card-title">Input Your Course Scores</h3>
-
-                        <div class="slider-group">
-                            <div class="slider-header">
-                                <label for="assignmentScore">Weekly GA Average (Best 10 of 12)</label>
-                                <span class="slider-value" id="valAssignment">90 / 100</span>
+                <div class="learning-hub-container">
+                    <!-- Hub Grid Cards Layout -->
+                    <div class="hub-grid">
+                        <!-- SVG Dotted Connectors (Desktop Visual Flow) -->
+                        <svg class="hub-svg-connectors" viewBox="0 0 1000 500" preserveAspectRatio="none">
+                            <defs>
+                                <marker id="arrow-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+                                    <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#D9532F" />
+                                </marker>
+                                <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+                                    <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#2E7D32" />
+                                </marker>
+                                <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+                                    <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#2563EB" />
+                                </marker>
+                                <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+                                    <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#7C3AED" />
+                                </marker>
+                            </defs>
+                            <!-- Dotted Curved Connectors from Center Logo to Cards -->
+                            <path d="M 480 220 Q 360 120 332 120" stroke="#D9532F" stroke-width="2.5" stroke-dasharray="6 6" fill="none" marker-end="url(#arrow-orange)" />
+                            <path d="M 520 220 Q 640 120 668 120" stroke="#2E7D32" stroke-width="2.5" stroke-dasharray="6 6" fill="none" marker-end="url(#arrow-green)" />
+                            <path d="M 480 280 Q 360 380 332 380" stroke="#2563EB" stroke-width="2.5" stroke-dasharray="6 6" fill="none" marker-end="url(#arrow-blue)" />
+                            <path d="M 520 280 Q 640 380 668 380" stroke="#7C3AED" stroke-width="2.5" stroke-dasharray="6 6" fill="none" marker-end="url(#arrow-purple)" />
+                        </svg>
+                        <!-- Card 01: Quiz Practice -->
+                        <a href="quiz_practice.html" class="hub-card card-orange">
+                            <span class="card-badge badge-orange">01</span>
+                            <div class="hub-card-icon-wrapper">
+                                <img src="assets/images/intro/quiz_practice.webp" alt="Quiz Practice 3D Graphic" class="hub-3d-img">
                             </div>
-                            <input type="range" id="assignmentScore" min="0" max="100" value="90" class="range-slider">
+                            <div class="hub-card-content">
+                                <h3 class="hub-card-title">Quiz Practice</h3>
+                                <p class="hub-card-desc">Practice quizzes, PYQs and chapter-wise questions.</p>
+                                <span class="hub-card-btn btn-orange">
+                                    Start Practicing <i class="fa-solid fa-arrow-right"></i>
+                                </span>
+                            </div>
+                        </a>
+
+                        <!-- Card 02: Grade Calculator -->
+                        <a href="calculator.html" class="hub-card card-green">
+                            <span class="card-badge badge-green">02</span>
+                            <div class="hub-card-icon-wrapper">
+                                <img src="assets/images/intro/calculator.webp" alt="Grade Calculator 3D Graphic" class="hub-3d-img">
+                            </div>
+                            <div class="hub-card-content">
+                                <h3 class="hub-card-title">Grade Calculator</h3>
+                                <p class="hub-card-desc">Calculate your SEC grade, GPA and CGPA easily.</p>
+                                <span class="hub-card-btn btn-green">
+                                    Open Calculator <i class="fa-solid fa-arrow-right"></i>
+                                </span>
+                            </div>
+                        </a>
+
+                        <!-- Center Floating BSH 3D Island -->
+                        <div class="hub-center-logo-box">
+                            <div class="center-logo-glow"></div>
+                            <img src="assets/images/intro/center_logo.webp" alt="BSH 3D Island Logo" class="hub-center-3d-img">
                         </div>
 
-                        <div class="slider-group">
-                            <div class="slider-header">
-                                <label for="quiz1Score">Quiz 1 Score (Weight: 20%)</label>
-                                <span class="slider-value" id="valQuiz1">82 / 100</span>
+                        <!-- Card 03: OPPE & Lab Practice -->
+                        <a href="oppe_practice.html" class="hub-card card-blue">
+                            <span class="card-badge badge-blue">03</span>
+                            <div class="hub-card-icon-wrapper">
+                                <img src="assets/images/intro/oppelab.webp" alt="OPPE & Lab Practice 3D Graphic" class="hub-3d-img">
                             </div>
-                            <input type="range" id="quiz1Score" min="0" max="100" value="82" class="range-slider">
-                        </div>
-
-                        <div class="slider-group">
-                            <div class="slider-header">
-                                <label for="quiz2Score">Quiz 2 Score (Weight: 30%)</label>
-                                <span class="slider-value" id="valQuiz2">75 / 100</span>
+                            <div class="hub-card-content">
+                                <h3 class="hub-card-title">OPPE & Lab Practice</h3>
+                                <p class="hub-card-desc">Practice OPPE questions, lab tasks and solutions.</p>
+                                <span class="hub-card-btn btn-blue">
+                                    Explore Labs <i class="fa-solid fa-arrow-right"></i>
+                                </span>
                             </div>
-                            <input type="range" id="quiz2Score" min="0" max="100" value="75" class="range-slider">
-                        </div>
+                        </a>
 
-                        <div class="slider-group">
-                            <div class="slider-header">
-                                <label for="endtermScore">Expected End-Term Exam (Weight: 40%)</label>
-                                <span class="slider-value" id="valEndterm">85 / 100</span>
+                        <!-- Card 04: Study Resources -->
+                        <a href="quiz_practice.html" class="hub-card card-purple">
+                            <span class="card-badge badge-purple">04</span>
+                            <div class="hub-card-icon-wrapper">
+                                <img src="assets/images/intro/resource.webp" alt="Study Resources 3D Graphic" class="hub-3d-img">
                             </div>
-                            <input type="range" id="endtermScore" min="0" max="100" value="85" class="range-slider">
-                        </div>
-                    </div>
-
-                    <!-- Output Result Column -->
-                    <div class="calc-card calc-result-card">
-                        <div class="result-badge">LATEST CALCULATION</div>
-                        <div class="grade-circle-container">
-                            <svg viewBox="0 0 100 100" class="grade-ring-svg">
-                                <circle class="ring-bg" cx="50" cy="50" r="42"></circle>
-                                <circle class="ring-fill" id="gradeRing" cx="50" cy="50" r="42" stroke-dasharray="264"
-                                    stroke-dashoffset="40"></circle>
-                            </svg>
-                            <div class="grade-center-text">
-                                <span class="predicted-grade" id="gradeLetter">S</span>
-                                <span class="grade-label">Grade</span>
+                            <div class="hub-card-content">
+                                <h3 class="hub-card-title">Study Resources</h3>
+                                <p class="hub-card-desc">Notes, important topics, PYQ archives and more.</p>
+                                <span class="hub-card-btn btn-purple">
+                                    View Resources <i class="fa-solid fa-arrow-right"></i>
+                                </span>
                             </div>
-                        </div>
-
-                        <div class="result-breakdown">
-                            <div class="breakdown-row">
-                                <span>Total Weighted Score:</span>
-                                <strong id="totalScore">83.4 / 100</strong>
-                            </div>
-                            <div class="breakdown-row">
-                                <span>Passing Threshold Status:</span>
-                                <strong class="text-success"><i class="fa-solid fa-circle-check"></i> Eligible for
-                                    Grading</strong>
-                            </div>
-                            <div class="breakdown-row">
-                                <span>Estimated Course Credits:</span>
-                                <strong>4 Credits</strong>
-                            </div>
-                        </div>
-
-                        <div class="sec-formula-box">
-                            <i class="fa-solid fa-circle-info"></i>
-                            <span>Formula: <code>T = 0.1(GA) + max(0.6Q1+0.4ET, 0.2Q1+0.3Q2+0.4ET, ...)</code></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Showcase Section -->
-        <section class="section features-section" id="features">
-            <div class="container">
-                <div class="section-header text-center">
-                    <div class="pill-badge mb-3">
-                        <i class="fa-solid fa-layer-group"></i> PLATFORM CAPABILITIES
-                    </div>
-                    <h2 class="section-title">Everything You Need to Excel at IITM BS</h2>
-                    <p class="section-subtitle">
-                        Built from the ground up by fellow students who experienced the rigor of foundational and
-                        diploma courses.
-                    </p>
-                </div>
-
-                <div class="features-grid">
-                    <a href="quiz_practice.html" class="feature-card clickable-card">
-                        <div class="feature-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
-                        <h3 class="feature-title">Adaptive Quiz Practice Engine</h3>
-                        <p class="feature-desc">Searchable term-wise archive of solved past quiz papers, mock tests, and
-                            graded assignment solutions with verified keys.</p>
-                        <span class="feature-tag">Practice Now <i class="fa-solid fa-arrow-right"></i></span>
-                    </a>
-
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="fa-solid fa-calculator"></i></div>
-                        <h3 class="feature-title">SEC & CGPA Predictor</h3>
-                        <p class="feature-desc">Calculate your course scores using exact IITM BS grading policy formulas
-                            to set your target End-Term preparation strategy.</p>
-                        <a href="calculator.html" class="feature-tag">Updated Term 2 Formula</a>
-                    </div>
-
-                    <div class="feature-card clickable-card" data-coming-soon="PYQ Vault & Solved Papers"
-                        onclick="openComingSoonDirect('PYQ Vault & Solved Papers', event)">
-                        <div class="feature-icon"><i class="fa-solid fa-vault"></i></div>
-                        <h3 class="feature-title">Previous Year Question Vault</h3>
-                        <p class="feature-desc">Searchable term-wise archive of solved past quiz papers, mock tests, and
-                            graded assignment solutions with verified keys.</p>
-                        <span class="feature-tag tag-coming-soon">Launching Soon <i
-                                class="fa-solid fa-arrow-right"></i></span>
-                    </div>
-
-                    <div class="feature-card clickable-card" data-coming-soon="Peer Notes & Formula Sheets"
-                        onclick="openComingSoonDirect('Peer Notes & Formula Sheets', event)">
-                        <div class="feature-icon"><i class="fa-solid fa-book-open"></i></div>
-                        <h3 class="feature-title">Peer Notes & Formula Sheets</h3>
-                        <p class="feature-desc">High-yield summary cheatsheets for Maths, Stats, Computational Thinking,
-                            Python, and Machine Learning created by top achievers.</p>
-                        <span class="feature-tag tag-coming-soon">Launching Soon <i
-                                class="fa-solid fa-arrow-right"></i></span>
-                    </div>
-
-                    <div class="feature-card clickable-card" data-coming-soon="IITM BS Student Discord & Study Hub"
-                        onclick="openComingSoonDirect('IITM BS Student Discord & Study Hub', event)">
-                        <div class="feature-icon"><i class="fa-solid fa-users"></i></div>
-                        <h3 class="feature-title">Discord & Study Group Hub</h3>
-                        <p class="feature-desc">Connect with course study partners, find assignment discussion threads,
-                            and ask doubt clearing questions in real time.</p>
-                        <span class="feature-tag tag-coming-soon">Joining Soon <i
-                                class="fa-solid fa-arrow-right"></i></span>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                        <h3 class="feature-title">100% Free & Open Access</h3>
-                        <p class="feature-desc">No subscriptions, no paywalls. Built as a pure student helper initiative
-                            to make IITM BS learning accessible and collaborative.</p>
-                        <div class="feature-tag">Student First</div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -928,70 +760,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="site-footer">
-        <div class="container footer-container">
-            <div class="footer-brand">
-                <a href="index.html" class="brand-logo footer-logo" aria-label="BSH Homepage">
-                    <img src="assets/images/logo.webp" alt="BSH - Portal for IIT Madras BS Students"
-                        class="logo-img-footer" width="160" height="58">
-                </a>
-                <p class="footer-desc">
-                    The open, student-driven academic companion for IIT Madras BS in Data Science & Electronic Systems.
-                </p>
-                <div class="social-links">
-                    <a href="#" data-coming-soon="BSH Discord Community" aria-label="Discord"><i
-                            class="fa-brands fa-discord"></i></a>
-                    <a href="#" data-coming-soon="BSH GitHub Repository" aria-label="GitHub"><i
-                            class="fa-brands fa-github"></i></a>
-                    <a href="#" data-coming-soon="BSH LinkedIn Network" aria-label="LinkedIn"><i
-                            class="fa-brands fa-linkedin"></i></a>
-                    <a href="#" data-coming-soon="BSH YouTube Tutorials" aria-label="YouTube"><i
-                            class="fa-brands fa-youtube"></i></a>
-                </div>
-            </div>
-
-            <div class="footer-links-group">
-                <div class="footer-col">
-                    <h3 class="footer-heading">Quick Navigation</h3>
-                    <ul>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="quiz_practice.html">Quiz Engine</a></li>
-                        <li><a href="calculator.html">SEC Predictor</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="#reviews">Reviews</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h3 class="footer-heading">Core Courses</h3>
-                    <ul>
-                        <li><a href="pyq_practice.html">Mathematics 1 & 2</a></li>
-                        <li><a href="pyq_practice.html">Statistics 1 & 2</a></li>
-                        <li><a href="pyq_practice.html">Computational Thinking</a></li>
-                        <li><a href="pyq_practice.html">Python Programming</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h3 class="footer-heading">Community & Support</h3>
-                    <ul>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="contact_us.html">Submit Feedback</a></li>
-                        <li><a href="#" data-coming-soon="Official BSH Discord Server">Discord Server</a></li>
-                        <li><a href="#" data-coming-soon="BSH Open Source GitHub Repo">Open Source Repo</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-bottom text-center">
-            <div class="container">
-                <p>&copy; 2026 BSH (BS Students Helper). Built with passion for IITM BS Students.</p>
-                <p class="disclaimer-text">Disclaimer: BSH is an independent student community initiative and is not
-                    officially affiliated with or endorsed by IIT Madras.</p>
-            </div>
-        </div>
-    </footer>
+    <footer class="site-footer"></footer>
     <div class="modal-overlay" id="reviewModal">
         <div class="modal-card">
             <div class="modal-header">
@@ -1029,6 +798,7 @@
 
 
     <!-- JavaScript -->
+    <script src="assets/js/components.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 

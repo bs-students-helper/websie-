@@ -715,3 +715,295 @@
     background: #12151E;
     border-color: rgba(255, 255, 255, 0.14);
 }
+
+/* --------------------------------------------------------------------------
+   10. CGPA & Term GPA Predictor Styles (Matching Exact Project Mockup)
+   -------------------------------------------------------------------------- */
+.prior-record-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.prior-record-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.prior-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.prior-input {
+    width: 100%;
+    height: 48px;
+    padding: 10px 18px;
+    background: #FFF9F5;
+    border: 1.5px solid #E6DDD5;
+    border-radius: 14px;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+    font-weight: 600;
+    outline: none;
+    transition: all var(--transition-fast);
+}
+
+.prior-input:focus {
+    border-color: var(--accent-indigo);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.semester-section-header {
+    border-bottom: 1.5px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+}
+
+.semester-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.semester-card-wrapper {
+    background: var(--bg-card, #FFFDFB);
+    border: 1.5px solid rgba(99, 102, 241, 0.2);
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+
+.semester-subjects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.subject-row-item {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr 1fr 44px;
+    gap: 16px;
+    align-items: center;
+    background: #FFF9F5;
+    border: 1.5px solid #E6DDD5;
+    border-radius: 14px;
+    padding: 14px 18px;
+    transition: border-color var(--transition-fast);
+}
+
+.subject-row-item:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+}
+
+.subj-picker-col,
+.subj-credits-col,
+.subj-grade-col {
+    width: 100%;
+}
+
+.subj-picker-select {
+    width: 100%;
+    height: 46px;
+    padding: 10px 16px;
+    background: #F8F3ED;
+    border: 1.5px solid #E6DDD5;
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    transition: border-color var(--transition-fast);
+}
+
+.subj-picker-select:focus {
+    border-color: var(--accent-indigo);
+}
+
+.subj-credits-input {
+    width: 100%;
+    height: 46px;
+    padding: 10px 14px;
+    background: #F8F3ED;
+    border: 1.5px solid #E6DDD5;
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    outline: none;
+    transition: border-color var(--transition-fast);
+}
+
+.subj-credits-input:focus {
+    border-color: var(--accent-indigo);
+}
+
+.subj-grade-select {
+    width: 100%;
+    height: 46px;
+    padding: 10px 14px;
+    background: #F8F3ED;
+    border: 1.5px solid #E6DDD5;
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 0.95rem;
+    outline: none;
+    cursor: pointer;
+    transition: border-color var(--transition-fast);
+}
+
+.subj-grade-select:focus {
+    border-color: var(--accent-indigo);
+}
+
+.btn-delete-row {
+    width: 44px;
+    height: 46px;
+    border-radius: 10px;
+    border: 1px solid #F8D7DA;
+    background: #FDF2F2;
+    color: #DC2626;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.btn-delete-row:hover {
+    background: #DC2626;
+    color: #FFFFFF;
+}
+
+.btn-add-subj {
+    background: #FFF9F5;
+    border: 1.5px solid #E6DDD5;
+    border-radius: 9999px;
+    padding: 10px 22px;
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.btn-add-subj:hover {
+    border-color: var(--accent-indigo);
+    color: var(--accent-indigo);
+}
+
+.cgpa-analytics-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: #F0FDF4;
+    border: 1.5px solid #DCFCE7;
+    border-radius: 18px;
+    padding: 24px 28px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.cgpa-stat-box {
+    text-align: center;
+}
+
+.cgpa-stat-val {
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.1;
+    margin-bottom: 4px;
+}
+
+.cgpa-stat-val.text-accent {
+    color: #059669;
+}
+
+.cgpa-stat-lbl {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.cgpa-stat-divider {
+    width: 1.5px;
+    height: 50px;
+    background: #CBD5E1;
+}
+
+/* Dark Theme Overrides for CGPA Predictor */
+[data-theme="dark"] .prior-input,
+[data-theme="dark"] .subj-picker-select,
+[data-theme="dark"] .subj-credits-input,
+[data-theme="dark"] .subj-grade-select {
+    background: #1A1E2B;
+    border-color: rgba(255, 255, 255, 0.14);
+    color: #F3F4F6;
+}
+
+[data-theme="dark"] .semester-card-wrapper,
+[data-theme="dark"] .subject-row-item {
+    background: #12151E;
+    border-color: rgba(255, 255, 255, 0.14);
+}
+
+[data-theme="dark"] .btn-add-subj {
+    background: #1A1E2B;
+    border-color: rgba(255, 255, 255, 0.14);
+    color: #F3F4F6;
+}
+
+[data-theme="dark"] .btn-delete-row {
+    background: rgba(220, 38, 38, 0.15);
+    border-color: rgba(220, 38, 38, 0.3);
+    color: #F87171;
+}
+
+[data-theme="dark"] .cgpa-analytics-banner {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(56, 189, 248, 0.1) 100%);
+    border-color: rgba(255, 255, 255, 0.14);
+}
+
+[data-theme="dark"] .cgpa-stat-val {
+    color: #F3F4F6;
+}
+
+[data-theme="dark"] .cgpa-stat-lbl {
+    color: #9CA3AF;
+}
+
+[data-theme="dark"] .cgpa-stat-divider {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+@media (max-width: 840px) {
+    .prior-record-grid {
+        grid-template-columns: 1fr;
+    }
+    .subject-row-item {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+    .subj-picker-col {
+        grid-column: 1 / span 2;
+    }
+    .cgpa-stat-divider {
+        display: none;
+    }
+    .cgpa-analytics-banner {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

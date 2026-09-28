@@ -105,7 +105,7 @@ When performing any task on this repository, follow these precise protocol steps
    - Maintain the flat, borderless design across all practice pages.
    - Do **NOT** wrap toolbar filter rows or empty states in outer card boxes or add fuzzy background glow blobs (`.hero-glow-blob`).
    - Keep `box-shadow: none` on practice toolbar boxes and empty state containers.
-   - Use `assets/images/empty.png` for empty selection states.
+   - Use `assets/images/empty.webp` for empty selection states.
 2. **Theme System**:
    - Always verify styling in both **Light Mode** (`:root`) and **Dark Mode** (`[data-theme="dark"]`).
    - Always use CSS variables (`var(--bg-dark)`, `var(--text-primary)`, `var(--border-color)`, `var(--accent-purple)`).
@@ -129,3 +129,6 @@ When performing any task on this repository, follow these precise protocol steps
 - 🎯 **Adding/Fixing PYQ Papers**: Edit [`pyq_practice.html`](file:///c:/Users/Atanu%20Das/OneDrive/Desktop/self%20project/bsh/pyq_practice.html).
 - 🎯 **Updating Python Quiz Questions**: Edit [`python/quiz_1_python_16jul26.html`](file:///c:/Users/Atanu%20Das/OneDrive/Desktop/self%20project/bsh/python/quiz_1_python_16jul26.html).
 - 🎯 **Updating SEO & Sitemaps**: Edit [`index.html`](file:///c:/Users/Atanu%20Das/OneDrive/Desktop/self%20project/bsh/index.html) and [`sitemap.xml`](file:///c:/Users/Atanu%20Das/OneDrive/Desktop/self%20project/bsh/sitemap.xml).
+
+
+# ## wnat to deploy then use vercel --prod

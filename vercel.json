@@ -15,20 +15,21 @@
       "source": "/home.html",
       "destination": "/",
       "permanent": true
-    }
-  ],
-  "rewrites": [
+    },
     {
       "source": "/oppe",
-      "destination": "/oppe/index.html"
+      "destination": "/oppe_practice.html",
+      "permanent": true
     },
     {
       "source": "/oppe/",
-      "destination": "/oppe/index.html"
+      "destination": "/oppe_practice.html",
+      "permanent": true
     },
     {
       "source": "/oppe/(.*)",
-      "destination": "/oppe/index.html"
+      "destination": "/oppe_practice.html",
+      "permanent": true
     }
   ],
   "headers": [

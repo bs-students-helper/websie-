@@ -47,26 +47,7 @@
 
 <body>
     <!-- Site Navigation Header -->
-    <header class="site-header" id="header">
-        <div class="header-container">
-            <a href="../../index.html" class="brand-logo" aria-label="BSH Homepage">
-                <img src="../../assets/images/logo.webp" width="160" height="58" alt="BSH Logo" class="logo-img">
-            </a>
-            <nav class="nav-menu" id="navMenu">
-                <a href="../../index.html#features" class="nav-link">Features</a>
-                <a href="../../quiz_practice.html" class="nav-link active">Quiz Practice</a>
-                <a href="../../calculator.html" class="nav-link">SEC Calculator</a>
-                <a href="../../about.html" class="nav-link">About Us</a>
-                <a href="../../contact_us.html" class="nav-link">Feedback</a>
-            </nav>
-            <div class="header-actions">
-                <a href="../../end_term_practice.html" class="btn btn-secondary nav-btn-desktop"><i
-                        class="fa-solid fa-arrow-left"></i><span>Back to Papers</span></a>
-                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i
-                        class="fa-solid fa-moon"></i></button>
-            </div>
-        </div>
-    </header>
+    <header class="site-header" id="header" data-root-prefix="../../" data-active-page="quiz_practice"></header>
 
     <main>
         <div class="portal-layout">
@@ -261,7 +242,7 @@
     </div>
 
     <!-- Master Scripts -->
-    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/components.js"></script>`n    <script src="../../assets/js/main.js"></script>
     <script>
         // ==========================================================================
         // MAD2 END TERM QUIZ (28 APR 2024 AN QDF3) QUESTION DATA
@@ -1513,3 +1494,4 @@ new Vue({
 </body>
 
 </html>
+

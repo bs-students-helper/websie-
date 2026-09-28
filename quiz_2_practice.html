@@ -13,7 +13,8 @@
     <meta name="apple-mobile-web-app-title" content="BS Students Helper">
     <meta property="og:site_name" content="BS Students Helper">
     <meta property="og:title" content="IITM BS Quiz 2 Practice & Question Papers | BSH">
-    <meta property="og:description" content="Practice IIT Madras BS Degree Quiz 2 PYQs with topic filters and detailed solutions.">
+    <meta property="og:description"
+        content="Practice IIT Madras BS Degree Quiz 2 PYQs with topic filters and detailed solutions.">
     <meta property="og:url" content="https://bsstudentshelper.vercel.app/quiz_2_practice.html">
     <meta property="og:type" content="website">
     <link rel="canonical" href="https://bsstudentshelper.vercel.app/quiz_2_practice.html">
@@ -52,9 +53,12 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
-        <!-- FontAwesome Non-Blocking Asynchronous Load -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <!-- FontAwesome Non-Blocking Asynchronous Load -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
@@ -360,34 +364,7 @@
 </head>
 
 <body>
-    <header class="site-header" id="header">
-        <div class="header-container">
-            <a href="index.html" class="brand-logo"><img src="assets/images/logo.webp" width="160" height="58" alt="BSH" class="logo-img"></a>
-            <nav class="nav-menu" id="navMenu">
-                <a href="index.html#features" class="nav-link">Features</a>
-                <a href="quiz_practice.html" class="nav-link active">Quiz Practice</a>
-                <a href="oppe/" class="nav-link">OPPE Lab</a>
-                <a href="calculator.html" class="nav-link">SEC Calculator</a>
-                <a href="about.html" class="nav-link">About Us</a>
-                <a href="index.html#testimonials" class="nav-link">Reviews</a>
-                <a href="contact_us.html" class="nav-link">Feedback</a>
-                <a href="index.html#faq" class="nav-link">FAQ</a>
-                <div class="mobile-menu-actions">
-                    <a href="quiz_practice.html" class="btn btn-secondary btn-full">Practice Quiz</a>
-                    <a href="oppe/" class="btn btn-outline btn-full">OPPE Practice Lab</a>
-                    <a href="calculator.html" class="btn btn-primary btn-full">Calculate SEC Grade</a>
-                </div>
-            </nav>
-            <div class="header-actions">
-                <a href="quiz_practice.html" class="btn btn-secondary nav-btn-desktop"><i
-                        class="fa-solid fa-gamepad"></i><span>Practice Quiz</span></a>
-                <a href="calculator.html" class="btn btn-primary nav-btn-desktop"><span>Calculate SEC Grade</span><i
-                        class="fa-solid fa-calculator"></i></a>
-                <button class="theme-toggle-btn" id="themeToggleBtn"><i class="fa-solid fa-moon"></i></button>
-                <button class="mobile-menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
-            </div>
-        </div>
-    </header>
+    <header class="site-header" id="header" data-active-page="quiz_practice"></header>
 
     <main>
         <!-- <section class="hero-section">
@@ -431,7 +408,8 @@
                                 <option value="python">Python Programming</option>
                                 <option value="java">Programming Concepts Using Java</option>
                                 <option value="mad2">Modern Application Development II</option>
-                                <option value="ml">Machine Learning</option>
+                                <option value="mlf">Machine Learning Foundations</option>
+                                <option value="mlt">Machine Learning Techniques</option>
                                 <option value="es-embedded">ES - Embedded Systems</option>
                             </select>
                         </div>
@@ -456,7 +434,8 @@
                 <div class="divider-line"></div>
 
                 <div class="empty-state" id="emptyState">
-                    <img src="assets/images/empty.webp" width="200" height="200" alt="Choose a Course" class="empty-state-img">
+                    <img src="assets/images/empty.webp" width="200" height="200" alt="Choose a Course"
+                        class="empty-state-img">
                     <h3>Please Choose a course</h3>
                     <p>Pick a subject from the dropdown above to view available Quiz 2 question papers. Year filter is
                         optional (defaults to <b>All</b>).</p>
@@ -467,47 +446,16 @@
         </section>
     </main>
 
-    <!-- <footer class="site-footer">
-        <div class="container footer-container">
-            <div class="footer-brand">
-                <a href="index.html" class="brand-logo footer-logo"><img src="assets/images/logo.webp" width="160" height="58" alt="BSH" class="logo-img"></a>
-                <p class="footer-desc">The open, student-driven academic companion for IIT Madras BS in Data Science & Electronic Systems.</p>
-            </div>
-            <div class="footer-links-group">
-                <div class="footer-col">
-                    <h4 class="footer-heading">Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Portal Home</a></li>
-                        <li><a href="quiz_practice.html">Quiz Practice Hub</a></li>
-                        <li><a href="calculator.html">SEC Calculator</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact_us.html">Submit Feedback</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4 class="footer-heading">Quiz Modes</h4>
-                    <ul>
-                        <li><a href="quiz_1_practice.html">Quiz 1 Sets</a></li>
-                        <li><a href="quiz_2_practice.html"><b>Quiz 2 Sets</b></a></li>
-                        <li><a href="end_term_practice.html">End Term Mocks</a></li>
-                        <li><a href="pyq_practice.html">Previous Year (PYQ)</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom text-center">
-            <div class="container">
-                <p>&copy; 2026 BSH (BS Students Helper). Built with passion for IITM BS Students.</p>
-                <p class="disclaimer-text">Disclaimer: BSH is an independent student community initiative and is not officially affiliated with or endorsed by IIT Madras.</p>
-            </div>
-        </div>
-    </footer> -->
+    <footer class="site-footer"></footer>
 
 
 
+    <script src="assets/js/components.js"></script>
     <script src="assets/js/main.js"></script>
     <script>
         const QUIZ2_PAPERS = [
+            { id: 301, title: "Quiz 2 - Machine Learning Techniques - 06 May 2026", course: "mlt", courseLabel: "MLT", year: "2026", url: "mlt/quiz2/quiz_2_mlt_06may26.html" },
+            { id: 302, title: "Quiz 1 - Machine Learning Techniques - 2026", course: "mlt", courseLabel: "MLT", year: "2025", url: "mlt/quiz2/quiz_2_mlt_18dec25.html" },
             { id: 1, title: "Quiz 2 - Mathematics for Data Science I - May 2026", course: "maths1", courseLabel: "Maths 1", year: "2026", url: "#" },
             { id: 2, title: "Quiz 2 - Mathematics for Data Science II - Sep 2025", course: "maths2", courseLabel: "Maths 2", year: "2025", url: "#" },
             { id: 3, title: "Quiz 2 - Statistics for Data Science I - May 2026", course: "stats1", courseLabel: "Stats 1", year: "2026", url: "#" },

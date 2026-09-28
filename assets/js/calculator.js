@@ -418,13 +418,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultStepList = document.getElementById('resultStepList');
     const targetGrid = document.getElementById('targetGrid');
 
-    // CGPA DOM
-    const cgpaTableBody = document.getElementById('cgpaTableBody');
-    const addCourseRowBtn = document.getElementById('addCourseRowBtn');
-    const totalCreditsEl = document.getElementById('totalCreditsEl');
-    const overallCgpaEl = document.getElementById('overallCgpaEl');
-    const cgpaStatusBadge = document.getElementById('cgpaStatusBadge');
-
     // State Variables
     let currentSubjectId = "maths1";
     let activeLevelFilter = "all";
@@ -1081,160 +1074,235 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --------------------------------------------------------------------------
-    // 7. CGPA & Multi-Subject Calculator Engine
+    // 7. CGPA & Term GPA Predictor Engine (Matching User Mockup)
     // --------------------------------------------------------------------------
-    let cgpaCourses = [
-        { name: "Mathematics 1", credits: 4, score: 88, grade: "A", points: 9 },
-        { name: "Statistics 1", credits: 4, score: 92, grade: "S", points: 10 },
-        { name: "Computational Thinking", credits: 4, score: 78, grade: "B", points: 8 },
-        { name: "English 1", credits: 4, score: 85, grade: "A", points: 9 }
+    const priorCgpaInput = document.getElementById('priorCgpaInput');
+    const priorCreditsInput = document.getElementById('priorCreditsInput');
+    const priorSubjectsInput = document.getElementById('priorSubjectsInput');
+    const semesterSubjectsList = document.getElementById('semesterSubjectsList');
+    const addSemesterSubjectBtn = document.getElementById('addSemesterSubjectBtn');
+
+    const newCgpaVal = document.getElementById('newCgpaVal');
+    const termSgpaVal = document.getElementById('termSgpaVal');
+    const newTotalCreditsVal = document.getElementById('newTotalCreditsVal');
+    const newTotalSubjectsVal = document.getElementById('newTotalSubjectsVal');
+    const cgpaStatusBadge = document.getElementById('cgpaStatusBadge');
+
+    let semesterSubjects = [
+        { name: "Mathematics for Data Science 1", credits: 4, points: 10, key: "maths1" }
     ];
 
-    function renderCgpaTable() {
-        cgpaTableBody.innerHTML = "";
-        cgpaCourses.forEach((course, index) => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>
-                    <input type="text" class="cgpa-name-input" value="${course.name}" data-index="${index}">
-                </td>
-                <td>
-                    <select class="cgpa-credit-select" data-index="${index}">
-                        <option value="4" ${course.credits == 4 ? 'selected' : ''}>4 Credits</option>
-                        <option value="3" ${course.credits == 3 ? 'selected' : ''}>3 Credits</option>
-                        <option value="2" ${course.credits == 2 ? 'selected' : ''}>2 Credits</option>
-                        <option value="1" ${course.credits == 1 ? 'selected' : ''}>1 Credit</option>
+    function renderSemesterSubjects() {
+        if (!semesterSubjectsList) return;
+        semesterSubjectsList.innerHTML = "";
+
+        const foundationalOptions = [];
+        const diplomaOptions = [];
+        const degreeOptions = [];
+
+        Object.values(SUBJECT_DATABASE).forEach(s => {
+            if (s.level === "foundational") foundationalOptions.push(s);
+            else if (s.level === "diploma") diplomaOptions.push(s);
+            else if (s.level === "degree") degreeOptions.push(s);
+        });
+
+        semesterSubjects.forEach((subj, idx) => {
+            const row = document.createElement('div');
+            row.className = 'subject-row-item';
+            row.setAttribute('data-index', idx);
+
+            let optionsHtml = `<option value="">Select Course / Subject...</option>`;
+            
+            optionsHtml += `<optgroup label="Foundational Level (4 Credits)">`;
+            foundationalOptions.forEach(s => {
+                const selected = (subj.key === s.id || subj.name === s.name) ? 'selected' : '';
+                optionsHtml += `<option value="${s.id}" ${selected}>${s.name} (${s.credits} Credits)</option>`;
+            });
+            optionsHtml += `</optgroup>`;
+
+            optionsHtml += `<optgroup label="Diploma Level Courses">`;
+            diplomaOptions.forEach(s => {
+                const selected = (subj.key === s.id || subj.name === s.name) ? 'selected' : '';
+                optionsHtml += `<option value="${s.id}" ${selected}>${s.name} (${s.credits} Credits)</option>`;
+            });
+            optionsHtml += `</optgroup>`;
+
+            optionsHtml += `<optgroup label="Degree Level Courses">`;
+            degreeOptions.forEach(s => {
+                const selected = (subj.key === s.id || subj.name === s.name) ? 'selected' : '';
+                optionsHtml += `<option value="${s.id}" ${selected}>${s.name} (${s.credits} Credits)</option>`;
+            });
+            optionsHtml += `</optgroup>`;
+
+            optionsHtml += `<optgroup label="Other Options">
+                <option value="custom" ${subj.key === "custom" ? 'selected' : ''}>Custom Elective / Other Subject</option>
+            </optgroup>`;
+
+            row.innerHTML = `
+                <div class="subj-picker-col">
+                    <select class="subj-picker-select" data-index="${idx}" aria-label="Select Subject">
+                        ${optionsHtml}
                     </select>
-                </td>
-                <td>
-                    <input type="number" min="0" max="100" class="cgpa-score-input" value="${course.score !== null && course.score !== undefined ? course.score : ''}" data-index="${index}" style="width: 80px;">
-                </td>
-                <td>
-                    <strong class="cgpa-grade-display" id="cgpa-grade-badge-${index}" style="color: ${getGradeColor(course.grade)}">${course.grade} (${course.points} pts)</strong>
-                </td>
-                <td>
-                    <button class="btn btn-outline remove-cgpa-row" data-index="${index}" style="padding: 4px 10px; font-size: 0.8rem; border-color: var(--accent-red); color: var(--accent-red);" aria-label="Remove Course">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </td>
+                </div>
+                <div class="subj-credits-col">
+                    <input type="number" min="1" max="10" class="subj-credits-input" value="${subj.credits}" placeholder="Credits" data-index="${idx}" aria-label="Course Credits">
+                </div>
+                <div class="subj-grade-col">
+                    <select class="subj-grade-select" data-index="${idx}" aria-label="Grade Achieved">
+                        <option value="10" ${subj.points == 10 ? 'selected' : ''}>S (10)</option>
+                        <option value="9" ${subj.points == 9 ? 'selected' : ''}>A (9)</option>
+                        <option value="8" ${subj.points == 8 ? 'selected' : ''}>B (8)</option>
+                        <option value="7" ${subj.points == 7 ? 'selected' : ''}>C (7)</option>
+                        <option value="6" ${subj.points == 6 ? 'selected' : ''}>D (6)</option>
+                        <option value="4" ${subj.points == 4 ? 'selected' : ''}>E (4)</option>
+                        <option value="0" ${subj.points == 0 ? 'selected' : ''}>U / F (0)</option>
+                    </select>
+                </div>
+                <button class="btn-delete-row" data-index="${idx}" title="Remove Subject" aria-label="Remove Subject">
+                    <i class="fa-regular fa-trash-can"></i>
+                </button>
             `;
-            cgpaTableBody.appendChild(tr);
+
+            semesterSubjectsList.appendChild(row);
         });
 
-        calculateCgpaOverall();
+        calculateCGPARealtime();
     }
 
-    function calculateCgpaOverall() {
-        let totalWeightedPoints = 0;
-        let totalCredits = 0;
+    function calculateCGPARealtime() {
+        const priorCgpa = parseFloat(priorCgpaInput ? priorCgpaInput.value : 0) || 0;
+        const priorCredits = parseFloat(priorCreditsInput ? priorCreditsInput.value : 0) || 0;
+        const priorSubjects = parseInt(priorSubjectsInput ? priorSubjectsInput.value : 0, 10) || 0;
 
-        cgpaCourses.forEach((c, index) => {
-            const numScore = (c.score === "" || c.score === null || c.score === undefined) ? 0 : parseFloat(c.score);
-            const validScore = isNaN(numScore) ? 0 : numScore;
-            const { grade, gpa } = getGradeLetterAndPoints(validScore, true);
-            c.grade = grade;
-            c.points = gpa;
-            totalWeightedPoints += c.points * c.credits;
-            totalCredits += c.credits;
+        let semesterTotalCredits = 0;
+        let semesterTotalPoints = 0;
+        let semesterSubjectCount = 0;
 
-            // Update row grade display badge if element exists
-            const badgeEl = document.getElementById(`cgpa-grade-badge-${index}`);
-            if (badgeEl) {
-                badgeEl.style.color = getGradeColor(grade);
-                badgeEl.textContent = `${grade} (${gpa} pts)`;
+        semesterSubjects.forEach(s => {
+            const creds = Math.max(1, parseFloat(s.credits) || 0);
+            const pts = parseFloat(s.points) || 0;
+            semesterTotalCredits += creds;
+            semesterTotalPoints += (creds * pts);
+            if (s.name && s.name.trim().length > 0) {
+                semesterSubjectCount++;
             }
         });
 
-        const overallCGPA = totalCredits > 0 ? (totalWeightedPoints / totalCredits) : 0;
+        const semesterSGPA = semesterTotalCredits > 0 ? (semesterTotalPoints / semesterTotalCredits) : 0;
+        const priorTotalPoints = priorCgpa * priorCredits;
 
-        totalCreditsEl.textContent = `${totalCredits} Credits`;
-        overallCgpaEl.textContent = overallCGPA.toFixed(2);
+        const newTotalCredits = priorCredits + semesterTotalCredits;
+        const newTotalPoints = priorTotalPoints + semesterTotalPoints;
+        const newTotalSubjects = priorSubjects + semesterSubjectCount;
 
-        if (overallCGPA >= 9.0) {
-            cgpaStatusBadge.className = "pill-badge text-success";
-            cgpaStatusBadge.innerHTML = `<i class="fa-solid fa-trophy"></i> S-Grade Distinction Target`;
-        } else if (overallCGPA >= 8.0) {
-            cgpaStatusBadge.className = "pill-badge text-success";
-            cgpaStatusBadge.innerHTML = `<i class="fa-solid fa-star"></i> First Class with Distinction`;
-        } else if (overallCGPA >= 6.5) {
-            cgpaStatusBadge.className = "pill-badge text-warning";
-            cgpaStatusBadge.innerHTML = `<i class="fa-solid fa-check"></i> Good Standing`;
-        } else {
-            cgpaStatusBadge.className = "pill-badge text-danger";
-            cgpaStatusBadge.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Academic Warning Threshold (<6.5)`;
+        const newCGPA = newTotalCredits > 0 ? (newTotalPoints / newTotalCredits) : 0;
+
+        if (newCgpaVal) newCgpaVal.textContent = newCGPA.toFixed(2);
+        if (termSgpaVal) termSgpaVal.textContent = semesterSGPA.toFixed(2);
+        if (newTotalCreditsVal) newTotalCreditsVal.textContent = `${newTotalCredits} Credits`;
+        if (newTotalSubjectsVal) newTotalSubjectsVal.textContent = `${newTotalSubjects}`;
+
+        if (cgpaStatusBadge) {
+            const currentMetric = newTotalCredits > 0 ? newCGPA : semesterSGPA;
+            if (currentMetric >= 9.0) {
+                cgpaStatusBadge.className = "pill-badge text-success";
+                cgpaStatusBadge.innerHTML = `<i class="fa-solid fa-trophy"></i> S-Grade Distinction Target`;
+            } else if (currentMetric >= 8.0) {
+                cgpaStatusBadge.className = "pill-badge text-success";
+                cgpaStatusBadge.innerHTML = `<i class="fa-solid fa-star"></i> First Class with Distinction`;
+            } else if (currentMetric >= 6.5) {
+                cgpaStatusBadge.className = "pill-badge text-warning";
+                cgpaStatusBadge.innerHTML = `<i class="fa-solid fa-check"></i> Good Standing`;
+            } else {
+                cgpaStatusBadge.className = "pill-badge text-danger";
+                cgpaStatusBadge.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Academic Warning Threshold (<6.5)`;
+            }
         }
     }
 
-    // CGPA Event Delegation (In-place updates without DOM destruction for smooth editing)
-    cgpaTableBody.addEventListener('input', (e) => {
-        const indexStr = e.target.getAttribute('data-index');
-        if (indexStr === null || indexStr === undefined) return;
-        const idx = parseInt(indexStr, 10);
-        if (isNaN(idx) || !cgpaCourses[idx]) return;
+    if (priorCgpaInput) priorCgpaInput.addEventListener('input', calculateCGPARealtime);
+    if (priorCreditsInput) priorCreditsInput.addEventListener('input', calculateCGPARealtime);
+    if (priorSubjectsInput) priorSubjectsInput.addEventListener('input', calculateCGPARealtime);
 
-        if (e.target.classList.contains('cgpa-name-input')) {
-            cgpaCourses[idx].name = e.target.value;
-        } else if (e.target.classList.contains('cgpa-credit-select')) {
-            cgpaCourses[idx].credits = parseInt(e.target.value, 10) || 4;
-            calculateCgpaOverall();
-        } else if (e.target.classList.contains('cgpa-score-input')) {
-            const raw = e.target.value;
-            cgpaCourses[idx].score = raw === "" ? "" : Math.min(100, Math.max(0, parseFloat(raw) || 0));
-            calculateCgpaOverall();
-        }
-    });
+    if (semesterSubjectsList) {
+        semesterSubjectsList.addEventListener('input', (e) => {
+            const idx = parseInt(e.target.getAttribute('data-index'), 10);
+            if (isNaN(idx) || !semesterSubjects[idx]) return;
 
-    cgpaTableBody.addEventListener('change', (e) => {
-        const indexStr = e.target.getAttribute('data-index');
-        if (indexStr === null || indexStr === undefined) return;
-        const idx = parseInt(indexStr, 10);
-        if (isNaN(idx) || !cgpaCourses[idx]) return;
-
-        if (e.target.classList.contains('cgpa-credit-select')) {
-            cgpaCourses[idx].credits = parseInt(e.target.value, 10) || 4;
-            calculateCgpaOverall();
-        }
-    });
-
-    cgpaTableBody.addEventListener('click', (e) => {
-        const btn = e.target.closest('.remove-cgpa-row');
-        if (btn) {
-            const index = parseInt(btn.getAttribute('data-index'), 10);
-            if (!isNaN(index)) {
-                cgpaCourses.splice(index, 1);
-                renderCgpaTable();
+            if (e.target.classList.contains('subj-credits-input')) {
+                semesterSubjects[idx].credits = Math.max(1, parseFloat(e.target.value) || 1);
+                calculateCGPARealtime();
             }
-        }
-    });
-
-    addCourseRowBtn.addEventListener('click', () => {
-        cgpaCourses.push({
-            name: `Course ${cgpaCourses.length + 1}`,
-            credits: 4,
-            score: 80,
-            grade: "A",
-            points: 9
         });
-        renderCgpaTable();
-    });
+
+        semesterSubjectsList.addEventListener('change', (e) => {
+            const idx = parseInt(e.target.getAttribute('data-index'), 10);
+            if (isNaN(idx) || !semesterSubjects[idx]) return;
+
+            if (e.target.classList.contains('subj-picker-select')) {
+                const selectedKey = e.target.value;
+                if (selectedKey && SUBJECT_DATABASE[selectedKey]) {
+                    const dbSubj = SUBJECT_DATABASE[selectedKey];
+                    semesterSubjects[idx].key = dbSubj.id;
+                    semesterSubjects[idx].name = dbSubj.name;
+                    semesterSubjects[idx].credits = dbSubj.credits;
+                } else if (selectedKey === 'custom') {
+                    semesterSubjects[idx].key = 'custom';
+                    semesterSubjects[idx].name = 'Custom Subject';
+                    semesterSubjects[idx].credits = 4;
+                }
+                renderSemesterSubjects();
+            } else if (e.target.classList.contains('subj-grade-select')) {
+                semesterSubjects[idx].points = parseFloat(e.target.value) || 0;
+                calculateCGPARealtime();
+            }
+        });
+
+        semesterSubjectsList.addEventListener('click', (e) => {
+            const btn = e.target.closest('.btn-delete-row');
+            if (btn) {
+                const idx = parseInt(btn.getAttribute('data-index'), 10);
+                if (!isNaN(idx) && semesterSubjects[idx]) {
+                    semesterSubjects.splice(idx, 1);
+                    renderSemesterSubjects();
+                }
+            }
+        });
+    }
+
+    if (addSemesterSubjectBtn) {
+        addSemesterSubjectBtn.addEventListener('click', () => {
+            semesterSubjects.push({
+                name: `Subject ${semesterSubjects.length + 1}`,
+                credits: 4,
+                points: 10,
+                key: ""
+            });
+            renderSemesterSubjects();
+        });
+    }
 
     // --------------------------------------------------------------------------
     // 8. Mode Switcher & Filter Listeners
     // --------------------------------------------------------------------------
-    tabCourseCalc.addEventListener('click', () => {
-        tabCourseCalc.classList.add('active');
-        tabCgpaCalc.classList.remove('active');
-        courseCalcSection.classList.remove('hidden');
-        cgpaCalcSection.classList.add('hidden');
-    });
+    if (tabCourseCalc) {
+        tabCourseCalc.addEventListener('click', () => {
+            tabCourseCalc.classList.add('active');
+            tabCgpaCalc.classList.remove('active');
+            courseCalcSection.classList.remove('hidden');
+            cgpaCalcSection.classList.add('hidden');
+        });
+    }
 
-    tabCgpaCalc.addEventListener('click', () => {
-        tabCgpaCalc.classList.add('active');
-        tabCourseCalc.classList.remove('active');
-        cgpaCalcSection.classList.remove('hidden');
-        courseCalcSection.classList.add('hidden');
-        renderCgpaTable();
-    });
+    if (tabCgpaCalc) {
+        tabCgpaCalc.addEventListener('click', () => {
+            tabCgpaCalc.classList.add('active');
+            tabCourseCalc.classList.remove('active');
+            cgpaCalcSection.classList.remove('hidden');
+            courseCalcSection.classList.add('hidden');
+            renderSemesterSubjects();
+        });
+    }
 
     levelFilters.forEach(chip => {
         chip.addEventListener('click', () => {
@@ -1248,19 +1316,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    subjectSelect.addEventListener('change', (e) => {
-        loadSubjectForm(e.target.value);
-    });
+    if (subjectSelect) {
+        subjectSelect.addEventListener('change', (e) => {
+            loadSubjectForm(e.target.value);
+        });
+    }
 
-    subjectSearch.addEventListener('input', (e) => {
-        renderSubjectOptions(activeLevelFilter, e.target.value);
-        if (subjectSelect.value) {
-            loadSubjectForm(subjectSelect.value);
-        }
-    });
+    if (subjectSearch) {
+        subjectSearch.addEventListener('input', (e) => {
+            renderSubjectOptions(activeLevelFilter, e.target.value);
+            if (subjectSelect.value) {
+                loadSubjectForm(subjectSelect.value);
+            }
+        });
+    }
 
     // Initial Initialization
     renderSubjectOptions("all", "");
     loadSubjectForm("maths1");
-    renderCgpaTable();
+    renderSemesterSubjects();
 });

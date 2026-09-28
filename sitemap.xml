@@ -59,13 +59,6 @@
         <priority>0.95</priority>
     </url>
 
-    <!-- OPPE Interactive Coding IDE & Exam Vault -->
-    <url>
-        <loc>https://bsstudentshelper.vercel.app/oppe/</loc>
-        <changefreq>daily</changefreq>
-        <priority>0.95</priority>
-    </url>
-
     <!-- Contact & Feedback Page -->
     <url>
         <loc>https://bsstudentshelper.vercel.app/contact_us.html</loc>
