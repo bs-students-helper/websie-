@@ -1468,7 +1468,8 @@ h4 {
     background: var(--bg-dark);
     color: var(--text-inverse);
     padding: 40px 0;
-    border-y: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .stats-container {
@@ -2007,7 +2008,8 @@ svg.grade-ring-svg {
    -------------------------------------------------------------------------- */
 .testimonials-section {
     background-color: var(--bg-subtle);
-    border-y: 1px solid var(--border-light);
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
 }
 
 .filter-tabs {
@@ -3063,7 +3065,7 @@ svg.grade-ring-svg {
    -------------------------------------------------------------------------- */
 img {
     -webkit-user-drag: none;
-    user-drag: none;
+    user-select: none;
 }
 
 /* --------------------------------------------------------------------------
