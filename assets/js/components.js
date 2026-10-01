@@ -206,6 +206,184 @@ function renderBSHFooter(footerEl) {
   footerEl.innerHTML = footerHTML;
 }
 
+/**
+ * Enables integrated Searchable Select on a target select element
+ * Allows users to click & choose OR type directly inside the course select field
+ * @param {string|HTMLElement} selectTarget - Native select ID or element
+ * @param {Function} [onRender] - Optional callback when selection changes
+ */
+function setupSearchableCourseSelect(selectTarget, onRender) {
+  const selectEl = typeof selectTarget === 'string' ? document.getElementById(selectTarget) : selectTarget;
+  if (!selectEl) return;
+
+  const parentGroup = selectEl.closest('.filter-group') || selectEl.parentElement;
+  if (!parentGroup) return;
+
+  const options = Array.from(selectEl.options).map(opt => ({
+    value: opt.value,
+    text: opt.textContent.trim()
+  }));
+
+  // Check if searchable select structure is already built
+  let container = parentGroup.querySelector('.searchable-select');
+  if (container) {
+    container.remove();
+  }
+
+  container = document.createElement('div');
+  container.className = 'searchable-select';
+
+  // 1. Select Trigger Button
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'searchable-select-btn';
+  
+  const labelSpan = document.createElement('span');
+  labelSpan.className = 'searchable-select-label';
+  
+  const defaultText = options.length > 0 && options[0].value === '' ? options[0].text : 'Select course...';
+  labelSpan.textContent = selectEl.value ? (options.find(o => o.value === selectEl.value)?.text || defaultText) : defaultText;
+
+  const arrow = document.createElement('i');
+  arrow.className = 'fa-solid fa-up-down searchable-select-arrow';
+
+  btn.appendChild(labelSpan);
+  btn.appendChild(arrow);
+
+  // 2. Dropdown Menu
+  const dropdown = document.createElement('div');
+  dropdown.className = 'searchable-select-dropdown';
+
+  // 2a. Dropdown Search Box
+  const searchWrap = document.createElement('div');
+  searchWrap.className = 'searchable-dropdown-search-wrap';
+
+  const searchIcon = document.createElement('i');
+  searchIcon.className = 'fa-solid fa-magnifying-glass searchable-search-icon';
+
+  const searchInput = document.createElement('input');
+  searchInput.type = 'text';
+  searchInput.className = 'searchable-dropdown-search-input';
+  searchInput.placeholder = 'Search course...';
+  searchInput.autocomplete = 'off';
+
+  searchWrap.appendChild(searchIcon);
+  searchWrap.appendChild(searchInput);
+
+  // 2b. Options Container
+  const optionsList = document.createElement('div');
+  optionsList.className = 'searchable-options-list';
+
+  dropdown.appendChild(searchWrap);
+  dropdown.appendChild(optionsList);
+
+  container.appendChild(btn);
+  container.appendChild(dropdown);
+
+  selectEl.style.display = 'none';
+  parentGroup.appendChild(container);
+
+  function renderDropdown(filterQuery = '') {
+    optionsList.innerHTML = '';
+    const query = filterQuery.trim().toLowerCase();
+    let matchCount = 0;
+
+    options.forEach(opt => {
+      if (opt.value === '' && options.length > 1) return; // Skip empty placeholder in list if options exist
+
+      const textLower = opt.text.toLowerCase();
+      const valLower = opt.value.toLowerCase();
+
+      if (!query || textLower.includes(query) || valLower.includes(query)) {
+        matchCount++;
+        const item = document.createElement('div');
+        const isSelected = opt.value === selectEl.value;
+        item.className = 'searchable-option' + (isSelected ? ' selected' : '');
+        item.dataset.value = opt.value;
+        item.innerHTML = `<span>${opt.text}</span>`;
+        if (isSelected) {
+          item.innerHTML += `<i class="fa-solid fa-check searchable-check-icon"></i>`;
+        }
+
+        item.addEventListener('click', (e) => {
+          e.stopPropagation();
+          selectOption(opt.value, opt.text);
+        });
+
+        optionsList.appendChild(item);
+      }
+    });
+
+    if (matchCount === 0) {
+      const noMatch = document.createElement('div');
+      noMatch.className = 'searchable-option-no-match';
+      noMatch.textContent = 'No courses found';
+      optionsList.appendChild(noMatch);
+    }
+  }
+
+  function selectOption(val, text) {
+    selectEl.value = val;
+    labelSpan.textContent = val ? text : defaultText;
+    if (val) {
+      btn.classList.add('has-value');
+    } else {
+      btn.classList.remove('has-value');
+    }
+
+    container.classList.remove('open');
+    searchInput.value = '';
+
+    selectEl.dispatchEvent(new Event('change', { bubbles: true }));
+
+    if (typeof onRender === 'function') {
+      onRender();
+    }
+  }
+
+  function toggleDropdown() {
+    const isOpen = container.classList.contains('open');
+    if (isOpen) {
+      container.classList.remove('open');
+    } else {
+      // Close any other open searchable selects first
+      document.querySelectorAll('.searchable-select.open').forEach(el => el.classList.remove('open'));
+      container.classList.add('open');
+      renderDropdown('');
+      setTimeout(() => searchInput.focus(), 50);
+    }
+  }
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleDropdown();
+  });
+
+  searchInput.addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
+
+  searchInput.addEventListener('input', () => {
+    renderDropdown(searchInput.value);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!container.contains(e.target)) {
+      container.classList.remove('open');
+    }
+  });
+
+  // Initial render setup
+  if (selectEl.value) {
+    const curOpt = options.find(o => o.value === selectEl.value);
+    if (curOpt) {
+      labelSpan.textContent = curOpt.text;
+      btn.classList.add('has-value');
+    }
+  }
+}
+
+
 function initBSHComponents() {
   const headers = document.querySelectorAll('header.site-header, header[data-bsh-component="header"], #header');
   headers.forEach(header => renderBSHHeader(header));
@@ -220,3 +398,4 @@ if (document.readyState === 'loading') {
 } else {
   initBSHComponents();
 }
+

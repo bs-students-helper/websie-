@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Analytics (27 Oct 2024 / IITM Practice) | BSH</title>
+    <meta name="description"
+        content="Practice Business Analytics Quiz 1 question paper (IITM Practice / 27 Oct 2024) with interactive exam & learning modes, instant score calculation, detailed LaTeX solutions, and question palette.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Non-Blocking Asynchronous Load -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/icons/apple-touch-icon.png">
+
+    <!-- Master CSS & Centralized Quiz Portal CSS -->
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/quiz-portal.css">
+
+    <!-- MathJax for rendering LaTeX math formulas -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false,
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <!-- Theme Detection -->
+    <script>
+        (function () {
+            const saved = localStorage.getItem('bsh-theme');
+            if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+            else document.documentElement.setAttribute('data-theme', 'light');
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Site Navigation Header -->
+    <header class="site-header" id="header" data-root-prefix="../../../" data-active-page="quiz_practice"></header>
+
+    <main>
+        <div class="portal-layout">
+
+            <!-- Mobile Collapsible Sidebar Toggle Button -->
+            <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()">
+                <span><i class="fa-solid fa-sliders"></i> Exam Controls & Question Menu</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <!-- Left Sidebar: Controls, Menu & Timer -->
+            <aside class="portal-sidebar" id="portalSidebar">
+
+                <!-- Header Info -->
+                <div class="exam-info-header">
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Exam :</span>
+                        <span class="exam-info-val">Quiz 1</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Subject :</span>
+                        <span class="exam-info-val">Business Analytics</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Total Marks :</span>
+                        <span class="exam-info-val">20.00</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">QP :</span>
+                        <span class="exam-info-val" style="font-size:0.75rem;">Business Analytics IITM Practice</span>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher -->
+                <div>
+                    <div class="menu-heading">Portal Mode</div>
+                    <div class="mode-toggle-group">
+                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam Mode</button>
+                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning Mode</button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;" onclick="openSummaryModal()">
+                        <i class="fa-solid fa-eye"></i> View Question Paper Summary
+                    </button>
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;" onclick="window.print()">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </button>
+                </div>
+
+                <!-- Question Menu Grid -->
+                <div>
+                    <div class="menu-heading">
+                        <span>Question Menu</span>
+                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/19</span>
+                    </div>
+                    <div class="palette-grid" id="paletteGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Timer Box -->
+                <div>
+                    <div class="menu-heading">Timer</div>
+                    <div class="timer-box">
+                        <div class="timer-display" id="timerDisplay">00:00</div>
+                        <div class="timer-controls">
+                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i class="fa-solid fa-pause"></i></button>
+                            <button class="btn-icon-sm" onclick="resetTimer()"><i class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Score Box & Submit Exam Button -->
+                <div>
+                    <div class="menu-heading">Controls</div>
+                    <button class="btn-submit-exam" onclick="submitExam()">
+                        <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
+                    </button>
+                    <div class="score-card" style="margin-top:1rem;">
+                        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">Your Score</span>
+                        <div class="score-num" id="liveScoreDisplay">0.00 / 20.00</div>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);" id="livePercentDisplay">(0%)</span>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Right Content Panel -->
+            <section class="questions-area" id="questionsContainer">
+                <!-- Populated by JS -->
+            </section>
+        </div>
+    </main>
+
+    <!-- Floating Back to Top Button -->
+    <button class="fab-back-to-top" id="fabBackToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;"><i class="fa-solid fa-list-check"></i> Question Paper Summary</h3>
+                <button class="btn-icon-sm" onclick="closeSummaryModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+                Paper Title: <b>Business Analytics (IITM Practice)</b> (Quiz 1)
+            </p>
+            <div class="summary-stats-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem; text-align:center;">
+                <div class="stat-box" style="background:var(--bg-surface); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="font-size:1.5rem; font-weight:700; font-family:var(--font-mono);">19</div>
+                    <div class="stat-lbl" style="font-size:0.8rem; color:var(--text-muted);">Total Questions</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="font-size:1.5rem; font-weight:700; font-family:var(--font-mono);">20.00</div>
+                    <div class="stat-lbl" style="font-size:0.8rem; color:var(--text-muted);">Total Marks</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" id="summaryAnsweredCount" style="font-size:1.5rem; font-weight:700; font-family:var(--font-mono);">0</div>
+                    <div class="stat-lbl" style="font-size:0.8rem; color:var(--text-muted);">Answered</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-card" style="text-align: center;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;"><i class="fa-solid fa-trophy"></i> Exam Results</h3>
+                <button class="btn-icon-sm" onclick="closeResultModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div style="font-size: 0.9rem; color: var(--text-muted); font-weight: 500;">Final Score</div>
+            <div style="font-size: 2.25rem; font-weight: 800; color: var(--accent-cyan); margin: 0.25rem 0;" id="modalScoreText">0.00 / 20.00</div>
+            <div style="font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1.5rem;" id="modalPercentText">0%</div>
+
+            <div class="summary-stats-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem; text-align:center;">
+                <div class="stat-box" style="background:var(--bg-surface); padding:0.75rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="color:var(--accent-green); font-size:1.4rem; font-weight:700;" id="modalCorrectCount">0</div>
+                    <div class="stat-lbl" style="font-size:0.75rem; color:var(--text-muted);">Correct</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:0.75rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="color:var(--accent-red); font-size:1.4rem; font-weight:700;" id="modalIncorrectCount">0</div>
+                    <div class="stat-lbl" style="font-size:0.75rem; color:var(--text-muted);">Incorrect</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:0.75rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="color:var(--text-muted); font-size:1.4rem; font-weight:700;" id="modalUnansweredCount">0</div>
+                    <div class="stat-lbl" style="font-size:0.75rem; color:var(--text-muted);">Unanswered</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; gap: 0.75rem; justify-content: center;">
+                <button class="mode-btn active" style="padding:0.6rem 1.2rem; border-radius:var(--radius-md);" onclick="resetExam()"><i class="fa-solid fa-rotate-right"></i> Retake Exam</button>
+                <button class="mode-btn" style="padding:0.6rem 1.2rem; border-radius:var(--radius-md); border:1px solid var(--border-color);" onclick="closeResultModal()"><i class="fa-solid fa-book-open"></i> Review Solutions</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/components.js"></script>
+    <script src="../../../assets/js/main.js"></script>
+
+    <script>
+        const QUESTIONS_DATA = [
+            {
+                qn: 1,
+                id: "6406532159032",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "The data for the demand of a product (in 1000’s of units) over the past six-months is captured for various prices in Table-1. If the relationship between price and demand is modelled as a simple linear regression, answer subquestions.<br><br><table style='border-collapse:collapse; margin:1rem 0; width:100%; max-width:400px;' border='1' cellpadding='8'><thead><tr style='background:var(--bg-surface);'><th>Price of Product (in Rs.)</th><th>Demand for Product (in 1000's of units)</th></tr></thead><tbody><tr><td>10</td><td>137.50</td></tr><tr><td>15</td><td>121.25</td></tr><tr><td>20</td><td>105.00</td></tr><tr><td>25</td><td>88.75</td></tr><tr><td>30</td><td>72.50</td></tr><tr><td>35</td><td>56.25</td></tr></tbody></table>",
+                solution: "Comprehension passage block for product price-demand simple linear regression model."
+            },
+            {
+                qn: 2,
+                id: "6406532159033",
+                parentQn: 1,
+                type: "SA",
+                marks: 1.50,
+                text: "What is the market size for the product? (Note: Enter your answer in decimals rounded to two decimal places. For example, if your answer is “0.245”, enter it as “0.25”)",
+                acceptedAnswer: "169.89 to 170.50",
+                solution: "Slope $b = \\frac{137.50-121.25}{15-10} = 3.25$. Intercept $a = 137.50 + 3.25(10) = 170.00$. Market size $= 170.00$."
+            },
+            {
+                qn: 3,
+                id: "6406532159034",
+                parentQn: 1,
+                type: "SA",
+                marks: 1.50,
+                text: "What is the satiating price for the provided data? (Note: Enter your answer in decimals rounded to two decimal places. For example, if your answer is “0.245”, enter it as “0.25”)",
+                acceptedAnswer: "52.00 to 52.50",
+                solution: "Satiating price $P = \\frac{a}{b} = \\frac{170.00}{3.25} \\approx 52.31$."
+            },
+            {
+                qn: 4,
+                id: "6406532159035",
+                parentQn: 1,
+                type: "SA",
+                marks: 1.00,
+                text: "At a price of Rs. 22.50, what is the elasticity? (Note: Enter your answer in decimals rounded to two decimal places. For example, if your answer is “0.245”, enter it as “0.25”)",
+                acceptedAnswer: "0.71 to 0.78",
+                solution: "At $P = 22.50$, $Q = 170 - 3.25(22.50) = 96.875$. Elasticity $E = 3.25 \\times \\frac{22.50}{96.875} \\approx 0.75$."
+            },
+            {
+                qn: 5,
+                id: "6406532159036",
+                parentQn: 1,
+                type: "MCQ",
+                marks: 1.00,
+                text: "Based on the value of the elasticity at a price of Rs. 22.50, what can you conclude?",
+                options: [
+                    "It is an inelastic product demand",
+                    "It is an elastic product demand",
+                    "I don’t know what it is but I want marks for this question"
+                ],
+                correct: [0],
+                solution: "Since elasticity ($0.75$) $< 1$, the product demand is inelastic."
+            },
+            {
+                qn: 6,
+                id: "6406532159037",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "BA team learner concern requests across 5 categories over 6 terms (Jan-20 to Sep-21):<br><br><table style='border-collapse:collapse; margin:1rem 0; width:100%; max-width:600px;' border='1' cellpadding='6'><thead><tr style='background:var(--bg-surface);'><th>Category</th><th>Jan-20</th><th>May-20</th><th>Sep-20</th><th>Jan-21</th><th>May-21</th><th>Sep-21</th><th>Row Total</th></tr></thead><tbody><tr><td>Category-1</td><td>1</td><td>2</td><td>1</td><td>2</td><td>2</td><td>2</td><td>10</td></tr><tr><td>Category-2</td><td>5</td><td>2</td><td>2</td><td>0</td><td>2</td><td>4</td><td>15</td></tr><tr><td>Category-3</td><td>2</td><td>6</td><td>6</td><td>5</td><td>5</td><td>1</td><td>25</td></tr><tr><td>Category-4</td><td>1</td><td>2</td><td>1</td><td>2</td><td>2</td><td>2</td><td>10</td></tr><tr><td>Category-5</td><td>10</td><td>12</td><td>4</td><td>3</td><td>3</td><td>8</td><td>40</td></tr><tr><td><b>Column Total</b></td><td>19</td><td>24</td><td>14</td><td>12</td><td>14</td><td>17</td><td>100</td></tr></tbody></table><br>Answer subquestions.",
+                solution: "Comprehension passage block for learner concern request frequency table."
+            },
+            {
+                qn: 7,
+                id: "6406532159038",
+                parentQn: 6,
+                type: "SA",
+                marks: 1.50,
+                text: "If the aim is to check if the counts of observations in each category is independent across terms, then what is the value for the expected frequency for the combination “Category-3 and Sep-20”? (Note: Enter your answer in decimals rounded to two decimal places. For example, if your answer is “0.245”, enter it as “0.25”)",
+                acceptedAnswer: "3.30 to 3.70",
+                solution: "Expected frequency $= \\frac{25 \\times 14}{100} = 3.50$."
+            },
+            {
+                qn: 8,
+                id: "6406532159039",
+                parentQn: 6,
+                type: "SA",
+                marks: 1.00,
+                text: "If the aim is to check if the counts of observations in each category is independent across terms, then what is the degrees of freedom for the test-statistic? (Note: Enter your answer in decimals rounded to two decimal places. For example, if your answer is “0.245”, enter it as “0.25”)",
+                acceptedAnswer: "19.90 to 20.10",
+                solution: "Degrees of freedom $df = (5 - 1)(6 - 1) = 4 \\times 5 = 20.00$."
+            },
+            {
+                qn: 9,
+                id: "6406532159040",
+                parentQn: 6,
+                type: "MSQ",
+                marks: 1.50,
+                text: "If the aim is to check if the counts of observations in each category is independent across terms and say the value for the computed test statistic is 19.61, then based on Figure-1 what can be concluded? (Choose all that is/are applicable)",
+                options: [
+                    "At a 95% confidence level, REJECT THE NULL and conclude that the categorical variables ARE INDEPENDENT",
+                    "At a 95% confidence level, REJECT THE NULL and conclude that the categorical variables ARE NOT INDEPENDENT",
+                    "At a 95% confidence level, DO NOT REJECT THE NULL and conclude that the categorical variables ARE INDEPENDENT",
+                    "At a 95% confidence level, DO NOT REJECT THE NULL and conclude that the categorical variables ARE NOT INDEPENDENT",
+                    "At a 50% confidence level, DO NOT REJECT THE NULL and conclude that the categorical variables ARE INDEPENDENT",
+                    "At a 50% confidence level, DO NOT REJECT THE NULL and conclude that the categorical variables ARE NOT INDEPENDENT",
+                    "At a 50% confidence level, REJECT THE NULL and conclude that the categorical variables ARE INDEPENDENT",
+                    "At a 50% confidence level, REJECT THE NULL and conclude that the categorical variables ARE NOT INDEPENDENT",
+                    "The p-value for the test is between 0.5 to 0.1 and more towards 0.1",
+                    "The p-value for the test is between 0.5 to 0.1 and more towards 0.5",
+                    "The p-value for the test is between 0.95 to 0.9 and more towards 0.9",
+                    "The p-value for the test is between 0.95 to 0.9 and more towards 0.95",
+                    "More information is required to compute the p-value"
+                ],
+                correct: [2, 7, 9],
+                solution: "For $df = 20$, critical value at $\\alpha = 0.05$ is $31.41 > 19.61 \\implies$ Do Not Reject Null at $95\\%$ confidence.<br>Critical value at $\\alpha = 0.50$ is $19.34 < 19.61 \\implies$ Reject Null at $50\\%$ confidence.<br>The $p$-value is between $0.5$ and $0.1$ (closer to $0.5$)."
+            },
+            {
+                qn: 10,
+                id: "6406532159041",
+                parentQn: 6,
+                type: "SA",
+                marks: 1.00,
+                text: "Say, the goal is to find the distribution of the counts in “Category-4”. If each year is taken as a data point and the assumption is that the counts in Category-4 are distributed as a Poisson, then how many degrees of freedom is present for the computed test statistic?",
+                acceptedAnswer: "1",
+                solution: "Degrees of freedom $df = 3 - 1 - 1 = 1$."
+            },
+            {
+                qn: 11,
+                id: "6406532159042",
+                parentQn: 6,
+                type: "SA",
+                marks: 2.00,
+                text: "Say, the goal is to find the distribution of the counts in “Category-4”. If each year is taken as a data point and the assumption is that the counts in Category-4 are distributed as a Poisson, then what is the expected frequency for the count of “1”? (Note: Enter your answer in decimals rounded to two decimal places. For example, if your answer is “0.245”, enter it as “0.25”)",
+                acceptedAnswer: "1.50 to 2.10",
+                solution: "Expected frequency for count 1 under Poisson fit is between $1.50$ and $2.10$."
+            },
+            {
+                qn: 12,
+                id: "6406532159043",
+                parentQn: 6,
+                type: "SA",
+                marks: 3.00,
+                text: "Say, the goal is to find the distribution of the counts in “Category-4”. If each year is taken as a data point and the assumption is that the counts in Category-4 are distributed as a Poisson, then what is value for the computed test statistic?",
+                acceptedAnswer: "1.2 to 1.6",
+                solution: "Computed $\\chi^2$ statistic is between $1.2$ and $1.6$."
+            },
+            {
+                qn: 13,
+                id: "6406532159044",
+                parentQn: 6,
+                type: "MSQ",
+                marks: 1.00,
+                text: "Say, the goal is to find the distribution of the counts in “Category-4”. If each year is taken as a data point and the assumption is that the counts in Category-4 are distributed as a Poisson, then using Figure-1, based on the computed test statistic which of the following are TRUE (choose all that is/are applicable)",
+                options: [
+                    "Reject the Null Hypothesis",
+                    "Do Not Reject the Null Hypothesis",
+                    "The p-value for the test is between 0.5 to 0.1 and more towards 0.1",
+                    "Insufficient information. Cannot make a conclusion"
+                ],
+                correct: [1, 2],
+                solution: "Since statistic ($1.4$) $< \\chi^2_{0.05, 1} (3.84)$, Do Not Reject Null Hypothesis. $p$-value is between $0.5$ and $0.1$."
+            },
+            {
+                qn: 14,
+                id: "6406532159045",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "For Figure-3 (Demand Curve & Regions) given below, answer the subquestions:",
+                solution: "Comprehension passage block for Demand curve, Consumer Surplus (Region A) and Latent Demand (Region B)."
+            },
+            {
+                qn: 15,
+                id: "6406532159046",
+                parentQn: 14,
+                type: "MCQ",
+                marks: 0.50,
+                text: "What does region “A” represent?",
+                options: [
+                    "Market Size",
+                    "Latent demand",
+                    "Consumer Surplus",
+                    "None of these"
+                ],
+                correct: [2],
+                solution: "Region A represents Consumer Surplus (area under demand curve above price line)."
+            },
+            {
+                qn: 16,
+                id: "6406532159047",
+                parentQn: 14,
+                type: "MCQ",
+                marks: 0.50,
+                text: "What does region “B” represent?",
+                options: [
+                    "Market Size",
+                    "Latent demand",
+                    "Consumer Surplus",
+                    "None of these"
+                ],
+                correct: [1],
+                solution: "Region B represents Latent demand."
+            },
+            {
+                qn: 17,
+                id: "6406532159048",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "Suppose a factory manufactures products on three machines A, B, and C. Output shares: Machine A $= 65\\%$, Machine B $= 30\\%$, Machine C $= 5\\%$. Defective rates: Machine A $= 1\\%$, Machine B $= 2\\%$, Machine C $= 10\\%$. Answer subquestions.",
+                solution: "Comprehension passage block for factory machine defect Bayes' Theorem model."
+            },
+            {
+                qn: 18,
+                id: "6406532159049",
+                parentQn: 17,
+                type: "SA",
+                marks: 1.50,
+                text: "What is the probability that the product has come from machine B, given that it is defective? (Note: Enter your answer in decimals rounded to two decimal places. For example, if your answer is “0.245”, enter it as “0.25”)",
+                acceptedAnswer: "0.32 to 0.36",
+                solution: "$P(D) = 0.65(0.01) + 0.30(0.02) + 0.05(0.10) = 0.0175$.<br>$P(B | D) = \\frac{0.30(0.02)}{0.0175} = \\frac{0.0060}{0.0175} \\approx 0.34$."
+            },
+            {
+                qn: 19,
+                id: "6406532159050",
+                parentQn: 17,
+                type: "SA",
+                marks: 1.50,
+                text: "If the company decides to provide a refund of Rs. 20 for a defective product, then what would be the expected total cost for refund if a total of 1000 products were made? (Note: Enter your answer in decimals rounded to two decimal places. For example, if your answer is “0.245”, enter it as “0.25”)",
+                acceptedAnswer: "349.00 to 351.00",
+                solution: "Expected defectives in $1000$ products $= 1000 \\times 0.0175 = 17.5$. Expected refund cost $= 17.5 \\times 20 = \\text{Rs. } 350.00$."
+            }
+        ];
+
+        let currentMode = 'exam';
+        let userAnswers = {};
+        let timerSeconds = 0;
+        let timerInterval = null;
+        let isTimerRunning = true;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPalette();
+            renderQuestions();
+            updateScoreDisplay();
+            startTimer();
+        });
+
+        function setPortalMode(mode) {
+            currentMode = mode;
+            document.getElementById('btnExamMode').classList.toggle('active', mode === 'exam');
+            document.getElementById('btnLearningMode').classList.toggle('active', mode === 'learning');
+
+            renderQuestions();
+            updatePaletteStatuses();
+
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function renderPalette() {
+            const palette = document.getElementById('paletteGrid');
+            if (!palette) return;
+            palette.innerHTML = QUESTIONS_DATA.map(q => `
+                <button class="palette-btn" id="paletteBtn_${q.qn}" onclick="scrollToQuestion(${q.qn})">
+                    ${q.qn}
+                </button>
+            `).join('');
+        }
+
+        function scrollToQuestion(qnNum) {
+            const card = document.getElementById(`qnCard_${qnNum}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                document.querySelectorAll('.palette-btn').forEach(b => b.classList.remove('active-qn'));
+                const btn = document.getElementById(`paletteBtn_${qnNum}`);
+                if (btn) btn.classList.add('active-qn');
+            }
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            if (!container) return;
+
+            let html = '';
+
+            QUESTIONS_DATA.forEach(q => {
+                html += `
+                <article class="qn-card" id="qnCard_${q.qn}">
+                    <div class="qn-header-container">
+                        <div class="qn-header-top">
+                            <div class="qn-title-main">
+                                Question ${q.qn} :
+                                ${q.parentQn ? `<span class="badge-type" style="background:rgba(167, 139, 250, 0.15); color:#7c3aed; font-size:0.75rem; padding:0.2rem 0.5rem;"><i class="fa-solid fa-diagram-project"></i> Parent Q${q.parentQn}</span>` : ''}
+                            </div>
+                            <button class="btn-solution-pill" onclick="toggleSolution(${q.qn})">
+                                <i class="fa-regular fa-circle-check"></i> View Solutions (0)
+                            </button>
+                        </div>
+                        <div class="qn-header-sub">
+                            <span class="qn-id-tag">${q.id}</span>
+                            <span class="qn-meta-info">Total Mark : ${q.marks.toFixed(2)} | Type : ${q.type}</span>
+                        </div>
+                    </div>
+
+                    <div class="qn-text">${q.text}</div>
+
+                    ${renderQuestionInputs(q)}
+
+                    <div class="solution-box ${currentMode === 'learning' ? 'open' : ''}" id="solution_${q.qn}">
+                        <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution</div>
+                        <div class="solution-text">${q.solution}</div>
+                    </div>
+                </article>
+                `;
+            });
+
+            container.innerHTML = html;
+            updatePaletteStatuses();
+
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function renderQuestionInputs(q) {
+            if (q.type === 'COMPREHENSION') {
+                return `<div style="font-size:0.88rem; color:var(--text-muted); font-style:italic; margin-bottom:1.25rem;">[Comprehension Passage Block - Subquestions are listed below]</div>`;
+            }
+
+            if (q.type === 'SA') {
+                const userVal = userAnswers[q.qn] || '';
+                const showGreen = currentMode === 'learning';
+
+                return `
+                <div class="sa-input-wrap">
+                    <label for="sa_${q.qn}">Answer (Numeric):</label>
+                    <input type="text" id="sa_${q.qn}" class="sa-input" value="${userVal}" placeholder="Answer" oninput="handleSAInput(${q.qn}, this.value)">
+                    <div class="accepted-ans-box" style="display:${showGreen ? 'block' : 'none'};">
+                        <i class="fa-solid fa-circle-check"></i> Accepted Answer : ${q.acceptedAnswer}
+                    </div>
+                </div>
+                `;
+            }
+
+            const isMSQ = q.type === 'MSQ';
+            const userArr = userAnswers[q.qn] || [];
+
+            return `
+            <div class="options-list">
+                ${q.options.map((optText, idx) => {
+                const isChecked = userArr.includes(idx);
+                const isCorrect = q.correct.includes(idx);
+                let highlightClass = '';
+                if (isChecked) highlightClass = 'selected';
+
+                if (currentMode === 'learning') {
+                    if (isCorrect) highlightClass = 'correct-highlight';
+                    else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                }
+
+                return `
+                    <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <span class="option-text">${optText}</span>
+                    </label>
+                    `;
+            }).join('')}
+            </div>
+            `;
+        }
+
+        function handleOptionSelect(qnNum, optIdx, qnType) {
+            if (qnType === 'MCQ') {
+                userAnswers[qnNum] = [optIdx];
+            } else if (qnType === 'MSQ') {
+                if (!userAnswers[qnNum]) userAnswers[qnNum] = [];
+                const pos = userAnswers[qnNum].indexOf(optIdx);
+                if (pos >= 0) userAnswers[qnNum].splice(pos, 1);
+                else userAnswers[qnNum].push(optIdx);
+            }
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function handleSAInput(qnNum, val) {
+            userAnswers[qnNum] = val.trim();
+            updatePaletteStatuses();
+            updateScoreDisplay();
+        }
+
+        function calculateQuestionScore(q) {
+            if (q.type === 'COMPREHENSION') return "0";
+            const userAns = userAnswers[q.qn];
+            if (!userAns) return "0";
+
+            if (q.type === 'SA') {
+                const cleanUser = String(userAns).trim();
+                if (q.acceptedAnswer.includes(' to ')) {
+                    const range = q.acceptedAnswer.split(' to ').map(Number);
+                    const num = parseFloat(cleanUser);
+                    if (!isNaN(num) && num >= range[0] && num <= range[1]) {
+                        return q.marks.toFixed(2);
+                    }
+                }
+                const numUser = parseFloat(cleanUser);
+                const numAcc = parseFloat(q.acceptedAnswer.trim());
+                if (!isNaN(numUser) && !isNaN(numAcc) && numUser === numAcc) {
+                    return q.marks.toFixed(2);
+                }
+                return (cleanUser === q.acceptedAnswer.trim()) ? q.marks.toFixed(2) : "0";
+            }
+
+            if (!Array.isArray(userAns) || userAns.length === 0) return "0";
+
+            if (q.type === 'MCQ') {
+                return (userAns[0] === q.correct[0]) ? q.marks.toFixed(2) : "0";
+            }
+
+            if (q.type === 'MSQ') {
+                const sortedUser = [...userAns].sort().join(',');
+                const sortedCorrect = [...q.correct].sort().join(',');
+                return (sortedUser === sortedCorrect) ? q.marks.toFixed(2) : "0";
+            }
+
+            return "0";
+        }
+
+        function updateScoreDisplay() {
+            let total = 0;
+            let answeredCount = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const score = parseFloat(calculateQuestionScore(q));
+                total += score;
+
+                const ans = userAnswers[q.qn];
+                if (ans && (Array.isArray(ans) ? ans.length > 0 : ans !== '')) {
+                    answeredCount++;
+                }
+            });
+
+            document.getElementById('liveScoreDisplay').textContent = `${total.toFixed(2)} / 20.00`;
+            const pct = ((total / 20) * 100).toFixed(1);
+            document.getElementById('livePercentDisplay').textContent = `(${pct}%)`;
+            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/19`;
+            const summaryEl = document.getElementById('summaryAnsweredCount');
+            if (summaryEl) summaryEl.textContent = answeredCount;
+        }
+
+        function updatePaletteStatuses() {
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.getElementById(`paletteBtn_${q.qn}`);
+                if (!btn) return;
+
+                btn.className = 'palette-btn';
+
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && (Array.isArray(ans) ? ans.length > 0 : ans !== '');
+
+                if (hasAns) {
+                    btn.classList.add('answered');
+                    if (currentMode === 'learning') {
+                        const score = parseFloat(calculateQuestionScore(q));
+                        if (score > 0) btn.classList.add('correct');
+                        else btn.classList.add('incorrect');
+                    }
+                }
+            });
+        }
+
+        function toggleSolution(qnNum) {
+            const box = document.getElementById(`solution_${qnNum}`);
+            if (box) box.classList.toggle('open');
+        }
+
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (isTimerRunning) {
+                    timerSeconds++;
+                    updateTimerUI();
+                }
+            }, 1000);
+        }
+
+        function toggleTimer() {
+            isTimerRunning = !isTimerRunning;
+            const btn = document.getElementById('btnPauseTimer');
+            if (btn) btn.innerHTML = isTimerRunning ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+        }
+
+        function resetTimer() {
+            timerSeconds = 0;
+            updateTimerUI();
+        }
+
+        function updateTimerUI() {
+            const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const secs = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+        }
+
+        function submitExam() {
+            setPortalMode('learning');
+
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+            let totalScore = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                if (q.type === 'COMPREHENSION') return;
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && (Array.isArray(ans) ? ans.length > 0 : ans !== '');
+
+                if (!hasAns) {
+                    unansweredCount++;
+                } else {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    totalScore += score;
+                    if (score > 0) correctCount++;
+                    else incorrectCount++;
+                }
+            });
+
+            document.getElementById('modalScoreText').textContent = `${totalScore.toFixed(2)} / 20.00`;
+            document.getElementById('modalPercentText').textContent = `${((totalScore / 20) * 100).toFixed(1)}% Accuracy`;
+            document.getElementById('modalCorrectCount').textContent = correctCount;
+            document.getElementById('modalIncorrectCount').textContent = incorrectCount;
+            document.getElementById('modalUnansweredCount').textContent = unansweredCount;
+
+            document.getElementById('resultModal').classList.add('active');
+        }
+
+        function resetExam() {
+            userAnswers = {};
+            resetTimer();
+            closeResultModal();
+            setPortalMode('learning');
+        }
+
+        function openSummaryModal() {
+            document.getElementById('summaryModal').classList.add('active');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.remove('active');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.remove('active');
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('portalSidebar');
+            const toggleBtn = document.getElementById('mobileSidebarToggle');
+            if (sidebar && toggleBtn) {
+                sidebar.classList.toggle('open');
+                toggleBtn.classList.toggle('active');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const fab = document.getElementById('fabBackToTop');
+            if (fab) {
+                if (window.scrollY > 300) fab.classList.add('visible');
+                else fab.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+
+</html>

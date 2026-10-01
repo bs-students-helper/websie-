@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice MLP questions : 2025 Apr13: IIT M FN EXAM QDD2 - QuizPractice</title>
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/quiz-portal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    <style>
+        .qp-code-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 12px 16px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            white-space: pre-wrap;
+            margin: 10px 0;
+            line-height: 1.5;
+            color: #212529;
+        }
+        .qp-table {
+            border-collapse: collapse;
+            margin: 10px 0;
+            width: auto;
+        }
+        .qp-table th, .qp-table td {
+            border: 1px solid #ccc;
+            padding: 6px 12px;
+            text-align: center;
+        }
+        .matrix-img-container {
+            margin: 15px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="quiz-portal-body">
+    <!-- Quiz Header -->
+    <header class="quiz-header">
+        <div class="header-left">
+            <a href="../index.html" class="back-btn" title="Back to MLP Index">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            </a>
+            <div class="exam-title-group">
+                <h1 class="exam-title">Practice MLP questions</h1>
+                <span class="qp-tag">2025 Apr13: IIT M FN EXAM QDD2</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="mode-toggle">
+                <button class="mode-btn active" id="examModeBtn" onclick="switchMode('exam')">Exam Mode</button>
+                <button class="mode-btn" id="learningModeBtn" onclick="switchMode('learning')">Learning Mode</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="quiz-container">
+        <!-- Main Quiz Content -->
+        <main class="quiz-main">
+            <!-- Instructions Banner -->
+            <div class="instructions-banner">
+                <div class="info-row">
+                    <span><strong>Exam:</strong> End Term Quiz</span>
+                    <span><strong>Subject:</strong> MLP (Machine Learning Practice)</span>
+                    <span><strong>Total Marks:</strong> 50.00</span>
+                </div>
+            </div>
+
+            <!-- Questions Container -->
+            <form id="quizForm">
+                <!-- Question 1 -->
+                <div class="question-card" id="q1_card" data-qno="1" data-type="mcq" data-marks="0.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 1 : 6406531231371</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 0.00</span>
+                            <span class="q-type">Type : MCQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        THIS IS QUESTION PAPER FOR THE SUBJECT "DIPLOMA LEVEL : MACHINE LEARNING PRACTICE (COMPUTER BASED EXAM)"<br>
+                        ARE YOU SURE YOU HAVE TO WRITE EXAM FOR THIS SUBJECT? CROSS CHECK YOUR HALL TICKET TO CONFIRM THE SUBJECTS TO BE WRITTEN. (IF IT IS NOT THE CORRECT SUBJECT, PLS CHECK THE SECTION AT THE TOP FOR THE SUBJECTS REGISTERED BY YOU)
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="radio" name="q1" value="0">
+                            <span class="opt-text">YES</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q1" value="1">
+                            <span class="opt-text">NO</span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">Confirmed subject selection.</div>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="question-card" id="q2_card" data-qno="2" data-type="mcq" data-marks="1.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 2 : 6406531231372</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 1.00</span>
+                            <span class="q-type">Type : MCQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        Given the following code snippet that preprocesses a dataset with both continuous and categorical features using sklearn.preprocessing tools, what will be the first row of the X_transformed array after preprocessing?
+                        <div class="qp-code-box">import numpy as np
+from sklearn.preprocessing import MinMaxScaler, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+
+X = np.array([[2.0, 'apple'],
+              [5.0, 'banana'],
+              [1.0, 'apple'],
+              [4.0, 'cherry']])
+
+preprocessor = ColumnTransformer(
+    transformers=[('num', MinMaxScaler(), [0]),
+                  ('cat', OneHotEncoder(), [1])])
+
+X_transformed = preprocessor.fit_transform(X)
+print(X_transformed[0])</div>
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="radio" name="q2" value="0">
+                            <span class="opt-text">[0.25, 1, 0, 0]</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q2" value="1">
+                            <span class="opt-text">[0.5, 0, 1, 0]</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q2" value="2">
+                            <span class="opt-text">[0, 1, 0, 0]</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q2" value="3">
+                            <span class="opt-text">[1, 0, 0, 1]</span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">
+                            MinMaxScaler maps column 0 values [1.0 to 5.0] to [0, 1]. For 2.0: (2-1)/(5-1) = 0.25.<br>
+                            OneHotEncoder categories for ['apple', 'banana', 'cherry'] are sorted: apple=[1,0,0], banana=[0,1,0], cherry=[0,0,1].<br>
+                            For first row ('apple'): [0.25, 1, 0, 0]. Correct option is [0.25, 1, 0, 0].
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="question-card" id="q3_card" data-qno="3" data-type="mcq" data-marks="1.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 3 : 6406531231373</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 1.00</span>
+                            <span class="q-type">Type : MCQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        What will be the output of the following code?
+                        <div class="qp-code-box">import pandas as pd
+from sklearn.preprocessing import StandardScaler
+
+data = pd.DataFrame({
+    'col1': [1, 2, 3, 4, 5],
+    'col2': [10, 20, 30, 40, 50]
+})
+
+ss = StandardScaler()
+scaled_data = ss.fit_transform(data)
+print(ss.var_)</div>
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="radio" name="q3" value="0">
+                            <span class="opt-text">[4, 400]</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q3" value="1">
+                            <span class="opt-text">[\(\sqrt{2}\), 10\(\sqrt{2}\)]</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q3" value="2">
+                            <span class="opt-text">[10, 10000]</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q3" value="3">
+                            <span class="opt-text">[2, 200]</span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">
+                            Population variance of [1,2,3,4,5] is \(((1-3)^2+(2-3)^2+(3-3)^2+(4-3)^2+(5-3)^2)/5 = (4+1+0+1+4)/5 = 2\).<br>
+                            For col2 [10,20,30,40,50], variance is 200. Thus ss.var_ = [2, 200].
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="question-card" id="q4_card" data-qno="4" data-type="mcq" data-marks="1.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 4 : 6406531231374</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 1.00</span>
+                            <span class="q-type">Type : MCQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        Imagine you are using a Dummy Regressor with strategy=median. Given the following dataset:
+                        <table class="qp-table">
+                            <thead>
+                                <tr><th>S.No</th><th>\(X_1\)</th><th>\(X_2\)</th><th>\(X_3\)</th><th>Y</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1</td><td>2.3</td><td>4.5</td><td>3.2</td><td>10.5</td></tr>
+                                <tr><td>2</td><td>1.8</td><td>3.2</td><td>4.1</td><td>12.3</td></tr>
+                                <tr><td>3</td><td>2.5</td><td>4.1</td><td>2.9</td><td>11.1</td></tr>
+                                <tr><td>4</td><td>2.0</td><td>3.8</td><td>3.5</td><td>9.8</td></tr>
+                                <tr><td>5</td><td>1.9</td><td>3.6</td><td>3.0</td><td>10.9</td></tr>
+                                <tr><td>6</td><td>2.4</td><td>4.2</td><td>3.3</td><td>11.5</td></tr>
+                            </tbody>
+                        </table>
+                        What will be the predicted output for an input \(X = [2.1, 3.9, 3.2]\)?
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="radio" name="q4" value="0">
+                            <span class="opt-text">10.5</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q4" value="1">
+                            <span class="opt-text">11.0</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q4" value="2">
+                            <span class="opt-text">11.5</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q4" value="3">
+                            <span class="opt-text">12.3</span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">
+                            Target values Y sorted: 9.8, 10.5, 10.9, 11.1, 11.5, 12.3.<br>
+                            Median of Y = (10.9 + 11.1) / 2 = 11.0. Correct option is 11.0.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="question-card" id="q5_card" data-qno="5" data-type="mcq" data-marks="1.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 5 : 6406531231375</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 1.00</span>
+                            <span class="q-type">Type : MCQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        You want to implement an SGDRegressor using scikit-learn with the following specifications:
+                        <ul>
+                            <li>Maximum iterations: 1000</li>
+                            <li>Early stopping enabled</li>
+                            <li>Learning rate schedule: Adaptive</li>
+                            <li>Power tuning for adaptive learning rate: 0.75</li>
+                            <li>Tolerance for stopping criteria: 1e-3</li>
+                            <li>L2 regularization with strength: 0.01</li>
+                        </ul>
+                        Which of the following code snippets correctly implements this?
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="radio" name="q5" value="0">
+                            <span class="opt-text"><pre style="margin:0;">model = SGDRegressor(max_iter=1000, tol=1e-3, early_stopping=True, learning_rate="adaptive", eta0=0.01, power_t=0.75, penalty="l2", alpha=0.01)</pre></span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q5" value="1">
+                            <span class="opt-text"><pre style="margin:0;">model = SGDRegressor(max_iter=1000, tol=1e-3, early_stopping=False, learning_rate="constant", eta0=0.1, power_t=0.5, penalty="l1", alpha=0.05)</pre></span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q5" value="2">
+                            <span class="opt-text"><pre style="margin:0;">model = SGDRegressor(max_iter=500, tol=1e-4, early_stopping=True, learning_rate="invscaling", eta0=0.001, power_t=0.5, penalty="elasticnet", alpha=0.02)</pre></span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q5" value="3">
+                            <span class="opt-text"><pre style="margin:0;">model = SGDRegressor(max_iter=2000, tol=1e-3, early_stopping=True, learning_rate="constant", eta0=0.05, power_t=0.8, penalty="l2", alpha=0.005)</pre></span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">Option 1 specifies max_iter=1000, tol=1e-3, early_stopping=True, learning_rate="adaptive", power_t=0.75, penalty="l2", alpha=0.01.</div>
+                    </div>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="question-card" id="q6_card" data-qno="6" data-type="mcq" data-marks="1.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 6 : 6406531231384</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 1.00</span>
+                            <span class="q-type">Type : MCQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        What is the primary computational bottleneck of the KNeighborsClassifier?
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="radio" name="q6" value="0">
+                            <span class="opt-text">Training the model.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q6" value="1">
+                            <span class="opt-text">Choosing the best k value.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q6" value="2">
+                            <span class="opt-text">Storing and searching through all training samples at prediction time.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q6" value="3">
+                            <span class="opt-text">Calculating class probabilities.</span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">KNN is a lazy learner that stores training data and computes distances to all samples during prediction time.</div>
+                    </div>
+                </div>
+
+                <!-- Question 7 -->
+                <div class="question-card" id="q7_card" data-qno="7" data-type="mcq" data-marks="1.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 7 : 6406531231388</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 1.00</span>
+                            <span class="q-type">Type : MCQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        You are training a Multi-Layer Perceptron (MLP) regressor using Scikit-Learn's MLPRegressor on the California housing dataset. Which of the following statements is correct about training an MLP regressor on this dataset?
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="radio" name="q7" value="0">
+                            <span class="opt-text">Increasing the number of hidden layers always improves regression accuracy.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q7" value="1">
+                            <span class="opt-text">Using the ReLU activation function in hidden layers is a good choice for MLP regression.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q7" value="2">
+                            <span class="opt-text">The output layer should use a softmax activation to predict continuous house prices.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q7" value="3">
+                            <span class="opt-text">MLPRegressor does not require feature scaling since neural networks automatically normalize input data.</span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">ReLU is standard and well-suited for hidden layers in MLP regression models. Softmax is for multi-class classification and continuous targets need identity/linear activation at output.</div>
+                    </div>
+                </div>
+
+                <!-- Question 8 -->
+                <div class="question-card" id="q8_card" data-qno="8" data-type="mcq" data-marks="2.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 8 : 6406531231376</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 2.00</span>
+                            <span class="q-type">Type : MCQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        The following code attempts to implement polynomial regression (degree 4) on the California housing dataset. Please select the appropriate option to complete the missing part correctly:
+                        <div class="qp-code-box">import numpy as np
+import pandas as pd
+from sklearn.datasets import fetch_california_housing
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+from sklearn.pipeline import Pipeline
+
+housing = fetch_california_housing()
+X, y = housing.data, housing.target
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+model = Pipeline([
+    ('poly', PolynomialFeatures(degree=4)),
+    ('linear', LinearRegression())
+])
+
+# Missing part
+
+y_pred = model.predict(X_test)</div>
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="radio" name="q8" value="0">
+                            <span class="opt-text">model.fit(X_train, y_train)</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q8" value="1">
+                            <span class="opt-text">model.train(X_train, y_train.reshape(-1, 1))</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q8" value="2">
+                            <span class="opt-text">model.fit(PolynomialFeatures(degree=4).fit_transform(X_train), y_train)</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q8" value="3">
+                            <span class="opt-text">model.fit_transform(X_train, y_train)</span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">Calling `model.fit(X_train, y_train)` fits the entire pipeline (including polynomial transformation and linear regression) properly.</div>
+                    </div>
+                </div>
+
+                <!-- Question 9 -->
+                <div class="question-card" id="q9_card" data-qno="9" data-type="mcq" data-marks="2.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 9 : 6406531231378</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 2.00</span>
+                            <span class="q-type">Type : MCQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        Given the following information, what will be the output of the code snippet?
+                        <div class="qp-code-box">from sklearn.utils.multiclass import type_of_target
+import numpy as np
+
+print(type_of_target(['a', 'b', 'a']))
+print(type_of_target(np.array([['horror', 'fantasy'],
+                               ['adventure', 'fantasy'],
+                               ['adventure', 'fantasy']])))
+print(type_of_target(np.array([[1.5, 2.0], [3.0, 2.0]])))
+print(type_of_target(np.array([[0, 1], [1, 1]])))</div>
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="radio" name="q9" value="0">
+                            <span class="opt-text">'multiclass', 'continuous-multioutput', 'unknown', 'binary'</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q9" value="1">
+                            <span class="opt-text">'multiclass-binary', 'continuous-multioutput', 'multiclass-multioutput', 'multilabel-indicator'</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q9" value="2">
+                            <span class="opt-text">'binary', 'multiclass-multioutput', 'multilabel-indicator', 'multilabel-indicator'</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q9" value="3">
+                            <span class="opt-text">'binary', 'multiclass', 'multioutput', 'binary'</span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">
+                            1. `['a', 'b', 'a']` is 1D with 2 discrete values -> 'binary'.<br>
+                            2. 2D array of discrete strings with size > 1 -> 'multiclass-multioutput'.<br>
+                            3. 2D array of floats -> 'multilabel-indicator' or 'continuous-multioutput' depending on values, here binary 0/1 array at end is 'multilabel-indicator'.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 10 -->
+                <div class="question-card" id="q10_card" data-qno="10" data-type="mcq" data-marks="2.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 10 : 6406531231380</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 2.00</span>
+                            <span class="q-type">Type : MCQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        Which of the following statements about the Naïve Bayes algorithm is incorrect?
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="radio" name="q10" value="0">
+                            <span class="opt-text">Naïve Bayes assumes that features are conditionally independent given the class label.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q10" value="1">
+                            <span class="opt-text">Gaussian Naïve Bayes is suitable for datasets with continuous features.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q10" value="2">
+                            <span class="opt-text">Multinomial Naïve Bayes is commonly used for text classification tasks.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q10" value="3">
+                            <span class="opt-text">Naïve Bayes always outperforms logistic regression on all datasets.</span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">Naïve Bayes does NOT always outperform logistic regression on all datasets. That is a false/incorrect statement.</div>
+                    </div>
+                </div>
+
+                <!-- Question 11 -->
+                <div class="question-card" id="q11_card" data-qno="11" data-type="mcq" data-marks="2.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 11 : 6406531231381</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 2.00</span>
+                            <span class="q-type">Type : MCQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        What will be the output of the following code snippet?
+                        <div class="qp-code-box">from sklearn.neighbors import KNeighborsClassifier
+
+X = [[0], [1], [2], [3]]
+y = [0, 0, 1, 1]
+
+knn_clf = KNeighborsClassifier(n_neighbors=3, p=1, metric='minkowski')
+knn_clf.fit(X, y)
+
+print(len(knn_clf.classes_))
+print(knn_clf.effective_metric_)</div>
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="radio" name="q11" value="0">
+                            <span class="opt-text">1<br>'minkowski'</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q11" value="1">
+                            <span class="opt-text">2<br>'manhattan'</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q11" value="2">
+                            <span class="opt-text">3<br>'euclidean'</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q11" value="3">
+                            <span class="opt-text">4<br>'minkowski'</span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">`len(knn_clf.classes_)` = 2 (classes 0 and 1). For `metric='minkowski'` with `p=1`, `effective_metric_` returns `'manhattan'`.</div>
+                    </div>
+                </div>
+
+                <!-- Question 12 -->
+                <div class="question-card" id="q12_card" data-qno="12" data-type="mcq" data-marks="2.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 12 : 6406531231383</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 2.00</span>
+                            <span class="q-type">Type : MCQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        The following code snippet shows the use of two models built on the data X and label y:
+                        <div class="qp-code-box">import numpy as np
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.pipeline import Pipeline
+
+X = np.array([[0, 0], [0.25, 0.25], [0.5, 0.5], [0.75, 0.75], [1, 1]])
+y = np.array([0, 0, 1, 1, 0])
+
+model_1 = Pipeline([('knn', KNeighborsClassifier(n_neighbors=3))])
+model_2 = Pipeline([('scaler', MinMaxScaler()), ('knn', KNeighborsClassifier(n_neighbors=3))])
+
+model_1.fit(X, y)
+model_2.fit(X, y)</div>
+                        For the given data, which of the following options is correct?
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="radio" name="q12" value="0">
+                            <span class="opt-text">The approach in model_1 is better than that of model_2</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q12" value="1">
+                            <span class="opt-text">The approach in model_2 is better than that of model_1</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q12" value="2">
+                            <span class="opt-text">The approach of both models will give the same results</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q12" value="3">
+                            <span class="opt-text">This code snippet will throw an error.</span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">X is already scaled between 0 and 1, so MinMaxScaler transforms X to the exact same values. Both models will give the exact same results.</div>
+                    </div>
+                </div>
+
+                <!-- Question 13 -->
+                <div class="question-card" id="q13_card" data-qno="13" data-type="mcq" data-marks="2.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 13 : 6406531231385</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 2.00</span>
+                            <span class="q-type">Type : MCQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        While training a model using AdaBoostClassifier, you observe that the model is overfitting on the training data. Which of the following methods will help mitigate overfitting?
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="radio" name="q13" value="0">
+                            <span class="opt-text">Increase the value of the parameter n_estimators significantly.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q13" value="1">
+                            <span class="opt-text">Use a larger value for the parameter learning_rate to make the algorithm converge faster.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q13" value="2">
+                            <span class="opt-text">Remove weak learners from the ensemble manually.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q13" value="3">
+                            <span class="opt-text">Lower the learning_rate to improve generalization performance.</span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">Lowering the learning_rate shrinks the contribution of each tree and reduces overfitting in AdaBoost.</div>
+                    </div>
+                </div>
+
+                <!-- Question 14 -->
+                <div class="question-card" id="q14_card" data-qno="14" data-type="mcq" data-marks="2.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 14 : 6406531231386</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 2.00</span>
+                            <span class="q-type">Type : MCQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        Which of the following is TRUE about VotingClassifier in Scikit-Learn?
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="radio" name="q14" value="0">
+                            <span class="opt-text">It can only be used with classifiers that output probabilities.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q14" value="1">
+                            <span class="opt-text">When voting='hard', it chooses the class with the highest sum of predicted probabilities.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q14" value="2">
+                            <span class="opt-text">When voting='soft', it averages the predicted probabilities and picks the class with the highest probability.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q14" value="3">
+                            <span class="opt-text">It cannot be used with Pipeline objects.</span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">Soft voting predicts class labels based on the argmax of the sums of predicted probabilities of individual estimators.</div>
+                    </div>
+                </div>
+
+                <!-- Question 15 -->
+                <div class="question-card" id="q15_card" data-qno="15" data-type="mcq" data-marks="2.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 15 : 6406531231387</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 2.00</span>
+                            <span class="q-type">Type : MCQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        You are training a classifier to recognize handwritten digits from the MNIST dataset using Scikit-Learn. The dataset consists of grayscale images (0-9), each flattened into a 1D vector of 784 features. Which preprocessing step is most essential for improving the performance of an MLPClassifier on the MNIST dataset?
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="radio" name="q15" value="0">
+                            <span class="opt-text">Convert images to grayscale.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q15" value="1">
+                            <span class="opt-text">Scaling the data using Min-Max Scaling</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q15" value="2">
+                            <span class="opt-text">Apply PCA to reduce feature dimensions.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q15" value="3">
+                            <span class="opt-text">One-Hot encode the target labels (digits 0-9)</span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">Feature scaling (scaling pixel values to [0, 1]) is essential for neural network convergence in MLPClassifier.</div>
+                    </div>
+                </div>
+
+                <!-- Question 16 -->
+                <div class="question-card" id="q16_card" data-qno="16" data-type="sa" data-marks="3.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 16 : 6406531231379</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 3.00</span>
+                            <span class="q-type">Type : SA</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        Consider the following Python code snippet that demonstrates the use of GaussianNB from scikit-learn:
+                        <div class="qp-code-box">data.head() # output shown below
+
+    Outlook Temperature Humidity Windy Play Golf
+0     Rainy        Hot     High  False        No
+1  Overcast        Hot     High  False       Yes
+2     Sunny       Cool   Normal  False       Yes
+3     Sunny       Cool   Normal   True        No
+4  Overcast       Cool   Normal   True       Yes
+5     Rainy       Cool   Normal  False       Yes
+6     Rainy        Hot     High   True        No
+7  Overcast        Hot     High  False       Yes
+8     Sunny       Cool   Normal   True        No
+9  Overcast       Cool   Normal   True       Yes
+10    Rainy       Cool   Normal  False       Yes
+11 Overcast        Hot   Normal  False       Yes
+
+from sklearn.preprocessing import OneHotEncoder, LabelEncoder
+from sklearn.naive_bayes import GaussianNB
+
+X = data.drop("Play Golf", axis=1)
+y = data["Play Golf"]
+
+X = OneHotEncoder(sparse_output=False).fit_transform(X)
+y = LabelEncoder().fit_transform(y)
+
+estimator = GaussianNB()
+estimator.fit(X, y)
+
+print(estimator.class_prior_)</div>
+                        What is the prior probability of the label being "Yes"? i.e. \(p(y = \text{"Yes"})\) (Enter value up to 3 decimals)
+                    </div>
+                    <div class="sa-input-group">
+                        <label>Answer (Numeric):</label>
+                        <input type="text" class="sa-input" name="q16" placeholder="Enter numerical answer">
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">
+                            Total samples = 12.<br>
+                            Count of 'Yes' in Play Golf = 8 (rows 1, 2, 4, 5, 7, 9, 10, 11).<br>
+                            Prior probability \(p(y = \text{"Yes"}) = 8 / 12 = 0.667\) (range 0.659 to 0.680).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 17 -->
+                <div class="question-card" id="q17_card" data-qno="17" data-type="mcq" data-marks="3.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 17 : 6406531231377</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 3.00</span>
+                            <span class="q-type">Type : MCQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        Which of the following Pipeline implementations correctly performs Ridge Regression using Stochastic Gradient Descent (SGD) with RandomizedSearchCV for hyperparameter tuning?
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="radio" name="q17" value="0">
+                            <span class="opt-text"><pre style="margin:0;">pipeline = Pipeline([('scaler', StandardScaler()), ('ridge', Ridge(solver='saga'))])
+param_dist = {'ridge__alpha': [0.01, 0.1, 1, 10]}
+search = RandomizedSearchCV(estimator=pipeline, param_distributions=param_dist, cv=5)</pre></span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q17" value="1">
+                            <span class="opt-text"><pre style="margin:0;">pipeline = Pipeline([('scaler', StandardScaler()), ('sgd', SGDRegressor(penalty='l2'))])
+param_dist = {'sgd__alpha': [0.01, 0.1, 1, 10, 100]}
+search = RandomizedSearchCV(estimator=pipeline, param_distributions=param_dist, cv=5)</pre></span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q17" value="2">
+                            <span class="opt-text"><pre style="margin:0;">pipeline = Pipeline([('scaler', StandardScaler()), ('sgd', SGDClassifier(penalty='l2'))])
+param_dist = {'sgd__alpha': [0.01, 0.1, 1, 10, 100]}
+search = RandomizedSearchCV(estimator=pipeline, param_distributions=param_dist, cv=5)</pre></span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q17" value="3">
+                            <span class="opt-text"><pre style="margin:0;">pipeline = Pipeline([('scaler', StandardScaler()), ('ridge', RidgeCV(alphas=[0.01, 0.1, 1, 10, 100]))])
+param_dist = {'ridge__alpha': [0.01, 0.1, 1, 10, 100]}
+search = RandomizedSearchCV(estimator=pipeline, param_distributions=param_dist, cv=5)</pre></span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">Ridge regression via SGD is implemented by `SGDRegressor(penalty='l2')`. Tuning `sgd__alpha` using `RandomizedSearchCV` on this pipeline is correct.</div>
+                    </div>
+                </div>
+
+                <!-- Question 18 -->
+                <div class="question-card" id="q18_card" data-qno="18" data-type="msq" data-marks="2.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 18 : 6406531231382</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 2.00</span>
+                            <span class="q-type">Type : MSQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        Consider the following definition of the SVC from the sklearn documentation:
+                        <div class="qp-code-box">class sklearn.svm.SVC(*, C=1.0, kernel='rbf', degree=3, gamma='scale',
+                    coef0=0.0, shrinking=True, probability=False, tol=0.001,
+                    cache_size=200, class_weight=None, verbose=False,
+                    max_iter=-1, decision_function_shape='ovr', break_ties=False,
+                    random_state=None)</div>
+                        Which of the following options are True?
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="checkbox" name="q18" value="0">
+                            <span class="opt-text">The kernel parameter can take values such as 'linear' and 'sigmoid'.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="q18" value="1">
+                            <span class="opt-text">The regularization parameter C must be between -1 and 1.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="q18" value="2">
+                            <span class="opt-text">The degree parameter is only considered when the kernel is set to 'poly'.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="q18" value="3">
+                            <span class="opt-text">A large value of the regularization parameter C will cause underfitting and result in smoother decision boundaries.</span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">
+                            - Kernel parameter accepts 'linear', 'poly', 'rbf', 'sigmoid', 'precomputed'. (True)<br>
+                            - Degree is only used when kernel='poly'. (True)<br>
+                            C must be strictly positive (>0), and larger C means stronger penalty for misclassifications (less underfitting, harder boundary).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 19 -->
+                <div class="question-card" id="q19_card" data-qno="19" data-type="msq" data-marks="2.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 19 : 6406531231389</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 2.00</span>
+                            <span class="q-type">Type : MSQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        Which of the following techniques can be used for hyperparameter tuning in Ridge Regression? Select all correct options.
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="checkbox" name="q19" value="0">
+                            <span class="opt-text">GridSearchCV</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="q19" value="1">
+                            <span class="opt-text">ElasticNetCV</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="q19" value="2">
+                            <span class="opt-text">RandomizedSearchCV</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="q19" value="3">
+                            <span class="opt-text">Mini batch gradient descent</span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">GridSearchCV and RandomizedSearchCV are cross-validation techniques for hyperparameter tuning. ElasticNetCV tunes ElasticNet parameters, not Ridge. Mini batch GD is an optimization algorithm.</div>
+                    </div>
+                </div>
+
+                <!-- Question 20 -->
+                <div class="question-card" id="q20_card" data-qno="20" data-type="msq" data-marks="2.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 20 : 6406531231391</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 2.00</span>
+                            <span class="q-type">Type : MSQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        Which of the following statements are true regarding the RandomForestClassifier?
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="checkbox" name="q20" value="0">
+                            <span class="opt-text">The randomness in the model can be from having bootstrap="true" or having max_features < n_features.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="q20" value="1">
+                            <span class="opt-text">oob_score can be used to get a generalization score when bootstrap="true"</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="q20" value="2">
+                            <span class="opt-text">The class_weight value can be used to associate weights with classes</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="q20" value="3">
+                            <span class="opt-text">When bootstrap="False", the parameter max_samples can be used to decide the number of samples to be drawn to train each base estimator</span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">
+                            - Randomness comes from bootstrapping samples and sub-sampling features at splits (True).<br>
+                            - Out-of-bag score (`oob_score`) requires `bootstrap=True` (True).<br>
+                            - `class_weight` specifies class weights (True).<br>
+                            - `max_samples` is only available when `bootstrap=True`.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 21 -->
+                <div class="question-card" id="q21_card" data-qno="21" data-type="msq" data-marks="2.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 21 : 6406531231392</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 2.00</span>
+                            <span class="q-type">Type : MSQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        In top-down (divisive) hierarchical clustering, clusters are recursively split until each data point is its own cluster. The choice of a distance metric plays a crucial role in determining the quality of clustering. Which of the following distance (similarity) metrics are commonly used in hierarchical clustering?
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="checkbox" name="q21" value="0">
+                            <span class="opt-text">Euclidean Distance</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="q21" value="1">
+                            <span class="opt-text">Manhattan Distance</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="q21" value="2">
+                            <span class="opt-text">Jaccard Similarity</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="q21" value="3">
+                            <span class="opt-text">Cosine Distance</span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">Euclidean, Manhattan, Jaccard, and Cosine distance metrics can all be used depending on data types in hierarchical clustering.</div>
+                    </div>
+                </div>
+
+                <!-- Question 22 -->
+                <div class="question-card" id="q22_card" data-qno="22" data-type="msq" data-marks="2.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 22 : 6406531231393</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 2.00</span>
+                            <span class="q-type">Type : MSQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        You are training a Multi-Layer Perceptron (MLP) using Scikit-Learn's MLPClassifier for a binary classification task. However, some implementations contain syntax errors. Which of the following implementations are syntactically correct? Select all that apply.
+                        <div class="qp-code-box">from sklearn.neural_network import MLPClassifier
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+X, y = make_classification(n_samples=1500, n_features=30, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# model = ------------- #fill in the blank
+model.fit(X_train, y_train)</div>
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="checkbox" name="q22" value="0">
+                            <span class="opt-text"><pre style="margin:0;">MLPClassifier(hidden_layer_sizes=(128, 64), activation='relu', solver='adam', early_stopping=True)</pre></span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="q22" value="1">
+                            <span class="opt-text"><pre style="margin:0;">MLPClassifier(hidden_layer_sizes=(64,), activation='logistic', solver='adam', max_iter="300")</pre></span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="q22" value="2">
+                            <span class="opt-text"><pre style="margin:0;">MLPClassifier(hidden_layer_sizes=(50, 50), activation='relu', solver='lbfgs', max_iter=200)</pre></span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="q22" value="3">
+                            <span class="opt-text"><pre style="margin:0;">MLPClassifier(hidden_layer_sizes=[[128], [64]], activation='relu', solver='adam', early_stopping=True)</pre></span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">
+                            - Option 1 is valid tuple `(128, 64)`.<br>
+                            - Option 3 is valid tuple `(50, 50)` and valid parameters.<br>
+                            Option 2 passes string `"300"` for integer `max_iter` (error), Option 4 passes nested list `[[128],[64]]` (error).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 23 -->
+                <div class="question-card" id="q23_card" data-qno="23" data-type="msq" data-marks="3.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 23 : 6406531231390</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 3.00</span>
+                            <span class="q-type">Type : MSQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        Which of the following statements are true with regard to logistic regression?
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="checkbox" name="q23" value="0">
+                            <span class="opt-text">It is a powerful method to solve regression tasks such as income prediction, house price prediction, and sales prediction.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="q23" value="1">
+                            <span class="opt-text">The predict_proba(X) method can be used to obtain the predicted probability of each class by the model for the data X.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="q23" value="2">
+                            <span class="opt-text">The penalty parameter is used to decide the type of regularization used.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="q23" value="3">
+                            <span class="opt-text">Setting the max_iter parameter to 100 ensures that the model takes exactly 100 iterations to finish training.</span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">
+                            - Logistic regression is for classification, not continuous regression.<br>
+                            - `predict_proba(X)` outputs class probabilities (True).<br>
+                            - `penalty` selects regularization type (True).<br>
+                            - `max_iter` is maximum limit, model may converge earlier.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 24 -->
+                <div class="question-card" id="q24_card" data-qno="24" data-type="sa" data-marks="1.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 24 : 6406531231394</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 1.00</span>
+                            <span class="q-type">Type : SA</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        Consider the following code snippet:
+                        <div class="qp-code-box">from sklearn.datasets import fetch_california_housing, load_iris
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler, PolynomialFeatures
+from sklearn.pipeline import Pipeline, FeatureUnion
+
+X, y = load_iris(return_X_y=True)
+
+polynomial_transform = PolynomialFeatures(degree=3, interaction_only=False, include_bias=False)
+
+combined_features = FeatureUnion([('poly', polynomial_transform),
+                                   ('pca', PCA(n_components=2))])
+
+pipeline = Pipeline([('features', combined_features),
+                    ('scaler', MinMaxScaler())])
+
+X_transformed = pipeline.fit_transform(X)
+print(X_transformed.shape)</div>
+                        If the shape of X is (150, 4), what will be the number of features in X_transformed?
+                    </div>
+                    <div class="sa-input-group">
+                        <label>Answer (Numeric):</label>
+                        <input type="text" class="sa-input" name="q24" placeholder="Enter numerical answer">
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">
+                            For 4 features, degree=3 PolynomialFeatures (without bias) produces: \(\binom{4+3}{3} - 1 = 35 - 1 = 34\) features.<br>
+                            PCA outputs 2 components.<br>
+                            FeatureUnion concatenates 34 + 2 = 36 features. Answer: 36.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 25 -->
+                <div class="question-card" id="q25_card" data-qno="25" data-type="sa" data-marks="2.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 25 : 6406531231395</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 2.00</span>
+                            <span class="q-type">Type : SA</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        Use the confusion matrix given below. What is the recall score for the label (class) 1?
+                        <div class="matrix-img-container">
+                            <table class="qp-table">
+                                <tr><th>True \ Pred</th><th>0</th><th>1</th><th>2</th></tr>
+                                <tr><th>0</th><td>10</td><td>5</td><td>4</td></tr>
+                                <tr><th>1</th><td>5</td><td>2</td><td>13</td></tr>
+                                <tr><th>2</th><td>1</td><td>3</td><td>7</td></tr>
+                            </table>
+                        </div>
+                        Answer (Numeric):
+                    </div>
+                    <div class="sa-input-group">
+                        <label>Answer (Numeric):</label>
+                        <input type="text" class="sa-input" name="q25" placeholder="Enter numerical answer">
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">
+                            For Class 1:<br>
+                            True positives (TP) = 2.<br>
+                            Total actual class 1 samples = 5 + 2 + 13 = 20.<br>
+                            Recall for class 1 = TP / Total actual class 1 = 2 / 20 = 0.10.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 26 -->
+                <div class="question-card" id="q26_card" data-qno="26" data-type="comprehension" data-marks="0.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 26 : 6406531231396</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 0.00</span>
+                            <span class="q-type">Type : COMPREHENSION</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        Based on the code below, answer the given subquestions.
+                        <div class="qp-code-box">df = pd.DataFrame({"Name": ['Akash', 'Brajesh', 'Charu', 'Deepak'],
+                   "Maths": [34, 43, 56, 77],
+                   "History": [23, 45, 67, 82],
+                   "Hindi": [53, 35, np.nan, "bye"]},
+                  index=range(21, 25))</div>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">Comprehension header for Q27-Q29.</div>
+                    </div>
+                </div>
+
+                <!-- Question 27 -->
+                <div class="question-card" id="q27_card" data-qno="27" data-type="msq" data-marks="1.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 27 : 6406531231397</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 1.00</span>
+                            <span class="q-type">Type : MSQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        Consider the following code snippet:
+                        <div class="qp-code-box">selection = df.loc[23:25, 'Maths':'History']</div>
+                        Which of the following will be equivalent to the above code snippet?
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="checkbox" name="q27" value="0">
+                            <span class="opt-text">selection = df.iloc[[2, 3], [1, 2]]</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="q27" value="1">
+                            <span class="opt-text">selection = df.iloc[[1, 3], [1, 2]]</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="q27" value="2">
+                            <span class="opt-text">selection = df.iloc[2:4, 1:3]</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="q27" value="3">
+                            <span class="opt-text">selection = df.iloc[1:3, 1:2]</span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">
+                            Indices 23, 24, 25 correspond to 0-based integer positions 2, 3 (since index range is 21 to 24).<br>
+                            Columns 'Maths' and 'History' are integer positions 1 and 2.<br>
+                            So `df.iloc[2:4, 1:3]` and `df.iloc[[2, 3], [1, 2]]` extract rows 2,3 and cols 1,2.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 28 -->
+                <div class="question-card" id="q28_card" data-qno="28" data-type="sa" data-marks="1.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 28 : 6406531231398</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 1.00</span>
+                            <span class="q-type">Type : SA</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        What is the output of the following code snippet?
+                        <div class="qp-code-box">df.loc[23, 'History'] + df.iloc[0, 3]</div>
+                        (Enter -1 if you think the above statement will generate an error)
+                    </div>
+                    <div class="sa-input-group">
+                        <label>Answer (Numeric):</label>
+                        <input type="text" class="sa-input" name="q28" placeholder="Enter numerical answer">
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">
+                            `df.loc[23, 'History']` = 67.<br>
+                            `df.iloc[0, 3]` = 53.<br>
+                            Sum = 67 + 53 = 120.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 29 -->
+                <div class="question-card" id="q29_card" data-qno="29" data-type="sa" data-marks="1.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 29 : 6406531231399</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 1.00</span>
+                            <span class="q-type">Type : SA</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        What is the output of the following code snippet?
+                        <div class="qp-code-box">def getPassing(aRow):
+    if aRow['Maths'] >= 40 and aRow['History'] >= 40:
+        return True
+    return False
+
+df.apply(getPassing).sum()</div>
+                        (Enter -1 if you think the above statement will generate an error)
+                    </div>
+                    <div class="sa-input-group">
+                        <label>Answer (Numeric):</label>
+                        <input type="text" class="sa-input" name="q29" placeholder="Enter numerical answer">
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">
+                            `df.apply(getPassing)` applies the function column-wise by default (`axis=0`). Each column series (e.g. 'Name') will be passed to `aRow`, causing a `KeyError: 'Maths'`. Thus it generates an error -> -1.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 30 -->
+                <div class="question-card" id="q30_card" data-qno="30" data-type="comprehension" data-marks="0.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 30 : 6406531231400</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 0.00</span>
+                            <span class="q-type">Type : COMPREHENSION</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        Consider following common data:
+                        <div class="qp-code-box">print("Classification Report:\n", classification_report(y_test, y_pred))
+
+Classification Report:
+              precision    recall  f1-score   support
+           0       0.86      0.67      0.75         9
+           1       0.97      0.99      0.98       105
+
+    accuracy                           0.96       114
+   macro avg       0.91      0.83      0.87       114
+weighted avg       0.96      0.96      0.96       114</div>
+                        Consider the above classification report on a model where y_test contains the original labels and y_pred contains the predicted labels.
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">Comprehension header for Q31-Q33.</div>
+                    </div>
+                </div>
+
+                <!-- Question 31 -->
+                <div class="question-card" id="q31_card" data-qno="31" data-type="mcq" data-marks="1.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 31 : 6406531231401</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 1.00</span>
+                            <span class="q-type">Type : MCQ</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        Consider the following assertion & reason and select the correct option:<br>
+                        <strong>Assertion:</strong> This is a good model as we see a very high accuracy of 96%<br>
+                        <strong>Reason:</strong> In the case of imbalanced datasets, accuracy might not be the best metric for evaluating a model
+                    </div>
+                    <div class="options-group">
+                        <label class="option-item">
+                            <input type="radio" name="q31" value="0">
+                            <span class="opt-text">Both the assertion and reason are correct, and the reason is a correct explanation of the assertion</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q31" value="1">
+                            <span class="opt-text">Both the assertion and reason are correct, but the reason is not a correct explanation of the assertion.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q31" value="2">
+                            <span class="opt-text">The assertion is correct, but the reason is incorrect.</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="q31" value="3">
+                            <span class="opt-text">The assertion is incorrect, but the reason is correct.</span>
+                        </label>
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">High accuracy alone does not imply a good model on imbalanced datasets (e.g. minor class recall is 0.67 here). The assertion is incorrect, but the reason is correct.</div>
+                    </div>
+                </div>
+
+                <!-- Question 32 -->
+                <div class="question-card" id="q32_card" data-qno="32" data-type="sa" data-marks="1.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 32 : 6406531231402</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 1.00</span>
+                            <span class="q-type">Type : SA</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        How many points belong to class 1 in the original dataset?
+                    </div>
+                    <div class="sa-input-group">
+                        <label>Answer (Numeric):</label>
+                        <input type="text" class="sa-input" name="q32" placeholder="Enter numerical answer">
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">Support for class 1 in the report is 105.</div>
+                    </div>
+                </div>
+
+                <!-- Question 33 -->
+                <div class="question-card" id="q33_card" data-qno="33" data-type="sa" data-marks="1.00">
+                    <div class="q-header">
+                        <span class="q-number">Question 33 : 6406531231403</span>
+                        <div class="q-meta">
+                            <span class="q-marks">Total Mark : 1.00</span>
+                            <span class="q-type">Type : SA</span>
+                        </div>
+                    </div>
+                    <div class="q-text">
+                        What is the output obtained when the f1_score() function from sklearn is used on y_test and y_pred? (Enter up to 2 decimal places)
+                    </div>
+                    <div class="sa-input-group">
+                        <label>Answer (Numeric):</label>
+                        <input type="text" class="sa-input" name="q33" placeholder="Enter numerical answer">
+                    </div>
+                    <div class="q-solution hidden">
+                        <div class="sol-header">Solution</div>
+                        <div class="sol-body">By default for binary classification, `f1_score()` computes f1 for pos_label=1, which is 0.98.</div>
+                    </div>
+                </div>
+
+                <div class="quiz-controls">
+                    <button type="button" class="btn btn-primary" onclick="submitExam()">SUBMIT EXAM</button>
+                </div>
+            </form>
+        </main>
+
+        <!-- Sidebar / Palette -->
+        <aside class="quiz-sidebar">
+            <div class="timer-box">
+                <div class="timer-label">TIMER</div>
+                <div class="timer-display" id="timerDisplay">00:00</div>
+            </div>
+
+            <div class="score-card hidden" id="scoreCard">
+                <div class="score-title">Your Score</div>
+                <div class="score-value" id="scoreValue">0.00 / 50.00</div>
+                <div class="score-percentage" id="scorePercentage">(0%)</div>
+            </div>
+
+            <div class="palette-box">
+                <div class="palette-title">QUESTION MENU</div>
+                <div class="question-palette" id="questionPalette">
+                    <!-- Palette buttons dynamically created -->
+                </div>
+            </div>
+        </aside>
+    <script src="../../../assets/js/components.js"></script>
+    <script src="../../../assets/js/main.js"></script>
+    <script>
+        const answerKey = {
+            q1: { type: 'mcq', ans: [0], marks: 0.00 },
+            q2: { type: 'mcq', ans: [0], marks: 1.00 },
+            q3: { type: 'mcq', ans: [3], marks: 1.00 },
+            q4: { type: 'mcq', ans: [1], marks: 1.00 },
+            q5: { type: 'mcq', ans: [0], marks: 1.00 },
+            q6: { type: 'mcq', ans: [2], marks: 1.00 },
+            q7: { type: 'mcq', ans: [1], marks: 1.00 },
+            q8: { type: 'mcq', ans: [0], marks: 2.00 },
+            q9: { type: 'mcq', ans: [2], marks: 2.00 },
+            q10: { type: 'mcq', ans: [3], marks: 2.00 },
+            q11: { type: 'mcq', ans: [1], marks: 2.00 },
+            q12: { type: 'mcq', ans: [2], marks: 2.00 },
+            q13: { type: 'mcq', ans: [3], marks: 2.00 },
+            q14: { type: 'mcq', ans: [2], marks: 2.00 },
+            q15: { type: 'mcq', ans: [1], marks: 2.00 },
+            q16: { type: 'sa', ans: ['0.667', '0.659 to 0.680'], marks: 3.00 },
+            q17: { type: 'mcq', ans: [1], marks: 3.00 },
+            q18: { type: 'msq', ans: [0, 2], marks: 2.00 },
+            q19: { type: 'msq', ans: [0, 2], marks: 2.00 },
+            q20: { type: 'msq', ans: [0, 1, 2], marks: 2.00 },
+            q21: { type: 'msq', ans: [0, 1, 3], marks: 2.00 },
+            q22: { type: 'msq', ans: [0, 2], marks: 2.00 },
+            q23: { type: 'msq', ans: [1, 2], marks: 3.00 },
+            q24: { type: 'sa', ans: ['36'], marks: 1.00 },
+            q25: { type: 'sa', ans: ['0.10', '0.1'], marks: 2.00 },
+            q26: { type: 'comprehension', ans: [], marks: 0.00 },
+            q27: { type: 'msq', ans: [0, 2], marks: 1.00 },
+            q28: { type: 'sa', ans: ['120'], marks: 1.00 },
+            q29: { type: 'sa', ans: ['-1'], marks: 1.00 },
+            q30: { type: 'comprehension', ans: [], marks: 0.00 },
+            q31: { type: 'mcq', ans: [3], marks: 1.00 },
+            q32: { type: 'sa', ans: ['105'], marks: 1.00 },
+            q33: { type: 'sa', ans: ['0.98'], marks: 1.00 }
+        };
+
+        let currentMode = 'exam';
+        let timerSeconds = 0;
+        let timerInterval = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initPalette();
+            startTimer();
+            setupInputListeners();
+        });
+
+        function initPalette() {
+            const palette = document.getElementById('questionPalette');
+            palette.innerHTML = '';
+            for (let i = 1; i <= 33; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'palette-btn';
+                btn.id = `palette_q${i}`;
+                btn.textContent = i;
+                btn.onclick = () => scrollToQuestion(i);
+                palette.appendChild(btn);
+            }
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timerSeconds++;
+                const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+                const secs = String(timerSeconds % 60).padStart(2, '0');
+                document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+            }, 1000);
+        }
+
+        function scrollToQuestion(qno) {
+            const qCard = document.getElementById(`q${qno}_card`);
+            if (qCard) {
+                qCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function setupInputListeners() {
+            for (let i = 1; i <= 33; i++) {
+                const qCard = document.getElementById(`q${i}_card`);
+                if (!qCard) continue;
+                const inputs = qCard.querySelectorAll('input');
+                inputs.forEach(input => {
+                    input.addEventListener('change', () => updatePaletteStatus(i));
+                    input.addEventListener('input', () => updatePaletteStatus(i));
+                });
+            }
+        }
+
+        function updatePaletteStatus(qno) {
+            const btn = document.getElementById(`palette_q${qno}`);
+            const qCard = document.getElementById(`q${qno}_card`);
+            if (!btn || !qCard) return;
+
+            const inputs = qCard.querySelectorAll('input');
+            let answered = false;
+            inputs.forEach(input => {
+                if ((input.type === 'radio' || input.type === 'checkbox') && input.checked) answered = true;
+                if (input.type === 'text' && input.value.trim() !== '') answered = true;
+            });
+
+            if (answered) {
+                btn.classList.add('answered');
+            } else {
+                btn.classList.remove('answered');
+            }
+        }
+
+        function switchMode(mode) {
+            currentMode = mode;
+            document.getElementById('examModeBtn').classList.toggle('active', mode === 'exam');
+            document.getElementById('learningModeBtn').classList.toggle('active', mode === 'learning');
+
+            const solutions = document.querySelectorAll('.q-solution');
+            solutions.forEach(sol => {
+                if (mode === 'learning') {
+                    sol.classList.remove('hidden');
+                } else {
+                    sol.classList.add('hidden');
+                }
+            });
+        }
+
+        function submitExam() {
+            let score = 0;
+            let totalMarks = 50.00;
+
+            for (let i = 1; i <= 33; i++) {
+                const qKey = `q${i}`;
+                const qInfo = answerKey[qKey];
+                const qCard = document.getElementById(`q${i}_card`);
+                const paletteBtn = document.getElementById(`palette_q${i}`);
+                if (!qCard || !qInfo) continue;
+
+                let isCorrect = false;
+
+                if (qInfo.type === 'mcq') {
+                    const selected = qCard.querySelector(`input[name="${qKey}"]:checked`);
+                    if (selected && parseInt(selected.value) === qInfo.ans[0]) {
+                        isCorrect = true;
+                    }
+                } else if (qInfo.type === 'msq') {
+                    const selected = Array.from(qCard.querySelectorAll(`input[name="${qKey}"]:checked`)).map(cb => parseInt(cb.value)).sort();
+                    const correctAns = [...qInfo.ans].sort();
+                    if (selected.length === correctAns.length && selected.every((val, idx) => val === correctAns[idx])) {
+                        isCorrect = true;
+                    }
+                } else if (qInfo.type === 'sa') {
+                    const textInput = qCard.querySelector(`input[name="${qKey}"]`);
+                    if (textInput) {
+                        const val = textInput.value.trim().toLowerCase();
+                        if (qInfo.ans.some(accepted => {
+                            if (accepted.includes(' to ')) {
+                                const [min, max] = accepted.split(' to ').map(Number);
+                                const numVal = parseFloat(val);
+                                return !isNaN(numVal) && numVal >= min && numVal <= max;
+                            }
+                            return val === accepted.toLowerCase();
+                        })) {
+                            isCorrect = true;
+                        }
+                    }
+                } else if (qInfo.type === 'comprehension') {
+                    isCorrect = true;
+                }
+
+                if (isCorrect && qInfo.type !== 'comprehension') {
+                    score += qInfo.marks;
+                    qCard.classList.add('correct-card');
+                    qCard.classList.remove('incorrect-card');
+                    if (paletteBtn) {
+                        paletteBtn.classList.add('correct');
+                        paletteBtn.classList.remove('incorrect');
+                    }
+                } else if (qInfo.type !== 'comprehension') {
+                    qCard.classList.add('incorrect-card');
+                    qCard.classList.remove('correct-card');
+                    if (paletteBtn) {
+                        paletteBtn.classList.add('incorrect');
+                        paletteBtn.classList.remove('correct');
+                    }
+                }
+
+                if (currentMode === 'exam') {
+                    const sol = qCard.querySelector('.q-solution');
+                    if (sol) sol.classList.remove('hidden');
+                }
+            }
+
+            const scoreCard = document.getElementById('scoreCard');
+            const scoreValue = document.getElementById('scoreValue');
+            const scorePercentage = document.getElementById('scorePercentage');
+
+            scoreCard.classList.remove('hidden');
+            scoreValue.textContent = `${score.toFixed(2)} / ${totalMarks.toFixed(2)}`;
+            const pct = ((score / totalMarks) * 100).toFixed(1);
+            scorePercentage.textContent = `(${pct}%)`;
+
+            clearInterval(timerInterval);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

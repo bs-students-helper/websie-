@@ -433,7 +433,7 @@
     <script>
         // Aggregated PYQ / OPP papers across Quiz1, Quiz2 and EndTerm
         const PYQ_PAPERS = [
-            { id: 101, type: "Quiz 1", title: "Quiz 1 - Programming in Python - 16 Jul 2026", course: "python", courseLabel: "Python", year: "2026", url: "python/quiz_1_python_16jul26.html" },
+            { id: 101, type: "Quiz 1", title: "Quiz 1 - Programming in Python - 16 Jul 2026", course: "python", courseLabel: "Python", year: "2026", url: "Foundation/python/quiz1/quiz_1_python_16jul26.html" },
         ];
 
         const courseSelect = document.getElementById('courseSelect');
@@ -482,6 +482,9 @@
             }).join('');
             papersGrid.classList.add('active');
         }
+
+        setupSearchableCourseSelect('courseSelect', renderPapers);
+
         renderPapers();
         courseSelect.addEventListener('change', renderPapers);
         yearSelect.addEventListener('change', renderPapers);

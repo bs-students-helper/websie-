@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Analytics (13 Jul 2025) | BSH</title>
+    <meta name="description"
+        content="Practice Business Analytics Quiz 1 question paper (13 Jul 2025) with interactive exam & learning modes, instant score calculation, detailed LaTeX solutions, and question palette.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Non-Blocking Asynchronous Load -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/icons/apple-touch-icon.png">
+
+    <!-- Master CSS & Centralized Quiz Portal CSS -->
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/quiz-portal.css">
+
+    <!-- MathJax for rendering LaTeX math formulas -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false,
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <!-- Theme Detection -->
+    <script>
+        (function () {
+            const saved = localStorage.getItem('bsh-theme');
+            if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+            else document.documentElement.setAttribute('data-theme', 'light');
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Site Navigation Header -->
+    <header class="site-header" id="header" data-root-prefix="../../../" data-active-page="quiz_practice"></header>
+
+    <main>
+        <div class="portal-layout">
+
+            <!-- Mobile Collapsible Sidebar Toggle Button -->
+            <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()">
+                <span><i class="fa-solid fa-sliders"></i> Exam Controls & Question Menu</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <!-- Left Sidebar: Controls, Menu & Timer -->
+            <aside class="portal-sidebar" id="portalSidebar">
+
+                <!-- Header Info -->
+                <div class="exam-info-header">
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Exam :</span>
+                        <span class="exam-info-val">Quiz 1</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Subject :</span>
+                        <span class="exam-info-val">Business Analytics</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Total Marks :</span>
+                        <span class="exam-info-val">20.00</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">QP :</span>
+                        <span class="exam-info-val" style="font-size:0.75rem;">2025 Jul13: IIT M AN EXAM QDD3</span>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher -->
+                <div>
+                    <div class="menu-heading">Portal Mode</div>
+                    <div class="mode-toggle-group">
+                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam Mode</button>
+                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning Mode</button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;" onclick="openSummaryModal()">
+                        <i class="fa-solid fa-eye"></i> View Question Paper Summary
+                    </button>
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;" onclick="window.print()">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </button>
+                </div>
+
+                <!-- Question Menu Grid -->
+                <div>
+                    <div class="menu-heading">
+                        <span>Question Menu</span>
+                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/18</span>
+                    </div>
+                    <div class="palette-grid" id="paletteGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Timer Box -->
+                <div>
+                    <div class="menu-heading">Timer</div>
+                    <div class="timer-box">
+                        <div class="timer-display" id="timerDisplay">00:00</div>
+                        <div class="timer-controls">
+                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i class="fa-solid fa-pause"></i></button>
+                            <button class="btn-icon-sm" onclick="resetTimer()"><i class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Score Box & Submit Exam Button -->
+                <div>
+                    <div class="menu-heading">Controls</div>
+                    <button class="btn-submit-exam" onclick="submitExam()">
+                        <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
+                    </button>
+                    <div class="score-card" style="margin-top:1rem;">
+                        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">Your Score</span>
+                        <div class="score-num" id="liveScoreDisplay">0.00 / 20.00</div>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);" id="livePercentDisplay">(0%)</span>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Right Content Panel -->
+            <section class="questions-area" id="questionsContainer">
+                <!-- Populated by JS -->
+            </section>
+        </div>
+    </main>
+
+    <!-- Floating Back to Top Button -->
+    <button class="fab-back-to-top" id="fabBackToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;"><i class="fa-solid fa-list-check"></i> Question Paper Summary</h3>
+                <button class="btn-icon-sm" onclick="closeSummaryModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+                Paper Title: <b>Business Analytics (13 Jul 2025)</b> (Quiz 1)
+            </p>
+            <div class="summary-stats-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem; text-align:center;">
+                <div class="stat-box" style="background:var(--bg-surface); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="font-size:1.5rem; font-weight:700; font-family:var(--font-mono);">18</div>
+                    <div class="stat-lbl" style="font-size:0.8rem; color:var(--text-muted);">Total Questions</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="font-size:1.5rem; font-weight:700; font-family:var(--font-mono);">20.00</div>
+                    <div class="stat-lbl" style="font-size:0.8rem; color:var(--text-muted);">Total Marks</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" id="summaryAnsweredCount" style="font-size:1.5rem; font-weight:700; font-family:var(--font-mono);">0</div>
+                    <div class="stat-lbl" style="font-size:0.8rem; color:var(--text-muted);">Answered</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-card" style="text-align: center;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;"><i class="fa-solid fa-trophy"></i> Exam Results</h3>
+                <button class="btn-icon-sm" onclick="closeResultModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div style="font-size: 0.9rem; color: var(--text-muted); font-weight: 500;">Final Score</div>
+            <div style="font-size: 2.25rem; font-weight: 800; color: var(--accent-cyan); margin: 0.25rem 0;" id="modalScoreText">0.00 / 20.00</div>
+            <div style="font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1.5rem;" id="modalPercentText">0%</div>
+
+            <div class="summary-stats-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem; text-align:center;">
+                <div class="stat-box" style="background:var(--bg-surface); padding:0.75rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="color:var(--accent-green); font-size:1.4rem; font-weight:700;" id="modalCorrectCount">0</div>
+                    <div class="stat-lbl" style="font-size:0.75rem; color:var(--text-muted);">Correct</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:0.75rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="color:var(--accent-red); font-size:1.4rem; font-weight:700;" id="modalIncorrectCount">0</div>
+                    <div class="stat-lbl" style="font-size:0.75rem; color:var(--text-muted);">Incorrect</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:0.75rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="color:var(--text-muted); font-size:1.4rem; font-weight:700;" id="modalUnansweredCount">0</div>
+                    <div class="stat-lbl" style="font-size:0.75rem; color:var(--text-muted);">Unanswered</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; gap: 0.75rem; justify-content: center;">
+                <button class="mode-btn active" style="padding:0.6rem 1.2rem; border-radius:var(--radius-md);" onclick="resetExam()"><i class="fa-solid fa-rotate-right"></i> Retake Exam</button>
+                <button class="mode-btn" style="padding:0.6rem 1.2rem; border-radius:var(--radius-md); border:1px solid var(--border-color);" onclick="closeResultModal()"><i class="fa-solid fa-book-open"></i> Review Solutions</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/components.js"></script>
+    <script src="../../../assets/js/main.js"></script>
+
+    <script>
+        const QUESTIONS_DATA = [
+            {
+                qn: 1,
+                id: "6406531298332",
+                type: "MCQ",
+                marks: 0.00,
+                text: "THIS IS QUESTION PAPER FOR THE SUBJECT \"DIPLOMA LEVEL : BUSINESS ANALYTICS (COMPUTER BASED EXAM)\" ARE YOU SURE YOU HAVE TO WRITE EXAM FOR THIS SUBJECT? CROSS CHECK YOUR HALL TICKET TO CONFIRM THE SUBJECTS TO BE WRITTEN. (IF IT IS NOT THE CORRECT SUBJECT, PLS CHECK THE SECTION AT THE TOP FOR THE SUBJECTS REGISTERED BY YOU)",
+                options: ["YES", "NO"],
+                correct: [0],
+                solution: "Introductory reference question."
+            },
+            {
+                qn: 2,
+                id: "6406531298333",
+                type: "MCQ",
+                marks: 1.00,
+                text: "When is a “Pie Chart” the best visualisation option for presenting data?",
+                options: [
+                    "When the outliers in the data need to be shown",
+                    "When trends in the data need to be shown",
+                    "When proportions in the data need to be shown",
+                    "None of these"
+                ],
+                correct: [2],
+                solution: "Pie charts are best suited for showing parts of a whole or proportional distribution of categorical data."
+            },
+            {
+                qn: 3,
+                id: "6406531298334",
+                type: "MCQ",
+                marks: 1.00,
+                text: "Given Figure-1, what is the message that can be best conveyed through the graph?",
+                options: [
+                    "Message: “Mileages trend for different Models”",
+                    "Message: “Relationship between Car Weight and Mileage”",
+                    "Message: “Relationship between Models and their Car Weights”",
+                    "Message: “Car Model wise minimum and maximum Avg. Mileage and Avg. CarWeights”",
+                    "Message: “Model wise relationship between Car Weight and Mileage”",
+                    "Message: “Car weight wise Mileage trend for different Models”",
+                    "Message: “Mileage wise relationship between Models and their Car Weights”"
+                ],
+                correct: [3],
+                solution: "The dual bar graph displays Car Model wise values for Avg. Mileage and Avg. CarWeights."
+            },
+            {
+                qn: 4,
+                id: "6406531298336",
+                type: "MCQ",
+                marks: 1.00,
+                text: "For the summary statistics provided in Table-1, which of the following is true?<br><br><table style='border-collapse:collapse; margin:1rem 0; width:100%; max-width:300px;' border='1' cellpadding='8'><thead><tr style='background:var(--bg-surface);'><th>Parameter</th><th>Value</th></tr></thead><tbody><tr><td>25th Quantile</td><td>3</td></tr><tr><td>50th Quantile</td><td>6</td></tr><tr><td>75th Quantile</td><td>8</td></tr><tr><td>First Moment</td><td>12</td></tr><tr><td>Second Moment</td><td>4</td></tr><tr><td>Third Moment</td><td>2</td></tr></tbody></table>",
+                options: [
+                    "The distribution is right skewed",
+                    "The distribution is symmetric",
+                    "The distribution is left skewed",
+                    "Cannot say without the skewness value"
+                ],
+                correct: [0],
+                solution: "First moment (mean) $= 12$ is greater than 50th quantile (median) $= 6$, and third central moment $= 2 > 0$, indicating a right skewed distribution."
+            },
+            {
+                qn: 5,
+                id: "6406531298335",
+                type: "SA",
+                marks: 2.00,
+                text: "Four teams (1, 2, 3 and 4) have qualified for the final of the cricket world cup. Team 1 plays Team 2. Team 3 plays Team 4. The winners then play in the final. In a game between Team “i” and Team “j”, the probability of team “i” winning is given by {i /(i+j)}. Then what is the conditional probability that “Team 1” will win the World Cup? (Note: Enter your answer in decimals rounded to two decimal places. For example, if your answer is “0.245”, enter it as “0.25”)",
+                acceptedAnswer: "0.06 to 0.09",
+                solution: "Match 1: $P(1 \\text{ beats } 2) = 1/3$.<br>Match 2: $P(3 \\text{ beats } 4) = 3/7, P(4 \\text{ beats } 3) = 4/7$.<br>Finals: $P(1 \\text{ beats } 3) = 1/4, P(1 \\text{ beats } 4) = 1/5$.<br>Overall $P(1 \\text{ wins WC}) = \\frac{1}{3} \\left( \\frac{3}{7} \\times \\frac{1}{4} + \\frac{4}{7} \\times \\frac{1}{5} \\right) = \\frac{1}{3} \\left( \\frac{3}{28} + \\frac{4}{35} \\right) = \\frac{31}{420} \\approx 0.07$."
+            },
+            {
+                qn: 6,
+                id: "6406531298337",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "Milo’s Wheels sells bicycles. DrMilo collected data on total bicycle sales across age groups in 2024 (Table-2):<br><br><table style='border-collapse:collapse; margin:1rem 0; width:100%; max-width:350px;' border='1' cellpadding='8'><thead><tr style='background:var(--bg-surface);'><th>Age group</th><th>Actual number of cycles sold</th></tr></thead><tbody><tr><td>less than 10 years</td><td>25</td></tr><tr><td>11 to 15 years</td><td>50</td></tr><tr><td>16 to 20 years</td><td>30</td></tr><tr><td>21 to 24 years</td><td>50</td></tr><tr><td>25 to 30 years</td><td>20</td></tr><tr><td>31 to 40 years</td><td>25</td></tr><tr><td>greater than 41 years</td><td>50</td></tr></tbody></table><br>Based on Table-2, answer the given subquestions.",
+                solution: "Comprehension passage block for DrMilo bicycle sales distribution across age buckets."
+            },
+            {
+                qn: 7,
+                id: "6406531298338",
+                parentQn: 6,
+                type: "SA",
+                marks: 1.00,
+                text: "Based on Table-2, you think the data is normally distributed such that the buckets split the distribution into areas that have equal probability. Then what is the probability of selling a cycle in any given bucket?",
+                acceptedAnswer: "0.13 to 0.15",
+                solution: "With 7 equal-probability buckets, probability per bucket $= 1/7 \\approx 0.14$."
+            },
+            {
+                qn: 8,
+                id: "6406531298339",
+                parentQn: 6,
+                type: "SA",
+                marks: 1.00,
+                text: "Based on Table-2, you think the data is normally distributed such that the buckets split the distribution into areas that have equal probability. Then what is the expected number of cycles that will be sold to the age group of “25 to 30 years”?",
+                acceptedAnswer: "35 to 36",
+                solution: "Total sales $= 25+50+30+50+20+25+50 = 250$. Expected per bucket $= 250 / 7 \\approx 35.71$."
+            },
+            {
+                qn: 9,
+                id: "6406531298340",
+                parentQn: 6,
+                type: "SA",
+                marks: 3.00,
+                text: "What is the value of the computed test statistic to perform a test to check if the Data in Table-2 follows a normal distribution?",
+                acceptedAnswer: "29 to 33",
+                solution: "Computed $\\chi^2$ statistic for testing normal distribution fit is between $29$ and $33$."
+            },
+            {
+                qn: 10,
+                id: "6406531298341",
+                parentQn: 6,
+                type: "SA",
+                marks: 1.00,
+                text: "How many (count of) degrees of freedom is present for the performed test (to check if the data in Table-2 follows a normal distribution)?",
+                acceptedAnswer: "4",
+                solution: "Degrees of freedom $df = k - 1 - 2 = 7 - 1 - 2 = 4$."
+            },
+            {
+                qn: 11,
+                id: "6406531298342",
+                parentQn: 6,
+                type: "MCQ",
+                marks: 1.00,
+                text: "If the “Null Hypothesis” is rejected at a significance level of 0.1, then what will be the conclusion at a significance level of 0.5?",
+                options: [
+                    "Cannot say, insufficient data",
+                    "Null Hypothesis is rejected",
+                    "Null Hypothesis is not rejected"
+                ],
+                correct: [1],
+                solution: "Since $0.5 > 0.1$, if $p$-value $< 0.1$, then $p$-value $< 0.5$ as well. Thus the Null Hypothesis remains rejected."
+            },
+            {
+                qn: 12,
+                id: "6406531298343",
+                parentQn: 6,
+                type: "SA",
+                marks: 1.00,
+                text: "What is the sample size that DrMilo has provided for your analysis?",
+                acceptedAnswer: "250",
+                solution: "Sum of frequencies $= 25+50+30+50+20+25+50 = 250$."
+            },
+            {
+                qn: 13,
+                id: "6406531298344",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "Cosmetics brand “SwamiIsBeautiful” sells Face Creams (FC), Body Lotion (BL), and Lip Gloze (LG). Table-3 displays sales across Retail Store Type-1 (displayed together) and Type-2 (not displayed together):<br><br><table style='border-collapse:collapse; margin:1rem 0; width:100%; max-width:350px;' border='1' cellpadding='8'><thead><tr style='background:var(--bg-surface);'><th>Product</th><th>Type-1</th><th>Type-2</th></tr></thead><tbody><tr><td>FC</td><td>288</td><td>124</td></tr><tr><td>BL</td><td>622</td><td>204</td></tr><tr><td>LG</td><td>212</td><td>128</td></tr></tbody></table><br>Based on Table-3, answer the subquestions.",
+                solution: "Comprehension passage block for cosmetics product sales cross-classification."
+            },
+            {
+                qn: 14,
+                id: "6406531298345",
+                parentQn: 13,
+                type: "MCQ",
+                marks: 1.00,
+                text: "What type of representation is Table-3?",
+                options: [
+                    "Contingency Table",
+                    "Frequency Table",
+                    "None of these",
+                    "Both Contingency Table & Frequency Table"
+                ],
+                correct: [0],
+                solution: "Table-3 cross-classifies data according to two categorical variables (Product and Retail Store Type), making it a Contingency Table."
+            },
+            {
+                qn: 15,
+                id: "6406531298346",
+                parentQn: 13,
+                type: "SA",
+                marks: 1.00,
+                text: "What is the expected frequency for “BL” in Type-2 stores?",
+                acceptedAnswer: "237 to 239",
+                solution: "Grand total $= 1578$. Row total for BL $= 826$. Column total for Type-2 $= 456$. Expected frequency $= \\frac{826 \\times 456}{1578} \\approx 238.69$."
+            },
+            {
+                qn: 16,
+                id: "6406531298347",
+                parentQn: 13,
+                type: "SA",
+                marks: 3.00,
+                text: "What is the value of the computed test statistic for the hypothesis test that DrMilo will perform to check if his intuition is correct?",
+                acceptedAnswer: "18 to 22",
+                solution: "Computed $\\chi^2$ statistic for testing independence of product sales and display type is between $18$ and $22$."
+            },
+            {
+                qn: 17,
+                id: "6406531298348",
+                parentQn: 13,
+                type: "MSQ",
+                marks: 1.00,
+                text: "What is the Null Hypothesise for the hypothesis test that DrMilo will be performing? (choose all that is applicable)",
+                options: [
+                    "The total sales is independent among the different products and differentretail store types",
+                    "The total sales is not independent among the different products and differentretail store types",
+                    "The total sales is uniformly distributed among the different products anddifferent retail store types",
+                    "The total sales is uniformly distributed only among the different products",
+                    "The total sales is uniformly distributed only among the different retail storetypes",
+                    "None of these"
+                ],
+                correct: [0],
+                solution: "The Null Hypothesis for Chi-Square test of independence asserts that total sales is independent among different products and store display types."
+            },
+            {
+                qn: 18,
+                id: "6406531298349",
+                parentQn: 13,
+                type: "MSQ",
+                marks: 1.00,
+                text: "Given Figure-2 (Chi-Square Distribution curve & table), at a 20% level of significance, what will be the conclusion of the hypothesis test? (choose all that is applicable)",
+                options: [
+                    "Reject the Null Hypothesis",
+                    "Do Not Reject the Null Hypothesis",
+                    "Reject the Alternative Hypothesis",
+                    "Do Not Reject the Alternative Hypothesis",
+                    "Accept the Null Hypothesis",
+                    "Do Not Accept the Null Hypothesis",
+                    "Accept the Alternative Hypothesis",
+                    "Do Not Accept the Alternative Hypothesis"
+                ],
+                correct: [0, 5, 6, 7],
+                solution: "Since computed $\\chi^2 (\\approx 20) > \\chi^2_{0.20, 2} (3.22)$, we Reject the Null Hypothesis, Do Not Accept the Null Hypothesis, Accept the Alternative Hypothesis, and Do Not Accept the Alternative Hypothesis."
+            }
+        ];
+
+        let currentMode = 'exam';
+        let userAnswers = {};
+        let timerSeconds = 0;
+        let timerInterval = null;
+        let isTimerRunning = true;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPalette();
+            renderQuestions();
+            updateScoreDisplay();
+            startTimer();
+        });
+
+        function setPortalMode(mode) {
+            currentMode = mode;
+            document.getElementById('btnExamMode').classList.toggle('active', mode === 'exam');
+            document.getElementById('btnLearningMode').classList.toggle('active', mode === 'learning');
+
+            renderQuestions();
+            updatePaletteStatuses();
+
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function renderPalette() {
+            const palette = document.getElementById('paletteGrid');
+            if (!palette) return;
+            palette.innerHTML = QUESTIONS_DATA.map(q => `
+                <button class="palette-btn" id="paletteBtn_${q.qn}" onclick="scrollToQuestion(${q.qn})">
+                    ${q.qn}
+                </button>
+            `).join('');
+        }
+
+        function scrollToQuestion(qnNum) {
+            const card = document.getElementById(`qnCard_${qnNum}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                document.querySelectorAll('.palette-btn').forEach(b => b.classList.remove('active-qn'));
+                const btn = document.getElementById(`paletteBtn_${qnNum}`);
+                if (btn) btn.classList.add('active-qn');
+            }
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            if (!container) return;
+
+            let html = '';
+
+            QUESTIONS_DATA.forEach(q => {
+                html += `
+                <article class="qn-card" id="qnCard_${q.qn}">
+                    <div class="qn-header-container">
+                        <div class="qn-header-top">
+                            <div class="qn-title-main">
+                                Question ${q.qn} :
+                                ${q.parentQn ? `<span class="badge-type" style="background:rgba(167, 139, 250, 0.15); color:#7c3aed; font-size:0.75rem; padding:0.2rem 0.5rem;"><i class="fa-solid fa-diagram-project"></i> Parent Q${q.parentQn}</span>` : ''}
+                            </div>
+                            <button class="btn-solution-pill" onclick="toggleSolution(${q.qn})">
+                                <i class="fa-regular fa-circle-check"></i> View Solutions (0)
+                            </button>
+                        </div>
+                        <div class="qn-header-sub">
+                            <span class="qn-id-tag">${q.id}</span>
+                            <span class="qn-meta-info">Total Mark : ${q.marks.toFixed(2)} | Type : ${q.type}</span>
+                        </div>
+                    </div>
+
+                    <div class="qn-text">${q.text}</div>
+
+                    ${renderQuestionInputs(q)}
+
+                    <div class="solution-box ${currentMode === 'learning' ? 'open' : ''}" id="solution_${q.qn}">
+                        <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution</div>
+                        <div class="solution-text">${q.solution}</div>
+                    </div>
+                </article>
+                `;
+            });
+
+            container.innerHTML = html;
+            updatePaletteStatuses();
+
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function renderQuestionInputs(q) {
+            if (q.type === 'COMPREHENSION') {
+                return `<div style="font-size:0.88rem; color:var(--text-muted); font-style:italic; margin-bottom:1.25rem;">[Comprehension Passage Block - Subquestions are listed below]</div>`;
+            }
+
+            if (q.type === 'SA') {
+                const userVal = userAnswers[q.qn] || '';
+                const showGreen = currentMode === 'learning';
+
+                return `
+                <div class="sa-input-wrap">
+                    <label for="sa_${q.qn}">Answer (Numeric):</label>
+                    <input type="text" id="sa_${q.qn}" class="sa-input" value="${userVal}" placeholder="Answer" oninput="handleSAInput(${q.qn}, this.value)">
+                    <div class="accepted-ans-box" style="display:${showGreen ? 'block' : 'none'};">
+                        <i class="fa-solid fa-circle-check"></i> Accepted Answer : ${q.acceptedAnswer}
+                    </div>
+                </div>
+                `;
+            }
+
+            const isMSQ = q.type === 'MSQ';
+            const userArr = userAnswers[q.qn] || [];
+
+            return `
+            <div class="options-list">
+                ${q.options.map((optText, idx) => {
+                const isChecked = userArr.includes(idx);
+                const isCorrect = q.correct.includes(idx);
+                let highlightClass = '';
+                if (isChecked) highlightClass = 'selected';
+
+                if (currentMode === 'learning') {
+                    if (isCorrect) highlightClass = 'correct-highlight';
+                    else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                }
+
+                return `
+                    <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <span class="option-text">${optText}</span>
+                    </label>
+                    `;
+            }).join('')}
+            </div>
+            `;
+        }
+
+        function handleOptionSelect(qnNum, optIdx, qnType) {
+            if (qnType === 'MCQ') {
+                userAnswers[qnNum] = [optIdx];
+            } else if (qnType === 'MSQ') {
+                if (!userAnswers[qnNum]) userAnswers[qnNum] = [];
+                const pos = userAnswers[qnNum].indexOf(optIdx);
+                if (pos >= 0) userAnswers[qnNum].splice(pos, 1);
+                else userAnswers[qnNum].push(optIdx);
+            }
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function handleSAInput(qnNum, val) {
+            userAnswers[qnNum] = val.trim();
+            updatePaletteStatuses();
+            updateScoreDisplay();
+        }
+
+        function calculateQuestionScore(q) {
+            if (q.type === 'COMPREHENSION') return "0";
+            const userAns = userAnswers[q.qn];
+            if (!userAns) return "0";
+
+            if (q.type === 'SA') {
+                const cleanUser = String(userAns).trim();
+                if (q.acceptedAnswer.includes(' to ')) {
+                    const range = q.acceptedAnswer.split(' to ').map(Number);
+                    const num = parseFloat(cleanUser);
+                    if (!isNaN(num) && num >= range[0] && num <= range[1]) {
+                        return q.marks.toFixed(2);
+                    }
+                }
+                const numUser = parseFloat(cleanUser);
+                const numAcc = parseFloat(q.acceptedAnswer.trim());
+                if (!isNaN(numUser) && !isNaN(numAcc) && numUser === numAcc) {
+                    return q.marks.toFixed(2);
+                }
+                return (cleanUser === q.acceptedAnswer.trim()) ? q.marks.toFixed(2) : "0";
+            }
+
+            if (!Array.isArray(userAns) || userAns.length === 0) return "0";
+
+            if (q.type === 'MCQ') {
+                return (userAns[0] === q.correct[0]) ? q.marks.toFixed(2) : "0";
+            }
+
+            if (q.type === 'MSQ') {
+                const sortedUser = [...userAns].sort().join(',');
+                const sortedCorrect = [...q.correct].sort().join(',');
+                return (sortedUser === sortedCorrect) ? q.marks.toFixed(2) : "0";
+            }
+
+            return "0";
+        }
+
+        function updateScoreDisplay() {
+            let total = 0;
+            let answeredCount = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const score = parseFloat(calculateQuestionScore(q));
+                total += score;
+
+                const ans = userAnswers[q.qn];
+                if (ans && (Array.isArray(ans) ? ans.length > 0 : ans !== '')) {
+                    answeredCount++;
+                }
+            });
+
+            document.getElementById('liveScoreDisplay').textContent = `${total.toFixed(2)} / 20.00`;
+            const pct = ((total / 20) * 100).toFixed(1);
+            document.getElementById('livePercentDisplay').textContent = `(${pct}%)`;
+            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/18`;
+            const summaryEl = document.getElementById('summaryAnsweredCount');
+            if (summaryEl) summaryEl.textContent = answeredCount;
+        }
+
+        function updatePaletteStatuses() {
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.getElementById(`paletteBtn_${q.qn}`);
+                if (!btn) return;
+
+                btn.className = 'palette-btn';
+
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && (Array.isArray(ans) ? ans.length > 0 : ans !== '');
+
+                if (hasAns) {
+                    btn.classList.add('answered');
+                    if (currentMode === 'learning') {
+                        const score = parseFloat(calculateQuestionScore(q));
+                        if (score > 0) btn.classList.add('correct');
+                        else btn.classList.add('incorrect');
+                    }
+                }
+            });
+        }
+
+        function toggleSolution(qnNum) {
+            const box = document.getElementById(`solution_${qnNum}`);
+            if (box) box.classList.toggle('open');
+        }
+
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (isTimerRunning) {
+                    timerSeconds++;
+                    updateTimerUI();
+                }
+            }, 1000);
+        }
+
+        function toggleTimer() {
+            isTimerRunning = !isTimerRunning;
+            const btn = document.getElementById('btnPauseTimer');
+            if (btn) btn.innerHTML = isTimerRunning ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+        }
+
+        function resetTimer() {
+            timerSeconds = 0;
+            updateTimerUI();
+        }
+
+        function updateTimerUI() {
+            const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const secs = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+        }
+
+        function submitExam() {
+            setPortalMode('learning');
+
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+            let totalScore = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                if (q.type === 'COMPREHENSION') return;
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && (Array.isArray(ans) ? ans.length > 0 : ans !== '');
+
+                if (!hasAns) {
+                    unansweredCount++;
+                } else {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    totalScore += score;
+                    if (score > 0) correctCount++;
+                    else incorrectCount++;
+                }
+            });
+
+            document.getElementById('modalScoreText').textContent = `${totalScore.toFixed(2)} / 20.00`;
+            document.getElementById('modalPercentText').textContent = `${((totalScore / 20) * 100).toFixed(1)}% Accuracy`;
+            document.getElementById('modalCorrectCount').textContent = correctCount;
+            document.getElementById('modalIncorrectCount').textContent = incorrectCount;
+            document.getElementById('modalUnansweredCount').textContent = unansweredCount;
+
+            document.getElementById('resultModal').classList.add('active');
+        }
+
+        function resetExam() {
+            userAnswers = {};
+            resetTimer();
+            closeResultModal();
+            setPortalMode('learning');
+        }
+
+        function openSummaryModal() {
+            document.getElementById('summaryModal').classList.add('active');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.remove('active');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.remove('active');
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('portalSidebar');
+            const toggleBtn = document.getElementById('mobileSidebarToggle');
+            if (sidebar && toggleBtn) {
+                sidebar.classList.toggle('open');
+                toggleBtn.classList.toggle('active');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const fab = document.getElementById('fabBackToTop');
+            if (fab) {
+                if (window.scrollY > 300) fab.classList.add('visible');
+                else fab.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+
+</html>

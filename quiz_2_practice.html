@@ -454,8 +454,8 @@
     <script src="assets/js/main.js"></script>
     <script>
         const QUIZ2_PAPERS = [
-            { id: 301, title: "Quiz 2 - Machine Learning Techniques - 06 May 2026", course: "mlt", courseLabel: "MLT", year: "2026", url: "mlt/quiz2/quiz_2_mlt_06may26.html" },
-            { id: 302, title: "Quiz 1 - Machine Learning Techniques - 2026", course: "mlt", courseLabel: "MLT", year: "2025", url: "mlt/quiz2/quiz_2_mlt_18dec25.html" },
+            { id: 301, title: "Quiz 2 - Machine Learning Techniques - 06 May 2026", course: "mlt", courseLabel: "MLT", year: "2026", url: "Diploma/mlt/quiz2/quiz_2_mlt_06may26.html" },
+            { id: 302, title: "Quiz 1 - Machine Learning Techniques - 18 Dec 2025", course: "mlt", courseLabel: "MLT", year: "2025", url: "Diploma/mlt/quiz1/quiz_1_mlt_18dec25.html" },
             { id: 1, title: "Quiz 2 - Mathematics for Data Science I - May 2026", course: "maths1", courseLabel: "Maths 1", year: "2026", url: "#" },
             { id: 2, title: "Quiz 2 - Mathematics for Data Science II - Sep 2025", course: "maths2", courseLabel: "Maths 2", year: "2025", url: "#" },
             { id: 3, title: "Quiz 2 - Statistics for Data Science I - May 2026", course: "stats1", courseLabel: "Stats 1", year: "2026", url: "#" },
@@ -512,6 +512,9 @@
             }).join('');
             papersGrid.classList.add('active');
         }
+
+        setupSearchableCourseSelect('courseSelect', renderPapers);
+
         renderPapers();
         courseSelect.addEventListener('change', renderPapers);
         yearSelect.addEventListener('change', renderPapers);

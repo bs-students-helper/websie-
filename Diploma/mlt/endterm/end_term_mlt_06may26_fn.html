@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice MLT questions : 2026 May 06 FN EXAM - QuizPractice | BSH</title>
+    <meta name="description"
+        content="Practice Machine Learning Techniques End Term question paper (06 May 2026 FN) with interactive exam & learning modes, instant score calculation, detailed solutions, and question palette.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Non-Blocking Asynchronous Load -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/icons/apple-touch-icon.png">
+
+    <!-- Master CSS -->
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/quiz-portal.css">
+
+    <!-- MathJax for rendering LaTeX math formulas -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false,
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('bsh-theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Site Navigation Header -->
+    <header class="site-header" id="header" data-root-prefix="../../../" data-active-page="quiz_practice"></header>
+
+    <main>
+        <div class="portal-layout">
+
+            <!-- Mobile Collapsible Sidebar Toggle Button -->
+            <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()">
+                <span><i class="fa-solid fa-sliders"></i> Exam Controls & Question Menu</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <!-- Left Sidebar: Controls, Menu & Timer -->
+            <aside class="portal-sidebar" id="portalSidebar">
+
+                <!-- Header Info -->
+                <div class="exam-info-header">
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Exam :</span>
+                        <span class="exam-info-val">End Term Quiz</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Subject :</span>
+                        <span class="exam-info-val">MLT</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Total Marks :</span>
+                        <span class="exam-info-val">50.00</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">QP :</span>
+                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">2026 May 06: IIT M FN EXAM</span>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher -->
+                <div>
+                    <div class="menu-heading">Portal Mode</div>
+                    <div class="mode-toggle-group">
+                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam Mode</button>
+                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning Mode</button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                    <button class="btn-action-pill" style="justify-content:center; padding:0.65rem;"
+                        onclick="openSummaryModal()">
+                        <i class="fa-solid fa-eye"></i> View Question Paper Summary
+                    </button>
+                    <button class="btn-action-pill" style="justify-content:center; padding:0.65rem;"
+                        onclick="window.print()">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </button>
+                </div>
+
+                <!-- Question Menu Grid -->
+                <div>
+                    <div class="menu-heading">
+                        <span>QUESTION MENU</span>
+                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/20</span>
+                    </div>
+                    <div class="palette-grid" id="paletteGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Timer Box -->
+                <div>
+                    <div class="menu-heading">TIMER</div>
+                    <div class="timer-box">
+                        <div class="timer-display" id="timerDisplay">00:00</div>
+                        <div class="timer-controls">
+                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i
+                                    class="fa-solid fa-pause"></i></button>
+                            <button class="btn-icon-sm" onclick="resetTimer()"><i
+                                    class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls & Score Box -->
+                <div>
+                    <div class="menu-heading">CONTROLS</div>
+                    <button class="btn-submit-exam" onclick="submitExam()">
+                        <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
+                    </button>
+                    <div class="score-card" style="margin-top:1rem;">
+                        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">YOUR SCORE</span>
+                        <div class="score-num" id="liveScoreDisplay">0.00 / 50.00</div>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);" id="livePercentDisplay">(0.0%)</span>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Right Area: Questions List -->
+            <section class="questions-area" id="questionsContainer">
+                <!-- Dynamically Rendered by JS -->
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Floating Back to Top FAB -->
+    <button class="fab-back-to-top" id="fabBackToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;">Question Paper Summary</h3>
+                <button class="btn-icon-sm" onclick="closeSummaryModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+                Paper Title: <b>Machine Learning Techniques (06 May 2026 FN EXAM)</b> (End Term Quiz)
+            </p>
+            <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+                <tr style="border-bottom:1px solid var(--border-light); text-align:left;">
+                    <th style="padding:0.6rem;">Question Type</th>
+                    <th style="padding:0.6rem;">Count</th>
+                    <th style="padding:0.6rem;">Total Marks</th>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MCQ (Multiple Choice)</td>
+                    <td style="padding:0.6rem;">9</td>
+                    <td style="padding:0.6rem;">19.00</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MSQ (Multiple Select)</td>
+                    <td style="padding:0.6rem;">7</td>
+                    <td style="padding:0.6rem;">20.00</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">SA (Short Answer / Numeric)</td>
+                    <td style="padding:0.6rem;">4</td>
+                    <td style="padding:0.6rem;">11.00</td>
+                </tr>
+            </table>
+            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close Summary</button>
+        </div>
+    </div>
+
+    <!-- Exam Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-card" style="text-align:center;">
+            <div
+                style="width:64px; height:64px; border-radius:50%; background:rgba(16, 185, 129, 0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 1rem;">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Exam Submitted!</h2>
+            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for Machine Learning Techniques End Term Quiz (06 May 2026 FN)</p>
+
+            <div
+                style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
+                <div style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; font-weight:600;">
+                    Final Score</div>
+                <div style="font-family:var(--font-mono); font-size:2.8rem; font-weight:800; color:var(--accent-green);"
+                    id="modalScoreText">0.00 / 50.00</div>
+                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0% Accuracy
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem; margin-bottom:1.5rem;">
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Correct</div>
+                    <div style="font-weight:700; color:#10b981; font-size:1.2rem;" id="modalCorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Incorrect</div>
+                    <div style="font-weight:700; color:#ef4444; font-size:1.2rem;" id="modalIncorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Unanswered</div>
+                    <div style="font-weight:700; color:var(--text-secondary); font-size:1.2rem;"
+                        id="modalUnansweredCount">0</div>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:0.75rem;">
+                <button class="btn btn-secondary btn-full"
+                    onclick="closeResultModal(); setPortalMode('learning');">Review Solutions <i
+                        class="fa-solid fa-book-open"></i></button>
+                <button class="btn btn-primary btn-full" onclick="resetExam()">Retake Exam <i
+                        class="fa-solid fa-rotate-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Master Scripts -->
+    <script src="../../../assets/js/components.js"></script>`n    <script src="../../../assets/js/main.js"></script>
+    <script>
+        const QUESTIONS_DATA = [
+            {
+                qn: 1,
+                id: "6406532297848",
+                type: "MCQ",
+                marks: 0.00,
+                question: "TECHNIQUES (COMPUTER BASED EXAM)<br><br>ARE YOU SURE YOU HAVE TO WRITE EXAM FOR THIS SUBJECT?<br>CROSS CHECK YOUR HALL TICKET TO CONFIRM THE SUBJECTS TO BE WRITTEN.<br><br>(IF IT IS NOT THE CORRECT SUBJECT, PLS CHECK THE SECTION AT THE TOP FOR THE SUBJECTS REGISTERED BY YOU)",
+                options: [
+                    "Yes",
+                    "No"
+                ],
+                correct: [0],
+                solution: "<strong>Explanation:</strong><br>Standard hall ticket and subject verification prompt. Confirming 'Yes' acknowledges registration for Diploma Level Machine Learning Techniques."
+            },
+            {
+                qn: 2,
+                id: "6406532297849",
+                type: "MSQ",
+                marks: 4.00,
+                question: "Let $S = (x_1, y_1), \\dots, (x_n, y_n)$ be $n$ points in $\\mathbb{R}^d$ that are linearly separable by a hyperplane through the origin. Construct $S' = (c x_1, y_1), \\dots, (c x_n, y_n)$ where $c > 1$ is a constant. The perceptron algorithm (initialised at $w = 0$, learning rate $1$) is run on both $S$ and $S'$, using the same ordering of points in both runs. Which of the following statements are true?",
+                options: [
+                    "The mistake bound of the perceptron on $S'$ is strictly larger than its mistake bound on $S$.",
+                    "$S'$ may fail to be linearly separable.",
+                    "The perceptron is guaranteed to converge on $S'$.",
+                    "The perceptron produces exactly the same decision boundary on $S$ and on $S'$."
+                ],
+                correct: [2, 3],
+                solution: "<strong>Explanation:</strong><br>1. Scaling all feature vectors by $c > 1$ scales both the maximum radius $R' = c R$ and the margin $\\gamma' = c \\gamma$. The Novikoff mistake bound $\\left(\\frac{R'}{\\gamma'}\\right)^2 = \\left(\\frac{cR}{c\\gamma}\\right)^2 = \\left(\\frac{R}{\\gamma}\\right)^2$ remains unchanged, not strictly larger.<br>2. Scaling inputs by a positive constant $c > 1$ preserves linear separability because if $w^T x_i y_i > 0$, then $\\left(\\frac{w}{c}\\right)^T (c x_i) y_i = w^T x_i y_i > 0$.<br>3. Since $S'$ is linearly separable, the Perceptron convergence theorem guarantees convergence on $S'$.<br>4. During Perceptron updates initialized at $w=0$: for $S$, the update is $w \\leftarrow w + y_i x_i$; for $S'$, the update is $w' \\leftarrow w' + y_i (c x_i) = c(w + y_i x_i)$. Thus at every step $w' = c w$. The decision boundary equation $w'^T x = 0 \\iff c w^T x = 0 \\iff w^T x = 0$ is identical on both datasets."
+            },
+            {
+                qn: 3,
+                id: "6406532297861",
+                type: "MSQ",
+                marks: 4.00,
+                question: "Consider binary classification on input features $x \\in \\mathbb{R}^d$. Define the <em>decision boundary</em> of a trained classifier as the set of points at which its predicted label changes. For which of the following method(s) can this decision boundary be non-linear in $x$?",
+                options: [
+                    "Perceptron.",
+                    "Logistic regression, predicting the positive class when $\\sigma(w^T x) \\ge 0.5$.",
+                    "$1$-nearest-neighbour with Euclidean distance.",
+                    "A decision tree using axis-aligned splits.",
+                    "Gaussian Naïve Bayes in which the class-conditional feature variances differ between the two classes.",
+                    "A support vector machine with a linear kernel.",
+                    "A support vector machine with an RBF (Gaussian) kernel."
+                ],
+                correct: [2, 3, 4, 6],
+                solution: "<strong>Explanation:</strong><br>- Perceptron, Logistic Regression (with linear features), and Linear SVM all learn linear decision boundaries ($w^T x + b = 0$).<br>- 1-NN constructs piece-wise linear polygonal/polyhedral Voronoi decision boundaries, which are overall non-linear in $x$.<br>- A decision tree with axis-aligned splits forms hyper-rectangular piece-wise non-linear step-like decision boundaries.<br>- Gaussian Naïve Bayes with unequal feature variances produces quadratic (non-linear) decision boundaries.<br>- SVM with an RBF (Gaussian) kernel projects data into an infinite-dimensional Hilbert space, resulting in highly non-linear decision boundaries in the original feature space."
+            },
+            {
+                qn: 4,
+                id: "6406532297850",
+                type: "MSQ",
+                marks: 2.00,
+                question: "Let $g(z) = \\frac{1}{1 + e^{-z}}$ be the sigmoid (logistic) function. Select all statements below that are true for every $z \\in \\mathbb{R}$.",
+                options: [
+                    "$g(-z) = 1 - g(z)$.",
+                    "$g$ is a non-decreasing function but not strictly increasing.",
+                    "$g$ is a strictly increasing function.",
+                    "$g$ is convex on all of $\\mathbb{R}$."
+                ],
+                correct: [0, 2],
+                solution: "<strong>Explanation:</strong><br>1. $g(-z) = \\frac{1}{1 + e^z} = \\frac{e^{-z}}{1 + e^{-z}} = 1 - \\frac{1}{1 + e^{-z}} = 1 - g(z)$ for all $z \\in \\mathbb{R}$. (True)<br>2. Derivative $g'(z) = g(z)(1 - g(z)) > 0$ for all $z \\in \\mathbb{R}$, so $g$ is strictly increasing. (True)<br>3. Second derivative $g''(z) = g'(z)(1 - 2g(z))$ is positive for $z < 0$ (convex) and negative for $z > 0$ (concave). Thus $g$ is not convex on all of $\\mathbb{R}$."
+            },
+            {
+                qn: 5,
+                id: "6406532297860",
+                type: "MSQ",
+                marks: 2.00,
+                question: "Identify the correct relationship(s) between bias, variance, and the hyperparameter $k$ in the $k$-Nearest Neighbours algorithm.",
+                options: [
+                    "Increasing $k$ leads to an increase in bias.",
+                    "Decreasing $k$ leads to an increase in bias.",
+                    "Increasing $k$ leads to an increase in variance.",
+                    "Decreasing $k$ leads to an increase in variance."
+                ],
+                correct: [0, 3],
+                solution: "<strong>Explanation:</strong><br>In $k$-NN:<br>- Small $k$ (e.g. $k=1$) makes the model highly complex, fitting localized noise, resulting in <strong>low bias and high variance</strong>.<br>- Large $k$ averages over more neighbors, smoothing decision boundaries, resulting in <strong>high bias and low variance</strong>.<br>Therefore, increasing $k$ increases bias, and decreasing $k$ increases variance."
+            },
+            {
+                qn: 6,
+                id: "6406532297867",
+                type: "MSQ",
+                marks: 2.00,
+                question: "Consider the effect of each operation below on a model's bias and variance. Which of the following statements are correct?",
+                options: [
+                    "Regularising the weights in a linear/logistic regression model increases bias and decreases variance.",
+                    "Increasing the maximum depth of a decision tree increases bias and decreases variance.",
+                    "Increasing the number of hidden units in a neural network decreases bias and increases variance.",
+                    "Removing all the non-support-vectors from the training set of an SVM leaves both bias and variance unchanged."
+                ],
+                correct: [0, 2, 3],
+                solution: "<strong>Explanation:</strong><br>1. Weight regularization constrains model capacity, which increases bias and decreases variance. (Correct)<br>2. Increasing maximum tree depth increases model capacity, which <em>decreases</em> bias and <em>increases</em> variance. (Incorrect)<br>3. Increasing hidden units increases model capacity, decreasing bias and increasing variance. (Correct)<br>4. Non-support vectors have zero Lagrange multipliers ($\\alpha_i = 0$) and do not participate in determining the SVM decision boundary. Removing them leaves the optimal hyperplane, bias, and variance completely unchanged. (Correct)"
+            },
+            {
+                qn: 7,
+                id: "6406532297851",
+                type: "SA",
+                marks: 2.00,
+                question: "In logistic regression, a point is classified positive only if $P(y=1 \\mid x) = \\sigma(w^T x) \\ge 0.75$. What score threshold $\\theta$ (with $w^T x = \\theta$ at the boundary of this rule) does this correspond to? (Round to 2 decimal places.)",
+                acceptedAnswer: "1.08 to 1.10",
+                solution: "<strong>Explanation:</strong><br>Setting $\\sigma(\\theta) = 0.75$ where $\\sigma(z) = \\frac{1}{1 + e^{-z}}$:<br>$$\\frac{1}{1 + e^{-\\theta}} = 0.75 \\implies 1 + e^{-\\theta} = \\frac{4}{3} \\implies e^{-\\theta} = \\frac{1}{3} \\implies e^\\theta = 3$$<br>$$\\theta = \\ln(3) \\approx 1.0986 \\approx 1.10$$<br>Accepted answer range: <strong>1.08 to 1.10</strong>."
+            },
+            {
+                qn: 8,
+                id: "6406532297858",
+                type: "SA",
+                marks: 2.00,
+                question: "You build a fully-connected feed-forward neural network for a classification task. The input is a $5$-dimensional vector; the network has two hidden layers of $10$ neurons each, followed by an output layer of $3$ neurons. Every layer is densely (fully) connected to the next. Ignoring all bias terms, compute the total number of weight parameters in the network. (Enter $-1$ if it cannot be determined.)",
+                acceptedAnswer: "180",
+                solution: "<strong>Explanation:</strong><br>Layer-by-layer weight parameter count (ignoring biases):<br>1. Input layer ($5$) to Hidden layer 1 ($10$): $5 \\times 10 = 50$ weight parameters.<br>2. Hidden layer 1 ($10$) to Hidden layer 2 ($10$): $10 \\times 10 = 100$ weight parameters.<br>3. Hidden layer 2 ($10$) to Output layer ($3$): $10 \\times 3 = 30$ weight parameters.<br>Total weight parameters = $50 + 100 + 30 = 180$."
+            },
+            {
+                qn: 9,
+                id: "6406532297852",
+                type: "MCQ",
+                marks: 4.00,
+                question: "Let $w^*$ be the solution to the ordinary least-squares linear regression problem $\\min_w \\|y - X w\\|^2$. Which of the following is always satisfied at $w^*$? Note that here $X$ is your feature matrix and $y$ is the label vector.",
+                options: [
+                    "$(X w^*)^T (y - X w^*) = 0$",
+                    "$(X w^*)^T (X w^*) = 0$",
+                    "$y^T (y - X w^*) = 0$",
+                    "$y - X w^* = 0$"
+                ],
+                correct: [0],
+                solution: "<strong>Explanation:</strong><br>In ordinary least-squares (OLS), setting the gradient with respect to $w$ to zero gives the normal equations:<br>$$X^T (y - X w^*) = 0$$<br>Multiplying from the left by $(w^*)^T$ yields:<br>$$(w^*)^T X^T (y - X w^*) = 0 \\implies (X w^*)^T (y - X w^*) = 0$$<br>This shows that the predicted output vector $\\hat{y} = X w^*$ is strictly orthogonal to the residual vector $y - X w^*$."
+            },
+            {
+                qn: 10,
+                id: "6406532297857",
+                type: "MCQ",
+                marks: 4.00,
+                question: "Consider a scenario where we use leave-one-out cross-validation (LOOCV) with a Support Vector Machine (SVM) for binary classification. Given a dataset $\\mathcal{D} = \\{(x_1, y_1), \\dots, (x_N, y_N)\\}$, the cross-validation error for a sample $(x_n, y_n)$ is $e_n = 1$ if $\\hat{y}_n \\neq y_n$ and $0$ otherwise, where $\\hat{y}_n$ is the prediction for $x_n$ produced by the SVM trained on $\\mathcal{D} \\setminus \\{(x_n, y_n)\\}$. The overall cross-validation error is $E_{CV} = \\frac{1}{N} \\sum_{n=1}^N e_n$. Let $K$ be the number of support vectors obtained by training on the full dataset $\\mathcal{D}$. Which statement is true regarding the relationship between $E_{CV}$ and $K$?",
+                options: [
+                    "$E_{CV} \\le \\frac{K}{N}$",
+                    "$E_{CV} \\ge \\frac{K}{N}$",
+                    "$E_{CV} = \\frac{K}{N}$",
+                    "$E_{CV}$ is independent of $K$"
+                ],
+                correct: [0],
+                solution: "<strong>Explanation:</strong><br>In LOOCV for SVM:<br>- If a data point $(x_n, y_n)$ is NOT a support vector of the full dataset $\\mathcal{D}$, removing it leaves the optimal SVM decision boundary completely unchanged. Hence $\\hat{y}_n$ equals the true label $y_n$, giving $e_n = 0$.<br>- An error ($e_n = 1$) can only occur if $(x_n, y_n)$ was one of the $K$ support vectors of $\\mathcal{D}$.<br>Therefore, total LOOCV errors $\\sum_{n=1}^N e_n \\le K$, which implies $E_{CV} \\le \\frac{K}{N}$."
+            },
+            {
+                qn: 11,
+                id: "6406532297853",
+                type: "SA",
+                marks: 3.00,
+                question: "Consider one-dimensional ridge regression with no bias term. Given $\\sum_i x_i^2 = 10$ and $\\sum_i x_i y_i = 4$, with $\\lambda = 10$, compute the optimal $w_{ridge}$. Note that $x_i$ is $i$-th data point and $y_i$ is $i$-th label. (Round to 2 decimal places.)",
+                acceptedAnswer: "0.19 to 0.21",
+                solution: "<strong>Explanation:</strong><br>1D Ridge regression objective without bias: $L(w) = \\sum_i (y_i - w x_i)^2 + \\lambda w^2$.<br>Setting derivative $\\frac{dL}{dw} = 0$:<br>$$-2 \\sum_i x_i (y_i - w x_i) + 2 \\lambda w = 0 \\implies w \\left(\\sum_i x_i^2 + \\lambda\\right) = \\sum_i x_i y_i$$<br>$$w_{ridge} = \\frac{\\sum_i x_i y_i}{\\sum_i x_i^2 + \\lambda} = \\frac{4}{10 + 10} = \\frac{4}{20} = 0.20$$<br>Accepted answer range: <strong>0.19 to 0.21</strong>."
+            },
+            {
+                qn: 12,
+                id: "6406532297854",
+                type: "MCQ",
+                marks: 1.00,
+                question: "For the covariance matrix $\\Sigma = \\begin{bmatrix} 3 & 1 \\\\ 1 & 3 \\end{bmatrix}$, compute the variance captured along the first principal component.",
+                options: [
+                    "2",
+                    "3",
+                    "4",
+                    "6"
+                ],
+                correct: [2],
+                solution: "<strong>Explanation:</strong><br>The variance captured along the first principal component equals the maximum eigenvalue $\\lambda_1$ of $\\Sigma$.<br>Solving $\\det(\\Sigma - \\lambda I) = 0$:<br>$$(3 - \\lambda)^2 - 1 = 0 \\implies (3 - \\lambda)^2 = 1 \\implies 3 - \\lambda = \\pm 1$$<br>Eigenvalues are $\\lambda_1 = 4$ and $\\lambda_2 = 2$.<br>The variance captured along the first principal component is <strong>4</strong>."
+            },
+            {
+                qn: 13,
+                id: "6406532297865",
+                type: "MCQ",
+                marks: 1.00,
+                question: "Given a dataset with $K$ discrete attributes, each taking exactly 5 possible values (where $K > 2$), for a three-class classification task, the number of parameters to be estimated for learning a naïve Bayes classifier is:",
+                options: [
+                    "$3K + 2$",
+                    "$12K + 2$",
+                    "$3 \\cdot 2^K$",
+                    "$K^3$"
+                ],
+                correct: [1],
+                solution: "<strong>Explanation:</strong><br>1. Class prior distribution $P(Y)$: For $3$ classes, we need $3 - 1 = 2$ independent parameters.<br>2. Class-conditional feature distributions $P(X_i \\mid Y)$: For each of the $3$ classes and each of the $K$ features with $5$ categorical values, we need $5 - 1 = 4$ parameters.<br>Total conditional parameters = $3 \\times K \\times 4 = 12K$.<br>Total estimated parameters = $12K + 2$."
+            },
+            {
+                qn: 14,
+                id: "6406532297855",
+                type: "MCQ",
+                marks: 2.00,
+                question: "For an optimal soft-margin SVM solution (no bias term), a training point satisfies $0 < \\alpha_i^* < C$. Here $\\xi_i$ denotes the slack variable for this point, and $\\beta_i$ is the Lagrange multiplier on the constraint $\\xi_i \\ge 0$. Which statement is necessarily true?",
+                options: [
+                    "The point is misclassified by $w^*$.",
+                    "$\\xi_i^* > 0$.",
+                    "$y_i (w^{*T} x_i) = 1$ and $\\xi_i^* = 0$.",
+                    "$\\beta_i^* = 0$."
+                ],
+                correct: [2],
+                solution: "<strong>Explanation:</strong><br>From KKT conditions for soft-margin SVM:<br>1. $\\alpha_i^* (y_i w^{*T} x_i - 1 + \\xi_i^*) = 0$. Since $\\alpha_i^* > 0$, we have $y_i w^{*T} x_i = 1 - \\xi_i^*$.<br>2. Dual constraint relation: $\\alpha_i^* + \\beta_i^* = C \\implies \\beta_i^* = C - \\alpha_i^*$. Since $\\alpha_i^* < C$, we have $\\beta_i^* > 0$.<br>3. Complementary slackness for slack: $\\beta_i^* \\xi_i^* = 0$. Since $\\beta_i^* > 0$, we must have $\\xi_i^* = 0$.<br>Plugging $\\xi_i^* = 0$ back into $y_i w^{*T} x_i = 1 - \\xi_i^*$ gives $y_i (w^{*T} x_i) = 1$ and $\\xi_i^* = 0$."
+            },
+            {
+                qn: 15,
+                id: "6406532297862",
+                type: "MCQ",
+                marks: 2.00,
+                question: "Consider a binary classification dataset in which the two classes are perfectly linearly separable. You are considering a Perceptron, Logistic Regression, and a Decision Tree. If the objective is to learn a linear decision boundary and no probability estimates are required, which of the following classifiers are appropriate choices?",
+                options: [
+                    "Perceptron only",
+                    "Logistic Regression only",
+                    "Both Perceptron and Logistic Regression",
+                    "Decision Tree only"
+                ],
+                correct: [2],
+                solution: "<strong>Explanation:</strong><br>- Both Perceptron and Logistic Regression learn a linear decision boundary $w^T x + b = 0$. Since the dataset is linearly separable, both will successfully learn a separating hyperplane.<br>- Decision Trees form axis-aligned hyperplanes producing step-like boundaries, not arbitrary linear boundaries.<br>Therefore, both Perceptron and Logistic Regression are appropriate choices."
+            },
+            {
+                qn: 16,
+                id: "6406532297863",
+                type: "MCQ",
+                marks: 2.00,
+                question: "A Euclidean-distance-based $k$-means clustering algorithm was run on a dataset of $100$ points with $k = 3$. If the points $(2,2)$ and $(2,-2)$ are both part of cluster $3$, then which ONE of the following points is necessarily also part of cluster $3$?",
+                options: [
+                    "$(0,0)$",
+                    "$(4,0)$",
+                    "$(2,0)$",
+                    "$(0,2)$"
+                ],
+                correct: [2],
+                solution: "<strong>Explanation:</strong><br>In Euclidean-distance $k$-means clustering, cluster regions form convex Voronoi cells. Any convex combination of two points in a cluster must also lie within the same cluster cell.<br>The point $(2,0) = 0.5(2,2) + 0.5(2,-2)$ lies directly on the line segment connecting $(2,2)$ and $(2,-2)$. By convexity, $(2,0)$ is guaranteed to belong to cluster 3."
+            },
+            {
+                qn: 17,
+                id: "6406532297856",
+                type: "SA",
+                marks: 4.00,
+                question: "Consider a soft-margin SVM for binary classification in $\\mathbb{R}^3$ with <strong>no bias term</strong> and regularisation parameter $C = 10$. The training set has three points:<br><br>$$x_1, (y_1 = +1), \\quad x_2 = (0.2, 0.3, 0.4), (y_2 = +1), \\quad x_3 = (0.15, 0.28, 0.35), (y_3 = -1).$$<br><br>At the optimal solution $w^*$ the margin positions are:<br>$$y_1 (w^{*T} x_1) = 1.5,$$<br>$$y_2 (w^{*T} x_2) = 0.36,$$<br>$$y_3 (w^{*T} x_3) = -0.306.$$<br><br>Compute the perpendicular distance between the two margin hyperplanes $w^T x = +1$ and $w^T x = -1$. (<em>Round to 2 decimal places.</em>)<br><br><em>Note: coordinates of $x_1$ vector are intentionally not provided.</em>",
+                acceptedAnswer: "2.71 to 2.73",
+                solution: "<strong>Explanation:</strong><br>1. Calculate slacks $\\xi_i^* = \\max(0, 1 - y_i w^{*T} x_i)$:<br>   - $\\xi_1^* = \\max(0, 1 - 1.5) = 0$<br>   - $\\xi_2^* = \\max(0, 1 - 0.36) = 0.64 > 0 \\implies \\alpha_2^* = C = 10$<br>   - $\\xi_3^* = \\max(0, 1 - (-0.306)) = 1.306 > 0 \\implies \\alpha_3^* = C = 10$<br>   - Point $x_1$ has $y_1 w^{*T} x_1 = 1.5 > 1$ (strictly outside margin), so $\\alpha_1^* = 0$.<br>2. Calculate optimal weight vector $w^*$:<br>   $$w^* = \\sum_{i=1}^3 \\alpha_i^* y_i x_i = 10(1)x_2 + 10(-1)x_3 = 10(x_2 - x_3)$$<br>   $$x_2 - x_3 = (0.2 - 0.15, 0.3 - 0.28, 0.4 - 0.35) = (0.05, 0.02, 0.05)$$<br>   $$w^* = 10 (0.05, 0.02, 0.05) = (0.5, 0.2, 0.5)$$<br>3. Compute norm $\\|w^*\\| = \\sqrt{0.5^2 + 0.2^2 + 0.5^2} = \\sqrt{0.54} \\approx 0.734846$.<br>4. Margin distance between hyperplanes $w^T x = +1$ and $w^T x = -1$:<br>   $$d = \\frac{2}{\\|w^*\\|} = \\frac{2}{\\sqrt{0.54}} \\approx 2.72166 \\approx 2.72$$<br>Accepted answer range: <strong>2.71 to 2.73</strong>."
+            },
+            {
+                qn: 18,
+                id: "6406532297859",
+                type: "MSQ",
+                marks: 3.00,
+                question: "Which of the following statements about entropy and information gain in decision-tree learning are correct?",
+                options: [
+                    "If a feature splits a node into perfectly pure children, its information gain at that node equals the entropy of that node.",
+                    "A node whose examples all belong to a single class has entropy $0$ and needs no further splitting.",
+                    "Information gain can be negative if a split increases impurity.",
+                    "After a parent node is split into child nodes, no individual child node can have entropy greater than the parent node's entropy."
+                ],
+                correct: [0, 1],
+                solution: "<strong>Explanation:</strong><br>1. Information gain $IG(S, A) = H(S) - \\sum \\frac{|S_v|}{|S|} H(S_v)$. If all child nodes are pure, $H(S_v) = 0$, so $IG(S, A) = H(S)$. (True)<br>2. A pure node with all examples belonging to one class has entropy $0$ and requires no further splitting. (True)<br>3. Information gain is guaranteed to be non-negative ($IG \\ge 0$). (False)<br>4. While the weighted average entropy of child nodes is $\\le H(S)$, an individual child node can occasionally have entropy greater than the parent node. (False)"
+            },
+            {
+                qn: 19,
+                id: "6406532297864",
+                type: "MSQ",
+                marks: 3.00,
+                question: "Which of the following statements about bagging are correct?",
+                options: [
+                    "Bagging reduces the variance of the ensemble's prediction.",
+                    "Bagging substantially reduces the bias of the base learner.",
+                    "Bagging tends to help most when the base learners are diverse (weakly correlated with one another).",
+                    "Bagging tends to help most with high-variance, low-bias base learners such as deep, unpruned decision trees.",
+                    "Averaging all base learner reduces variance, if every base learner produces identical predictions."
+                ],
+                correct: [0, 2, 3],
+                solution: "<strong>Explanation:</strong><br>1. Bagging reduces variance by averaging bootstrap predictions. (Correct)<br>2. Bagging maintains the same bias as the base learner; it does not reduce bias. (Incorrect)<br>3. When base learners are diverse/weakly correlated, averaging yields greater variance reduction. (Correct)<br>4. Bagging works best on high-variance, unstable base models like deep, unpruned decision trees. (Correct)<br>5. If all base learners produce identical predictions ($\\rho = 1$), averaging provides zero variance reduction. (Incorrect)"
+            },
+            {
+                qn: 20,
+                id: "6406532297866",
+                type: "MCQ",
+                marks: 3.00,
+                question: "Suppose we model data as $y_i \\sim \\mathcal{N}(\\log(w/x_i), 1)$ with a single unknown parameter $w > 0$ and known variance $1$ (each $x_i > 0$). You perform maximum-likelihood estimation of $w$. The MLE of $w$ must satisfy which of the following equations? Note that $x$ is a feature and $y$ is a label.",
+                options: [
+                    "$\\sum_i y_i = \\sum_i \\log(w / x_i)$",
+                    "$\\sum_i x_i y_i = \\sum_i x_i \\log(w / x_i)$",
+                    "$\\sum_i \\frac{y_i}{x_i} = \\sum_i \\log(w / x_i)$",
+                    "$\\sum_i y_i = \\sum_i \\frac{w}{x_i}$"
+                ],
+                correct: [0],
+                solution: "<strong>Explanation:</strong><br>Log-likelihood for independent observations $y_i \\sim \\mathcal{N}(\\log(w/x_i), 1)$:<br>$$\\ln L(w) = -\\frac{N}{2}\\ln(2\\pi) - \\frac{1}{2}\\sum_i \\left(y_i - \\log(w/x_i)\\right)^2$$<br>Differentiating with respect to $w$ and setting to zero:<br>$$\\frac{d}{dw}\\ln L(w) = \\sum_i \\left(y_i - \\log(w/x_i)\\right) \\cdot \\frac{1}{w} = 0$$<br>Since $w > 0$, multiplying by $w$ gives:<br>$$\\sum_i \\left(y_i - \\log(w/x_i)\\right) = 0 \\implies \\sum_i y_i = \\sum_i \\log(w / x_i)$$"
+            }
+        ];
+
+        let currentMode = 'exam';
+        let userAnswers = {};
+        let timerSeconds = 0;
+        let isTimerRunning = true;
+        let timerInterval = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPalette();
+            renderQuestions();
+            startTimer();
+            updateScoreDisplay();
+        });
+
+        function setPortalMode(mode) {
+            currentMode = mode;
+            document.getElementById('btnExamMode').classList.toggle('active', mode === 'exam');
+            document.getElementById('btnLearningMode').classList.toggle('active', mode === 'learning');
+
+            const banner = document.getElementById('portalModeBanner');
+            if (banner) {
+                if (mode === 'learning') {
+                    banner.className = 'portal-mode-banner learning';
+                    banner.innerHTML = '<i class="fa-solid fa-graduation-cap"></i> <span><strong>Learning Mode:</strong> Solutions and answer explanations are revealed below each question. Perfect for study and practice!</span>';
+                } else {
+                    banner.className = 'portal-mode-banner';
+                    banner.innerHTML = '<i class="fa-solid fa-clock"></i> <span><strong>Exam Mode:</strong> Live timer active. Instant scoring enabled. Solutions shown on exam submission or when switching to Learning Mode.</span>';
+                }
+            }
+
+            renderQuestions();
+            updatePaletteStatuses();
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('paletteGrid');
+            grid.innerHTML = QUESTIONS_DATA.map(q => {
+                return `<button class="palette-btn" id="paletteBtn_${q.qn}" onclick="scrollToQuestion(${q.qn})">${q.qn}</button>`;
+            }).join('');
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            let html = '';
+
+            QUESTIONS_DATA.forEach((q) => {
+                const isComprehensionHeader = q.type === 'COMPREHENSION';
+
+                if (isComprehensionHeader) {
+                    html += `
+                    <article class="qn-card comprehension-card" id="qnCard_${q.qn}">
+                        <div class="qn-header-container">
+                            <div class="qn-header-top">
+                                <div class="qn-title-main">
+                                    <span style="background:var(--accent-purple); color:white; padding:0.25rem 0.6rem; border-radius:4px; font-size:0.75rem; font-weight:700;">COMPREHENSION PASSAGE</span>
+                                </div>
+                            </div>
+                            <div class="qn-header-sub">
+                                <span class="qn-id-tag">Question ${q.qn} : ${q.id}</span>
+                            </div>
+                        </div>
+                        <div class="qn-text" style="font-size:1rem; line-height:1.7;">${q.question || q.text || ''}</div>
+                    </article>
+                    `;
+                    return;
+                }
+
+                html += `
+                <article class="qn-card" id="qnCard_${q.qn}">
+                    <div class="qn-header-container">
+                        <div class="qn-header-top">
+                            <div class="qn-title-main">
+                                Question ${q.qn} : ${q.id}
+                            </div>
+                            <button class="btn-solution-pill" onclick="toggleSolution(${q.qn})">
+                                <i class="fa-regular fa-circle-check"></i> View Solutions (0)
+                            </button>
+                        </div>
+                        <div class="qn-header-sub">
+                            <span class="qn-id-tag">Question ${q.qn} : ${q.id}</span>
+                            <span class="qn-meta-info">Total Mark : ${q.marks.toFixed(2)} | Type : ${q.type}</span>
+                        </div>
+                    </div>
+
+                    <div class="qn-text">${q.question ? q.question : (q.text || '')}</div>
+
+                    ${q.code ? `
+                    <div class="code-snippet-wrap">
+                        <code>${escapeHtml(q.code)}</code>
+                    </div>` : ''}
+
+                    ${q.qnSubText ? `<div class="qn-text" style="margin-top:0.85rem;">${q.qnSubText}</div>` : ''}
+
+                    <!-- Options / Inputs -->
+                    ${renderAnswerInput(q)}
+
+                    <!-- Solution Accordion -->
+                    <div class="solution-box ${currentMode === 'learning' ? 'open' : ''}" id="solution_${q.qn}">
+                        <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution & Explanation</div>
+                        <div class="solution-text">
+                            ${(q.acceptedAnswer || (q.correct && q.options)) ? `<div style="font-weight:700; margin-bottom:0.5rem; color:var(--accent-green);">Accepted / Correct Answer:</div><div style="font-family:var(--font-mono); background:var(--bg-surface); padding:0.5rem 0.75rem; border-radius:6px; margin-bottom:0.75rem; border:1px solid var(--border-color);">${q.type === 'SA' ? q.acceptedAnswer : q.correct.map(i => `${i + 1}. ${q.options[i]}`).join('<br>')}</div>` : ''}
+                            ${q.solution ? q.solution : ''}
+                        </div>
+                    </div>
+                </article>
+                `;
+
+                if (q.qn === 6 || q.qn === 14) {
+                    html += `
+                    <div class="ad-banner-box">
+                        <span class="ad-tag">ADVERTISEMENT</span>
+                        <div class="ad-actions">
+                            <button class="btn-remove-ads" onclick="alert('Ad-free experience enabled.')"><i class="fa-solid fa-bolt"></i> Remove Ads</button>
+                            <button class="btn-close-ad" onclick="this.parentElement.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    `;
+                }
+            });
+
+            container.innerHTML = html;
+            updatePaletteStatuses();
+            if (window.MathJax && typeof MathJax.typesetPromise === 'function') {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function renderAnswerInput(q) {
+            if (q.type === 'SA') {
+                const val = userAnswers[q.qn] ? userAnswers[q.qn][0] : '';
+                const showGreen = currentMode === 'learning';
+                return `
+                <div class="sa-input-wrap" style="margin-top:1.25rem;">
+                    <label style="display:block; font-size:0.85rem; font-weight:600; color:var(--text-muted); margin-bottom:0.4rem;">Answer (Numeric):</label>
+                    <input type="text" class="sa-input" value="${escapeHtml(val)}" placeholder="Type your numeric answer here..." oninput="handleSAInput(${q.qn}, this.value)">
+                    <div class="accepted-ans-box" style="display:${showGreen ? 'block' : 'none'};">
+                        <i class="fa-solid fa-circle-check"></i> Accepted Answer : ${q.acceptedAnswer}
+                    </div>
+                </div>
+                `;
+            }
+
+            const isMSQ = q.type === 'MSQ';
+            const userArr = userAnswers[q.qn] || [];
+
+            return `
+            <div class="options-list">
+                ${q.options.map((optText, idx) => {
+                const isChecked = userArr.includes(idx);
+                const isCorrect = q.correct && q.correct.includes(idx);
+                let highlightClass = '';
+
+                if (isChecked) highlightClass = 'selected';
+
+                if (currentMode === 'learning') {
+                    if (isCorrect) highlightClass = 'correct-highlight';
+                    else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                }
+
+                return `
+                    <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <span class="option-text">${optText}</span>
+                    </label>
+                    `;
+            }).join('')}
+            </div>
+            `;
+        }
+
+        function handleSAInput(qnNum, val) {
+            if (!val || val.trim() === '') {
+                delete userAnswers[qnNum];
+            } else {
+                userAnswers[qnNum] = [val.trim()];
+            }
+            updateScoreDisplay();
+            updatePaletteStatuses();
+        }
+
+        function handleOptionSelect(qnNum, optIdx, qnType) {
+            if (qnType === 'MCQ') {
+                userAnswers[qnNum] = [optIdx];
+            } else if (qnType === 'MSQ') {
+                if (!userAnswers[qnNum]) userAnswers[qnNum] = [];
+                const pos = userAnswers[qnNum].indexOf(optIdx);
+                if (pos >= 0) userAnswers[qnNum].splice(pos, 1);
+                else userAnswers[qnNum].push(optIdx);
+            }
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function calculateQuestionScore(q) {
+            const userAns = userAnswers[q.qn];
+            if (!userAns || !Array.isArray(userAns) || userAns.length === 0) return "0.00";
+
+            if (q.type === 'MCQ') {
+                return (userAns[0] === q.correct[0]) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            if (q.type === 'MSQ') {
+                const sortedUser = [...userAns].sort((a, b) => a - b).join(',');
+                const sortedCorrect = [...q.correct].sort((a, b) => a - b).join(',');
+                return (sortedUser === sortedCorrect) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            if (q.type === 'SA') {
+                const valStr = (userAns[0] || '').trim();
+                const valNum = parseFloat(valStr);
+
+                if (q.acceptedAnswer.includes('to')) {
+                    const parts = q.acceptedAnswer.split('to').map(p => parseFloat(p.trim()));
+                    if (!isNaN(valNum) && valNum >= parts[0] && valNum <= parts[1]) {
+                        return q.marks.toFixed(2);
+                    }
+                } else {
+                    const targetNum = parseFloat(q.acceptedAnswer);
+                    if (!isNaN(valNum) && Math.abs(valNum - targetNum) < 0.01) {
+                        return q.marks.toFixed(2);
+                    }
+                }
+            }
+
+            return "0.00";
+        }
+
+        function updateScoreDisplay() {
+            let total = 0;
+            let maxMarks = 50.00;
+
+            QUESTIONS_DATA.forEach(q => {
+                if (q.type !== 'COMPREHENSION') {
+                    total += parseFloat(calculateQuestionScore(q));
+                }
+            });
+
+            document.getElementById('liveScoreDisplay').textContent = `${total.toFixed(2)} / ${maxMarks.toFixed(2)}`;
+            const pct = ((total / maxMarks) * 100).toFixed(1);
+            document.getElementById('livePercentDisplay').textContent = `(${pct}%)`;
+        }
+
+        function updatePaletteStatuses() {
+            let answeredCount = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.getElementById(`paletteBtn_${q.qn}`);
+                if (!btn) return;
+
+                const isAnswered = userAnswers[q.qn] && userAnswers[q.qn].length > 0;
+                if (isAnswered) answeredCount++;
+
+                btn.className = 'palette-btn';
+
+                if (currentMode === 'learning' && q.type !== 'COMPREHENSION') {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    if (isAnswered) {
+                        if (score > 0) btn.classList.add('correct');
+                        else btn.classList.add('incorrect');
+                    }
+                } else if (isAnswered) {
+                    btn.classList.add('answered');
+                }
+            });
+
+            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/${QUESTIONS_DATA.length}`;
+        }
+
+        function toggleSolution(qnNum) {
+            const solBox = document.getElementById(`solution_${qnNum}`);
+            if (solBox) {
+                solBox.classList.toggle('open');
+            }
+        }
+
+        function scrollToQuestion(qnNum) {
+            const el = document.getElementById(`qnCard_${qnNum}`);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function toggleTimer() {
+            isTimerRunning = !isTimerRunning;
+            const btn = document.getElementById('btnPauseTimer');
+            if (isTimerRunning) {
+                btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+            } else {
+                btn.innerHTML = '<i class="fa-solid fa-play"></i>';
+            }
+        }
+
+        function resetTimer() {
+            timerSeconds = 0;
+            updateTimerDisplay();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (isTimerRunning) {
+                    timerSeconds++;
+                    updateTimerDisplay();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const secs = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+        }
+
+        function submitExam() {
+            isTimerRunning = false;
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+            let totalScore = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                if (q.type === 'COMPREHENSION') return;
+                const userAns = userAnswers[q.qn];
+                if (!userAns || userAns.length === 0) {
+                    unansweredCount++;
+                } else {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    if (score > 0) {
+                        correctCount++;
+                        totalScore += score;
+                    } else {
+                        incorrectCount++;
+                    }
+                }
+            });
+
+            document.getElementById('modalScoreText').textContent = `${totalScore.toFixed(2)} / 50.00`;
+            document.getElementById('modalPercentText').textContent = `${((totalScore / 50.00) * 100).toFixed(1)}% Accuracy`;
+            document.getElementById('modalCorrectCount').textContent = correctCount;
+            document.getElementById('modalIncorrectCount').textContent = incorrectCount;
+            document.getElementById('modalUnansweredCount').textContent = unansweredCount;
+
+            document.getElementById('resultModal').classList.add('active');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.remove('active');
+        }
+
+        function resetExam() {
+            userAnswers = {};
+            resetTimer();
+            isTimerRunning = true;
+            closeResultModal();
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function openSummaryModal() {
+            document.getElementById('summaryModal').classList.add('active');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.remove('active');
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('portalSidebar');
+            const toggleBtn = document.getElementById('mobileSidebarToggle');
+            if (sidebar && toggleBtn) {
+                sidebar.classList.toggle('open');
+                toggleBtn.classList.toggle('active');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const fab = document.getElementById('fabBackToTop');
+            if (fab) {
+                if (window.scrollY > 300) fab.classList.add('visible');
+                else fab.classList.remove('visible');
+            }
+        });
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+
+</html>
+

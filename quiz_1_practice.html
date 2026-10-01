@@ -53,9 +53,12 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
-        <!-- FontAwesome Non-Blocking Asynchronous Load -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <!-- FontAwesome Non-Blocking Asynchronous Load -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
@@ -390,6 +393,7 @@
                                 <option value="english2">English II</option>
                                 <option value="python">Python Programming</option>
                                 <option value="java">Programming Concepts Using Java</option>
+                                <option value="ba">Business Analytics</option>
                                 <option value="mad2">Modern Application Development II</option>
                                 <option value="ml">Machine Learning</option>
                                 <option value="es-embedded">ES - Embedded Systems</option>
@@ -418,7 +422,8 @@
 
                 <!-- Empty State (shown when no course is selected, by default) -->
                 <div class="empty-state" id="emptyState">
-                    <img src="assets/images/empty.webp" width="200" height="200" alt="Choose a Course" class="empty-state-img">
+                    <img src="assets/images/empty.webp" width="200" height="200" alt="Choose a Course"
+                        class="empty-state-img">
                     <h3>Please Choose a course</h3>
                     <p>Pick a subject from the dropdown above to view available Quiz 1 question papers. Year filter is
                         optional
@@ -440,20 +445,21 @@
     <script src="assets/js/main.js"></script>
     <script>
         const QUIZ1_PAPERS = [
-
-            { id: 101, title: "Quiz 1 - Programming in Python - 16 Jul 2026", course: "python", courseLabel: "Python", year: "2026", url: "python/quiz1/quiz_1_python_16jul26.html" },
-            { id: 102, title: "Quiz 1 - Programming in Python - 15 Mar 2026", course: "python", courseLabel: "Python", year: "2026", url: "python/quiz1/quiz_1_python_15mar26.html" },
-            { id: 103, title: "Quiz 1 - Programming in Python - 26 Oct 2025", course: "python", courseLabel: "Python", year: "2025", url: "python/quiz1/quiz_1_python_26oct25.html" },
-            { id: 104, title: "Quiz 1 - Programming in Python - 13 Jul 2025", course: "python", courseLabel: "Python", year: "2025", url: "python/quiz1/quiz_1_python_13jul25.html" },
-            { id: 105, title: "Quiz 1 - Programming in Python - 23 Feb 2025", course: "python", courseLabel: "Python", year: "2025", url: "python/quiz1/quiz_1_python_23feb25.html" },
-            //     { id: 1, title: "Quiz 1 - Mathematics for Data Science I - Jan 2026", course: "maths1", courseLabel: "Maths 1", year: "2026", url: "#" },
-            //     { id: 2, title: "Quiz 1 - Mathematics for Data Science I - May 2025", course: "maths1", courseLabel: "Maths 1", year: "2025", url: "#" },
-            //     { id: 3, title: "Quiz 1 - Statistics for Data Science I - Jan 2026", course: "stats1", courseLabel: "Stats 1", year: "2026", url: "#" },
-            //     { id: 4, title: "Quiz 1 - Computational Thinking - May 2025", course: "ct", courseLabel: "CT", year: "2025", url: "#" },
-            //     { id: 5, title: "Quiz 1 - Python Programming - Sep 2024", course: "python", courseLabel: "Python", year: "2024", url: "python/quiz_1_python_16jul26.html" },
-            //     { id: 6, title: "Quiz 1 - Statistics for Data Science II - Jan 2026", course: "stats2", courseLabel: "Stats 2", year: "2026", url: "#" },
-            //     { id: 7, title: "Quiz 1 - English I - May 2023", course: "english1", courseLabel: "English 1", year: "2023", url: "#" },
-            //     { id: 8, title: "Quiz 1 - Machine Learning - Jan 2026", course: "ml", courseLabel: "ML", year: "2026", url: "#" },
+            { id: 305, title: "Quiz 1 - Business Analytics - 16 Jul 2026", course: "ba", courseLabel: "BA", year: "2026", url: "Diploma/BA/quiz1/quiz_1_ba_16jul26.html" },
+            { id: 301, title: "Quiz 1 - Business Analytics - 15 Mar 2026", course: "ba", courseLabel: "BA", year: "2026", url: "Diploma/BA/quiz1/quiz_1_ba_15mar26.html" },
+            { id: 302, title: "Quiz 1 - Business Analytics - 26 Oct 2025", course: "ba", courseLabel: "BA", year: "2025", url: "Diploma/BA/quiz1/quiz_1_ba_26oct25.html" },
+            { id: 303, title: "Quiz 1 - Business Analytics - 13 Jul 2025", course: "ba", courseLabel: "BA", year: "2025", url: "Diploma/BA/quiz1/quiz_1_ba_13jul25.html" },
+            { id: 304, title: "Quiz 1 - Business Analytics - 23 Feb 2025", course: "ba", courseLabel: "BA", year: "2025", url: "Diploma/BA/quiz1/quiz_1_ba_23feb25.html" },
+            { id: 201, title: "Quiz 1 - Mathematics for Data Science I - 16 Jul 2026", course: "maths1", courseLabel: "Maths 1", year: "2026", url: "Foundation/maths1/quiz1/quiz_1_maths1_16jul26.html" },
+            { id: 202, title: "Quiz 1 - Mathematics for Data Science I - 15 Mar 2026", course: "maths1", courseLabel: "Maths 1", year: "2026", url: "Foundation/maths1/quiz1/quiz_1_maths1_15mar26.html" },
+            { id: 203, title: "Quiz 1 - Mathematics for Data Science I - 26 Oct 2025", course: "maths1", courseLabel: "Maths 1", year: "2025", url: "Foundation/maths1/quiz1/quiz_1_maths1_26oct25.html" },
+            { id: 204, title: "Quiz 1 - Mathematics for Data Science I - 13 Jul 2025", course: "maths1", courseLabel: "Maths 1", year: "2025", url: "Foundation/maths1/quiz1/quiz_1_maths1_13jul25.html" },
+            { id: 205, title: "Quiz 1 - Mathematics for Data Science I - 23 Feb 2025", course: "maths1", courseLabel: "Maths 1", year: "2025", url: "Foundation/maths1/quiz1/quiz_1_maths1_23feb25.html" },
+            { id: 101, title: "Quiz 1 - Programming in Python - 16 Jul 2026", course: "python", courseLabel: "Python", year: "2026", url: "Foundation/python/quiz1/quiz_1_python_16jul26.html" },
+            { id: 102, title: "Quiz 1 - Programming in Python - 15 Mar 2026", course: "python", courseLabel: "Python", year: "2026", url: "Foundation/python/quiz1/quiz_1_python_15mar26.html" },
+            { id: 103, title: "Quiz 1 - Programming in Python - 26 Oct 2025", course: "python", courseLabel: "Python", year: "2025", url: "Foundation/python/quiz1/quiz_1_python_26oct25.html" },
+            { id: 104, title: "Quiz 1 - Programming in Python - 13 Jul 2025", course: "python", courseLabel: "Python", year: "2025", url: "Foundation/python/quiz1/quiz_1_python_13jul25.html" },
+            { id: 105, title: "Quiz 1 - Programming in Python - 23 Feb 2025", course: "python", courseLabel: "Python", year: "2025", url: "Foundation/python/quiz1/quiz_1_python_23feb25.html" },
         ];
 
         const courseSelect = document.getElementById('courseSelect');
@@ -511,6 +517,8 @@
             }).join('');
             papersGrid.classList.add('active');
         }
+
+        setupSearchableCourseSelect('courseSelect', renderPapers);
 
         // Initial render: no course selected → empty state (per your "by default show all years but user should pick a course" logic)
         renderPapers();

@@ -9,6 +9,7 @@
 
 function initAllBSHModules() {
     initThemeToggle();
+    initServiceWorker();
     initCleanURLRouting();
     initPageTransitions();
     initAnnouncementBar();
@@ -20,6 +21,21 @@ function initAllBSHModules() {
     initStatsCounter();
     initComingSoonModal();
     initInspectProtection();
+    initIDESyntaxHighlighter();
+}
+
+/* PWA Service Worker Registration */
+function initServiceWorker() {
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            const header = document.getElementById('header');
+            const rootPrefix = header ? (header.getAttribute('data-root-prefix') || '') : '';
+            const swPath = rootPrefix + 'sw.js';
+            navigator.serviceWorker.register(swPath).catch(err => {
+                console.warn('[BSH PWA] Service Worker registration failed:', err);
+            });
+        });
+    }
 }
 
 if (document.readyState === 'loading') {
@@ -760,5 +776,139 @@ function initPageTransitions() {
         }
     });
 }
+
+/* --------------------------------------------------------------------------
+   8. Automatic IDE Syntax Highlighting & Code Window Engine
+   -------------------------------------------------------------------------- */
+function highlightCodeSyntax(rawText) {
+    const tokens = [];
+    function saveToken(cls, content) {
+        const id = `___TOK_${tokens.length}___`;
+        tokens.push(`<span class="${cls}">${content}</span>`);
+        return id;
+    }
+
+    function escapeHtml(str) {
+        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    let code = rawText;
+
+    // 1. Comments
+    code = code.replace(/(?:#|\/\/)[^\n]*/g, (m) => saveToken('tok-comment', escapeHtml(m)));
+
+    // 2. Strings
+    code = code.replace(/(["'])(?:(?=(\\?))\2.)*?\1/g, (m) => saveToken('tok-string', escapeHtml(m)));
+
+    // Escape remaining raw text for HTML safety
+    code = escapeHtml(code);
+
+    // 3. Keywords
+    const keywords = /\b(import|from|as|def|class|return|if|else|elif|for|in|while|try|except|with|True|False|None|lambda|assert|pass|public|static|void|int|double|boolean|String|new|null|var|val|function|const|let|select|where|group|by|order)\b/g;
+    code = code.replace(keywords, (m) => saveToken('tok-keyword', m));
+
+    // 4. Classes / Libraries / Types
+    const classes = /\b(np|pd|MinMaxScaler|StandardScaler|OneHotEncoder|ColumnTransformer|PolynomialFeatures|Pipeline|FeatureUnion|KNeighborsClassifier|KNeighborsRegressor|SGDRegressor|SGDClassifier|Ridge|Lasso|LinearRegression|GaussianNB|BernoulliNB|MultinomialNB|AdaBoostClassifier|VotingClassifier|VotingRegressor|RandomForestClassifier|MLPClassifier|MLPRegressor|PCA|RandomizedSearchCV|GridSearchCV|LabelEncoder|CountVectorizer|TfidfVectorizer|KMeans|AgglomerativeClustering|SVC|RidgeClassifier|LassoCV|ElasticNetCV|DummyRegressor|DummyClassifier|System|Math|Scanner|ArrayList|HashMap|DataFrame|Series)\b/g;
+    code = code.replace(classes, (m) => saveToken('tok-class', m));
+
+    // 5. Functions & Method Calls
+    const funcs = /\b(fit|fit_transform|transform|predict|predict_proba|fit_predict|array|read_csv|sum|mean|std|var_|drop|reshape|head|tail|iloc|loc|apply|isnull|notnull|isna|isin|group|groupby|shift|diff|convert|resize|flatten|toarray|classification_report|f1_score|accuracy_score|precision_score|recall_score|print|len|range|enumerate|zip|min|max|abs|score)\b(?=\s*\()/g;
+    code = code.replace(funcs, (m) => saveToken('tok-func', m));
+
+    // 6. Numbers
+    const numbers = /\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/gi;
+    code = code.replace(numbers, (m) => saveToken('tok-number', m));
+
+    // 7. Operators
+    const operators = /(\+|-|\*|\/|==|!=|<=|>=|=|<|>|\||&|~|\^)/g;
+    code = code.replace(operators, (m) => saveToken('tok-operator', m));
+
+    // Restore saved tokens
+    tokens.forEach((tokHtml, i) => {
+        code = code.replace(`___TOK_${i}___`, tokHtml);
+    });
+
+    return code;
+}
+
+function copyIdeCode(btn) {
+    const body = btn.closest('.ide-code-window').querySelector('.ide-body pre');
+    if (!body) return;
+    const text = body.textContent || body.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        const icon = btn.querySelector('i');
+        if (icon) {
+            icon.className = 'fa-solid fa-check';
+            setTimeout(() => { icon.className = 'fa-regular fa-copy'; }, 2000);
+        }
+    });
+}
+
+function initIDESyntaxHighlighter() {
+    const selector = '.qp-code-box, .code-snippet-wrap, .code-block, pre.qp-code-box, pre code, pre[style*="font-family"]';
+    const codeElements = document.querySelectorAll(selector);
+
+    codeElements.forEach(el => {
+        if (el.dataset.ideProcessed === 'true' || el.closest('.ide-code-window')) return;
+        el.dataset.ideProcessed = 'true';
+
+        let rawText = el.textContent || el.innerText || '';
+        if (!rawText.trim()) return;
+
+        let langLabel = 'Code Snippet';
+        const lower = rawText.toLowerCase();
+        if (lower.includes('public class') || lower.includes('system.out') || lower.includes('void main') || lower.includes('string[]')) {
+            langLabel = 'Java';
+        } else if (lower.includes('select ') && lower.includes('from ')) {
+            langLabel = 'SQL';
+        } else if (lower.includes('import ') || lower.includes('from ') || lower.includes('def ') || lower.includes('print(') || lower.includes('np.') || lower.includes('pd.')) {
+            langLabel = 'Python';
+        }
+
+        const highlightedHtml = highlightCodeSyntax(rawText);
+
+        const ideWindow = document.createElement('div');
+        ideWindow.className = 'ide-code-window';
+        ideWindow.innerHTML = `
+            <div class="ide-header">
+                <div class="ide-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <span class="ide-title"><i class="fa-solid fa-code"></i> ${langLabel}</span>
+                <button type="button" class="ide-copy-btn" onclick="copyIdeCode(this)" title="Copy Code">
+                    <i class="fa-regular fa-copy"></i>
+                </button>
+            </div>
+            <div class="ide-body">
+                <pre><code>${highlightedHtml}</code></pre>
+            </div>
+        `;
+
+        if (el.tagName === 'DIV' || el.tagName === 'PRE') {
+            el.parentNode.replaceChild(ideWindow, el);
+        } else {
+            const container = el.closest('pre') || el;
+            container.parentNode.replaceChild(ideWindow, container);
+        }
+    });
+}
+
+// Observe dynamic question rendering for automatic IDE syntax highlighting
+if (typeof MutationObserver !== 'undefined') {
+    const ideObserver = new MutationObserver(() => {
+        initIDESyntaxHighlighter();
+    });
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            if (document.body) ideObserver.observe(document.body, { childList: true, subtree: true });
+        });
+    } else if (document.body) {
+        ideObserver.observe(document.body, { childList: true, subtree: true });
+    }
+}
+
+
 
 

@@ -408,7 +408,8 @@
 
 /* Code Snippet & Java Code Block Styling */
 .code-snippet-wrap,
-.code-block {
+.code-block,
+.qp-code-box {
     background: #0f172a;
     color: #f8fafc;
     border-radius: var(--radius-lg, 12px);
@@ -425,13 +426,105 @@
     -moz-tab-size: 4;
 }
 
-[data-theme="light"] .code-snippet-wrap,
-[data-theme="light"] .code-block {
-    background: #f8fafc;
-    color: #0f172a;
-    border-color: #cbd5e1;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+/* IDE CODE WINDOW STYLING & SYNTAX HIGHLIGHTER */
+.ide-code-window {
+    background: #0f172a !important;
+    border: 1px solid #334155 !important;
+    border-radius: 12px !important;
+    margin: 1.25rem 0 !important;
+    overflow: hidden !important;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.35) !important;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace !important;
 }
+
+[data-theme="dark"] .ide-code-window {
+    background: #090d16 !important;
+    border-color: #1e293b !important;
+}
+
+.ide-header {
+    background: #1e293b !important;
+    padding: 0.5rem 0.9rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    border-bottom: 1px solid #334155 !important;
+    user-select: none !important;
+}
+
+[data-theme="dark"] .ide-header {
+    background: #0f172a !important;
+    border-bottom-color: #1e293b !important;
+}
+
+.ide-dots {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.45rem !important;
+}
+
+.ide-dots .dot {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50% !important;
+    display: inline-block !important;
+}
+
+.ide-dots .dot.red { background: #ff5f56 !important; }
+.ide-dots .dot.yellow { background: #ffbd2e !important; }
+.ide-dots .dot.green { background: #27c93f !important; }
+
+.ide-title {
+    font-size: 0.78rem !important;
+    font-weight: 600 !important;
+    color: #94a3b8 !important;
+    font-family: var(--font-sans, system-ui) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+}
+
+.ide-copy-btn {
+    background: transparent !important;
+    border: none !important;
+    color: #94a3b8 !important;
+    cursor: pointer !important;
+    font-size: 0.82rem !important;
+    padding: 0.2rem 0.4rem !important;
+    border-radius: 4px !important;
+    transition: all 0.2s ease !important;
+}
+
+.ide-copy-btn:hover {
+    color: #f8fafc !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.ide-body {
+    padding: 1rem 1.25rem !important;
+    overflow-x: auto !important;
+}
+
+.ide-body pre {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    font-family: inherit !important;
+    font-size: 0.92rem !important;
+    line-height: 1.65 !important;
+    color: #f8fafc !important;
+    white-space: pre !important;
+}
+
+/* Syntax Highlighting Token Colors */
+.tok-keyword { color: #c084fc !important; font-weight: 600 !important; } /* Violet/Purple */
+.tok-class   { color: #facc15 !important; font-weight: 600 !important; } /* Bright Yellow/Gold */
+.tok-func    { color: #38bdf8 !important; font-weight: 500 !important; } /* Vivid Cyan/Blue */
+.tok-string  { color: #4ade80 !important; } /* Emerald Green */
+.tok-number  { color: #f97316 !important; } /* Warm Orange */
+.tok-comment { color: #94a3b8 !important; font-style: italic !important; } /* Muted Slate */
+.tok-operator{ color: #f43f5e !important; } /* Rose Pink */
 
 .code-snippet-wrap code,
 .code-block code {
@@ -728,12 +821,7 @@ mjx-container[jax="CHTML"][display="true"] {
 
 /* Question Action Toolbar (Image 2 Pill Buttons) */
 .qn-footer-toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    padding-top: 0.85rem;
+    display: none !important;
 }
 
 .qn-actions-group {

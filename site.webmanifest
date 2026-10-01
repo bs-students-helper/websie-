@@ -1,6 +1,13 @@
 {
   "name": "BS Students Helper",
   "short_name": "BSH",
+  "description": "IIT Madras BS Degree Previous Year Questions (PYQs), interactive mock tests, and SEC grade calculator.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0f172a",
+  "theme_color": "#2563eb",
   "icons": [
     {
       "src": "assets/icons/favicon-16x16.png",
@@ -16,9 +23,18 @@
       "src": "assets/icons/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
-  ],
-  "theme_color": "#4f46e5",
-  "background_color": "#ffffff",
-  "display": "standalone"
+  ]
 }

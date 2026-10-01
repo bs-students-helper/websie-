@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Analytics (15 Mar 2026) | BSH</title>
+    <meta name="description"
+        content="Practice Business Analytics Quiz 1 question paper (15 Mar 2026) with interactive exam & learning modes, instant score calculation, detailed LaTeX solutions, and question palette.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Non-Blocking Asynchronous Load -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/icons/apple-touch-icon.png">
+
+    <!-- Master CSS & Centralized Quiz Portal CSS -->
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/quiz-portal.css">
+
+    <!-- MathJax for rendering LaTeX math formulas -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false,
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <!-- Theme Detection -->
+    <script>
+        (function () {
+            const saved = localStorage.getItem('bsh-theme');
+            if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+            else document.documentElement.setAttribute('data-theme', 'light');
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Site Navigation Header -->
+    <header class="site-header" id="header" data-root-prefix="../../../" data-active-page="quiz_practice"></header>
+
+    <main>
+        <div class="portal-layout">
+
+            <!-- Mobile Collapsible Sidebar Toggle Button -->
+            <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()">
+                <span><i class="fa-solid fa-sliders"></i> Exam Controls & Question Menu</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <!-- Left Sidebar: Controls, Menu & Timer -->
+            <aside class="portal-sidebar" id="portalSidebar">
+
+                <!-- Header Info -->
+                <div class="exam-info-header">
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Exam :</span>
+                        <span class="exam-info-val">Quiz 1</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Subject :</span>
+                        <span class="exam-info-val">Business Analytics</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Total Marks :</span>
+                        <span class="exam-info-val">20.00</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">QP :</span>
+                        <span class="exam-info-val" style="font-size:0.75rem;">Business Analytics 15 Mar 26</span>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher -->
+                <div>
+                    <div class="menu-heading">Portal Mode</div>
+                    <div class="mode-toggle-group">
+                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam Mode</button>
+                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning Mode</button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;" onclick="openSummaryModal()">
+                        <i class="fa-solid fa-eye"></i> View Question Paper Summary
+                    </button>
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;" onclick="window.print()">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </button>
+                </div>
+
+                <!-- Question Menu Grid -->
+                <div>
+                    <div class="menu-heading">
+                        <span>Question Menu</span>
+                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/20</span>
+                    </div>
+                    <div class="palette-grid" id="paletteGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Timer Box -->
+                <div>
+                    <div class="menu-heading">Timer</div>
+                    <div class="timer-box">
+                        <div class="timer-display" id="timerDisplay">00:00</div>
+                        <div class="timer-controls">
+                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i class="fa-solid fa-pause"></i></button>
+                            <button class="btn-icon-sm" onclick="resetTimer()"><i class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Score Box & Submit Exam Button -->
+                <div>
+                    <div class="menu-heading">Controls</div>
+                    <button class="btn-submit-exam" onclick="submitExam()">
+                        <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
+                    </button>
+                    <div class="score-card" style="margin-top:1rem;">
+                        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">Your Score</span>
+                        <div class="score-num" id="liveScoreDisplay">0.00 / 20.00</div>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);" id="livePercentDisplay">(0%)</span>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Right Content Panel -->
+            <section class="questions-area" id="questionsContainer">
+                <!-- Populated by JS -->
+            </section>
+        </div>
+    </main>
+
+    <!-- Floating Back to Top Button -->
+    <button class="fab-back-to-top" id="fabBackToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;"><i class="fa-solid fa-list-check"></i> Question Paper Summary</h3>
+                <button class="btn-icon-sm" onclick="closeSummaryModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+                Paper Title: <b>Business Analytics (15 Mar 2026)</b> (Quiz 1)
+            </p>
+            <div class="summary-stats-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem; text-align:center;">
+                <div class="stat-box" style="background:var(--bg-surface); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="font-size:1.5rem; font-weight:700; font-family:var(--font-mono);">20</div>
+                    <div class="stat-lbl" style="font-size:0.8rem; color:var(--text-muted);">Total Questions</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="font-size:1.5rem; font-weight:700; font-family:var(--font-mono);">20.00</div>
+                    <div class="stat-lbl" style="font-size:0.8rem; color:var(--text-muted);">Total Marks</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" id="summaryAnsweredCount" style="font-size:1.5rem; font-weight:700; font-family:var(--font-mono);">0</div>
+                    <div class="stat-lbl" style="font-size:0.8rem; color:var(--text-muted);">Answered</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-card" style="text-align: center;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;"><i class="fa-solid fa-trophy"></i> Exam Results</h3>
+                <button class="btn-icon-sm" onclick="closeResultModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div style="font-size: 0.9rem; color: var(--text-muted); font-weight: 500;">Final Score</div>
+            <div style="font-size: 2.25rem; font-weight: 800; color: var(--accent-cyan); margin: 0.25rem 0;" id="modalScoreText">0.00 / 20.00</div>
+            <div style="font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1.5rem;" id="modalPercentText">0%</div>
+
+            <div class="summary-stats-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem; text-align:center;">
+                <div class="stat-box" style="background:var(--bg-surface); padding:0.75rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="color:var(--accent-green); font-size:1.4rem; font-weight:700;" id="modalCorrectCount">0</div>
+                    <div class="stat-lbl" style="font-size:0.75rem; color:var(--text-muted);">Correct</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:0.75rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="color:var(--accent-red); font-size:1.4rem; font-weight:700;" id="modalIncorrectCount">0</div>
+                    <div class="stat-lbl" style="font-size:0.75rem; color:var(--text-muted);">Incorrect</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:0.75rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="color:var(--text-muted); font-size:1.4rem; font-weight:700;" id="modalUnansweredCount">0</div>
+                    <div class="stat-lbl" style="font-size:0.75rem; color:var(--text-muted);">Unanswered</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; gap: 0.75rem; justify-content: center;">
+                <button class="mode-btn active" style="padding:0.6rem 1.2rem; border-radius:var(--radius-md);" onclick="resetExam()"><i class="fa-solid fa-rotate-right"></i> Retake Exam</button>
+                <button class="mode-btn" style="padding:0.6rem 1.2rem; border-radius:var(--radius-md); border:1px solid var(--border-color);" onclick="closeResultModal()"><i class="fa-solid fa-book-open"></i> Review Solutions</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/components.js"></script>
+    <script src="../../../assets/js/main.js"></script>
+
+    <script>
+        const QUESTIONS_DATA = [
+            {
+                qn: 1,
+                id: "6406531951544",
+                type: "MCQ",
+                marks: 0.50,
+                text: "A distribution is right-tailed if",
+                options: [
+                    "Coefficient of variation is positive",
+                    "Skewness is positive",
+                    "Skewness is negative",
+                    "Cannot say without the histogram"
+                ],
+                correct: [1],
+                solution: "A distribution is right-tailed (positively skewed) when its skewness is positive. In right-tailed distributions, the mean is typically greater than the median and mode."
+            },
+            {
+                qn: 2,
+                id: "6406531951545",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "The demand response curve for a product is believed to be linear. Therefore, the relationship between demand and price is modelled as a simple linear regression. The regression model built using 20 data points is as specified below:<br><br>$$\\text{Demand} = 5482 - 175 \\times \\text{Price}$$<br><br>Based on the above data, answer the given subquestions.",
+                solution: "Comprehension passage block for linear regression model: $\\text{Demand} = 5482 - 175 \\times \\text{Price}$ with $n = 20$ data points."
+            },
+            {
+                qn: 3,
+                id: "6406531951546",
+                parentQn: 2,
+                type: "SA",
+                marks: 1.00,
+                text: "How many degrees of freedom is present for the “Residuals” of the built model?",
+                acceptedAnswer: "18",
+                solution: "For a simple linear regression model with $n$ data points, the degrees of freedom for residuals is $df = n - 2$.<br>Here $n = 20$, so $df = 20 - 2 = 18$."
+            },
+            {
+                qn: 4,
+                id: "6406531951547",
+                parentQn: 2,
+                type: "SA",
+                marks: 0.50,
+                text: "What is the market size?",
+                acceptedAnswer: "5482",
+                solution: "Market size represents the demand when the price is zero ($P = 0$).<br>$\\text{Demand} = 5482 - 175(0) = 5482$."
+            },
+            {
+                qn: 5,
+                id: "6406531951548",
+                parentQn: 2,
+                type: "SA",
+                marks: 1.00,
+                text: "What is the satiating price for the demand response curve? (Note: round your final answer to two decimal places. Example: If your answer is “1.2354” enter it as “1.24”)",
+                acceptedAnswer: "31.00 to 31.50",
+                solution: "Satiating price is the price at which demand falls to zero ($\\text{Demand} = 0$).<br>$$5482 - 175 \\times P = 0 \\implies P = \\frac{5482}{175} \\approx 31.33$$"
+            },
+            {
+                qn: 6,
+                id: "6406531951549",
+                parentQn: 2,
+                type: "SA",
+                marks: 1.50,
+                text: "What is the elasticity at a price of Rs. 20? (Note: round your final answer to two decimal places. Example: If your answer is “1.2354” enter it as “1.24”)",
+                acceptedAnswer: "1.73 to 1.79",
+                solution: "At $P = 20$, $\\text{Demand } Q = 5482 - 175(20) = 1982$.<br>Point elasticity $E = b \\times \\frac{P}{Q} = 175 \\times \\frac{20}{1982} = \\frac{3500}{1982} \\approx 1.77$."
+            },
+            {
+                qn: 7,
+                id: "6406531951550",
+                parentQn: 2,
+                type: "SA",
+                marks: 1.50,
+                text: "If the price changes from Rs.20 to Rs.25, then what is the elasticity of the curve between these two price points? (Note: round your final answer to two decimal places. Example: If your answer is “1.2354” enter it as “1.24”)",
+                acceptedAnswer: "1.73 to 1.79",
+                solution: "Arc / average elasticity between $P_1 = 20$ and $P_2 = 25$ yields approximately $1.76$ (in the range $1.73$ to $1.79$)."
+            },
+            {
+                qn: 8,
+                id: "6406531951551",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "Say Table 2 provides the data on the number of enrolments who complete the “Foundation”, “Diploma”, and “Degree” and the number of enrolments who “discontinue” the IITM BSc program for “Male” and “Female” gender students.<br><br><table style='border-collapse:collapse; margin:1rem 0; width:100%; max-width:600px;' border='1' cellpadding='8'><thead><tr style='background:var(--bg-surface);'><th>Gender</th><th>Completed Foundation</th><th>Completed Diploma</th><th>Completed Degree</th><th>Discontinued</th></tr></thead><tbody><tr><td><b>Male</b></td><td>55</td><td>45</td><td>20</td><td>53</td></tr><tr><td><b>Female</b></td><td>85</td><td>25</td><td>45</td><td>25</td></tr></tbody></table><br>Based on the above data, answer the given subquestions.",
+                solution: "Comprehension passage block for IITM BSc program completion & discontinuation by gender."
+            },
+            {
+                qn: 9,
+                id: "6406531951552",
+                parentQn: 8,
+                type: "SA",
+                marks: 2.00,
+                text: "If the aim is to understand if the “Gender” categories and “Completion” categories (including completion of any degree and discontinuation) are independent of each other, then what is the value for the computed test statistic? (Note: round your final answer to two decimal places. Example: If your answer is “1.2354” enter it as “1.24”)",
+                acceptedAnswer: "31.00 to 32.00",
+                solution: "Performing Chi-square test of independence on the $2 \\times 4$ contingency table yields a computed $\\chi^2$ statistic between $31.00$ and $32.00$."
+            },
+            {
+                qn: 10,
+                id: "6406531951553",
+                parentQn: 8,
+                type: "SA",
+                marks: 1.00,
+                text: "What is the number of degrees of freedom for the statistical test to be performed? (Note: give only a numerical value rounded to 2 decimal places. For example, if your answer is 10.1253, then input the answer as “10.13”)",
+                acceptedAnswer: "3.00",
+                solution: "Degrees of freedom $df = (r - 1)(c - 1) = (2 - 1)(4 - 1) = 1 \\times 3 = 3$."
+            },
+            {
+                qn: 11,
+                id: "6406531951554",
+                parentQn: 8,
+                type: "MSQ",
+                marks: 2.00,
+                text: "If a 20% significance level is considered, then which of the following statements is/are true for the performed statistical test (choose all that are applicable)",
+                options: [
+                    "If the p-value for the test is 0.25, conclude that the course completions are independent of gender",
+                    "If the p-value for the test is 0.15, conclude that the course completions are not independent of gender",
+                    "If the p-value for the test is 0.25, conclude that the course completions are not independent of gender",
+                    "If the p-value for the test is 0.15, conclude that the course completions are independent of gender",
+                    "If the computed test statistic is less than the chi-square tabulated, then conclude that the course enrolments are independent of gender",
+                    "If the computed test statistic is greater than the chi-square tabulated, then conclude that the course enrolments are not independent of gender",
+                    "If the computed test statistic is less than the chi-square tabulated, then conclude that the course enrolments are not independent of gender",
+                    "If the computed test statistic is greater than the chi-square tabulated, then conclude that the course enrolments are independent of gender"
+                ],
+                correct: [0, 1, 4, 5],
+                solution: "At $\\alpha = 0.20$ (20% level of significance):<br>• $p$-value $= 0.25 > 0.20 \\implies$ Fail to reject $H_0 \\implies$ completions are independent of gender.<br>• $p$-value $= 0.15 < 0.20 \\implies$ Reject $H_0 \\implies$ completions are not independent of gender.<br>• $\\chi^2_{\\text{calc}} < \\chi^2_{\\text{tab}} \\implies$ Fail to reject $H_0 \\implies$ independent.<br>• $\\chi^2_{\\text{calc}} > \\chi^2_{\\text{tab}} \\implies$ Reject $H_0 \\implies$ not independent."
+            },
+            {
+                qn: 12,
+                id: "6406531951555",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "DMS lighting produces 3 types of bulbs (Type-A, Type-B and Type-C). The probability that a Type-A bulb will give more than 100 hours ($\\ge 100$ hours) of life is 0.8, with the corresponding probabilities of Type-B and Type-C bulbs being 0.6 and 0.7 respectively. In any production, 30% of the bulbs are of Type-A, 35% are of Type-B and 35% are of Type-C. Based on the above data, answer the given subquestions.",
+                solution: "Comprehension passage block for DMS lighting bulb defect and lifetime probabilities."
+            },
+            {
+                qn: 13,
+                id: "6406531951556",
+                parentQn: 12,
+                type: "SA",
+                marks: 1.00,
+                text: "What is the probability that a bulb from the production lot will give a life of more than 100 hours? (Note: Input your answer rounded to two decimal places. For example, if your answer is “1.235” then enter the answer as “1.24”)",
+                acceptedAnswer: "0.65 to 0.71",
+                solution: "Total Probability $P(L \\ge 100) = P(A)P(L \\ge 100|A) + P(B)P(L \\ge 100|B) + P(C)P(L \\ge 100|C)$<br>$$= 0.30(0.8) + 0.35(0.6) + 0.35(0.7) = 0.24 + 0.21 + 0.245 = 0.695 \\approx 0.70$$."
+            },
+            {
+                qn: 14,
+                id: "6406531951557",
+                parentQn: 12,
+                type: "SA",
+                marks: 1.00,
+                text: "If a randomly selected bulb from the production lot has a life of more than 100 hours, then what is the probability that it was of Type-C? (Note: Input your answer rounded to two decimal places. For example, if your answer is “1.235” then enter the answer as “1.24”)",
+                acceptedAnswer: "0.33 to 0.37",
+                solution: "By Bayes' Theorem: $$P(C | L \\ge 100) = \\frac{P(C)P(L \\ge 100|C)}{P(L \\ge 100)} = \\frac{0.245}{0.695} \\approx 0.35$$."
+            },
+            {
+                qn: 15,
+                id: "6406531951558",
+                parentQn: 12,
+                type: "SA",
+                marks: 1.00,
+                text: "DMS is giving a replacement warranty for bulbs that last for less than 100 hours of life. The replacement will cost Rs. 8 for every Type-A bulb, Rs. 5 for every Type-B bulb and Rs. 6 for every Type-C bulb. Then, if 2,00,000 bulbs are produced and sold in a year, what would be the total warranty related cost that DMS will expect to incur? (Note: Input your answer in Rupees rounded to two decimal places. For example, if your answer is “Rupees 100.235” then enter the answer as “100.24”)",
+                acceptedAnswer: "361990 to 362010",
+                solution: "Defective probabilities ($L < 100$):<br>Type-A: $1 - 0.8 = 0.2 \\implies 0.30 \\times 200000 \\times 0.2 = 12000$ bulbs $\\times 8 = 96,000$<br>Type-B: $1 - 0.6 = 0.4 \\implies 0.35 \\times 200000 \\times 0.4 = 28000$ bulbs $\\times 5 = 140,000$<br>Type-C: $1 - 0.7 = 0.3 \\implies 0.35 \\times 200000 \\times 0.3 = 21000$ bulbs $\\times 6 = 126,000$<br>Total Expected Cost $= 96000 + 140000 + 126000 = 362,000$."
+            },
+            {
+                qn: 16,
+                id: "6406531951559",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "Ms. Teddy is the owner of a toy manufacturing company. The company produces its iconic “Teddy Bear” toys in a facility that operates for 8 hours a day, and 20 days in a month. Ms. Teddy has recently completed the BA course and wants to see if her manufacturing facility is producing toys where the defects follow a Poisson distribution. Accordingly, she collected 500 samples from the production and examined them for defects. This information is provided in Table-1. Ms. Teddy observed that her production facility never produced a product that had more than 4 defects.<br><br><table style='border-collapse:collapse; margin:1rem 0; width:100%; max-width:400px;' border='1' cellpadding='8'><thead><tr style='background:var(--bg-surface);'><th>Number of Defects</th><th>Number of Samples observed</th></tr></thead><tbody><tr><td>1</td><td>120</td></tr><tr><td>2</td><td>80</td></tr><tr><td>3</td><td>150</td></tr><tr><td>4</td><td>50</td></tr></tbody></table><br>Based on the above data, answer the given subquestions.",
+                solution: "Comprehension passage block for Poisson distribution test of Teddy Bear defects."
+            },
+            {
+                qn: 17,
+                id: "6406531951560",
+                parentQn: 16,
+                type: "SA",
+                marks: 1.00,
+                text: "How many teddy bears will Ms. Teddy expect to see which will have “4 defects”? (Note: Input your answer rounded to two decimal places. For example, if your answer is “1.235” then enter the answer as “1.24”)",
+                acceptedAnswer: "38.1 to 38.90",
+                solution: "Expected frequency for 4 defects using fitted Poisson distribution with $N = 500$ samples is approximately $38.5$ (accepted range: $38.10$ to $38.90$)."
+            },
+            {
+                qn: 18,
+                id: "6406531951561",
+                parentQn: 16,
+                type: "SA",
+                marks: 1.00,
+                text: "How many degrees of freedom is/are present for the statistical test to be performed by Ms. Teddy?",
+                acceptedAnswer: "4",
+                solution: "Number of degrees of freedom for this Poisson goodness of fit test is 4."
+            },
+            {
+                qn: 19,
+                id: "6406531951562",
+                parentQn: 16,
+                type: "SA",
+                marks: 2.00,
+                text: "What is the value of the computed test statistic for the statistical test to be performed by Ms. Teddy? (Note: Input your answer rounded to two decimal places. For example, if your answer is “1.235” then enter the answer as “1.24”)",
+                acceptedAnswer: "81.00 to 83.00",
+                solution: "Computed Chi-square test statistic value for the Poisson goodness of fit test is between $81.00$ and $83.00$."
+            },
+            {
+                qn: 20,
+                id: "6406531951563",
+                parentQn: 16,
+                type: "MSQ",
+                marks: 2.00,
+                text: "Given the Chi-Squared Distribution Table below, which of the following statements is/are true (choose all that is/ are applicable)?",
+                options: [
+                    "The p-value for the Test is anywhere between 5% and 2.5%",
+                    "At a 5% confidence level, the Null Hypothesis is Not Rejected",
+                    "At a 5% confidence level, the Null Hypothesis is Rejected",
+                    "At a 5% significance level, the Null Hypothesis is Not Rejected",
+                    "At a 5% significance level, the Null Hypothesis is Rejected",
+                    "At a 2.5% significance level, the Tabulated Chi-square value for the test is 12.83",
+                    "None of these"
+                ],
+                correct: [4, 5],
+                solution: "Since the computed statistic ($\\approx 82$) is far larger than the critical value at $5\\%$ significance level ($9.49$), the Null Hypothesis is Rejected.<br>At $2.5\\%$ significance level ($\\alpha = 0.025$) for $df = 5$, the tabulated Chi-square value is $12.83$."
+            }
+        ];
+
+        let currentMode = 'exam';
+        let userAnswers = {};
+        let timerSeconds = 0;
+        let timerInterval = null;
+        let isTimerRunning = true;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPalette();
+            renderQuestions();
+            updateScoreDisplay();
+            startTimer();
+        });
+
+        function setPortalMode(mode) {
+            currentMode = mode;
+            document.getElementById('btnExamMode').classList.toggle('active', mode === 'exam');
+            document.getElementById('btnLearningMode').classList.toggle('active', mode === 'learning');
+
+            renderQuestions();
+            updatePaletteStatuses();
+
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function renderPalette() {
+            const palette = document.getElementById('paletteGrid');
+            if (!palette) return;
+            palette.innerHTML = QUESTIONS_DATA.map(q => `
+                <button class="palette-btn" id="paletteBtn_${q.qn}" onclick="scrollToQuestion(${q.qn})">
+                    ${q.qn}
+                </button>
+            `).join('');
+        }
+
+        function scrollToQuestion(qnNum) {
+            const card = document.getElementById(`qnCard_${qnNum}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                document.querySelectorAll('.palette-btn').forEach(b => b.classList.remove('active-qn'));
+                const btn = document.getElementById(`paletteBtn_${qnNum}`);
+                if (btn) btn.classList.add('active-qn');
+            }
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            if (!container) return;
+
+            let html = '';
+
+            QUESTIONS_DATA.forEach(q => {
+                html += `
+                <article class="qn-card" id="qnCard_${q.qn}">
+                    <div class="qn-header-container">
+                        <div class="qn-header-top">
+                            <div class="qn-title-main">
+                                Question ${q.qn} :
+                                ${q.parentQn ? `<span class="badge-type" style="background:rgba(167, 139, 250, 0.15); color:#7c3aed; font-size:0.75rem; padding:0.2rem 0.5rem;"><i class="fa-solid fa-diagram-project"></i> Parent Q${q.parentQn}</span>` : ''}
+                            </div>
+                            <button class="btn-solution-pill" onclick="toggleSolution(${q.qn})">
+                                <i class="fa-regular fa-circle-check"></i> View Solutions (0)
+                            </button>
+                        </div>
+                        <div class="qn-header-sub">
+                            <span class="qn-id-tag">${q.id}</span>
+                            <span class="qn-meta-info">Total Mark : ${q.marks.toFixed(2)} | Type : ${q.type}</span>
+                        </div>
+                    </div>
+
+                    <div class="qn-text">${q.text}</div>
+
+                    ${renderQuestionInputs(q)}
+
+                    <div class="solution-box ${currentMode === 'learning' ? 'open' : ''}" id="solution_${q.qn}">
+                        <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution</div>
+                        <div class="solution-text">${q.solution}</div>
+                    </div>
+                </article>
+                `;
+            });
+
+            container.innerHTML = html;
+            updatePaletteStatuses();
+
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function renderQuestionInputs(q) {
+            if (q.type === 'COMPREHENSION') {
+                return `<div style="font-size:0.88rem; color:var(--text-muted); font-style:italic; margin-bottom:1.25rem;">[Comprehension Passage Block - Subquestions are listed below]</div>`;
+            }
+
+            if (q.type === 'SA') {
+                const userVal = userAnswers[q.qn] || '';
+                const showGreen = currentMode === 'learning';
+
+                return `
+                <div class="sa-input-wrap">
+                    <label for="sa_${q.qn}">Answer (Numeric):</label>
+                    <input type="text" id="sa_${q.qn}" class="sa-input" value="${userVal}" placeholder="Answer" oninput="handleSAInput(${q.qn}, this.value)">
+                    <div class="accepted-ans-box" style="display:${showGreen ? 'block' : 'none'};">
+                        <i class="fa-solid fa-circle-check"></i> Accepted Answer : ${q.acceptedAnswer}
+                    </div>
+                </div>
+                `;
+            }
+
+            const isMSQ = q.type === 'MSQ';
+            const userArr = userAnswers[q.qn] || [];
+
+            return `
+            <div class="options-list">
+                ${q.options.map((optText, idx) => {
+                const isChecked = userArr.includes(idx);
+                const isCorrect = q.correct.includes(idx);
+                let highlightClass = '';
+                if (isChecked) highlightClass = 'selected';
+
+                if (currentMode === 'learning') {
+                    if (isCorrect) highlightClass = 'correct-highlight';
+                    else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                }
+
+                return `
+                    <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <span class="option-text">${optText}</span>
+                    </label>
+                    `;
+            }).join('')}
+            </div>
+            `;
+        }
+
+        function handleOptionSelect(qnNum, optIdx, qnType) {
+            if (qnType === 'MCQ') {
+                userAnswers[qnNum] = [optIdx];
+            } else if (qnType === 'MSQ') {
+                if (!userAnswers[qnNum]) userAnswers[qnNum] = [];
+                const pos = userAnswers[qnNum].indexOf(optIdx);
+                if (pos >= 0) userAnswers[qnNum].splice(pos, 1);
+                else userAnswers[qnNum].push(optIdx);
+            }
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function handleSAInput(qnNum, val) {
+            userAnswers[qnNum] = val.trim();
+            updatePaletteStatuses();
+            updateScoreDisplay();
+        }
+
+        function calculateQuestionScore(q) {
+            if (q.type === 'COMPREHENSION') return "0";
+            const userAns = userAnswers[q.qn];
+            if (!userAns) return "0";
+
+            if (q.type === 'SA') {
+                const cleanUser = String(userAns).trim();
+                if (q.acceptedAnswer.includes(' to ')) {
+                    const range = q.acceptedAnswer.split(' to ').map(Number);
+                    const num = parseFloat(cleanUser);
+                    if (!isNaN(num) && num >= range[0] && num <= range[1]) {
+                        return q.marks.toFixed(2);
+                    }
+                }
+                const numUser = parseFloat(cleanUser);
+                const numAcc = parseFloat(q.acceptedAnswer.trim());
+                if (!isNaN(numUser) && !isNaN(numAcc) && numUser === numAcc) {
+                    return q.marks.toFixed(2);
+                }
+                return (cleanUser === q.acceptedAnswer.trim()) ? q.marks.toFixed(2) : "0";
+            }
+
+            if (!Array.isArray(userAns) || userAns.length === 0) return "0";
+
+            if (q.type === 'MCQ') {
+                return (userAns[0] === q.correct[0]) ? q.marks.toFixed(2) : "0";
+            }
+
+            if (q.type === 'MSQ') {
+                const sortedUser = [...userAns].sort().join(',');
+                const sortedCorrect = [...q.correct].sort().join(',');
+                return (sortedUser === sortedCorrect) ? q.marks.toFixed(2) : "0";
+            }
+
+            return "0";
+        }
+
+        function updateScoreDisplay() {
+            let total = 0;
+            let answeredCount = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const score = parseFloat(calculateQuestionScore(q));
+                total += score;
+
+                const ans = userAnswers[q.qn];
+                if (ans && (Array.isArray(ans) ? ans.length > 0 : ans !== '')) {
+                    answeredCount++;
+                }
+            });
+
+            document.getElementById('liveScoreDisplay').textContent = `${total.toFixed(2)} / 20.00`;
+            const pct = ((total / 20) * 100).toFixed(1);
+            document.getElementById('livePercentDisplay').textContent = `(${pct}%)`;
+            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/20`;
+            const summaryEl = document.getElementById('summaryAnsweredCount');
+            if (summaryEl) summaryEl.textContent = answeredCount;
+        }
+
+        function updatePaletteStatuses() {
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.getElementById(`paletteBtn_${q.qn}`);
+                if (!btn) return;
+
+                btn.className = 'palette-btn';
+
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && (Array.isArray(ans) ? ans.length > 0 : ans !== '');
+
+                if (hasAns) {
+                    btn.classList.add('answered');
+                    if (currentMode === 'learning') {
+                        const score = parseFloat(calculateQuestionScore(q));
+                        if (score > 0) btn.classList.add('correct');
+                        else btn.classList.add('incorrect');
+                    }
+                }
+            });
+        }
+
+        function toggleSolution(qnNum) {
+            const box = document.getElementById(`solution_${qnNum}`);
+            if (box) box.classList.toggle('open');
+        }
+
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (isTimerRunning) {
+                    timerSeconds++;
+                    updateTimerUI();
+                }
+            }, 1000);
+        }
+
+        function toggleTimer() {
+            isTimerRunning = !isTimerRunning;
+            const btn = document.getElementById('btnPauseTimer');
+            if (btn) btn.innerHTML = isTimerRunning ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+        }
+
+        function resetTimer() {
+            timerSeconds = 0;
+            updateTimerUI();
+        }
+
+        function updateTimerUI() {
+            const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const secs = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+        }
+
+        function submitExam() {
+            setPortalMode('learning');
+
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+            let totalScore = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                if (q.type === 'COMPREHENSION') return;
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && (Array.isArray(ans) ? ans.length > 0 : ans !== '');
+
+                if (!hasAns) {
+                    unansweredCount++;
+                } else {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    totalScore += score;
+                    if (score > 0) correctCount++;
+                    else incorrectCount++;
+                }
+            });
+
+            document.getElementById('modalScoreText').textContent = `${totalScore.toFixed(2)} / 20.00`;
+            document.getElementById('modalPercentText').textContent = `${((totalScore / 20) * 100).toFixed(1)}% Accuracy`;
+            document.getElementById('modalCorrectCount').textContent = correctCount;
+            document.getElementById('modalIncorrectCount').textContent = incorrectCount;
+            document.getElementById('modalUnansweredCount').textContent = unansweredCount;
+
+            document.getElementById('resultModal').classList.add('active');
+        }
+
+        function resetExam() {
+            userAnswers = {};
+            resetTimer();
+            closeResultModal();
+            setPortalMode('learning');
+        }
+
+        function openSummaryModal() {
+            document.getElementById('summaryModal').classList.add('active');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.remove('active');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.remove('active');
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('portalSidebar');
+            const toggleBtn = document.getElementById('mobileSidebarToggle');
+            if (sidebar && toggleBtn) {
+                sidebar.classList.toggle('open');
+                toggleBtn.classList.toggle('active');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const fab = document.getElementById('fabBackToTop');
+            if (fab) {
+                if (window.scrollY > 300) fab.classList.add('visible');
+                else fab.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+
+</html>
