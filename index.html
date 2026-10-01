@@ -236,7 +236,7 @@
     <link rel="manifest" href="site.webmanifest">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=1.0.2">
 
     <!-- Anti-Flash Theme Script -->
     <script>
@@ -410,30 +410,31 @@
                 </div>
 
                 <div class="learning-hub-container">
+                    <!-- SVG Dotted Connectors (Desktop Visual Flow) -->
+                    <svg class="hub-svg-connectors" viewBox="0 0 1000 500" preserveAspectRatio="none">
+                        <defs>
+                            <marker id="arrow-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+                                <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#D9532F" />
+                            </marker>
+                            <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+                                <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#2E7D32" />
+                            </marker>
+                            <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+                                <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#2563EB" />
+                            </marker>
+                            <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+                                <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#7C3AED" />
+                            </marker>
+                        </defs>
+                        <!-- Dotted Curved Connectors from Center Logo to Cards -->
+                        <path d="M 480 220 Q 360 120 332 120" stroke="#D9532F" stroke-width="2.5" stroke-dasharray="6 6" fill="none" marker-end="url(#arrow-orange)" />
+                        <path d="M 520 220 Q 640 120 668 120" stroke="#2E7D32" stroke-width="2.5" stroke-dasharray="6 6" fill="none" marker-end="url(#arrow-green)" />
+                        <path d="M 480 280 Q 360 380 332 380" stroke="#2563EB" stroke-width="2.5" stroke-dasharray="6 6" fill="none" marker-end="url(#arrow-blue)" />
+                        <path d="M 520 280 Q 640 380 668 380" stroke="#7C3AED" stroke-width="2.5" stroke-dasharray="6 6" fill="none" marker-end="url(#arrow-purple)" />
+                    </svg>
+
                     <!-- Hub Grid Cards Layout -->
                     <div class="hub-grid">
-                        <!-- SVG Dotted Connectors (Desktop Visual Flow) -->
-                        <svg class="hub-svg-connectors" viewBox="0 0 1000 500" preserveAspectRatio="none">
-                            <defs>
-                                <marker id="arrow-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-                                    <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#D9532F" />
-                                </marker>
-                                <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-                                    <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#2E7D32" />
-                                </marker>
-                                <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-                                    <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#2563EB" />
-                                </marker>
-                                <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-                                    <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#7C3AED" />
-                                </marker>
-                            </defs>
-                            <!-- Dotted Curved Connectors from Center Logo to Cards -->
-                            <path d="M 480 220 Q 360 120 332 120" stroke="#D9532F" stroke-width="2.5" stroke-dasharray="6 6" fill="none" marker-end="url(#arrow-orange)" />
-                            <path d="M 520 220 Q 640 120 668 120" stroke="#2E7D32" stroke-width="2.5" stroke-dasharray="6 6" fill="none" marker-end="url(#arrow-green)" />
-                            <path d="M 480 280 Q 360 380 332 380" stroke="#2563EB" stroke-width="2.5" stroke-dasharray="6 6" fill="none" marker-end="url(#arrow-blue)" />
-                            <path d="M 520 280 Q 640 380 668 380" stroke="#7C3AED" stroke-width="2.5" stroke-dasharray="6 6" fill="none" marker-end="url(#arrow-purple)" />
-                        </svg>
                         <!-- Card 01: Quiz Practice -->
                         <a href="quiz_practice.html" class="hub-card card-orange">
                             <span class="card-badge badge-orange">01</span>
