@@ -780,8 +780,60 @@ function initPageTransitions() {
 /* --------------------------------------------------------------------------
    8. Automatic IDE Syntax Highlighting & Code Window Engine
    -------------------------------------------------------------------------- */
+function dedentCodeText(text) {
+    if (!text) return '';
+    let normalized = text.replace(/\r\n/g, '\n').replace(/\t/g, '    ');
+    let lines = normalized.split('\n');
+
+    while (lines.length > 0 && lines[0].trim() === '') {
+        lines.shift();
+    }
+    while (lines.length > 0 && lines[lines.length - 1].trim() === '') {
+        lines.pop();
+    }
+
+    if (lines.length === 0) return '';
+
+    // Fix HTML wrapper indent artifact: if line 1 has larger leading indent than rest of block, trim line 1 leading spaces
+    if (lines.length > 1) {
+        const line1Indent = lines[0].match(/^ */)[0].length;
+        let restMinIndent = Infinity;
+        for (let i = 1; i < lines.length; i++) {
+            if (lines[i].trim().length > 0) {
+                const indent = lines[i].match(/^ */)[0].length;
+                if (indent < restMinIndent) restMinIndent = indent;
+            }
+        }
+        if (restMinIndent !== Infinity && line1Indent > restMinIndent) {
+            lines[0] = lines[0].trimStart();
+        }
+    }
+
+    let minIndent = Infinity;
+    lines.forEach(line => {
+        if (line.trim().length > 0) {
+            const indent = line.match(/^ */)[0].length;
+            if (indent < minIndent) {
+                minIndent = indent;
+            }
+        }
+    });
+
+    if (minIndent === Infinity || minIndent === 0) {
+        return lines.join('\n');
+    }
+
+    return lines
+        .map(line => (line.length >= minIndent ? line.slice(minIndent) : line))
+        .join('\n');
+}
+
 function highlightCodeSyntax(rawText) {
+    const cleanText = dedentCodeText(rawText);
+    if (!cleanText) return '';
+
     const tokens = [];
+
     function saveToken(cls, content) {
         const id = `___TOK_${tokens.length}___`;
         tokens.push(`<span class="${cls}">${content}</span>`);
@@ -792,10 +844,10 @@ function highlightCodeSyntax(rawText) {
         return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
 
-    let code = rawText;
+    let code = cleanText;
 
     // 1. Comments
-    code = code.replace(/(?:#|\/\/)[^\n]*/g, (m) => saveToken('tok-comment', escapeHtml(m)));
+    code = code.replace(/(?:\/\*[\s\S]*?\*\/|\/\/[^\n]*|#[^\n]*)/g, (m) => saveToken('tok-comment', escapeHtml(m)));
 
     // 2. Strings
     code = code.replace(/(["'])(?:(?=(\\?))\2.)*?\1/g, (m) => saveToken('tok-string', escapeHtml(m)));
@@ -804,15 +856,15 @@ function highlightCodeSyntax(rawText) {
     code = escapeHtml(code);
 
     // 3. Keywords
-    const keywords = /\b(import|from|as|def|class|return|if|else|elif|for|in|while|try|except|with|True|False|None|lambda|assert|pass|public|static|void|int|double|boolean|String|new|null|var|val|function|const|let|select|where|group|by|order)\b/g;
+    const keywords = /\b(import|from|as|def|class|return|if|else|elif|for|in|while|try|except|with|True|False|None|lambda|assert|pass|public|static|void|int|double|boolean|String|new|null|var|val|function|const|let|select|where|group|by|order|extends|implements|interface|package|throws|throw|override|final|abstract)\b/g;
     code = code.replace(keywords, (m) => saveToken('tok-keyword', m));
 
     // 4. Classes / Libraries / Types
-    const classes = /\b(np|pd|MinMaxScaler|StandardScaler|OneHotEncoder|ColumnTransformer|PolynomialFeatures|Pipeline|FeatureUnion|KNeighborsClassifier|KNeighborsRegressor|SGDRegressor|SGDClassifier|Ridge|Lasso|LinearRegression|GaussianNB|BernoulliNB|MultinomialNB|AdaBoostClassifier|VotingClassifier|VotingRegressor|RandomForestClassifier|MLPClassifier|MLPRegressor|PCA|RandomizedSearchCV|GridSearchCV|LabelEncoder|CountVectorizer|TfidfVectorizer|KMeans|AgglomerativeClustering|SVC|RidgeClassifier|LassoCV|ElasticNetCV|DummyRegressor|DummyClassifier|System|Math|Scanner|ArrayList|HashMap|DataFrame|Series)\b/g;
+    const classes = /\b(np|pd|MinMaxScaler|StandardScaler|OneHotEncoder|ColumnTransformer|PolynomialFeatures|Pipeline|FeatureUnion|KNeighborsClassifier|KNeighborsRegressor|SGDRegressor|SGDClassifier|Ridge|Lasso|LinearRegression|GaussianNB|BernoulliNB|MultinomialNB|AdaBoostClassifier|VotingClassifier|VotingRegressor|RandomForestClassifier|MLPClassifier|MLPRegressor|PCA|RandomizedSearchCV|GridSearchCV|LabelEncoder|CountVectorizer|TfidfVectorizer|KMeans|AgglomerativeClustering|SVC|RidgeClassifier|LassoCV|ElasticNetCV|DummyRegressor|DummyClassifier|System|Math|Scanner|ArrayList|HashMap|LinkedHashMap|Map|List|Set|Optional|Stream|Collectors|PrintStream|FileOutputStream|FileInputStream|IOException|Thread|Observer|Experiment|Vehicle|Car|Showroom|Student|Object|DataFrame|Series)\b/g;
     code = code.replace(classes, (m) => saveToken('tok-class', m));
 
     // 5. Functions & Method Calls
-    const funcs = /\b(fit|fit_transform|transform|predict|predict_proba|fit_predict|array|read_csv|sum|mean|std|var_|drop|reshape|head|tail|iloc|loc|apply|isnull|notnull|isna|isin|group|groupby|shift|diff|convert|resize|flatten|toarray|classification_report|f1_score|accuracy_score|precision_score|recall_score|print|len|range|enumerate|zip|min|max|abs|score)\b(?=\s*\()/g;
+    const funcs = /\b(fit|fit_transform|transform|predict|predict_proba|fit_predict|array|read_csv|sum|mean|std|var_|drop|reshape|head|tail|iloc|loc|apply|isnull|notnull|isna|isin|group|groupby|shift|diff|convert|resize|flatten|toarray|classification_report|f1_score|accuracy_score|precision_score|recall_score|print|println|len|range|enumerate|zip|min|max|abs|score|collect|partitioningBy|getOrDefault|entrySet|stream|filter|ifPresentOrElse)\b(?=\s*\()/g;
     code = code.replace(funcs, (m) => saveToken('tok-func', m));
 
     // 6. Numbers
@@ -828,13 +880,28 @@ function highlightCodeSyntax(rawText) {
         code = code.replace(`___TOK_${i}___`, tokHtml);
     });
 
-    return code;
+    // Split into lines & construct line numbers table structure matching professional IDEs
+    const lines = code.split('\n');
+    const rowsHtml = lines.map((lineContent, idx) => {
+        const lineNum = idx + 1;
+        return `<div class="code-line"><span class="line-num">${lineNum}</span><span class="line-code">${lineContent || ' '}</span></div>`;
+    }).join('');
+
+    return `<div class="code-container">${rowsHtml}</div>`;
 }
 
 function copyIdeCode(btn) {
-    const body = btn.closest('.ide-code-window').querySelector('.ide-body pre');
-    if (!body) return;
-    const text = body.textContent || body.innerText;
+    const windowEl = btn.closest('.ide-code-window');
+    if (!windowEl) return;
+    const lineCodes = windowEl.querySelectorAll('.line-code');
+    let text = '';
+    if (lineCodes.length > 0) {
+        text = Array.from(lineCodes).map(el => el.textContent || el.innerText).join('\n');
+    } else {
+        const body = windowEl.querySelector('.ide-body pre');
+        text = body ? (body.textContent || body.innerText) : '';
+    }
+
     navigator.clipboard.writeText(text).then(() => {
         const icon = btn.querySelector('i');
         if (icon) {
@@ -852,12 +919,14 @@ function initIDESyntaxHighlighter() {
         if (el.dataset.ideProcessed === 'true' || el.closest('.ide-code-window')) return;
         el.dataset.ideProcessed = 'true';
 
-        let rawText = el.textContent || el.innerText || '';
+        const targetEl = el.querySelector('code') || el;
+        let rawText = targetEl.textContent || targetEl.innerText || '';
+        rawText = dedentCodeText(rawText);
         if (!rawText.trim()) return;
 
         let langLabel = 'Code Snippet';
         const lower = rawText.toLowerCase();
-        if (lower.includes('public class') || lower.includes('system.out') || lower.includes('void main') || lower.includes('string[]')) {
+        if (lower.includes('public class') || lower.includes('system.out') || lower.includes('void main') || lower.includes('string[]') || lower.includes('class student') || lower.includes('scanner')) {
             langLabel = 'Java';
         } else if (lower.includes('select ') && lower.includes('from ')) {
             langLabel = 'SQL';
@@ -865,7 +934,7 @@ function initIDESyntaxHighlighter() {
             langLabel = 'Python';
         }
 
-        const highlightedHtml = highlightCodeSyntax(rawText);
+        const highlightedContainer = highlightCodeSyntax(rawText);
 
         const ideWindow = document.createElement('div');
         ideWindow.className = 'ide-code-window';
@@ -882,7 +951,7 @@ function initIDESyntaxHighlighter() {
                 </button>
             </div>
             <div class="ide-body">
-                <pre><code>${highlightedHtml}</code></pre>
+                ${highlightedContainer}
             </div>
         `;
 
@@ -908,6 +977,32 @@ if (typeof MutationObserver !== 'undefined') {
         ideObserver.observe(document.body, { childList: true, subtree: true });
     }
 }
+
+// Auto-load Question Engine dynamically if question paper page is detected and engine is not yet loaded
+(function autoLoadQuestionEngine() {
+    if (typeof window !== 'undefined' && !window.BSHQuestionEngine) {
+        function tryLoad() {
+            if (!window.BSHQuestionEngine) {
+                const headerEl = document.getElementById('header');
+                let prefix = headerEl ? (headerEl.dataset.rootPrefix || '') : '';
+                if (!prefix) {
+                    const currentPath = window.location.pathname.replace(/\\/g, '/');
+                    if (currentPath.includes('/python/') || currentPath.includes('/java/') || currentPath.includes('/mad2/') || currentPath.includes('/mlt/') || currentPath.includes('/mlp/') || currentPath.includes('/maths1/') || currentPath.includes('/BA/')) {
+                        prefix = '../../../';
+                    }
+                }
+                const script = document.createElement('script');
+                script.src = prefix + 'assets/js/question-portal-engine.js';
+                document.head.appendChild(script);
+            }
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', tryLoad);
+        } else {
+            tryLoad();
+        }
+    }
+})();
 
 
 

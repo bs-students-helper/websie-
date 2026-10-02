@@ -424,6 +424,8 @@
     box-shadow: 0 4px 18px rgba(15, 23, 42, 0.15);
     tab-size: 4;
     -moz-tab-size: 4;
+    text-align: left !important;
+    direction: ltr !important;
 }
 
 /* IDE CODE WINDOW STYLING & SYNTAX HIGHLIGHTER */
@@ -435,6 +437,8 @@
     overflow: hidden !important;
     box-shadow: 0 8px 24px rgba(15, 23, 42, 0.35) !important;
     font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace !important;
+    text-align: left !important;
+    direction: ltr !important;
 }
 
 [data-theme="dark"] .ide-code-window {
@@ -498,16 +502,62 @@
 .ide-copy-btn:hover {
     color: #f8fafc !important;
     background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
 }
 
 .ide-body {
-    padding: 1rem 1.25rem !important;
+    padding: 0.85rem 0 !important;
     overflow-x: auto !important;
+    text-align: left !important;
+    -webkit-overflow-scrolling: touch;
+    background: #090d16 !important;
+}
+
+.code-container {
+    display: table !important;
+    min-width: 100% !important;
+    font-size: 0.90rem !important;
+    line-height: 1.65 !important;
+    color: #f8fafc !important;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, Monaco, monospace !important;
+}
+
+.code-line {
+    display: table-row !important;
+}
+
+.line-num {
+    display: table-cell !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    color: #475569 !important;
+    width: 44px !important;
+    min-width: 44px !important;
+    text-align: right !important;
+    padding-right: 14px !important;
+    padding-left: 10px !important;
+    font-size: 0.82rem !important;
+    vertical-align: top !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    font-family: inherit !important;
+}
+
+.line-code {
+    display: table-cell !important;
+    white-space: pre !important;
+    padding-left: 14px !important;
+    padding-right: 16px !important;
+    vertical-align: top !important;
+    text-align: left !important;
+    direction: ltr !important;
+    color: #f8fafc !important;
+    font-family: inherit !important;
 }
 
 .ide-body pre {
     margin: 0 !important;
-    padding: 0 !important;
+    padding: 0 1.25rem !important;
     background: transparent !important;
     border: none !important;
     font-family: inherit !important;
@@ -515,6 +565,30 @@
     line-height: 1.65 !important;
     color: #f8fafc !important;
     white-space: pre !important;
+    text-align: left !important;
+    direction: ltr !important;
+    display: block !important;
+    width: 100% !important;
+}
+
+.ide-body pre code {
+    white-space: pre !important;
+    text-align: left !important;
+    direction: ltr !important;
+    display: block !important;
+    font-family: inherit !important;
+}
+
+.ide-body::-webkit-scrollbar {
+    height: 6px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.ide-body::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+.ide-body::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 /* Syntax Highlighting Token Colors */
