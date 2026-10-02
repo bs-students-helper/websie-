@@ -1,5 +1,5 @@
 // BSH (BS Students Helper) Service Worker
-const CACHE_NAME = 'bsh-portal-v1';
+const CACHE_NAME = 'bsh-portal-v2';
 const STATIC_ASSETS = [
     '/',
     '/index.html',
@@ -44,7 +44,7 @@ self.addEventListener('activate', (event) => {
     );
 });
 
-// Fetch Event - Stale-While-Revalidate / Network-First Strategy
+// Fetch Event - Stale-While-Revalidate Strategy (Instant load from cache + background update)
 self.addEventListener('fetch', (event) => {
     // Only handle GET requests
     if (event.request.method !== 'GET') return;
@@ -53,22 +53,26 @@ self.addEventListener('fetch', (event) => {
     if (!event.request.url.startsWith(self.location.origin)) return;
 
     event.respondWith(
-        fetch(event.request)
-            .then((networkResponse) => {
-                // If response is valid, update cache asynchronously
-                if (networkResponse && networkResponse.status === 200) {
-                    const responseClone = networkResponse.clone();
-                    caches.open(CACHE_NAME).then((cache) => {
-                        cache.put(event.request, responseClone);
-                    });
-                }
-                return networkResponse;
-            })
-            .catch(() => {
-                // Fallback to cached response when offline
-                return caches.match(event.request).then((cachedResponse) => {
-                    return cachedResponse || caches.match('/index.html');
+        caches.match(event.request).then((cachedResponse) => {
+            const fetchPromise = fetch(event.request)
+                .then((networkResponse) => {
+                    if (networkResponse && networkResponse.status === 200) {
+                        const responseClone = networkResponse.clone();
+                        caches.open(CACHE_NAME).then((cache) => {
+                            cache.put(event.request, responseClone);
+                        });
+                    }
+                    return networkResponse;
+                })
+                .catch(() => {
+                    // Return fallback for html documents if network fails and no cached response
+                    if (event.request.headers.get('accept')?.includes('text/html')) {
+                        return caches.match('/index.html');
+                    }
                 });
-            })
+
+            // Return cached response instantly if present; otherwise wait for network
+            return cachedResponse || fetchPromise;
+        })
     );
 });
