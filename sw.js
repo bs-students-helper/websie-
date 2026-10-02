@@ -1,5 +1,5 @@
 // BSH (BS Students Helper) Service Worker
-const CACHE_NAME = 'bsh-portal-v2';
+const CACHE_NAME = 'bsh-portal-v3';
 const STATIC_ASSETS = [
     '/',
     '/index.html',
@@ -29,7 +29,7 @@ self.addEventListener('install', (event) => {
     );
 });
 
-// Activate Event - Clean up outdated caches
+// Activate Event - Clean up outdated caches immediately
 self.addEventListener('activate', (event) => {
     event.waitUntil(
         caches.keys().then((cacheNames) => {
@@ -44,7 +44,7 @@ self.addEventListener('activate', (event) => {
     );
 });
 
-// Fetch Event - Stale-While-Revalidate Strategy (Instant load from cache + background update)
+// Fetch Event
 self.addEventListener('fetch', (event) => {
     // Only handle GET requests
     if (event.request.method !== 'GET') return;
@@ -52,27 +52,47 @@ self.addEventListener('fetch', (event) => {
     // Ignore cross-origin requests like CDN scripts or analytics
     if (!event.request.url.startsWith(self.location.origin)) return;
 
-    event.respondWith(
-        caches.match(event.request).then((cachedResponse) => {
-            const fetchPromise = fetch(event.request)
+    // 1. HTML Page Navigation - Network first, fallback to cache (prevents routing ERR_FAILED)
+    if (event.request.mode === 'navigate' || (event.request.headers.get('accept') && event.request.headers.get('accept').includes('text/html'))) {
+        event.respondWith(
+            fetch(event.request)
                 .then((networkResponse) => {
                     if (networkResponse && networkResponse.status === 200) {
                         const responseClone = networkResponse.clone();
-                        caches.open(CACHE_NAME).then((cache) => {
-                            cache.put(event.request, responseClone);
-                        });
+                        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
                     }
                     return networkResponse;
                 })
-                .catch(() => {
-                    // Return fallback for html documents if network fails and no cached response
-                    if (event.request.headers.get('accept')?.includes('text/html')) {
-                        return caches.match('/index.html');
-                    }
-                });
+                .catch(async () => {
+                    const cachedResponse = await caches.match(event.request);
+                    if (cachedResponse) return cachedResponse;
+                    const fallback = await caches.match('/index.html');
+                    return fallback || fetch(event.request);
+                })
+        );
+        return;
+    }
 
-            // Return cached response instantly if present; otherwise wait for network
-            return cachedResponse || fetchPromise;
+    // 2. Static Assets (CSS, JS, Fonts, Images) - Cache first, background revalidate
+    event.respondWith(
+        caches.match(event.request).then((cachedResponse) => {
+            if (cachedResponse) {
+                // Background update
+                fetch(event.request).then((networkResponse) => {
+                    if (networkResponse && networkResponse.status === 200) {
+                        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, networkResponse));
+                    }
+                }).catch(() => {});
+                return cachedResponse;
+            }
+
+            return fetch(event.request).then((networkResponse) => {
+                if (networkResponse && networkResponse.status === 200) {
+                    const responseClone = networkResponse.clone();
+                    caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
+                }
+                return networkResponse;
+            });
         })
     );
 });

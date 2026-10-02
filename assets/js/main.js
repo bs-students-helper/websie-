@@ -978,6 +978,57 @@ if (typeof MutationObserver !== 'undefined') {
     }
 }
 
+/* --------------------------------------------------------------------------
+   Inspect & Developer Tools Protection
+   Disables right-click context menu and common devtool keyboard shortcuts
+   -------------------------------------------------------------------------- */
+function initInspectProtection() {
+    // Disable Right Click Context Menu
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+        return false;
+    });
+
+    // Disable DevTools Keyboard Shortcuts
+    document.addEventListener('keydown', function (e) {
+        // F12 key
+        if (e.key === 'F12' || e.keyCode === 123) {
+            e.preventDefault();
+            return false;
+        }
+
+        // Ctrl+Shift+I (Inspect element) or Cmd+Option+I
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.keyCode === 73)) {
+            e.preventDefault();
+            return false;
+        }
+
+        // Ctrl+Shift+J (Console) or Cmd+Option+J
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'J' || e.key === 'j' || e.keyCode === 74)) {
+            e.preventDefault();
+            return false;
+        }
+
+        // Ctrl+Shift+C (Inspect element selection)
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'C' || e.key === 'c' || e.keyCode === 67)) {
+            e.preventDefault();
+            return false;
+        }
+
+        // Ctrl+U (View Page Source)
+        if ((e.ctrlKey || e.metaKey) && (e.key === 'U' || e.key === 'u' || e.keyCode === 85)) {
+            e.preventDefault();
+            return false;
+        }
+
+        // Ctrl+S (Save Page)
+        if ((e.ctrlKey || e.metaKey) && (e.key === 'S' || e.key === 's' || e.keyCode === 83)) {
+            e.preventDefault();
+            return false;
+        }
+    });
+}
+
 // Auto-load Question Engine dynamically if question paper page is detected and engine is not yet loaded
 (function autoLoadQuestionEngine() {
     if (typeof window !== 'undefined' && !window.BSHQuestionEngine) {
