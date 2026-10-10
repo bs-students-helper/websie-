@@ -1,0 +1,38 @@
+[
+  {
+    "id": "maths1_quiz1_13jul25",
+    "title": "Mathematics for Data Science I",
+    "exam": "Quiz 1",
+    "level": "Foundation",
+    "subject": "Maths1",
+    "date": "13 Jul 2025",
+    "totalMarks": 50,
+    "questionsCount": 20,
+    "dataFile": "/assets/data/quizzes/maths1_quiz1_13jul25.json",
+    "directUrl": "/Foundation/maths1/quiz1/quiz_1_maths1_13jul25.html"
+  },
+  {
+    "id": "python_quiz1_13jul25",
+    "title": "Programming in Python",
+    "exam": "Quiz 1",
+    "level": "Foundation",
+    "subject": "Python",
+    "date": "13 Jul 2025",
+    "totalMarks": 50,
+    "questionsCount": 20,
+    "dataFile": "/assets/data/quizzes/python_quiz1_13jul25.json",
+    "directUrl": "/Foundation/python/quiz1/quiz_1_python_13jul25.html"
+  },
+  {
+    "id": "java_endterm_06may26",
+    "title": "Programming Concepts in Java",
+    "exam": "End Term",
+    "level": "Diploma",
+    "subject": "Java",
+    "date": "06 May 2026",
+    "totalMarks": 100,
+    "questionsCount": 25,
+    "dataFile": "/assets/data/quizzes/java_endterm_06may26.json",
+    "directUrl": "/Diploma/java/endterm/end_term_java_06may26.html"
+  }
+]

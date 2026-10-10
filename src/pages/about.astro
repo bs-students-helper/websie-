@@ -1,0 +1,171 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="About Us | BSH - IIT Madras BS Student Portal"
+  description="Learn about BSH (BS Students Helper), an open, student-driven initiative by IIT Madras BS Data Science & Electronic Systems students."
+  activePage="about"
+  rootPrefix=""
+>
+  <Fragment slot="head">
+<script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "AboutPage",
+          "@id": "https://bsstudentshelper.vercel.app/about#webpage",
+          "url": "https://bsstudentshelper.vercel.app/about",
+          "name": "About BSH - BS Students Helper",
+          "description": "Information about BSH, an open student-driven portal for IIT Madras BS in Data Science & Applications and Electronic Systems.",
+          "inLanguage": "en"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://bsstudentshelper.vercel.app/about#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://bsstudentshelper.vercel.app/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "About Us",
+              "item": "https://bsstudentshelper.vercel.app/about"
+            }
+          ]
+        }
+      ]
+    }
+</script>
+
+  </Fragment>
+
+  <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-bg-grid"></div>
+            <div class="hero-glow-blob"></div>
+
+            <div class="container hero-container text-center">
+                <div class="hero-badge-wrapper" style="justify-content: center;">
+                    <div class="pill-badge">
+                        <span class="badge-dot"></span>
+                        <span class="badge-text">100% Free & Open Community Project</span>
+                    </div>
+                </div>
+
+                <h1 class="hero-title" style="font-size: 3rem; margin-bottom: 1rem;">
+                    Driven By Students. <br />
+                    <span class="title-highlight">Built For Excellence.</span>
+                </h1>
+
+                <p class="hero-subtitle" style="margin: 0 auto 2.5rem; max-width: 750px;">
+                    BSH (BS Students Helper) was created to empower students pursuing the IIT Madras BS in Data Science
+                    & Electronic Systems through accurate grading analytics, practice engines, and peer support.
+                </p>
+            </div>
+        </section>
+
+        <!-- Mission & Story -->
+        <section class="section" style="padding: 4rem 0; background: var(--bg-surface);">
+            <div class="container">
+                <div class="grid-2-col"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; align-items: center;">
+                    <div class="story-content">
+                        <div class="pill-badge mb-3"><i class="fa-solid fa-bullseye"></i> OUR MISSION</div>
+                        <h2
+                            style="font-family: var(--font-display); font-size: 2.2rem; margin-bottom: 1.2rem; color: var(--text-primary);">
+                            Democratizing Academic Tools & Resources
+                        </h2>
+                        <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">
+                            The IIT Madras BS Degree is a revolutionary program, but navigating complex SEC grading
+                            policy formulas, best 10 of 12 assignment weightages, and Quiz prep can be challenging.
+                        </p>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">
+                            BSH breaks down barriers by offering transparent, instantaneous grade calculation models and
+                            adaptive quiz practice engines without any hidden fees or paywalls.
+                        </p>
+                    </div>
+
+                    <div class="stats-card-group"
+                        style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem;">
+                        <div
+                            style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.8rem; text-align: center;">
+                            <div
+                                style="font-size: 2.2rem; font-weight: 700; color: var(--accent-cyan); font-family: var(--font-display);">
+                                4,800+</div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;">Students
+                                Supported</div>
+                        </div>
+                        <div
+                            style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.8rem; text-align: center;">
+                            <div
+                                style="font-size: 2.2rem; font-weight: 700; color: var(--accent-purple); font-family: var(--font-display);">
+                                15,000+</div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;">Quizzes
+                                Attempted</div>
+                        </div>
+                        <div
+                            style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.8rem; text-align: center;">
+                            <div
+                                style="font-size: 2.2rem; font-weight: 700; color: var(--accent-emerald); font-family: var(--font-display);">
+                                100%</div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;">May 2026
+                                Policy Alignment</div>
+                        </div>
+                        <div
+                            style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.8rem; text-align: center;">
+                            <div
+                                style="font-size: 2.2rem; font-weight: 700; color: #f59e0b; font-family: var(--font-display);">
+                                0 Rs</div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;">Forever Free
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Pillars -->
+        <section class="section" style="padding: 4.5rem 0;">
+            <div class="container">
+                <div class="section-header text-center">
+                    <div class="pill-badge mb-3"><i class="fa-solid fa-star"></i> CORE PILLARS</div>
+                    <h2 class="section-title">Why Students Trust BSH</h2>
+                </div>
+
+                <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fa-solid fa-bullseye"></i></div>
+                        <h3 class="feature-title">Precision Algorithms</h3>
+                        <p class="feature-desc">Our SEC predictor uses exact official term handbook formulas including
+                            grading eligibility rules, minimum thresholds, and quiz weightages.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+                        <h3 class="feature-title">Real-Time Simulation</h3>
+                        <p class="feature-desc">Experience quiz interfaces engineered to match actual IITM term exam
+                            formats with instant feedback and LaTeX mathematical explanations.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fa-solid fa-users"></i></div>
+                        <h3 class="feature-title">Community First</h3>
+                        <p class="feature-desc">Built for students by students. We listen to user feedback and
+                            continuously refine our calculators and practice sets every term.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+
+  
+</Layout>

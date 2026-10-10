@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice MLP questions : Machine Learning Practice 06 May 26 - QuizPractice | BSH</title>
+    <meta name="description"
+        content="Practice Machine Learning Practice End Term question paper (06 May 2026) with interactive exam & learning modes, instant score calculation, detailed solutions, and question palette.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Non-Blocking Asynchronous Load -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/icons/apple-touch-icon.png">
+
+    <!-- Master CSS -->
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/quiz-portal.css">
+
+    <!-- MathJax for rendering LaTeX math formulas -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false,
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('bsh-theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Site Navigation Header -->
+    <header class="site-header" id="header" data-root-prefix="../../../" data-active-page="quiz_practice"></header>
+
+    <main>
+        <div class="portal-layout">
+
+            <!-- Mobile Collapsible Sidebar Toggle Button -->
+            <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()">
+                <span><i class="fa-solid fa-sliders"></i> Exam Controls & Question Menu</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <!-- Left Sidebar: Controls, Menu & Timer -->
+            <aside class="portal-sidebar" id="portalSidebar">
+
+                <!-- Header Info -->
+                <div class="exam-info-header">
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Exam :</span>
+                        <span class="exam-info-val">End Term Quiz</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Subject :</span>
+                        <span class="exam-info-val">MLP</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Total Marks :</span>
+                        <span class="exam-info-val">100.00</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">QP :</span>
+                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">Machine Learning Practice 06 May 26</span>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher -->
+                <div>
+                    <div class="menu-heading">Portal Mode</div>
+                    <div class="mode-toggle-group">
+                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam Mode</button>
+                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning Mode</button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;" onclick="openSummaryModal()">
+                        <i class="fa-solid fa-eye"></i> View Question Paper Summary
+                    </button>
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;" onclick="window.print()">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </button>
+                </div>
+
+                <!-- Question Menu Grid -->
+                <div>
+                    <div class="menu-heading">
+                        <span>Question Menu</span>
+                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/26</span>
+                    </div>
+                    <div class="palette-grid" id="paletteGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Timer Box -->
+                <div>
+                    <div class="menu-heading">Timer</div>
+                    <div class="timer-box">
+                        <div class="timer-display" id="timerDisplay">00:00</div>
+                        <div class="timer-controls">
+                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i class="fa-solid fa-pause"></i></button>
+                            <button class="btn-icon-sm" onclick="resetTimer()"><i class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Score Box & Submit Exam Button -->
+                <div>
+                    <div class="menu-heading">Controls</div>
+                    <button class="btn-submit-exam" onclick="submitExam()">
+                        <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
+                    </button>
+                    <div class="score-card" style="margin-top:1rem;">
+                        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">Your Score</span>
+                        <div class="score-num" id="liveScoreDisplay">0.00 / 100.00</div>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);" id="livePercentDisplay">(0%)</span>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Right Content Panel -->
+            <section class="questions-area" id="questionsContainer">
+                <!-- Populated by JS -->
+            </section>
+        </div>
+    </main>
+
+    <!-- Floating Back to Top Button -->
+    <button class="fab-back-to-top" id="fabBackToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;"><i class="fa-solid fa-list-check"></i> Question Paper Summary</h3>
+                <button class="btn-icon-sm" onclick="closeSummaryModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+                Paper Title: <b>Machine Learning Practice (06 May 2026)</b> (End Term Quiz)
+            </p>
+            <div class="summary-stats-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem; text-align:center;">
+                <div class="stat-box" style="background:var(--bg-surface); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="font-size:1.5rem; font-weight:700; font-family:var(--font-mono);">26</div>
+                    <div class="stat-lbl" style="font-size:0.8rem; color:var(--text-muted);">Total Questions</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="font-size:1.5rem; font-weight:700; font-family:var(--font-mono);">100.00</div>
+                    <div class="stat-lbl" style="font-size:0.8rem; color:var(--text-muted);">Total Marks</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" id="summaryAnsweredCount" style="font-size:1.5rem; font-weight:700; font-family:var(--font-mono);">0</div>
+                    <div class="stat-lbl" style="font-size:0.8rem; color:var(--text-muted);">Answered</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-card" style="text-align: center;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;"><i class="fa-solid fa-trophy"></i> Exam Results</h3>
+                <button class="btn-icon-sm" onclick="closeResultModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div style="font-size: 0.9rem; color: var(--text-muted); font-weight: 500;">Final Score</div>
+            <div style="font-size: 2.25rem; font-weight: 800; color: var(--accent-cyan); margin: 0.25rem 0;" id="modalScoreText">0.00 / 100.00</div>
+            <div style="font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1.5rem;" id="modalPercentText">0%</div>
+
+            <div class="summary-stats-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem; text-align:center;">
+                <div class="stat-box" style="background:var(--bg-surface); padding:0.75rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="color:var(--accent-green); font-size:1.4rem; font-weight:700;" id="modalCorrectCount">0</div>
+                    <div class="stat-lbl" style="font-size:0.75rem; color:var(--text-muted);">Correct</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:0.75rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="color:var(--accent-red); font-size:1.4rem; font-weight:700;" id="modalIncorrectCount">0</div>
+                    <div class="stat-lbl" style="font-size:0.75rem; color:var(--text-muted);">Incorrect</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:0.75rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="color:var(--text-muted); font-size:1.4rem; font-weight:700;" id="modalUnansweredCount">0</div>
+                    <div class="stat-lbl" style="font-size:0.75rem; color:var(--text-muted);">Unanswered</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; gap: 0.75rem; justify-content: center;">
+                <button class="mode-btn active" style="padding:0.6rem 1.2rem; border-radius:var(--radius-md);" onclick="resetExam()"><i class="fa-solid fa-rotate-right"></i> Retake Exam</button>
+                <button class="mode-btn" style="padding:0.6rem 1.2rem; border-radius:var(--radius-md); border:1px solid var(--border-color);" onclick="closeResultModal()"><i class="fa-solid fa-book-open"></i> Review Solutions</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/components.js"></script>
+    <script src="../../../assets/js/main.js"></script>
+
+    <script>
+        const QUESTIONS_DATA = [
+            {
+                qn: 1,
+                id: "6406532125944",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Which variant of the Naive Bayes Classifier will be most suitable to predict the Gender in the given dataset?<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>import pandas as pd\ndf = pd.DataFrame({\n    'Height_cm': [150, 160, 170, 180, 175, 165, 155, 185],\n    'Weight_kg': [50, 60, 65, 80, 75, 62, 55, 85],\n    'Age': [25, 30, 28, 35, 32, 29, 27, 36],\n    'Gender': ['Female', 'Female', 'Male', 'Male', 'Male', 'Female', 'Female', 'Male']\n})</pre>",
+                options: [
+                    "CategoricalNB",
+                    "BernoulliNB",
+                    "MultinomialNB",
+                    "GaussianNB"
+                ],
+                correct: [3],
+                solution: "All feature columns (Height_cm, Weight_kg, Age) are continuous numerical variables, so GaussianNB is the appropriate Naive Bayes variant."
+            },
+            {
+                qn: 2,
+                id: "6406532125949",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the following time series analysis code:<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>import pandas as pd\nfrom statsmodels.tsa.arima.model import ARIMA\ndata = [10, 12, 13, 15, 18, 20, 22]\nseries = pd.Series(data)\nmodel = ARIMA(series, order=(1, 1, 1))\nmodel_fit = model.fit()\nforecast = model_fit.forecast(steps=1)\nprint(forecast)</pre><br>In the above code, what is the primary role of the parameter d=1 in order=(1,1,1)?",
+                options: [
+                    "It controls the number of lag observations in the model",
+                    "It represents the number of times the data is differenced",
+                    "It defines the size of the moving average window",
+                    "It determines the forecast horizon"
+                ],
+                correct: [1],
+                solution: "In ARIMA(p, d, q), $d$ specifies the degree of differencing required to make the time series stationary."
+            },
+            {
+                qn: 3,
+                id: "6406532125950",
+                type: "MCQ",
+                marks: 4.00,
+                text: "In the following question, an Assertion (A) is followed by a Reason (R). Choose the correct option from the choices given below:<br><b>Assertion (A):</b> In classification problems, precision should always be maximized over recall.<br><b>Reason (R):</b> Recall is independent of false negatives.",
+                options: [
+                    "Both A and R are true, and R is the correct explanation of A",
+                    "Both A and R are true, but R is not the correct explanation of A",
+                    "A is true, but R is false",
+                    "A is false, but R is true",
+                    "Both A and R are false"
+                ],
+                correct: [4],
+                solution: "Precision is not always preferred over recall (it depends on domain costs of false positives vs false negatives). Recall = TP / (TP + FN), so recall directly depends on false negatives. Thus, both A and R are false."
+            },
+            {
+                qn: 4,
+                id: "6406532125965",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the following code snippet:<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>import pandas as pd\ndf = pd.DataFrame({\n    'Employee': ['John', 'Sara', 'Mike', 'Anna', 'Tom', 'Lucy'],\n    'Age': [28, 34, 30, 40, 36, 25],\n    'Salary': [45000, 80000, 60000, 90000, 75000, 50000],\n    'Dept': ['Sales', 'IT', 'IT', 'Finance', 'HR', 'Sales'],\n    'Experience': [3, 10, 5, 15, 12, 2]\n})\n\nfiltered_df = df[\n    ((df['Age'] > 30) & (df['Salary'] > 70000)) |\n    ((df['Dept'] == 'IT') & (df['Experience'] < 6))\n]</pre><br>Which employees are included in filtered_df?",
+                options: [
+                    "Sara, Mike, Anna, Tom",
+                    "Sara, Mike, Anna",
+                    "Mike, Anna, Tom",
+                    "Sara, Anna, Tom"
+                ],
+                correct: [0],
+                solution: "Condition 1 (Age > 30 & Salary > 70000) selects Sara, Anna, Tom.<br>Condition 2 (Dept == 'IT' & Experience < 6) selects Mike.<br>Union: Sara, Mike, Anna, Tom."
+            },
+            {
+                qn: 5,
+                id: "6406532125945",
+                type: "SA",
+                marks: 3.00,
+                text: "What is the output of the following code? (Enter upto 2 decimals)<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>from sklearn.dummy import DummyRegressor\nfrom sklearn.metrics import mean_squared_error\nimport numpy as np\n\nX_train = np.array([[1], [2], [3], [4], [5]])\ny_train = np.array([10, 15, 20, 25, 30])\n\nX_test = np.array([[6], [7]])\ny_test = np.array([35, 40])\n\ndummy = DummyRegressor(strategy='mean')\ndummy.fit(X_train, y_train)\ny_pred = dummy.predict(X_test)\n\nmse = mean_squared_error(y_test, y_pred)\nprint('MSE:', mse)</pre>",
+                acceptedAnswer: "310 to 315",
+                solution: "Mean of $y_{\\text{train}} = (10+15+20+25+30)/5 = 20$.<br>Predictions for test = $[20, 20]$.<br>Errors on $[35, 40] = [15, 20]$.<br>MSE $= (15^2 + 20^2)/2 = (225 + 400)/2 = 312.5$."
+            },
+            {
+                qn: 6,
+                id: "6406532125946",
+                type: "MSQ",
+                marks: 5.00,
+                text: "Consider the following adaboost models:<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>from sklearn.ensemble import AdaBoostClassifier\nfrom sklearn.tree import DecisionTreeClassifier\n\nbase_clf1 = DecisionTreeClassifier(max_depth=1)\nbase_clf2 = DecisionTreeClassifier(max_depth=3)\n\nadb1 = AdaBoostClassifier(base_estimator=base_clf1, n_estimators=50, learning_rate=1.0, random_state=0)\nadb2 = AdaBoostClassifier(base_estimator=base_clf2, n_estimators=50, learning_rate=1.0, random_state=0)</pre><br>Which of the following statements are MOST accurate?",
+                options: [
+                    "adb1 is less likely to overfit than adb2 because its base trees are shallower.",
+                    "Increasing n_estimators always improves test accuracy for AdaBoost.",
+                    "Learning rate affects the contribution of each base learner; a smaller learning rate always reduces training accuracy.",
+                    "adb2 with deeper trees will have lower bias but higher variance than adb1."
+                ],
+                correct: [0, 3],
+                solution: "Deeper base trees in AdaBoost (max_depth=3 vs 1) increase variance and lower bias, making adb2 more prone to overfitting than adb1."
+            },
+            {
+                qn: 7,
+                id: "6406532125948",
+                type: "MSQ",
+                marks: 5.00,
+                text: "Consider the following code snippet:<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>from sklearn.cluster import KMeans\nkmeans = KMeans(n_clusters=9, init='kmeans++', n_init=10, max_iter=20)</pre><br>Which of the following statements are true?",
+                options: [
+                    "If the model reaches convergence in under 20 iterations, it is guaranteed that every data point is mapped to its nearest centroid.",
+                    "The value for number of clusters is a hyperparameter that can be validated using a silhouette score or the elbow method.",
+                    "The algorithm will execute a total of 20 independent runs using different starting centroid seed",
+                    "The initialization process will select 9 data points entirely at random to serve as the starting centroids."
+                ],
+                correct: [0, 1],
+                solution: "Convergence guarantees mapping to nearest centroid in local minimum; cluster count $k$ is validated via silhouette score or elbow plot."
+            },
+            {
+                qn: 8,
+                id: "6406532125953",
+                type: "MSQ",
+                marks: 5.00,
+                text: "Consider the following Python code snippet used for basic image processing:<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>from PIL import Image\nimport numpy as np\n\nimage_0 = np.random.randint(0, 256, size=(128, 128, 3), dtype=np.uint8)\nimage_1 = Image.fromarray(image_0)\nimage_2 = image_1.resize((32, 64))\nimage_3 = image_2.convert('L')\nimage_4 = np.array(image_3).flatten()</pre><br>Which of the following statements are False?",
+                options: [
+                    "image_0 represents an image with 3 color channels",
+                    "The maximum possible pixel intensity value in image_0 is 256",
+                    "The resize operation applied to image_1 reduces the number of channels",
+                    "image_3 is obtained by flipping image_2 from Left to Right"
+                ],
+                correct: [1, 2, 3],
+                solution: "• Maximum uint8 intensity is 255 (not 256).<br>• Resize alters spatial dimensions, not channel count.<br>• `.convert('L')` converts color to single-channel grayscale, not flipping."
+            },
+            {
+                qn: 9,
+                id: "6406532125967",
+                type: "MSQ",
+                marks: 5.00,
+                text: "Identify which of the following lines (marked in comments) contain errors in the given code snippet:<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>from sklearn.datasets import fetch_california_housing\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.metrics import mean_squared_error\n\ndata = fetch_california_housing(as_frame=True)\nX = data.data\ny = data.label #Line1\n\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42) #Line2\n\nscaler = StandardScaler()\nX_train_scaled = scaler.fit_transform(X_train)\nX_test_scaled = scaler.fit_transform(X_test) #Line3\n\nlr = LinearRegression()\nlr.fit(X_train_scaled, y_train)\n\ny_pred = lr.predict(X_test_scaled)\nmse = mean_squared_error(X_test_scaled, y_test) #Line4\nprint('MSE:', mse)</pre>",
+                options: [
+                    "Line1",
+                    "Line2",
+                    "Line3",
+                    "Line4"
+                ],
+                correct: [0, 2, 3],
+                solution: "Line1 has `data.label` instead of `data.target`. Line3 has `scaler.fit_transform(X_test)` (data leakage). Line4 passes matrix `X_test_scaled` instead of `y_pred` into `mean_squared_error`."
+            },
+            {
+                qn: 10,
+                id: "6406532125947",
+                type: "SA",
+                marks: 4.00,
+                text: "Consider the following code snippet:<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>from sklearn.neighbors import KNeighborsClassifier\nimport numpy as np\n\nX_train = np.array([[1, 2], [2, 3], [3, 3], [6, 2], [6, 1], [0, 0]])\ny_train = np.array([0, 0, 1, 1, 1, 2])\n\nX_test = np.array([[3, 2]])\nknn = KNeighborsClassifier(n_neighbors=3)\nknn.fit(X_train, y_train)\ny_pred = knn.predict(X_test)</pre><br>What is the predicted class for the test datapoint?",
+                acceptedAnswer: "0",
+                solution: "Distances from (3,2): (1,2) d=2 (y=0); (2,3) d=sqrt(2) (y=0); (3,3) d=1 (y=1). 2 of 3 nearest neighbors belong to class 0."
+            },
+            {
+                qn: 11,
+                id: "6406532125956",
+                type: "SA",
+                marks: 4.00,
+                text: "Consider the following code snippet and answer the question that follows:<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>from sklearn.feature_extraction.text import CountVectorizer\n\ndocuments = [\n    'Effective data science models',\n    'Data analysis is effective'\n]\n\nvectorizer = CountVectorizer(ngram_range=(2, 2), lowercase=False)\nX_count = vectorizer.fit_transform(documents)\nprint(X_count.toarray().sum())</pre><br>Enter the value obtained as output",
+                acceptedAnswer: "6",
+                solution: "Doc 1 has 3 bigrams: ('Effective data', 'data science', 'science models'). Doc 2 has 3 bigrams: ('Data analysis', 'analysis is', 'is effective'). Total sum = 3 + 3 = 6."
+            },
+            {
+                qn: 12,
+                id: "6406532125961",
+                type: "SA",
+                marks: 4.00,
+                text: "Consider the following lists containing the true values and the predicted values:<br>`Y_True = [1, 1, 1, 1, 1, 1, 0, 1]`<br>`Y_Pred = [1, 1, 0, 0, 1, 1, 0, 0]`<br>Calculate the f1_score for class 1. (Answer up to 2 decimals)",
+                acceptedAnswer: "0.71 to 0.74",
+                solution: "TP = 4, FP = 0, FN = 3.<br>Precision = 4/4 = 1.0. Recall = 4/7 = 0.5714.<br>F1 = 2 * (1.0 * 0.5714)/(1.0 + 0.5714) = 0.727 (range 0.71 to 0.74)."
+            },
+            {
+                qn: 13,
+                id: "6406532125951",
+                type: "SA",
+                marks: 5.00,
+                text: "Consider the following code snippet for a multi-class classification problem with three classes: 0, 1, and 2:<br>`y_true = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2]`<br>`y_pred = [0, 0, 1, 0, 2, 0, 1, 1, 0, 1, 2, 1, 2, 1, 2, 0, 2, 1]`<br>What is the precision score for class 1?",
+                acceptedAnswer: "0.50",
+                solution: "True positives for class 1: 4 (indices 6, 7, 9, 11). Total predicted class 1: 8 (indices 2, 6, 7, 9, 11, 13, 17). Precision = 4 / 8 = 0.50."
+            },
+            {
+                qn: 14,
+                id: "6406532125952",
+                type: "MSQ",
+                marks: 3.00,
+                text: "Which of the following transformations are commonly used as Data Augmentation techniques?",
+                options: [
+                    "Random cropping of images during training",
+                    "Normalizing pixel values to the range of [0,1]",
+                    "Resizing all images to a fixed resolution",
+                    "Rotation of images with a small angle range"
+                ],
+                correct: [0, 3],
+                solution: "Random cropping and small-angle rotations create varied input representations (Data Augmentation). Normalization and resizing are standard preprocessing operations."
+            },
+            {
+                qn: 15,
+                id: "6406532125966",
+                type: "MSQ",
+                marks: 3.00,
+                text: "Analyze the following code snippet:<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>from sklearn.neural_network import MLPClassifier\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\n\nX, y = load_iris(return_X_y=True)\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)\n\nmlp1 = MLPClassifier(hidden_layer_sizes=(5,), activation='relu', solver='adam', max_iter=500, random_state=42)\nmlp1.fit(X_train, y_train)\n\nmlp2 = MLPClassifier(hidden_layer_sizes=(10, 5), activation='tanh', solver='sgd', learning_rate_init=0.01, max_iter=500, random_state=42)\nmlp2.fit(X_train, y_train)</pre><br>Which of the following statements are correct?",
+                options: [
+                    "mlp2 has more trainable parameters than mlp1.",
+                    "Changing random_state may change predictions even with the same dataset.",
+                    "Using 'sgd' solver always gives higher accuracy than 'adam'.",
+                    "'tanh' activation guarantees better performance than 'relu'."
+                ],
+                correct: [0, 1],
+                solution: "mlp2 has multiple hidden layers (10, 5), giving it more weights/biases than single hidden layer (5,) mlp1. Neural net initialization depends on random_state."
+            },
+            {
+                qn: 16,
+                id: "6406532125954",
+                type: "MSQ",
+                marks: 4.00,
+                text: "Which of the following statements regarding TfidfVectorizer is true?",
+                options: [
+                    "Setting smooth_idf=True ensures that a term appearing in all documents will have an IDF value equal to zero",
+                    "Setting lowercase=True creates an additional copy of each token in lowercase in the vocabulary",
+                    "Setting max_features=1000 ensures that only the 1000 most frequent terms are kept in the vocabulary",
+                    "Setting min_df=3 will lead to terms with document frequency strictly lesser than 3 being ignored while building vocabulary"
+                ],
+                correct: [2, 3],
+                solution: "`max_features` selects top N frequent terms; `min_df=3` ignores tokens with document frequency < 3."
+            },
+            {
+                qn: 17,
+                id: "6406532125960",
+                type: "MSQ",
+                marks: 4.00,
+                text: "Consider the following code snippet:<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>import pandas as pd\ndf = pd.DataFrame({\n    'Employee': ['John', 'Sara', 'Mike', 'Anna', 'Tom', 'Lucy', 'Nina'],\n    'Dept': ['HR', 'IT', 'IT', 'Finance', 'HR', 'IT', 'Finance'],\n    'Salary': [50000, 60000, 70000, 80000, 75000, 62000, 90000],\n    'Experience': [3, 10, 5, 15, 12, 2, 18]\n})</pre><br>Identify the correct code snippet/s to retrieve only employees from departments where the average salary > 65000.",
+                options: [
+                    "df.groupby('Dept').filter(lambda x: x['Salary'].mean() > 65000)",
+                    "df.groupby('Dept').apply(lambda x: x[x['Salary'] > 65000])",
+                    "df[df['Salary'] > df.groupby('Dept')['Salary'].mean()]",
+                    "df[df.groupby('Dept')['Salary'].transform('mean') > 65000]"
+                ],
+                correct: [0, 3],
+                solution: "Both `df.groupby('Dept').filter(...)` and `df[df.groupby('Dept')['Salary'].transform('mean') > 65000]` correctly filter full group rows based on department-level mean salary."
+            },
+            {
+                qn: 18,
+                id: "6406532125963",
+                type: "MSQ",
+                marks: 4.00,
+                text: "Select all the false statements amongst the given statements:",
+                options: [
+                    "RandomForest uses sampling without replacement for bagging.",
+                    "Boosting reduces bias by sequentially training models",
+                    "Bagging reduces bias by training multiple models on different subsets of data and averaging their predictions.",
+                    "Boosting trains all base models independently in parallel."
+                ],
+                correct: [0, 2, 3],
+                solution: "• RandomForest uses sampling with replacement (bootstrap).<br>• Bagging reduces variance (not bias).<br>• Boosting trains models sequentially (not independently in parallel)."
+            },
+            {
+                qn: 19,
+                id: "6406532125955",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Which of the following implementations of LogisticRegression cannot be used to tackle multinomial multiclass problems?",
+                options: [
+                    "model = LogisticRegression(solver='liblinear')",
+                    "model = LogisticRegression(solver='lbfgs')",
+                    "model = LogisticRegression(solver='sag')",
+                    "model = LogisticRegression(solver='saga')"
+                ],
+                correct: [0],
+                solution: "`liblinear` solver handles one-vs-rest (OvR) scheme for multiclass, not true multinomial multiclass loss."
+            },
+            {
+                qn: 20,
+                id: "6406532125962",
+                type: "MCQ",
+                marks: 3.00,
+                text: "What is the range of the metric that is being calculated by the following code snippet?<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>import numpy as np\n\ny_true = np.array([2, 4, 6, 8, 10])\ny_pred = np.array([3, 5, 5, 9, 11])\n\nn = np.sum((y_true - y_pred)**2)\nd = np.sum((y_true - np.mean(y_true))**2)\nmetric = 1 - n / d</pre>",
+                options: [
+                    "0 to 1",
+                    "- infinity to 1",
+                    "-1 to 1",
+                    "- infinity to infinity"
+                ],
+                correct: [1],
+                solution: "The code calculates $R^2 = 1 - \\text{SSE}/\\text{SST}$, which ranges from $-\\infty$ to $1$."
+            },
+            {
+                qn: 21,
+                id: "6406532125968",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the following cross validation strategy:<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>from sklearn.model_selection import LeaveOneOut, cross_val_score\nfrom sklearn.linear_model import LogisticRegression\nimport numpy as np\n\nX = np.arange(10).reshape((5, 2))\ny = np.array([0, 1, 0, 1, 0])\n\nmodel = LogisticRegression()\ncv_loo = LeaveOneOut()\nscores = cross_val_score(model, X, y, cv=cv_loo, scoring='accuracy')</pre><br>What does the above mentioned cross val strategy do?",
+                options: [
+                    "LOOCV will train the model 5 times.",
+                    "LOOCV will train the model 1 time.",
+                    "The code is wrong"
+                ],
+                correct: [0],
+                solution: "LeaveOneOut cross-validation evaluates $n$ iterations for $n$ samples. Here $n = 5$, so model trains 5 times."
+            },
+            {
+                qn: 22,
+                id: "6406532125969",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the given 2 different lasso regression models trained on the same dataset:<br>`lasso1 = Lasso(alpha=0.01).fit(X, y)`<br>`lasso2 = Lasso(alpha=1.0).fit(X, y)`<br>Statements:<br>1. The coefficients of lasso2 are more likely to be smaller in magnitude than those of lasso1.<br>2. lasso1 may have fewer zero coefficients than lasso2.<br>3. The predictions of lasso1 on the training data will exactly match y.<br>4. Increasing alpha always increases model accuracy on unseen data.<br>Which of the given statements are correct?",
+                options: [
+                    "2 and 3",
+                    "1 and 2",
+                    "3 and 4",
+                    "1 and 4"
+                ],
+                correct: [1],
+                solution: "Higher alpha (1.0 vs 0.01) applies stronger L1 penalty, shrinking coefficient magnitudes more and setting more coefficients to 0."
+            },
+            {
+                qn: 23,
+                id: "6406532125957",
+                type: "COMPREHENSION",
+                marks: 0.00,
+                text: "Consider the following dataset X with 6 samples and 3 features and answer the given subquestions:<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>import numpy as np\nfrom sklearn.preprocessing import MaxAbsScaler, OneHotEncoder\nfrom sklearn.compose import ColumnTransformer\n\nX = np.array([\n    [-20, 'Red', 'Apple'],\n    [11, 'Blue', 'Berry'],\n    [-15, 'Green', 'Apple'],\n    [6, 'Red', 'Apple'],\n    [16, 'Green', 'Apple'],\n    [-7, 'Blue', 'Berry']\n])\n\ncolumn_trans = ColumnTransformer([\n    ('numScaler', MaxAbsScaler(), [0]),\n    ('catEncoder', OneHotEncoder(drop='first', dtype=int), [1])\n], remainder='drop', verbose_feature_names_out=False)\n\nX_transformed = column_trans.fit_transform(X)</pre>",
+                solution: "Comprehension block for ColumnTransformer preprocessing on continuous and categorical columns."
+            },
+            {
+                qn: 24,
+                id: "6406532125958",
+                parentQn: 23,
+                type: "SA",
+                marks: 5.00,
+                text: "What is the sum of all values of the first column of X_transformed? (Round off to two decimal places)",
+                acceptedAnswer: "-0.46 to -0.44",
+                solution: "Max absolute value of column 0 is 20. Scaled: $[-1.0, 0.55, -0.75, 0.30, 0.80, -0.35]$. Sum $= -0.45$."
+            },
+            {
+                qn: 25,
+                id: "6406532125959",
+                parentQn: 23,
+                type: "SA",
+                marks: 4.00,
+                text: "What is the output obtained while running print(X_transformed[2, 1])?",
+                acceptedAnswer: "1",
+                solution: "Categories for 'Color' after `drop='first'`: 'Green', 'Red'. Index 2 has color 'Green', which corresponds to column 1 in one-hot matrix, yielding 1."
+            },
+            {
+                qn: 26,
+                id: "6406532125964",
+                type: "MCQ",
+                marks: 5.00,
+                text: "We create the following ml pipeline:<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>from sklearn.datasets import load_iris\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import RandomizedSearchCV\nimport numpy as np\n\nX, y = load_iris(return_X_y=True)\nparam_dist = {\n    'n_estimators': [50, 100, 150],\n    'max_depth': [None, 5, 10],\n    'max_features': ['sqrt', 'log2', None]\n}\nrf = RandomForestClassifier(random_state=42)\nrandom_search = RandomizedSearchCV(estimator=rf, param_distributions=param_dist, n_iter=4, scoring='accuracy', cv=3, random_state=42)\nrandom_search.fit(X, y)</pre><br>Which of the following statements is true?",
+                options: [
+                    "RandomizedSearchCV tries all possible combinations of hyperparameters in param_dist.",
+                    "Only 4 random combinations of hyperparameters will be tested.",
+                    "Changing random_state has no effect on the hyperparameter search results.",
+                    "Changing cv to 8 will be computationally cheaper."
+                ],
+                correct: [1],
+                solution: "`n_iter=4` restricts `RandomizedSearchCV` to sample and test exactly 4 random parameter candidate combinations."
+            }
+        ];
+
+        let currentMode = 'exam';
+        let userAnswers = {};
+        let timerSeconds = 0;
+        let timerInterval = null;
+        let isTimerRunning = true;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPalette();
+            renderQuestions();
+            updateScoreDisplay();
+            startTimer();
+        });
+
+        function setPortalMode(mode) {
+            currentMode = mode;
+            const btnExam = document.getElementById('btnExamMode');
+            const btnLearning = document.getElementById('btnLearningMode');
+            if (btnExam) btnExam.classList.toggle('active', mode === 'exam');
+            if (btnLearning) btnLearning.classList.toggle('active', mode === 'learning');
+
+            renderQuestions();
+
+            document.querySelectorAll('.solution-box').forEach(box => {
+                if (mode === 'learning') box.classList.add('open');
+                else box.classList.remove('open');
+            });
+            document.querySelectorAll('.accepted-ans-box').forEach(box => {
+                box.style.display = (mode === 'learning') ? 'block' : 'none';
+            });
+
+            updatePaletteStatuses();
+
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function renderPalette() {
+            const palette = document.getElementById('paletteGrid');
+            if (!palette) return;
+            palette.innerHTML = QUESTIONS_DATA.map(q => `
+                <button class="palette-btn" id="paletteBtn_${q.qn}" onclick="scrollToQuestion(${q.qn})">
+                    ${q.qn}
+                </button>
+            `).join('');
+        }
+
+        function scrollToQuestion(qnNum) {
+            const card = document.getElementById(`qnCard_${qnNum}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                document.querySelectorAll('.palette-btn').forEach(b => b.classList.remove('active-qn'));
+                const btn = document.getElementById(`paletteBtn_${qnNum}`);
+                if (btn) btn.classList.add('active-qn');
+            }
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            if (!container) return;
+
+            let html = '';
+
+            QUESTIONS_DATA.forEach(q => {
+                html += `
+                <article class="qn-card" id="qnCard_${q.qn}">
+                    <div class="qn-header-container">
+                        <div class="qn-header-top">
+                            <div class="qn-title-main">
+                                Question ${q.qn} :
+                                ${q.parentQn ? `<span class="badge-type" style="background:rgba(167, 139, 250, 0.15); color:#7c3aed; font-size:0.75rem; padding:0.2rem 0.5rem;"><i class="fa-solid fa-diagram-project"></i> Parent Q${q.parentQn}</span>` : ''}
+                            </div>
+                            <button class="btn-solution-pill" onclick="toggleSolution(${q.qn})">
+                                <i class="fa-regular fa-circle-check"></i> View Solutions (1)
+                            </button>
+                        </div>
+                        <div class="qn-header-sub">
+                            <span class="qn-id-tag">${q.id}</span>
+                            <span class="qn-meta-info">Total Mark : ${q.marks.toFixed(2)} | Type : ${q.type}</span>
+                        </div>
+                    </div>
+
+                    <div class="qn-text">${q.text}</div>
+
+                    ${renderQuestionInputs(q)}
+
+                    <div class="solution-box ${currentMode === 'learning' ? 'open' : ''}" id="solution_${q.qn}">
+                        <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution</div>
+                        <div class="solution-text">${q.solution}</div>
+                    </div>
+                </article>
+                `;
+            });
+
+            container.innerHTML = html;
+            if (typeof currentMode !== 'undefined' && currentMode === 'learning') {
+                document.querySelectorAll('.solution-box').forEach(box => box.classList.add('open'));
+                document.querySelectorAll('.accepted-ans-box').forEach(box => box.style.display = 'block');
+            }
+            updatePaletteStatuses();
+
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function renderQuestionInputs(q) {
+            if (q.type === 'COMPREHENSION') {
+                return `<div style="font-size:0.88rem; color:var(--text-muted); font-style:italic; margin-bottom:1.25rem;">[Comprehension Passage Block - Subquestions are listed below]</div>`;
+            }
+
+            if (q.type === 'SA') {
+                const userVal = userAnswers[q.qn] || '';
+                const showGreen = currentMode === 'learning';
+
+                return `
+                <div class="sa-input-wrap">
+                    <label for="sa_${q.qn}">Answer (Numeric):</label>
+                    <input type="text" id="sa_${q.qn}" class="sa-input" value="${userVal}" placeholder="Answer" oninput="handleSAInput(${q.qn}, this.value)">
+                    <div class="accepted-ans-box" style="display:${showGreen ? 'block' : 'none'};">
+                        <i class="fa-solid fa-circle-check"></i> Accepted Answer : ${q.acceptedAnswer}
+                    </div>
+                </div>
+                `;
+            }
+
+            const isMSQ = q.type === 'MSQ';
+            const userArr = userAnswers[q.qn] || [];
+
+            return `
+            <div class="options-list">
+                ${q.options.map((optText, idx) => {
+                const isChecked = userArr.includes(idx);
+                const isCorrect = q.correct.includes(idx);
+                let highlightClass = '';
+                if (isChecked) highlightClass = 'selected';
+
+                if (currentMode === 'learning') {
+                    if (isCorrect) highlightClass = 'correct-highlight';
+                    else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                }
+
+                return `
+                    <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <span class="option-text">${optText}</span>
+                    </label>
+                    `;
+            }).join('')}
+            </div>
+            `;
+        }
+
+        function handleOptionSelect(qnNum, optIdx, qnType) {
+            if (qnType === 'MCQ') {
+                userAnswers[qnNum] = [optIdx];
+            } else if (qnType === 'MSQ') {
+                if (!userAnswers[qnNum]) userAnswers[qnNum] = [];
+                const pos = userAnswers[qnNum].indexOf(optIdx);
+                if (pos >= 0) userAnswers[qnNum].splice(pos, 1);
+                else userAnswers[qnNum].push(optIdx);
+            }
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function handleSAInput(qnNum, val) {
+            userAnswers[qnNum] = val.trim();
+            updatePaletteStatuses();
+            updateScoreDisplay();
+        }
+
+        function calculateQuestionScore(q) {
+            if (q.type === 'COMPREHENSION') return "0";
+            const userAns = userAnswers[q.qn];
+            if (!userAns) return "0";
+
+            if (q.type === 'SA') {
+                const cleanUser = String(userAns).trim();
+                if (q.acceptedAnswer.includes(' to ')) {
+                    const range = q.acceptedAnswer.split(' to ').map(Number);
+                    const num = parseFloat(cleanUser);
+                    if (!isNaN(num) && num >= range[0] && num <= range[1]) {
+                        return q.marks.toFixed(2);
+                    }
+                }
+                const numUser = parseFloat(cleanUser);
+                const numAcc = parseFloat(q.acceptedAnswer.trim());
+                if (!isNaN(numUser) && !isNaN(numAcc) && numUser === numAcc) {
+                    return q.marks.toFixed(2);
+                }
+                return (cleanUser === q.acceptedAnswer.trim()) ? q.marks.toFixed(2) : "0";
+            }
+
+            if (!Array.isArray(userAns) || userAns.length === 0) return "0";
+
+            if (q.type === 'MCQ') {
+                return (userAns[0] === q.correct[0]) ? q.marks.toFixed(2) : "0";
+            }
+
+            if (q.type === 'MSQ') {
+                const sortedUser = [...userAns].sort().join(',');
+                const sortedCorrect = [...q.correct].sort().join(',');
+                return (sortedUser === sortedCorrect) ? q.marks.toFixed(2) : "0";
+            }
+
+            return "0";
+        }
+
+        function updateScoreDisplay() {
+            let total = 0;
+            let answeredCount = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const score = parseFloat(calculateQuestionScore(q));
+                total += score;
+
+                const ans = userAnswers[q.qn];
+                if (ans && (Array.isArray(ans) ? ans.length > 0 : ans !== '')) {
+                    answeredCount++;
+                }
+            });
+
+            document.getElementById('liveScoreDisplay').textContent = `${total.toFixed(2)} / 100.00`;
+            const pct = ((total / 100) * 100).toFixed(1);
+            document.getElementById('livePercentDisplay').textContent = `(${pct}%)`;
+            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/26`;
+            const summaryEl = document.getElementById('summaryAnsweredCount');
+            if (summaryEl) summaryEl.textContent = answeredCount;
+        }
+
+        function updatePaletteStatuses() {
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.getElementById(`paletteBtn_${q.qn}`);
+                if (!btn) return;
+
+                btn.className = 'palette-btn';
+
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && (Array.isArray(ans) ? ans.length > 0 : ans !== '');
+
+                if (hasAns) {
+                    btn.classList.add('answered');
+                    if (currentMode === 'learning') {
+                        const score = parseFloat(calculateQuestionScore(q));
+                        if (score > 0) btn.classList.add('correct');
+                        else btn.classList.add('incorrect');
+                    }
+                }
+            });
+        }
+
+        function toggleSolution(qnNum) {
+            const box = document.getElementById(`solution_${qnNum}`);
+            if (box) box.classList.toggle('open');
+        }
+
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (isTimerRunning) {
+                    timerSeconds++;
+                    updateTimerUI();
+                }
+            }, 1000);
+        }
+
+        function toggleTimer() {
+            isTimerRunning = !isTimerRunning;
+            const btn = document.getElementById('btnPauseTimer');
+            if (btn) btn.innerHTML = isTimerRunning ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+        }
+
+        function resetTimer() {
+            timerSeconds = 0;
+            updateTimerUI();
+        }
+
+        function updateTimerUI() {
+            const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const secs = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+        }
+
+        function submitExam() {
+            setPortalMode('learning');
+
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+            let totalScore = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                if (q.type === 'COMPREHENSION') return;
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && (Array.isArray(ans) ? ans.length > 0 : ans !== '');
+
+                if (!hasAns) {
+                    unansweredCount++;
+                } else {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    totalScore += score;
+                    if (score > 0) correctCount++;
+                    else incorrectCount++;
+                }
+            });
+
+            document.getElementById('modalScoreText').textContent = `${totalScore.toFixed(2)} / 100.00`;
+            document.getElementById('modalPercentText').textContent = `${((totalScore / 100) * 100).toFixed(1)}% Accuracy`;
+            document.getElementById('modalCorrectCount').textContent = correctCount;
+            document.getElementById('modalIncorrectCount').textContent = incorrectCount;
+            document.getElementById('modalUnansweredCount').textContent = unansweredCount;
+
+            document.getElementById('resultModal').classList.add('active');
+        }
+
+        function resetExam() {
+            userAnswers = {};
+            resetTimer();
+            closeResultModal();
+            setPortalMode('learning');
+        }
+
+        function openSummaryModal() {
+            document.getElementById('summaryModal').classList.add('active');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.remove('active');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.remove('active');
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('portalSidebar');
+            const toggleBtn = document.getElementById('mobileSidebarToggle');
+            if (sidebar && toggleBtn) {
+                sidebar.classList.toggle('open');
+                toggleBtn.classList.toggle('active');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const fab = document.getElementById('fabBackToTop');
+            if (fab) {
+                if (window.scrollY > 300) fab.classList.add('visible');
+                else fab.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+
+</html>

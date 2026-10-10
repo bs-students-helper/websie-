@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice MLP questions : Machine Learning Practice 13 Sep 26 (Session 2) - QuizPractice | BSH</title>
+    <meta name="description"
+        content="Practice Machine Learning Practice End Term question paper (13 Sep 2026 Session 2) with interactive exam & learning modes, instant score calculation, detailed solutions, and question palette.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Non-Blocking Asynchronous Load -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/icons/apple-touch-icon.png">
+
+    <!-- Master CSS -->
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/quiz-portal.css">
+
+    <!-- MathJax for rendering LaTeX math formulas -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false,
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('bsh-theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Site Navigation Header -->
+    <header class="site-header" id="header" data-root-prefix="../../../" data-active-page="quiz_practice"></header>
+
+    <main>
+        <div class="portal-layout">
+
+            <!-- Mobile Collapsible Sidebar Toggle Button -->
+            <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()">
+                <span><i class="fa-solid fa-sliders"></i> Exam Controls & Question Menu</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <!-- Left Sidebar: Controls, Menu & Timer -->
+            <aside class="portal-sidebar" id="portalSidebar">
+
+                <!-- Header Info -->
+                <div class="exam-info-header">
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Exam :</span>
+                        <span class="exam-info-val">End Term Quiz</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Subject :</span>
+                        <span class="exam-info-val">MLP</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Total Marks :</span>
+                        <span class="exam-info-val">100.00</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">QP :</span>
+                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">13 Sep 26 (Session 2)</span>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher -->
+                <div>
+                    <div class="menu-heading">Portal Mode</div>
+                    <div class="mode-toggle-group">
+                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam Mode</button>
+                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning Mode</button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;" onclick="openSummaryModal()">
+                        <i class="fa-solid fa-eye"></i> View Question Paper Summary
+                    </button>
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;" onclick="window.print()">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </button>
+                </div>
+
+                <!-- Question Menu Grid -->
+                <div>
+                    <div class="menu-heading">
+                        <span>Question Menu</span>
+                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/29</span>
+                    </div>
+                    <div class="palette-grid" id="paletteGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Timer Box -->
+                <div>
+                    <div class="menu-heading">Timer</div>
+                    <div class="timer-box">
+                        <div class="timer-display" id="timerDisplay">00:00</div>
+                        <div class="timer-controls">
+                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i class="fa-solid fa-pause"></i></button>
+                            <button class="btn-icon-sm" onclick="resetTimer()"><i class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Score Box & Submit Exam Button -->
+                <div>
+                    <div class="menu-heading">Controls</div>
+                    <button class="btn-submit-exam" onclick="submitExam()">
+                        <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
+                    </button>
+                    <div class="score-card" style="margin-top:1rem;">
+                        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">Your Score</span>
+                        <div class="score-num" id="liveScoreDisplay">0.00 / 100.00</div>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);" id="livePercentDisplay">(0%)</span>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Right Content Panel -->
+            <section class="questions-area" id="questionsContainer">
+                <!-- Populated by JS -->
+            </section>
+        </div>
+    </main>
+
+    <!-- Floating Back to Top Button -->
+    <button class="fab-back-to-top" id="fabBackToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;"><i class="fa-solid fa-list-check"></i> Question Paper Summary</h3>
+                <button class="btn-icon-sm" onclick="closeSummaryModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+                Paper Title: <b>Machine Learning Practice (13 Sep 2026 Session 2)</b> (End Term Quiz)
+            </p>
+            <div class="summary-stats-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem; text-align:center;">
+                <div class="stat-box" style="background:var(--bg-surface); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="font-size:1.5rem; font-weight:700; font-family:var(--font-mono);">29</div>
+                    <div class="stat-lbl" style="font-size:0.8rem; color:var(--text-muted);">Total Questions</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="font-size:1.5rem; font-weight:700; font-family:var(--font-mono);">100.00</div>
+                    <div class="stat-lbl" style="font-size:0.8rem; color:var(--text-muted);">Total Marks</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" id="summaryAnsweredCount" style="font-size:1.5rem; font-weight:700; font-family:var(--font-mono);">0</div>
+                    <div class="stat-lbl" style="font-size:0.8rem; color:var(--text-muted);">Answered</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-card" style="text-align: center;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;"><i class="fa-solid fa-trophy"></i> Exam Results</h3>
+                <button class="btn-icon-sm" onclick="closeResultModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div style="font-size: 0.9rem; color: var(--text-muted); font-weight: 500;">Final Score</div>
+            <div style="font-size: 2.25rem; font-weight: 800; color: var(--accent-cyan); margin: 0.25rem 0;" id="modalScoreText">0.00 / 100.00</div>
+            <div style="font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1.5rem;" id="modalPercentText">0%</div>
+
+            <div class="summary-stats-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem; text-align:center;">
+                <div class="stat-box" style="background:var(--bg-surface); padding:0.75rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="color:var(--accent-green); font-size:1.4rem; font-weight:700;" id="modalCorrectCount">0</div>
+                    <div class="stat-lbl" style="font-size:0.75rem; color:var(--text-muted);">Correct</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:0.75rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="color:var(--accent-red); font-size:1.4rem; font-weight:700;" id="modalIncorrectCount">0</div>
+                    <div class="stat-lbl" style="font-size:0.75rem; color:var(--text-muted);">Incorrect</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:0.75rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="color:var(--text-muted); font-size:1.4rem; font-weight:700;" id="modalUnansweredCount">0</div>
+                    <div class="stat-lbl" style="font-size:0.75rem; color:var(--text-muted);">Unanswered</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; gap: 0.75rem; justify-content: center;">
+                <button class="mode-btn active" style="padding:0.6rem 1.2rem; border-radius:var(--radius-md);" onclick="resetExam()"><i class="fa-solid fa-rotate-right"></i> Retake Exam</button>
+                <button class="mode-btn" style="padding:0.6rem 1.2rem; border-radius:var(--radius-md); border:1px solid var(--border-color);" onclick="closeResultModal()"><i class="fa-solid fa-book-open"></i> Review Solutions</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/components.js"></script>
+    <script src="../../../assets/js/main.js"></script>
+
+    <script>
+        const QUESTIONS_DATA = [
+            {
+                qn: 1,
+                id: "6406532279921",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Analyze the following code block:<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>import pandas as pd\ndf = pd.DataFrame({\n    'Product': ['Laptop', 'Mouse', 'Keyboard', 'Monitor', 'Cable'],\n    'Category': ['Electronics', 'Accessories', 'Accessories', 'Electronics', 'Accessories'],\n    'Price': [1200, 25, 45, 300, 10],\n    'In_Stock': [True, True, False, True, False]\n})\n\nfiltered_df = df[\n    ((df['Price'] < 100) & (df['In_Stock'] == True)) |\n    ((df['Category'] == 'Electronics') & (df['Price'] > 500))\n]</pre><br>Which products are included in filtered_df?",
+                options: [
+                    "Laptop, Mouse, Monitor",
+                    "Mouse, Keyboard",
+                    "Laptop, Mouse",
+                    "Laptop, Mouse, Cable"
+                ],
+                correct: [2],
+                solution: "Condition 1 (Price < 100 & In_Stock == True) selects Mouse. Condition 2 (Category == 'Electronics' & Price > 500) selects Laptop. Combined: Laptop, Mouse."
+            },
+            {
+                qn: 2,
+                id: "6406532279927",
+                type: "MCQ",
+                marks: 4.00,
+                text: "In the following question an Assertion (A) is followed by a Reason (R). Choose the correct option.<br><b>Assertion (A):</b> In a scikit-learn Pipeline, the last step must be a transformer that implements both fit and transform.<br><b>Reason (R):</b> Only the intermediate steps of a Pipeline are required to implement transform; the final estimator only needs to implement fit.",
+                options: [
+                    "Both A and R are true, and R is the correct explanation of A",
+                    "Both A and R are true, but R is not the correct explanation of A",
+                    "A is true, but R is false",
+                    "A is false, but R is true",
+                    "Both A and R are false"
+                ],
+                correct: [3],
+                solution: "Assertion (A) is false because the final step of a Pipeline can be an estimator (e.g. Classifier/Regressor) which only needs `fit`. Reason (R) is true."
+            },
+            {
+                qn: 3,
+                id: "6406532279934",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the following code:<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>vr = VotingRegressor([\n    ('lr', LinearRegression()),\n    ('rf', RandomForestRegressor(random_state=0)),\n    ('knn', KNeighborsRegressor())\n])\nvr.fit(X_train, y_train)</pre><br>After the model is fit `lr.coef_` raises an error. Why?",
+                options: [
+                    "VotingRegressor deletes the original estimator.",
+                    "VotingRegressor internally clones every estimator before fitting.",
+                    "LinearRegression does not store coefficients.",
+                    "VotingRegressor converts all models to RandomForest since it is the best model out of the 3 due to ensemble learning."
+                ],
+                correct: [1],
+                solution: "`VotingRegressor` uses `sklearn.base.clone()` to make deep copies of estimators before fitting, so the original `lr` instance remains unfitted."
+            },
+            {
+                qn: 4,
+                id: "6406532279940",
+                type: "MCQ",
+                marks: 4.00,
+                text: "A news article dataset contains 10,000 documents. The word \"government\" appears in 9,500 documents, while the word \"cryptocurrency\" appears in only 200 documents. A TF-IDF vectorizer is applied to this dataset. Which of the following statements is most likely true?",
+                options: [
+                    "The TF value of \"government\" will always be lower than the TF value of \"cryptocurrency\" because it appears in more documents.",
+                    "The IDF contribution of \"cryptocurrency\" will be higher than that of \"government\", even if both words occur the same number of times in a document.",
+                    "If \"government\" appears 50 times in one article, its TF-IDF score must be higher than \"cryptocurrency\" appearing once in the same article.",
+                    "Removing \"government\" from the vocabulary will always decrease model performance because it appears in most documents."
+                ],
+                correct: [1],
+                solution: "IDF is inversely proportional to document frequency: $\\text{IDF}(t) = \\log(N / \\text{DF}(t))$. Since 200 < 9500, 'cryptocurrency' has a much higher IDF value."
+            },
+            {
+                qn: 5,
+                id: "6406532279941",
+                type: "MCQ",
+                marks: 4.00,
+                text: "What is being done to the input image in the given code?<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>import numpy as np\nimage = np.array([\n    [10, 20, 30],\n    [40, 50, 60],\n    [70, 80, 90]\n])\nprocessed = image[::-1, :]\nprint(processed)</pre>",
+                options: [
+                    "The image has been rotated by 90 degrees clockwise.",
+                    "The image has been vertically flipped.",
+                    "The image has been horizontally flipped.",
+                    "The image has been mean centered."
+                ],
+                correct: [1],
+                solution: "`image[::-1, :]` reverses row indexing along axis 0, which vertically flips the 2D array image."
+            },
+            {
+                qn: 6,
+                id: "6406532279946",
+                type: "MCQ",
+                marks: 4.00,
+                text: "A matrix-factorization recommender is set up on MovieLens-100k as follows:<br>`num_users = 943`, `num_items = 1682`, `num_factors = 20`<br>`P = np.random.normal(scale=0.1, size=(num_users, num_factors))`<br>`Q = np.random.normal(scale=0.1, size=(num_items, num_factors))`<br>Which of the following statements is TRUE?",
+                options: [
+                    "Evaluating the expression P @ Q returns the full predicted-rating matrix, of shape (943, 1682).",
+                    "The model has (943 + 1682) * 20 = 52500 trainable parameters.",
+                    "Increasing num_factors reduces the risk of overfitting on the sparse rating matrix.",
+                    "The predicted rating of user u for item i is the cosine similarity between P[u] and Q[i]."
+                ],
+                correct: [1],
+                solution: "Total trainable factor parameters $= (943 + 1682) \\times 20 = 2625 \\times 20 = 52500$ parameters."
+            },
+            {
+                qn: 7,
+                id: "6406532279948",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Which statement correctly pairs each test's null hypothesis with its decision rule?",
+                options: [
+                    "ADF: H0 = non-stationary, conclude stationary if p < 0.05. KPSS: H0 = (trend) stationary, conclude non-stationary if p < 0.05.",
+                    "ADF: H0 = stationary, conclude non-stationary if p < 0.05. KPSS: H0 = non-stationary, conclude stationary if p < 0.05.",
+                    "Both ADF and KPSS have H0 = non-stationary; both conclude stationary when p < 0.05.",
+                    "Both ADF and KPSS have H0 = stationary; both conclude non-stationary when p < 0.05."
+                ],
+                correct: [0],
+                solution: "ADF $H_0$: time series is non-stationary ($p < 0.05 \\implies$ stationary). KPSS $H_0$: time series is stationary ($p < 0.05 \\implies$ non-stationary)."
+            },
+            {
+                qn: 8,
+                id: "6406532279922",
+                type: "SA",
+                marks: 3.00,
+                text: "What is the output of the given code?<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>import pandas as pd\ndf = pd.DataFrame({\n    'Age': [22, 25, 30, 35, 40],\n    'Salary': [30000, 50000, 70000, 90000, 110000],\n    'City': ['Delhi', 'Mumbai', 'Pune', 'Chennai', 'Kolkata']\n})\nprint(df.loc[1:3].iloc[1]['Salary'])</pre>",
+                acceptedAnswer: "70000",
+                solution: "`df.loc[1:3]` extracts label rows 1, 2, 3. `.iloc[1]` selects index 1 of this slice (row 2 of original df, where Salary = 70000)."
+            },
+            {
+                qn: 9,
+                id: "6406532279926",
+                type: "SA",
+                marks: 3.00,
+                text: "FeatureUnion applies both transformers in parallel and concatenates their outputs side-by-side. How many columns does X_union have? (Enter an integer)<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>import numpy as np\nfrom sklearn.pipeline import FeatureUnion\nfrom sklearn.decomposition import PCA\nfrom sklearn.preprocessing import PolynomialFeatures\n\nX = np.random.RandomState(0).rand(20, 3)\n\nunion = FeatureUnion([\n    ('pca', PCA(n_components=2)),\n    ('poly', PolynomialFeatures(degree=2, include_bias=False))\n])\n\nX_union = union.fit_transform(X)</pre>",
+                acceptedAnswer: "11",
+                solution: "PCA outputs 2 columns. PolynomialFeatures(degree=2, 3 features, no bias) outputs $3 + 3 = 6$ ? Wait: $3 + \\binom{3}{2} + 3 = 9$ columns. Total concatenated $= 2 + 9 = 11$ columns."
+            },
+            {
+                qn: 10,
+                id: "6406532279928",
+                type: "SA",
+                marks: 3.00,
+                text: "What is the output of the following code?<br>`import pandas as pd`<br>`from sklearn.preprocessing import OneHotEncoder`<br>`df = pd.DataFrame({'Color': ['Red', 'Blue', 'Green', 'Blue', 'Red'], 'Size': ['S', 'M', 'L', 'XL', 'M']})`<br>`encoder = OneHotEncoder(drop='first', sparse_output=False)`<br>`X = encoder.fit_transform(df)`<br>`print(X.shape[1])`",
+                acceptedAnswer: "5",
+                solution: "'Color' has 3 unique values $\\implies 2$ columns with drop='first'. 'Size' has 4 unique values $\\implies 3$ columns. Total shape[1] $= 2 + 3 = 5$."
+            },
+            {
+                qn: 11,
+                id: "6406532279932",
+                type: "SA",
+                marks: 3.00,
+                text: "What is the output of the given code? (Round upto one decimal)<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>from sklearn.neighbors import KNeighborsRegressor\nimport numpy as np\n\nX = [[0], [1], [2], [3]]\ny = [0, 0, 1, 1]\n\nneigh = KNeighborsRegressor(n_neighbors=2)\nneigh.fit(X, y)\nprint(neigh.predict([[1.5]]))</pre>",
+                acceptedAnswer: "0.5",
+                solution: "2 nearest neighbors of $1.5$ are $1$ ($y=0$) and $2$ ($y=1$). Mean $= (0 + 1)/2 = 0.5$."
+            },
+            {
+                qn: 12,
+                id: "6406532279942",
+                type: "SA",
+                marks: 3.00,
+                text: "A K-Means algorithm has a cluster centroid: C=(6,6). During the next iteration, a new data point: (10,10) is assigned to this cluster. Before the update step, this cluster contained 4 data points. The individual points are not available, but the centroid of the cluster before adding the new point was: (6,6). After adding the new point and performing the centroid update step, the new centroid becomes: (6.8, 6.8). What is the sum of the coordinates of the original 4 data points combined?",
+                acceptedAnswer: "48",
+                solution: "Sum of x-coordinates $= 4 \\times 6 = 24$. Sum of y-coordinates $= 4 \\times 6 = 24$. Total combined sum $= 24 + 24 = 48$."
+            },
+            {
+                qn: 13,
+                id: "6406532279923",
+                type: "SA",
+                marks: 4.00,
+                text: "After scaling, what is the SUM of the transformed values of all samples whose ORIGINAL value equals 4? (Enter up to 2 decimals)<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>import numpy as np\nfrom sklearn.preprocessing import StandardScaler\n\nx = np.array([[2.0], [4.0], [4.0], [4.0], [5.0], [5.0], [7.0], [9.0]])\nss = StandardScaler()\nx_scaled = ss.fit_transform(x)</pre>",
+                acceptedAnswer: "-1.50",
+                solution: "Mean $= 5.0$, std dev $\\sigma = 2.0$. Scaled value for 4 $= (4 - 5)/2 = -0.5$. There are 3 samples with value 4, so total sum $= 3 \\times (-0.5) = -1.50$."
+            },
+            {
+                qn: 14,
+                id: "6406532279938",
+                type: "SA",
+                marks: 4.00,
+                text: "A regression model achieves an R2 score of 0.92 on a test set. The sum of squared deviations of the true target values from their mean is 625. Compute the sum of squared prediction errors made by the model.",
+                acceptedAnswer: "50",
+                solution: "$R^2 = 1 - \\text{SSE}/\\text{SST} \\implies 0.92 = 1 - \\text{SSE}/625 \\implies \\text{SSE} = 0.08 \\times 625 = 50$."
+            },
+            {
+                qn: 15,
+                id: "6406532279949",
+                type: "SA",
+                marks: 4.00,
+                text: "What is the output of the print statement in the given code? Enter an integer<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>import pandas as pd\nts = pd.Series([10, 15, 18, 25, 30])\nresult = ts.shift(1).diff()\nprint(result.iloc[3])</pre>",
+                acceptedAnswer: "3",
+                solution: "`ts` = [10, 15, 18, 25, 30]. `shift(1)` = [NaN, 10, 15, 18, 25]. `diff()` = [NaN, NaN, 5, 3, 7]. `iloc[3]` = 3."
+            },
+            {
+                qn: 16,
+                id: "6406532279924",
+                type: "MSQ",
+                marks: 3.00,
+                text: "The following categorical-encoding transformers are available in scikit-learn: LabelEncoder, OrdinalEncoder, OneHotEncoder, MultiLabelBinarizer. Select ALL statements that are correct.",
+                options: [
+                    "LabelEncoder can transform only 1-D data, whereas OrdinalEncoder can operate on multi-dimensional (multi-feature) data.",
+                    "By default (with no dropping), OneHotEncoder creates K binary columns for a feature with K distinct categories.",
+                    "MultiLabelBinarizer is designed to encode samples where each sample is associated with a set of labels.",
+                    "OrdinalEncoder is preferred over OneHotEncoder for nominal (unordered) categories because it prevents the model from assuming any ordering among the categories."
+                ],
+                correct: [0, 1, 2],
+                solution: "Statements 1, 2, and 3 are standard scikit-learn encoder capabilities. Statement 4 is false because OrdinalEncoder introduces an arbitrary numerical ordering."
+            },
+            {
+                qn: 17,
+                id: "6406532279925",
+                type: "MSQ",
+                marks: 3.00,
+                text: "Consider the following code:<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>from sklearn.datasets import load_breast_cancer\nfrom sklearn.feature_selection import RFE\nfrom sklearn.linear_model import LogisticRegression\n\nX, y = load_breast_cancer(return_X_y=True)\nmodel = LogisticRegression(max_iter=1000)\nselector = RFE(estimator=model, n_features_to_select=5)\nX_new = selector.fit_transform(X, y)</pre><br>Which of the following are correct?",
+                options: [
+                    "X_new contains exactly 5 features.",
+                    "selector.support_.sum() is equal to 5.",
+                    "RFE selects the first 5 columns of X.",
+                    "RFE repeatedly removes the least important features according to the estimator."
+                ],
+                correct: [0, 1, 3],
+                solution: "RFE iteratively prunes features with smallest weights/importances until `n_features_to_select=5` remain."
+            },
+            {
+                qn: 18,
+                id: "6406532279933",
+                type: "MSQ",
+                marks: 3.00,
+                text: "In the given code snippet certain lines are marked with comments. Identify which of those lines don't have any errors:<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>import numpy as np\nfrom sklearn.preprocessing import PolynomialFeatures\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.pipeline import Pipeline\n\nX = np.array([[0], [1], [2]])\ny = np.array([1, 3, 7])\n\nmodel = Pipeline([\n    ('poly', PolynomialFeatures(degree=2, include_bias=False)), #Line1\n    ('lr', LinearRegression(fit_intercept=2)) #Line2\n])\n\nmodel.fit(X, y) #Line3\nprint(model.predict([[3]])[0]) #Line4</pre>",
+                options: [
+                    "Line1",
+                    "Line2",
+                    "Line3",
+                    "Line4"
+                ],
+                correct: [0, 2, 3],
+                solution: "Line2 has `fit_intercept=2` (which requires a boolean, not an integer), making Line2 invalid."
+            },
+            {
+                qn: 19,
+                id: "6406532279936",
+                type: "MSQ",
+                marks: 3.00,
+                text: "Which of the following parameters of a DecisionTreeClassifier in Sklearn can be adjusted if the model has a high variance?",
+                options: [
+                    "ccp_alpha",
+                    "random_state",
+                    "min_samples_split",
+                    "max_depth"
+                ],
+                correct: [0, 2, 3],
+                solution: "`ccp_alpha` (cost complexity pruning), `min_samples_split`, and `max_depth` regulate tree complexity and reduce model variance."
+            },
+            {
+                qn: 20,
+                id: "6406532279947",
+                type: "MSQ",
+                marks: 3.00,
+                text: "Which of the following statements comparing STL decomposition with classical seasonal_decompose are correct?",
+                options: [
+                    "STL can adapt to a seasonal pattern whose shape changes slowly over time, whereas classical decomposition assumes a fixed seasonal component.",
+                    "STL, being based on LOESS smoothing, is more robust to outliers than classical decomposition.",
+                    "Classical decomposition supports only additive models, while STL supports both additive and multiplicative models.",
+                    "Classical seasonal_decompose can be run in either additive or multiplicative mode."
+                ],
+                correct: [0, 1, 3],
+                solution: "STL adapts to changing seasonal shapes and is LOESS-robust against outliers; classical `seasonal_decompose` supports both additive and multiplicative modes."
+            },
+            {
+                qn: 21,
+                id: "6406532279929",
+                type: "MSQ",
+                marks: 4.00,
+                text: "Consider two regularization models, Model A (Ridge) and Model B (Lasso), trained on a dataset where two input features are highly collinear ($X_1 \\approx X_2$). Which of the following statements accurately describe the expected behavior of these models and their evaluation metrics under severe collinearity?",
+                options: [
+                    "Model B (Lasso) will distribute the regression coefficients evenly across both X1 and X2 to balance the penalty, while Model A (Ridge) will force one of the coefficients to be exactly zero.",
+                    "Model A (Ridge) will shrink the coefficients of X1 and X2 toward zero but keep them roughly equal, whereas Model B (Lasso) will unstablely select one feature to keep and drive the coefficient of the other exactly to zero.",
+                    "If the target variable y contains extreme outliers, evaluating these models using Mean Squared Error (MSE) will penalize those large errors more heavily than Mean Absolute Error (MAE).",
+                    "Minimizing the MSE loss function during the training of Model A and Model B mathematically guarantees that the sum of the residual errors ( y - y_hat ) will always equal zero."
+                ],
+                correct: [1, 2],
+                solution: "Ridge (L2) distributes coefficients among collinear features; Lasso (L1) arbitrarily selects one and zeroes out the other. MSE squares errors, penalizing outliers more than MAE."
+            },
+            {
+                qn: 22,
+                id: "6406532279943",
+                type: "MSQ",
+                marks: 4.00,
+                text: "Consider the following code:<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>from sklearn.cluster import AgglomerativeClustering\nimport numpy as np\n\nX = np.array([[1, 1], [2, 2], [3, 3], [10, 10], [11, 11]])\nmodel = AgglomerativeClustering(n_clusters=2, linkage='complete')\nlabels = model.fit_predict(X)</pre><br>Select the correct statements:",
+                options: [
+                    "The algorithm starts by selecting two random centroids and iteratively updates them.",
+                    "The algorithm initially treats every point as a separate cluster and repeatedly merges clusters based on the complete linkage criterion.",
+                    "The final labels represent the two groups formed after cutting the dendrogram to obtain two clusters.",
+                    "Changing n_clusters=2 to n_clusters=3 will change the entire merging process from the first step.",
+                    "The output labels will always be [0,0,0,1,1] because the first three points are closer to each other."
+                ],
+                correct: [1, 2, 4],
+                solution: "Agglomerative clustering is bottom-up (merging clusters). The merge dendrogram tree is deterministic; `n_clusters` simply cuts the tree at a higher/lower height."
+            },
+            {
+                qn: 23,
+                id: "6406532279930",
+                type: "MCQ",
+                marks: 3.00,
+                text: "Consider the following models:<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>from sklearn.linear_model import LogisticRegression\n\nmodel1 = LogisticRegression(penalty='l2', C=0.1, random_state=0)\nmodel2 = LogisticRegression(penalty='l2', C=100, random_state=0)\n\nmodel1.fit(X_train, y_train)\nmodel2.fit(X_train, y_train)</pre><br>Which of the following explains the two models correctly?",
+                options: [
+                    "model1 will apply weaker regularization compared to model2, resulting in smaller coefficients.",
+                    "model2 will apply stronger regularization compared to model1, resulting in more coefficients close to zero.",
+                    "model1 is more likely to have smaller magnitude coefficients because it uses stronger regularization.",
+                    "Both models apply the same amount of regularization because the penalty type is the same."
+                ],
+                correct: [2],
+                solution: "$C$ is inverse regularization strength ($C = 1/\\lambda$). $C=0.1$ implies stronger regularization than $C=100$, leading to smaller coefficient magnitudes."
+            },
+            {
+                qn: 24,
+                id: "6406532279931",
+                type: "MCQ",
+                marks: 3.00,
+                text: "In the following question an Assertion (A) is followed by a Reason (R). Choose the correct option.<br><b>Assertion (A):</b> The order in which training samples are presented to the Perceptron can affect the final learned weight vector, even when the training data is linearly separable.<br><b>Reason (R):</b> If a dataset is linearly separable, the Perceptron algorithm is guaranteed to converge after a finite number of weight updates.",
+                options: [
+                    "Both A and R are true, and R is the correct explanation of A.",
+                    "Both A and R are true, but R is not the correct explanation of A.",
+                    "A is true, but R is false.",
+                    "A is false, but R is true."
+                ],
+                correct: [0],
+                solution: "Different sample presentation orders lead to different sequence of weight update steps, terminating at different separating hyperplanes."
+            },
+            {
+                qn: 25,
+                id: "6406532279937",
+                type: "MCQ",
+                marks: 3.00,
+                text: "What evaluation metric does the code compute?<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>import numpy as np\n\ny_true = np.array([1, 0, 1, 1, 0, 1, 0, 0])\ny_pred = np.array([1, 1, 1, 0, 0, 1, 0, 1])\n\na = np.sum((y_true == 1) & (y_pred == 1))\nb = np.sum((y_true == 0) & (y_pred == 1))\n\nscore = a / (a + b)\nprint(score)</pre>",
+                options: [
+                    "R2 Score",
+                    "Recall",
+                    "Accuracy",
+                    "Precision",
+                    "F1 Score"
+                ],
+                correct: [3],
+                solution: "$a$ is True Positives (TP) and $b$ is False Positives (FP). $\\text{TP} / (\\text{TP} + \\text{FP}) = \\text{Precision}$."
+            },
+            {
+                qn: 26,
+                id: "6406532279939",
+                type: "MCQ",
+                marks: 3.00,
+                text: "A hospital develops a machine learning model to identify patients who may have a rare but life-threatening disease. Only about 1% of patients actually have the disease. Every patient predicted as positive is referred for an inexpensive follow-up blood test. However, missing an actual patient with the disease could delay treatment and have severe consequences. Which evaluation metric should be given the highest priority while selecting the model?",
+                options: [
+                    "Accuracy",
+                    "Precision",
+                    "Recall",
+                    "F1-score"
+                ],
+                correct: [2],
+                solution: "Minimizing false negatives (undetected disease cases) is critical, so Recall must be prioritized."
+            },
+            {
+                qn: 27,
+                id: "6406532279944",
+                type: "MCQ",
+                marks: 3.00,
+                text: "After training a KMeans clustering algorithm on a dataset we find a data point is sitting exactly on or extremely close to the decision boundary between two neighboring clusters. Which of the following values will the silhouette score be close / equal to?",
+                options: [
+                    "1",
+                    "0",
+                    "-1",
+                    "infinity"
+                ],
+                correct: [1],
+                solution: "Silhouette score $s = (b - a)/\\max(a,b)$. For points on the boundary between clusters, mean intra-cluster distance $a \\approx$ nearest cluster distance $b$, so $s \\approx 0$."
+            },
+            {
+                qn: 28,
+                id: "6406532279935",
+                type: "MCQ",
+                marks: 2.00,
+                text: "The decision rule for a Naive Bayes variant is based on the following formula: $P(x_i | y) = P(x_i = 1 | y) x_i + (1 - P(x_i = 1 | y))(1 - x_i)$. Identify the Naive Bayes variant.",
+                options: [
+                    "GaussianNB",
+                    "BernoulliNB",
+                    "CategoricalNB",
+                    "MultinomialNB"
+                ],
+                correct: [1],
+                solution: "The formula is the Bernoulli likelihood model for binary indicator features $x_i \\in \\{0, 1\\}$."
+            },
+            {
+                qn: 29,
+                id: "6406532279945",
+                type: "SA",
+                marks: 5.00,
+                text: "Consider the following item–user rating matrix (rows = items, columns = users; 0 means not rated):<br><br><pre style='background:var(--bg-surface); padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;'>import pandas as pd\nimport numpy as np\nfrom sklearn.metrics.pairwise import cosine_similarity\n\nR = pd.DataFrame([\n    [5, 4, 0, 5],\n    [4, 0, 2, 4],\n    [1, 2, 5, 0],\n    [5, 3, 1, 0]\n], index=['I1', 'I2', 'I3', 'I4'], columns=['U1', 'U2', 'U3', 'U4'])\n\nitem_sim = cosine_similarity(R, R)</pre><br>Using item–item collaborative filtering, predict the rating that user U4 would give to item I4. (Answer up to 2 decimals)",
+                acceptedAnswer: "4.50 to 4.65",
+                solution: "Item-item collaborative filtering weighted rating prediction for U4 on I4 yields between 4.50 and 4.65."
+            }
+        ];
+
+        let currentMode = 'exam';
+        let userAnswers = {};
+        let timerSeconds = 0;
+        let timerInterval = null;
+        let isTimerRunning = true;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPalette();
+            renderQuestions();
+            updateScoreDisplay();
+            startTimer();
+        });
+
+        function setPortalMode(mode) {
+            currentMode = mode;
+            const btnExam = document.getElementById('btnExamMode');
+            const btnLearning = document.getElementById('btnLearningMode');
+            if (btnExam) btnExam.classList.toggle('active', mode === 'exam');
+            if (btnLearning) btnLearning.classList.toggle('active', mode === 'learning');
+
+            renderQuestions();
+
+            document.querySelectorAll('.solution-box').forEach(box => {
+                if (mode === 'learning') box.classList.add('open');
+                else box.classList.remove('open');
+            });
+            document.querySelectorAll('.accepted-ans-box').forEach(box => {
+                box.style.display = (mode === 'learning') ? 'block' : 'none';
+            });
+
+            updatePaletteStatuses();
+
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function renderPalette() {
+            const palette = document.getElementById('paletteGrid');
+            if (!palette) return;
+            palette.innerHTML = QUESTIONS_DATA.map(q => `
+                <button class="palette-btn" id="paletteBtn_${q.qn}" onclick="scrollToQuestion(${q.qn})">
+                    ${q.qn}
+                </button>
+            `).join('');
+        }
+
+        function scrollToQuestion(qnNum) {
+            const card = document.getElementById(`qnCard_${qnNum}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                document.querySelectorAll('.palette-btn').forEach(b => b.classList.remove('active-qn'));
+                const btn = document.getElementById(`paletteBtn_${qnNum}`);
+                if (btn) btn.classList.add('active-qn');
+            }
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            if (!container) return;
+
+            let html = '';
+
+            QUESTIONS_DATA.forEach(q => {
+                html += `
+                <article class="qn-card" id="qnCard_${q.qn}">
+                    <div class="qn-header-container">
+                        <div class="qn-header-top">
+                            <div class="qn-title-main">
+                                Question ${q.qn} :
+                                ${q.parentQn ? `<span class="badge-type" style="background:rgba(167, 139, 250, 0.15); color:#7c3aed; font-size:0.75rem; padding:0.2rem 0.5rem;"><i class="fa-solid fa-diagram-project"></i> Parent Q${q.parentQn}</span>` : ''}
+                            </div>
+                            <button class="btn-solution-pill" onclick="toggleSolution(${q.qn})">
+                                <i class="fa-regular fa-circle-check"></i> View Solutions (1)
+                            </button>
+                        </div>
+                        <div class="qn-header-sub">
+                            <span class="qn-id-tag">${q.id}</span>
+                            <span class="qn-meta-info">Total Mark : ${q.marks.toFixed(2)} | Type : ${q.type}</span>
+                        </div>
+                    </div>
+
+                    <div class="qn-text">${q.text}</div>
+
+                    ${renderQuestionInputs(q)}
+
+                    <div class="solution-box ${currentMode === 'learning' ? 'open' : ''}" id="solution_${q.qn}">
+                        <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution</div>
+                        <div class="solution-text">${q.solution}</div>
+                    </div>
+                </article>
+                `;
+            });
+
+            container.innerHTML = html;
+            if (typeof currentMode !== 'undefined' && currentMode === 'learning') {
+                document.querySelectorAll('.solution-box').forEach(box => box.classList.add('open'));
+                document.querySelectorAll('.accepted-ans-box').forEach(box => box.style.display = 'block');
+            }
+            updatePaletteStatuses();
+
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function renderQuestionInputs(q) {
+            if (q.type === 'COMPREHENSION') {
+                return `<div style="font-size:0.88rem; color:var(--text-muted); font-style:italic; margin-bottom:1.25rem;">[Comprehension Passage Block - Subquestions are listed below]</div>`;
+            }
+
+            if (q.type === 'SA') {
+                const userVal = userAnswers[q.qn] || '';
+                const showGreen = currentMode === 'learning';
+
+                return `
+                <div class="sa-input-wrap">
+                    <label for="sa_${q.qn}">Answer (Numeric):</label>
+                    <input type="text" id="sa_${q.qn}" class="sa-input" value="${userVal}" placeholder="Answer" oninput="handleSAInput(${q.qn}, this.value)">
+                    <div class="accepted-ans-box" style="display:${showGreen ? 'block' : 'none'};">
+                        <i class="fa-solid fa-circle-check"></i> Accepted Answer : ${q.acceptedAnswer}
+                    </div>
+                </div>
+                `;
+            }
+
+            const isMSQ = q.type === 'MSQ';
+            const userArr = userAnswers[q.qn] || [];
+
+            return `
+            <div class="options-list">
+                ${q.options.map((optText, idx) => {
+                const isChecked = userArr.includes(idx);
+                const isCorrect = q.correct.includes(idx);
+                let highlightClass = '';
+                if (isChecked) highlightClass = 'selected';
+
+                if (currentMode === 'learning') {
+                    if (isCorrect) highlightClass = 'correct-highlight';
+                    else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                }
+
+                return `
+                    <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <span class="option-text">${optText}</span>
+                    </label>
+                    `;
+            }).join('')}
+            </div>
+            `;
+        }
+
+        function handleOptionSelect(qnNum, optIdx, qnType) {
+            if (qnType === 'MCQ') {
+                userAnswers[qnNum] = [optIdx];
+            } else if (qnType === 'MSQ') {
+                if (!userAnswers[qnNum]) userAnswers[qnNum] = [];
+                const pos = userAnswers[qnNum].indexOf(optIdx);
+                if (pos >= 0) userAnswers[qnNum].splice(pos, 1);
+                else userAnswers[qnNum].push(optIdx);
+            }
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function handleSAInput(qnNum, val) {
+            userAnswers[qnNum] = val.trim();
+            updatePaletteStatuses();
+            updateScoreDisplay();
+        }
+
+        function calculateQuestionScore(q) {
+            if (q.type === 'COMPREHENSION') return "0";
+            const userAns = userAnswers[q.qn];
+            if (!userAns) return "0";
+
+            if (q.type === 'SA') {
+                const cleanUser = String(userAns).trim();
+                if (q.acceptedAnswer.includes(' to ')) {
+                    const range = q.acceptedAnswer.split(' to ').map(Number);
+                    const num = parseFloat(cleanUser);
+                    if (!isNaN(num) && num >= range[0] && num <= range[1]) {
+                        return q.marks.toFixed(2);
+                    }
+                }
+                const numUser = parseFloat(cleanUser);
+                const numAcc = parseFloat(q.acceptedAnswer.trim());
+                if (!isNaN(numUser) && !isNaN(numAcc) && numUser === numAcc) {
+                    return q.marks.toFixed(2);
+                }
+                return (cleanUser === q.acceptedAnswer.trim()) ? q.marks.toFixed(2) : "0";
+            }
+
+            if (!Array.isArray(userAns) || userAns.length === 0) return "0";
+
+            if (q.type === 'MCQ') {
+                return (userAns[0] === q.correct[0]) ? q.marks.toFixed(2) : "0";
+            }
+
+            if (q.type === 'MSQ') {
+                const sortedUser = [...userAns].sort().join(',');
+                const sortedCorrect = [...q.correct].sort().join(',');
+                return (sortedUser === sortedCorrect) ? q.marks.toFixed(2) : "0";
+            }
+
+            return "0";
+        }
+
+        function updateScoreDisplay() {
+            let total = 0;
+            let answeredCount = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const score = parseFloat(calculateQuestionScore(q));
+                total += score;
+
+                const ans = userAnswers[q.qn];
+                if (ans && (Array.isArray(ans) ? ans.length > 0 : ans !== '')) {
+                    answeredCount++;
+                }
+            });
+
+            document.getElementById('liveScoreDisplay').textContent = `${total.toFixed(2)} / 100.00`;
+            const pct = ((total / 100) * 100).toFixed(1);
+            document.getElementById('livePercentDisplay').textContent = `(${pct}%)`;
+            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/29`;
+            const summaryEl = document.getElementById('summaryAnsweredCount');
+            if (summaryEl) summaryEl.textContent = answeredCount;
+        }
+
+        function updatePaletteStatuses() {
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.getElementById(`paletteBtn_${q.qn}`);
+                if (!btn) return;
+
+                btn.className = 'palette-btn';
+
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && (Array.isArray(ans) ? ans.length > 0 : ans !== '');
+
+                if (hasAns) {
+                    btn.classList.add('answered');
+                    if (currentMode === 'learning') {
+                        const score = parseFloat(calculateQuestionScore(q));
+                        if (score > 0) btn.classList.add('correct');
+                        else btn.classList.add('incorrect');
+                    }
+                }
+            });
+        }
+
+        function toggleSolution(qnNum) {
+            const box = document.getElementById(`solution_${qnNum}`);
+            if (box) box.classList.toggle('open');
+        }
+
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (isTimerRunning) {
+                    timerSeconds++;
+                    updateTimerUI();
+                }
+            }, 1000);
+        }
+
+        function toggleTimer() {
+            isTimerRunning = !isTimerRunning;
+            const btn = document.getElementById('btnPauseTimer');
+            if (btn) btn.innerHTML = isTimerRunning ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+        }
+
+        function resetTimer() {
+            timerSeconds = 0;
+            updateTimerUI();
+        }
+
+        function updateTimerUI() {
+            const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const secs = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+        }
+
+        function submitExam() {
+            setPortalMode('learning');
+
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+            let totalScore = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                if (q.type === 'COMPREHENSION') return;
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && (Array.isArray(ans) ? ans.length > 0 : ans !== '');
+
+                if (!hasAns) {
+                    unansweredCount++;
+                } else {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    totalScore += score;
+                    if (score > 0) correctCount++;
+                    else incorrectCount++;
+                }
+            });
+
+            document.getElementById('modalScoreText').textContent = `${totalScore.toFixed(2)} / 100.00`;
+            document.getElementById('modalPercentText').textContent = `${((totalScore / 100) * 100).toFixed(1)}% Accuracy`;
+            document.getElementById('modalCorrectCount').textContent = correctCount;
+            document.getElementById('modalIncorrectCount').textContent = incorrectCount;
+            document.getElementById('modalUnansweredCount').textContent = unansweredCount;
+
+            document.getElementById('resultModal').classList.add('active');
+        }
+
+        function resetExam() {
+            userAnswers = {};
+            resetTimer();
+            closeResultModal();
+            setPortalMode('learning');
+        }
+
+        function openSummaryModal() {
+            document.getElementById('summaryModal').classList.add('active');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.remove('active');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.remove('active');
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('portalSidebar');
+            const toggleBtn = document.getElementById('mobileSidebarToggle');
+            if (sidebar && toggleBtn) {
+                sidebar.classList.toggle('open');
+                toggleBtn.classList.toggle('active');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const fab = document.getElementById('fabBackToTop');
+            if (fab) {
+                if (window.scrollY > 300) fab.classList.add('visible');
+                else fab.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+
+</html>

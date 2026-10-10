@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice MLT Quiz 2 questions : 2026 May 06 EXAM - QuizPractice | BSH</title>
+    <meta name="description"
+        content="Practice Machine Learning Techniques Quiz 2 question paper (06 May 2026) with interactive exam & learning modes, instant score calculation, detailed solutions, and question palette.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Non-Blocking Asynchronous Load -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/icons/apple-touch-icon.png">
+
+    <!-- Master CSS -->
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/quiz-portal.css">
+
+    <!-- MathJax for rendering LaTeX math formulas -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false,
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('bsh-theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Site Navigation Header -->
+    <header class="site-header" id="header" data-root-prefix="../../../" data-active-page="quiz_practice"></header>
+
+    <main>
+        <div class="portal-layout">
+
+            <!-- Mobile Collapsible Sidebar Toggle Button -->
+            <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()">
+                <span><i class="fa-solid fa-sliders"></i> Exam Controls & Question Menu</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <!-- Left Sidebar: Controls, Menu & Timer -->
+            <aside class="portal-sidebar" id="portalSidebar">
+
+                <!-- Header Info -->
+                <div class="exam-info-header">
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Exam :</span>
+                        <span class="exam-info-val">Quiz 2</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Subject :</span>
+                        <span class="exam-info-val">MLT</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Total Marks :</span>
+                        <span class="exam-info-val">40.00</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">QP :</span>
+                        <span class="exam-info-val" style="font-size:0.72rem; line-height:1.2;">2026 May 06: IIT M Quiz 2</span>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher -->
+                <div>
+                    <div class="menu-heading">Portal Mode</div>
+                    <div class="mode-toggle-group">
+                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam Mode</button>
+                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning Mode</button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                    <button class="btn-action-pill" style="justify-content:center; padding:0.65rem;"
+                        onclick="openSummaryModal()">
+                        <i class="fa-solid fa-eye"></i> View Question Paper Summary
+                    </button>
+                    <button class="btn-action-pill" style="justify-content:center; padding:0.65rem;"
+                        onclick="window.print()">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </button>
+                </div>
+
+                <!-- Question Menu Grid -->
+                <div>
+                    <div class="menu-heading">
+                        <span>QUESTION MENU</span>
+                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/12</span>
+                    </div>
+                    <div class="palette-grid" id="paletteGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Timer Box -->
+                <div>
+                    <div class="menu-heading">TIMER</div>
+                    <div class="timer-box">
+                        <div class="timer-display" id="timerDisplay">00:00</div>
+                        <div class="timer-controls">
+                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i
+                                    class="fa-solid fa-pause"></i></button>
+                            <button class="btn-icon-sm" onclick="resetTimer()"><i
+                                    class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls & Score Box -->
+                <div>
+                    <div class="menu-heading">CONTROLS</div>
+                    <button class="btn-submit-exam" onclick="submitExam()">
+                        <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
+                    </button>
+                    <div class="score-card" style="margin-top:1rem;">
+                        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">YOUR SCORE</span>
+                        <div class="score-num" id="liveScoreDisplay">0.00 / 40.00</div>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);" id="livePercentDisplay">(0.0%)</span>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Right Area: Questions List -->
+            <section class="questions-area" id="questionsContainer">
+                <!-- Dynamically Rendered by JS -->
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Floating Back to Top FAB -->
+    <button class="fab-back-to-top" id="fabBackToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;">Question Paper Summary</h3>
+                <button class="btn-icon-sm" onclick="closeSummaryModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+                Paper Title: <b>Machine Learning Techniques (06 May 2026 Quiz 2)</b>
+            </p>
+            <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+                <tr style="border-bottom:1px solid var(--border-light); text-align:left;">
+                    <th style="padding:0.6rem;">Question Type</th>
+                    <th style="padding:0.6rem;">Count</th>
+                    <th style="padding:0.6rem;">Total Marks</th>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MCQ (Multiple Choice)</td>
+                    <td style="padding:0.6rem;">10</td>
+                    <td style="padding:0.6rem;">32.00</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">MSQ (Multiple Select)</td>
+                    <td style="padding:0.6rem;">1</td>
+                    <td style="padding:0.6rem;">4.00</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                    <td style="padding:0.6rem;">SA (Short Answer / Numeric)</td>
+                    <td style="padding:0.6rem;">1</td>
+                    <td style="padding:0.6rem;">4.00</td>
+                </tr>
+            </table>
+            <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="closeSummaryModal()">Close Summary</button>
+        </div>
+    </div>
+
+    <!-- Exam Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-card" style="text-align:center;">
+            <div
+                style="width:64px; height:64px; border-radius:50%; background:rgba(16, 185, 129, 0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 1rem;">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Exam Submitted!</h2>
+            <p style="color:var(--text-muted); margin-bottom:1.5rem;">Here is your performance summary for Machine Learning Techniques Quiz 2 (06 May 2026)</p>
+
+            <div
+                style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
+                <div style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; font-weight:600;">
+                    Final Score</div>
+                <div style="font-family:var(--font-mono); font-size:2.8rem; font-weight:800; color:var(--accent-green);"
+                    id="modalScoreText">0.00 / 40.00</div>
+                <div style="font-size:1.1rem; font-weight:700; color:var(--text-primary);" id="modalPercentText">0.0% Accuracy
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem; margin-bottom:1.5rem;">
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Correct</div>
+                    <div style="font-weight:700; color:#10b981; font-size:1.2rem;" id="modalCorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Incorrect</div>
+                    <div style="font-weight:700; color:#ef4444; font-size:1.2rem;" id="modalIncorrectCount">0</div>
+                </div>
+                <div style="background:var(--bg-subtle); padding:0.8rem; border-radius:var(--radius-md);">
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Unanswered</div>
+                    <div style="font-weight:700; color:var(--text-secondary); font-size:1.2rem;"
+                        id="modalUnansweredCount">0</div>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:0.75rem;">
+                <button class="btn btn-secondary btn-full"
+                    onclick="closeResultModal(); setPortalMode('learning');">Review Solutions <i
+                        class="fa-solid fa-book-open"></i></button>
+                <button class="btn btn-primary btn-full" onclick="resetExam()">Retake Exam <i
+                        class="fa-solid fa-rotate-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Master Scripts -->
+    <script src="../../../assets/js/components.js"></script>`n    <script src="../../../assets/js/main.js"></script>
+    <script>
+        const QUESTIONS_DATA = [
+            {
+                qn: 1,
+                id: "6406532180457",
+                type: "MCQ",
+                marks: 0.00,
+                question: "THIS IS QUESTION PAPER FOR THE SUBJECT &quot;DIPLOMA LEVEL : MACHINE LEARNING TECHNIQUES (COMPUTER BASED EXAM)&quot;<br><br>ARE YOU SURE YOU HAVE TO WRITE EXAM FOR THIS SUBJECT?<br>CROSS CHECK YOUR HALL TICKET TO CONFIRM THE SUBJECTS TO BE WRITTEN.<br><br>(IF IT IS NOT THE CORRECT SUBJECT, PLS CHECK THE SECTION AT THE TOP FOR THE SUBJECTS REGISTERED BY YOU)",
+                options: [
+                    "Yes",
+                    "No"
+                ],
+                correct: [0],
+                solution: "<strong>Explanation:</strong><br>Standard hall ticket and subject registration verification prompt."
+            },
+            {
+                qn: 2,
+                id: "6406532180458",
+                type: "MCQ",
+                marks: 4.00,
+                question: "Consider a binary classification problem in $\\mathbb{R}^2$. The feature space is partitioned into the following four regions:<br><br>$$R_1 = \\{(x_1, x_2) \\mid x_1 \\ge 0, x_2 \\ge 0\\},$$<br>$$R_2 = \\{(x_1, x_2) \\mid x_1 < 0, x_2 \\ge 0\\},$$<br>$$R_3 = \\{(x_1, x_2) \\mid x_1 < 0, x_2 < 0\\},$$<br>$$R_4 = \\{(x_1, x_2) \\mid x_1 \\ge 0, x_2 < 0\\}.$$<br><br>Each region contains the same number of observations. All observations in regions $R_1$ and $R_3$ belong to the positive class, while all observations in regions $R_2$ and $R_4$ belong to the negative class.<br><br>A decision tree is constructed using axis-aligned binary splits of the form $x_1 \\le t$ or $x_2 \\le t$, where $t$ is any real number. At each node, the split is chosen to maximize the information gain based on entropy.<br><br>What is the minimum number of binary questions (splits) that the decision tree must ask to obtain leaf nodes with zero entropy?",
+                options: [
+                    "3",
+                    "2",
+                    "4",
+                    "It is impossible using only axis-aligned splits."
+                ],
+                correct: [0],
+                solution: "<strong>Explanation:</strong><br>1. This distribution forms an XOR pattern in $\\mathbb{R}^2$: $R_1 (+), R_2 (-), R_3 (+), R_4 (-)$. Each quadrant contains an equal fraction ($1/4$) of total points.<br>2. At the root node: splitting at $x_1 = 0$ (or $x_2 = 0$) puts $R_1(+), R_4(-)$ in one child and $R_2(-), R_3(+)$ in the other child.<br>   - Both child nodes have an equal number of positive and negative points ($50\\%$ positive, $50\\%$ negative), giving entropy $1.0$. Information gain for any single initial split at $x_1=0$ or $x_2=0$ is $1.0 - 1.0 = 0$.<br>3. However, if a split is made at $x_1 = 0$, the left child contains $R_2(-)$ and $R_3(+)$. A second split on the left child at $x_2 = 0$ separates $R_2(-)$ (pure leaf) and $R_3(+)$ (pure leaf).<br>4. The right child contains $R_1(+)$ and $R_4(-)$. A third split on the right child at $x_2 = 0$ separates $R_1(+)$ (pure leaf) and $R_4(-)$ (pure leaf).<br>5. In total, 3 binary questions (splits) are performed: 1 root split + 1 left split + 1 right split to obtain 4 leaf nodes, all with zero entropy!"
+            },
+            {
+                qn: 3,
+                id: "6406532180459",
+                type: "MCQ",
+                marks: 4.00,
+                question: "Suppose an email is represented by a binary feature vector<br><br>$$X = (x_1, x_2, \\dots, x_d) \\in \\{0, 1\\}^d.$$<br><br>A generative classifier first chooses the class label $Y$ according to the prior distribution $P(Y)$. It then generates the feature vector $X$ conditioned on the chosen class. The classifier assumes that, given the class label, the features are conditionally independent.<br><br>Which of the following expressions correctly represents $P(Y = \\text{Spam} \\mid X = x)$?",
+                options: [
+                    "$\\frac{P(Y = \\text{Spam})}{P(X = x)}$",
+                    "$\\frac{\\left(\\prod_{i=1}^d P(x_i)\\right) P(Y = \\text{Spam})}{P(X = x)}$",
+                    "$\\prod_{i=1}^d P(Y = \\text{Spam} \\mid x_i)$",
+                    "$\\frac{\\left(\\prod_{i=1}^d P(x_i \\mid Y = \\text{Spam})\\right) P(Y = \\text{Spam})}{P(X = x)}$"
+                ],
+                correct: [3],
+                solution: "<strong>Explanation:</strong><br>By Bayes' Theorem:<br>$$P(Y = \\text{Spam} \\mid X = x) = \\frac{P(X = x \\mid Y = \\text{Spam}) P(Y = \\text{Spam})}{P(X = x)}$$<br>Under the Naive Bayes assumption of class-conditional independence:<br>$$P(X = x \\mid Y = \\text{Spam}) = \\prod_{i=1}^d P(x_i \\mid Y = \\text{Spam})$$<br>Substituting this gives:<br>$$P(Y = \\text{Spam} \\mid X = x) = \\frac{\\left(\\prod_{i=1}^d P(x_i \\mid Y = \\text{Spam})\\right) P(Y = \\text{Spam})}{P(X = x)}$$"
+            },
+            {
+                qn: 4,
+                id: "6406532180461",
+                type: "MCQ",
+                marks: 4.00,
+                question: "Under the probabilistic view of linear regression, assume<br><br>$$y_i \\sim \\mathcal{N}(w^T x_i, \\sigma^2),$$<br><br>where the observations are independent. Suppose the true noise variance is $4\\sigma^2$ instead of $\\sigma^2$, while the dataset and the observed labels remain unchanged.<br><br>What happens to the maximum likelihood estimator $\\hat{w}_{ML} = (X X^T)^{-1} X y$?",
+                options: [
+                    "It is unchanged.",
+                    "It is scaled by $4$.",
+                    "It is scaled by $1/4$.",
+                    "It cannot be determined without knowing $\\sigma^2$."
+                ],
+                correct: [0],
+                solution: "<strong>Explanation:</strong><br>Log-likelihood for independent Gaussian noise with variance $\\sigma_0^2$ (where $\\sigma_0^2 = 4\\sigma^2$):<br>$$\\ln L(w) = -\\frac{N}{2}\\ln(2\\pi \\sigma_0^2) - \\frac{1}{2\\sigma_0^2} \\sum_{i=1}^N (y_i - w^T x_i)^2$$<br>Maximizing $\\ln L(w)$ with respect to $w$ is equivalent to minimizing $\\sum_{i=1}^N (y_i - w^T x_i)^2$, because the constant factor $\\frac{1}{2\\sigma_0^2} > 0$ scales the entire objective without shifting its argmin.<br>Therefore, the Maximum Likelihood Estimator $\\hat{w}_{ML} = (X X^T)^{-1} X y$ is independent of noise variance $\\sigma_0^2$ and remains completely <strong>unchanged</strong>."
+            },
+            {
+                qn: 5,
+                id: "6406532180463",
+                type: "MCQ",
+                marks: 4.00,
+                question: "On a machine that folds plastic film, the operating temperature can be varied between $130^\\circ\\text{C}$ and $185^\\circ\\text{C}$. To study the relationship between temperature and fold thickness, $n = 12$ observations of temperature and the corresponding fold thickness were collected. The scatter plot along with the fitted simple linear regression line is shown below.<br><br><div style='text-align:center;'><svg width='320' height='360' viewBox='0 0 320 360' style='background:var(--card-bg, #ffffff); border:1px solid var(--border-color, #cbd5e1); border-radius:8px; display:inline-block; margin:0.5rem 0;'><rect x='45' y='15' width='250' height='300' fill='none' stroke='#0f172a' stroke-width='1.5'/><line x1='55' y1='25' x2='285' y2='300' stroke='#0f172a' stroke-width='2'/><circle cx='60' cy='22' r='4' fill='none' stroke='#0f172a' stroke-width='1.5'/><circle cx='80' cy='45' r='4' fill='none' stroke='#0f172a' stroke-width='1.5'/><circle cx='100' cy='72' r='4' fill='none' stroke='#0f172a' stroke-width='1.5'/><circle cx='120' cy='95' r='4' fill='none' stroke='#0f172a' stroke-width='1.5'/><circle cx='140' cy='122' r='4' fill='none' stroke='#0f172a' stroke-width='1.5'/><circle cx='160' cy='145' r='4' fill='none' stroke='#0f172a' stroke-width='1.5'/><circle cx='180' cy='172' r='4' fill='none' stroke='#0f172a' stroke-width='1.5'/><circle cx='200' cy='195' r='4' fill='none' stroke='#0f172a' stroke-width='1.5'/><circle cx='220' cy='222' r='4' fill='none' stroke='#0f172a' stroke-width='1.5'/><circle cx='240' cy='248' r='4' fill='none' stroke='#0f172a' stroke-width='1.5'/><circle cx='260' cy='272' r='4' fill='none' stroke='#0f172a' stroke-width='1.5'/><circle cx='280' cy='295' r='4' fill='none' stroke='#0f172a' stroke-width='1.5'/><line x1='55' y1='315' x2='55' y2='322' stroke='#0f172a'/><text x='55' y='338' font-family='sans-serif' font-size='12' text-anchor='middle'>130</text><line x1='100' y1='315' x2='100' y2='322' stroke='#0f172a'/><text x='100' y='338' font-family='sans-serif' font-size='12' text-anchor='middle'>140</text><line x1='145' y1='315' x2='145' y2='322' stroke='#0f172a'/><text x='145' y='338' font-family='sans-serif' font-size='12' text-anchor='middle'>150</text><line x1='190' y1='315' x2='190' y2='322' stroke='#0f172a'/><text x='190' y='338' font-family='sans-serif' font-size='12' text-anchor='middle'>160</text><line x1='235' y1='315' x2='235' y2='322' stroke='#0f172a'/><text x='235' y='338' font-family='sans-serif' font-size='12' text-anchor='middle'>170</text><line x1='275' y1='315' x2='275' y2='322' stroke='#0f172a'/><text x='275' y='338' font-family='sans-serif' font-size='12' text-anchor='middle'>180</text><text x='165' y='358' font-family='sans-serif' font-size='13' font-weight='bold' text-anchor='middle'>Temperature</text><line x1='45' y1='272' x2='38' y2='272' stroke='#0f172a'/><text x='34' y='276' font-family='sans-serif' font-size='12' text-anchor='end'>90</text><line x1='45' y1='217' x2='38' y2='217' stroke='#0f172a'/><text x='34' y='221' font-family='sans-serif' font-size='12' text-anchor='end'>100</text><line x1='45' y1='162' x2='38' y2='162' stroke='#0f172a'/><text x='34' y='166' font-family='sans-serif' font-size='12' text-anchor='end'>110</text><line x1='45' y1='107' x2='38' y2='107' stroke='#0f172a'/><text x='34' y='111' font-family='sans-serif' font-size='12' text-anchor='end'>120</text><line x1='45' y1='52' x2='38' y2='52' stroke='#0f172a'/><text x='34' y='56' font-family='sans-serif' font-size='12' text-anchor='end'>130</text><text x='16' y='165' font-family='sans-serif' font-size='13' font-weight='bold' text-anchor='middle' transform='rotate(-90 16 165)'>Thickness</text></svg></div><br>Determine, by inspecting the figure, which of the following sets of parameter estimates for the simple linear regression model is most appropriate.<br><br>Note: The regression model is $\\text{Thickness}(y) = \\beta_0 + \\beta_1 (\\text{Temperature}) + \\epsilon$, where $\\epsilon \\sim \\mathcal{N}(0, \\sigma^2)$. Here, $\\hat{\\beta}_0$ is the estimated intercept, $\\hat{\\beta}_1$ is the estimated slope, and $\\hat{\\sigma}$ is the estimated standard deviation of the error term.",
+                options: [
+                    "$\\hat{\\beta}_0 = 0, \\quad \\hat{\\beta}_1 = -0.9, \\quad \\hat{\\sigma} = 360$",
+                    "$\\hat{\\beta}_0 = 0, \\quad \\hat{\\beta}_1 = 0.9, \\quad \\hat{\\sigma} = 3.6$",
+                    "$\\hat{\\beta}_0 = 252, \\quad \\hat{\\beta}_1 = -0.9, \\quad \\hat{\\sigma} = 3.6$",
+                    "$\\hat{\\beta}_0 = -252, \\quad \\hat{\\beta}_1 = -0.9, \\quad \\hat{\\sigma} = 360$",
+                    "$\\hat{\\beta}_0 = 252, \\quad \\hat{\\beta}_1 = -0.9, \\quad \\hat{\\sigma} = 360$"
+                ],
+                correct: [2],
+                solution: "<strong>Explanation:</strong><br>1. Slope $\\hat{\\beta}_1$: As temperature increases from $130$ to $180$ ($\Delta x = 50$), thickness decreases from $\\approx 135$ to $\\approx 90$ ($\Delta y \\approx -45$). Slope $\\hat{\\beta}_1 \\approx \\frac{-45}{50} = -0.9$.<br>2. Intercept $\\hat{\\beta}_0$: At $x = 130$, $y = \\hat{\\beta}_0 + (-0.9)(130) \\approx 135 \\implies \\hat{\\beta}_0 = 135 + 117 = 252$.<br>3. Residual std dev $\\hat{\\sigma}$: The scatter points lie extremely close to the line within $\\pm 3\\text{ to }5$ units of thickness, so $\\hat{\\sigma} \\approx 3.6$ (not an absurdly large value like $360$).<br>Thus, $\\hat{\\beta}_0 = 252, \\hat{\\beta}_1 = -0.9, \\hat{\\sigma} = 3.6$ is the correct option."
+            },
+            {
+                qn: 6,
+                id: "6406532180464",
+                type: "MCQ",
+                marks: 4.00,
+                question: "Let the training data be $(x_i, y_i)_{i=1}^n$, where $x_i \\in \\mathbb{R}^d$ and $y_i \\in \\mathbb{R}$. Consider the ridge regression estimator defined, for a fixed $\\lambda > 0$, as<br><br>$$\\hat{w} = \\arg\\min_{w \\in \\mathbb{R}^d} \\left[ \\frac{1}{2} \\sum_{i=1}^n (w^T x_i - y_i)^2 + \\frac{\\lambda}{2} \\|w\\|^2 \\right].$$<br><br>To obtain the maximum a posteriori (MAP) estimator, the following probabilistic model is assumed:<br>• <strong>Prior:</strong> $w \\sim \\mathcal{N}(0, \\sigma^2 I)$ where $w \\in \\mathbb{R}^d$, $0 \\in \\mathbb{R}^d$ is the zero vector, $I \\in \\mathbb{R}^{d \\times d}$ is the identity matrix, and $\\sigma^2 > 0$ is the prior variance.<br>• <strong>Likelihood:</strong> Conditioned on $w$, the labels are mutually independent, with $y_i \\mid x_i, w \\sim \\mathcal{N}(w^T x_i, 1), \\quad i = 1, \\dots, n$.<br><br>Let $\\hat{w}_{MAP}$ denote the maximum a posteriori estimate of $w$.<br>For which value of $\\lambda$ do the two optimization problems become identical? (Equivalently, for which value of $\\lambda$ does $\\hat{w}_{MAP} = \\hat{w}_R$ hold for every dataset?)",
+                options: [
+                    "$\\lambda = \\sigma^2$",
+                    "$\\lambda = \\frac{1}{2\\sigma^2}$",
+                    "$\\lambda = 1$",
+                    "$\\lambda = \\frac{1}{\\sigma^2}$"
+                ],
+                correct: [3],
+                solution: "<strong>Explanation:</strong><br>1. MAP optimization objective: $\\arg\\max_w [\\ln P(y \\mid X, w) + \\ln P(w)]$.<br>   - Log-likelihood with noise variance $1$: $-\\frac{1}{2} \\sum_{i=1}^n (w^T x_i - y_i)^2 + \\text{const}$.<br>   - Gaussian Prior $\\mathcal{N}(0, \\sigma^2 I)$: $-\\frac{1}{2\\sigma^2} \\|w\\|^2 + \\text{const}$.<br>2. Maximizing MAP is equivalent to minimizing:<br>   $$\\frac{1}{2} \\sum_{i=1}^n (w^T x_i - y_i)^2 + \\frac{1}{2\\sigma^2} \\|w\\|^2$$<br>3. Comparing directly to Ridge Regression objective $\\frac{1}{2} \\sum (w^T x_i - y_i)^2 + \\frac{\\lambda}{2} \\|w\\|^2$, we get:<br>   $$\\lambda = \\frac{1}{\\sigma^2}$$"
+            },
+            {
+                qn: 7,
+                id: "6406532180460",
+                type: "MCQ",
+                marks: 3.00,
+                question: "A node in a decision tree contains an equal number of positive and negative training examples.<br>What is the entropy of this node?",
+                options: [
+                    "0",
+                    "0.5",
+                    "1",
+                    "It depends on the total number of training examples."
+                ],
+                correct: [2],
+                solution: "<strong>Explanation:</strong><br>For an equal proportion of positive and negative examples ($p_+ = 0.5, p_- = 0.5$):<br>$$H = -p_+ \\log_2(p_+) - p_- \\log_2(p_-) = -0.5 \\log_2(0.5) - 0.5 \\log_2(0.5) = 0.5 + 0.5 = 1.0\\text{ bit}$$"
+            },
+            {
+                qn: 8,
+                id: "6406532180462",
+                type: "MCQ",
+                marks: 3.00,
+                question: "A student $P$ minimizes the sum of squared errors (SSE) loss<br><br>$$L(w) = \\frac{1}{2} \\sum_{i=1}^n (w^T x_i - y_i)^2,$$<br><br>while another student $Q$ minimizes the mean squared error (MSE) loss<br><br>$$L'(w) = \\frac{1}{2n} \\sum_{i=1}^n (w^T x_i - y_i)^2.$$<br><br>Both students use gradient descent with the same learning rate $\\eta$ and the same initial parameter vector $w_0$. Which one of the following statements is correct?",
+                options: [
+                    "They converge to different minimizers, because the losses differ.",
+                    "They converge to the same minimizer, but $Q$'s steps are $n$ times smaller; $Q$ would need learning rate $n\\eta$ to reproduce $P$'s trajectory.",
+                    "They converge to the same minimizer, and their iterates coincide at every step.",
+                    "They converge to the same minimizer, but $Q$'s steps are $n$ times larger."
+                ],
+                correct: [1],
+                solution: "<strong>Explanation:</strong><br>1. Since $L'(w) = \\frac{1}{n} L(w)$, both loss functions have the exact same unique global minimizer $w^* = (X X^T)^{-1} X y$.<br>2. Gradients are related by $\\nabla L'(w) = \\frac{1}{n} \\nabla L(w)$.<br>3. Parameter update step for student $P$: $\\Delta w_P = -\\eta \\nabla L(w)$.<br>   Parameter update step for student $Q$: $\\Delta w_Q = -\\eta \\nabla L'(w) = -\\frac{\\eta}{n} \\nabla L(w) = \\frac{1}{n} \\Delta w_P$.<br>4. Thus $Q$'s gradient step is $n$ times smaller, requiring a learning rate of $n\\eta$ for $Q$ to match $P$'s exact optimization trajectory."
+            },
+            {
+                qn: 9,
+                id: "6406532180465",
+                type: "MCQ",
+                marks: 3.00,
+                question: "A dataset has $n = 3$ data points and $d = 2$ features. The two feature vectors are $f_1 = [1 \\quad 0 \\quad 1]^T$ and $f_2 = [0 \\quad 1 \\quad 1]^T$.<br>For which label vector $y$ is the linear model $f(x) = w^T x$ guaranteed to achieve exactly zero training error?",
+                options: [
+                    "$y = [1 \\quad 2 \\quad 3]^T$",
+                    "$y = [1 \\quad 2 \\quad 4]^T$",
+                    "$y = [2 \\quad 1 \\quad 4]^T$",
+                    "$y = [0 \\quad 0 \\quad 1]^T$"
+                ],
+                correct: [0],
+                solution: "<strong>Explanation:</strong><br>A linear model with no bias term predicts $y = w_1 f_1 + w_2 f_2$.<br>Checking if $y$ lies in the linear span (column space) of $f_1$ and $f_2$:<br>$$y = w_1 \\begin{bmatrix} 1 \\\\ 0 \\\\ 1 \\end{bmatrix} + w_2 \\begin{bmatrix} 0 \\\\ 1 \\\\ 1 \\end{bmatrix} = \\begin{bmatrix} w_1 \\\\ w_2 \\\\ w_1 + w_2 \\end{bmatrix}$$<br>For zero training error, the third component $y_3$ must equal $y_1 + y_2$:<br>- Option 1: $y = [1 \\quad 2 \\quad 3]^T \\implies y_3 = 1 + 2 = 3$. (Satisfied with $w_1 = 1, w_2 = 2$!)<br>- Option 2: $1 + 2 \\neq 4$.<br>- Option 3: $2 + 1 \\neq 4$.<br>- Option 4: $0 + 0 \\neq 1$.<br>Thus, $y = [1 \\quad 2 \\quad 3]^T$ achieves zero training error."
+            },
+            {
+                qn: 10,
+                id: "6406532180466",
+                type: "MCQ",
+                marks: 3.00,
+                question: "Suppose the label vector $y \\neq 0$ is orthogonal to every feature vector, i.e. $f_j^T y = 0$ for all $j = 1, \\dots, d$. $w^*$ is the optimal weight obtained after minimizing the objective function of linear regression. Which statement is correct?",
+                options: [
+                    "$X^T w^* = y$ and the training error is $0$.",
+                    "$X^T w^* = 0$ and the squared training error equals \\|y\\|_2^2.",
+                    "$X^T w^* = 0$ and the squared training error equals $0$.",
+                    "The normal equations have no solution."
+                ],
+                correct: [1],
+                solution: "<strong>Explanation:</strong><br>1. Feature matrix $X \\in \\mathbb{R}^{d \\times n}$ has rows $f_j^T$. Since $y$ is orthogonal to every feature vector $f_j$, $X y = 0$.<br>2. OLS normal equation: $(X X^T) w^* = X y = 0 \\implies w^* = 0$.<br>3. Predicted labels $\\hat{y} = X^T w^* = X^T (0) = 0$.<br>4. Residual vector $e = y - \\hat{y} = y - 0 = y$.<br>5. Squared training error \\|y - \\hat{y}\\|_2^2 = \\|y\\|_2^2.<br>Therefore, $X^T w^* = 0$ and the squared training error equals \\|y\\|_2^2."
+            },
+            {
+                qn: 11,
+                id: "6406532180467",
+                type: "MSQ",
+                marks: 4.00,
+                question: "Which of the following statements about the K-Nearest Neighbours (KNN) algorithm are correct?",
+                options: [
+                    "The choice of distance metric can affect the predicted class.",
+                    "Once trained, KNN makes predictions without referring to the training data.",
+                    "Every prediction does not require computing distances from the test point to all training data.",
+                    "The computational cost of prediction generally increases with the size of the training dataset."
+                ],
+                correct: [0, 3],
+                solution: "<strong>Explanation:</strong><br>1. Changing distance metrics (e.g. Euclidean vs Manhattan vs Minkowski) changes neighbor distances, affecting neighbor rankings and predicted classes. (Correct)<br>2. KNN is a non-parametric lazy learner; it MUST store and reference the entire training dataset at prediction time. (Incorrect)<br>3. Standard naive KNN requires computing distance from the test point to ALL training points $N$. (Incorrect)<br>4. Since KNN compares test points against training data at prediction time, runtime complexity scales with dataset size $N$ ($O(N d)$ per test point). (Correct)"
+            },
+            {
+                qn: 12,
+                id: "6406532180468",
+                type: "SA",
+                marks: 4.00,
+                question: "A generative classifier models the joint distribution of the feature vector $X$ and the class label $Y$. For a particular email represented by the feature vector $x$, suppose<br><br>$$P(X = x, Y = \\text{Spam}) = 0.015 \\quad \\text{and} \\quad P(X = x, Y = \\text{Not Spam}) = 0.035.$$<br><br>Compute the posterior probability $P(Y = \\text{Spam} \\mid X = x)$.",
+                acceptedAnswer: "0.3",
+                solution: "<strong>Explanation:</strong><br>By definition of conditional probability:<br>$$P(Y = \\text{Spam} \\mid X = x) = \\frac{P(X = x, Y = \\text{Spam})}{P(X = x)}$$<br>By law of total probability:<br>$$P(X = x) = P(X = x, Y = \\text{Spam}) + P(X = x, Y = \\text{Not Spam}) = 0.015 + 0.035 = 0.050$$<br>Substituting:<br>$$P(Y = \\text{Spam} \\mid X = x) = \\frac{0.015}{0.050} = 0.30 = 0.3$$<br>The answer is <strong>0.3</strong>."
+            }
+        ];
+
+        let currentMode = 'exam';
+        let userAnswers = {};
+        let timerSeconds = 0;
+        let isTimerRunning = true;
+        let timerInterval = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPalette();
+            renderQuestions();
+            startTimer();
+            updateScoreDisplay();
+        });
+
+        function setPortalMode(mode) {
+            currentMode = mode;
+            document.getElementById('btnExamMode').classList.toggle('active', mode === 'exam');
+            document.getElementById('btnLearningMode').classList.toggle('active', mode === 'learning');
+
+            document.querySelectorAll('.solution-box').forEach(box => { if (mode === 'learning') box.classList.add('open'); else box.classList.remove('open'); });
+            document.querySelectorAll('.accepted-ans-box').forEach(box => { box.style.display = (mode === 'learning') ? 'block' : 'none'; });
+
+            const banner = document.getElementById('portalModeBanner');
+            if (banner) {
+                if (mode === 'learning') {
+                    banner.className = 'portal-mode-banner learning';
+                    banner.innerHTML = '<i class="fa-solid fa-graduation-cap"></i> <span><strong>Learning Mode:</strong> Solutions and answer explanations are revealed below each question. Perfect for study and practice!</span>';
+                } else {
+                    banner.className = 'portal-mode-banner';
+                    banner.innerHTML = '<i class="fa-solid fa-clock"></i> <span><strong>Exam Mode:</strong> Live timer active. Instant scoring enabled. Solutions shown on exam submission or when switching to Learning Mode.</span>';
+                }
+            }
+
+            renderQuestions();
+            updatePaletteStatuses();
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('paletteGrid');
+            grid.innerHTML = QUESTIONS_DATA.map(q => {
+                return `<button class="palette-btn" id="paletteBtn_${q.qn}" onclick="scrollToQuestion(${q.qn})">${q.qn}</button>`;
+            }).join('');
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            let html = '';
+
+            QUESTIONS_DATA.forEach((q) => {
+                const isComprehensionHeader = q.type === 'COMPREHENSION';
+
+                if (isComprehensionHeader) {
+                    html += `
+                    <article class="qn-card comprehension-card" id="qnCard_${q.qn}">
+                        <div class="qn-header-container">
+                            <div class="qn-header-top">
+                                <div class="qn-title-main">
+                                    <span style="background:var(--accent-purple); color:white; padding:0.25rem 0.6rem; border-radius:4px; font-size:0.75rem; font-weight:700;">COMPREHENSION PASSAGE</span>
+                                </div>
+                            </div>
+                            <div class="qn-header-sub">
+                                <span class="qn-id-tag">Question ${q.qn} : ${q.id}</span>
+                            </div>
+                        </div>
+                        <div class="qn-text" style="font-size:1rem; line-height:1.7;">${q.question || q.text || ''}</div>
+                    </article>
+                    `;
+                    return;
+                }
+
+                html += `
+                <article class="qn-card" id="qnCard_${q.qn}">
+                    <div class="qn-header-container">
+                        <div class="qn-header-top">
+                            <div class="qn-title-main">
+                                Question ${q.qn} : ${q.id}
+                            </div>
+                            <button class="btn-solution-pill" onclick="toggleSolution(${q.qn})">
+                                <i class="fa-regular fa-circle-check"></i> View Solutions (1)
+                            </button>
+                        </div>
+                        <div class="qn-header-sub">
+                            <span class="qn-id-tag">Question ${q.qn} : ${q.id}</span>
+                            <span class="qn-meta-info">Total Mark : ${q.marks.toFixed(2)} | Type : ${q.type}</span>
+                        </div>
+                    </div>
+
+                    <div class="qn-text">${q.question ? q.question : (q.text || '')}</div>
+
+                    ${q.code ? `
+                    <div class="code-snippet-wrap">
+                        <code>${escapeHtml(q.code)}</code>
+                    </div>` : ''}
+
+                    ${q.qnSubText ? `<div class="qn-text" style="margin-top:0.85rem;">${q.qnSubText}</div>` : ''}
+
+                    <!-- Options / Inputs -->
+                    ${renderAnswerInput(q)}
+
+                    <!-- Solution Accordion -->
+                    <div class="solution-box ${currentMode === 'learning' ? 'open' : ''}" id="solution_${q.qn}">
+                        <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution & Explanation</div>
+                        <div class="solution-text">
+                            ${(q.acceptedAnswer || (q.correct && q.options)) ? `<div style="font-weight:700; margin-bottom:0.5rem; color:var(--accent-green);">Accepted / Correct Answer:</div><div style="font-family:var(--font-mono); background:var(--bg-surface); padding:0.5rem 0.75rem; border-radius:6px; margin-bottom:0.75rem; border:1px solid var(--border-color);">${q.type === 'SA' ? q.acceptedAnswer : q.correct.map(i => `${i + 1}. ${q.options[i]}`).join('<br>')}</div>` : ''}
+                            ${q.solution ? q.solution : ''}
+                        </div>
+                    </div>
+                </article>
+                `;
+
+                if (q.qn === 6) {
+                    html += `
+                    <div class="ad-banner-box">
+                        <span class="ad-tag">ADVERTISEMENT</span>
+                        <div class="ad-actions">
+                            <button class="btn-remove-ads" onclick="alert('Ad-free experience enabled.')"><i class="fa-solid fa-bolt"></i> Remove Ads</button>
+                            <button class="btn-close-ad" onclick="this.parentElement.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    `;
+                }
+            });
+
+            container.innerHTML = html;
+            if (typeof currentMode !== 'undefined' && currentMode === 'learning') {
+                document.querySelectorAll('.solution-box').forEach(box => box.classList.add('open'));
+                document.querySelectorAll('.accepted-ans-box').forEach(box => box.style.display = 'block');
+            }
+            updatePaletteStatuses();
+            if (window.MathJax && typeof MathJax.typesetPromise === 'function') {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function renderAnswerInput(q) {
+            if (q.type === 'SA') {
+                const val = userAnswers[q.qn] ? userAnswers[q.qn][0] : '';
+                const showGreen = currentMode === 'learning';
+                return `
+                <div class="sa-input-wrap" style="margin-top:1.25rem;">
+                    <label style="display:block; font-size:0.85rem; font-weight:600; color:var(--text-muted); margin-bottom:0.4rem;">Answer (Numeric):</label>
+                    <input type="text" class="sa-input" value="${escapeHtml(val)}" placeholder="Type your numeric answer here..." oninput="handleSAInput(${q.qn}, this.value)">
+                    <div class="accepted-ans-box" style="display:${showGreen ? 'block' : 'none'};">
+                        <i class="fa-solid fa-circle-check"></i> Accepted Answer : ${q.acceptedAnswer}
+                    </div>
+                </div>
+                `;
+            }
+
+            const isMSQ = q.type === 'MSQ';
+            const userArr = userAnswers[q.qn] || [];
+
+            return `
+            <div class="options-list">
+                ${q.options.map((optText, idx) => {
+                const isChecked = userArr.includes(idx);
+                const isCorrect = q.correct && q.correct.includes(idx);
+                let highlightClass = '';
+
+                if (isChecked) highlightClass = 'selected';
+
+                if (currentMode === 'learning') {
+                    if (isCorrect) highlightClass = 'correct-highlight';
+                    else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                }
+
+                return `
+                    <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <span class="option-text">${optText}</span>
+                    </label>
+                    `;
+            }).join('')}
+            </div>
+            `;
+        }
+
+        function handleSAInput(qnNum, val) {
+            if (!val || val.trim() === '') {
+                delete userAnswers[qnNum];
+            } else {
+                userAnswers[qnNum] = [val.trim()];
+            }
+            updateScoreDisplay();
+            updatePaletteStatuses();
+        }
+
+        function handleOptionSelect(qnNum, optIdx, qnType) {
+            if (qnType === 'MCQ') {
+                userAnswers[qnNum] = [optIdx];
+            } else if (qnType === 'MSQ') {
+                if (!userAnswers[qnNum]) userAnswers[qnNum] = [];
+                const pos = userAnswers[qnNum].indexOf(optIdx);
+                if (pos >= 0) userAnswers[qnNum].splice(pos, 1);
+                else userAnswers[qnNum].push(optIdx);
+            }
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function calculateQuestionScore(q) {
+            const userAns = userAnswers[q.qn];
+            if (!userAns || !Array.isArray(userAns) || userAns.length === 0) return "0.00";
+
+            if (q.type === 'MCQ') {
+                return (userAns[0] === q.correct[0]) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            if (q.type === 'MSQ') {
+                const sortedUser = [...userAns].sort((a, b) => a - b).join(',');
+                const sortedCorrect = [...q.correct].sort((a, b) => a - b).join(',');
+                return (sortedUser === sortedCorrect) ? q.marks.toFixed(2) : "0.00";
+            }
+
+            if (q.type === 'SA') {
+                const valStr = (userAns[0] || '').trim();
+                const valNum = parseFloat(valStr);
+
+                if (q.acceptedAnswer.includes('to')) {
+                    const parts = q.acceptedAnswer.split('to').map(p => parseFloat(p.trim()));
+                    if (!isNaN(valNum) && valNum >= parts[0] && valNum <= parts[1]) {
+                        return q.marks.toFixed(2);
+                    }
+                } else {
+                    const targetNum = parseFloat(q.acceptedAnswer);
+                    if (!isNaN(valNum) && Math.abs(valNum - targetNum) < 0.01) {
+                        return q.marks.toFixed(2);
+                    }
+                }
+            }
+
+            return "0.00";
+        }
+
+        function updateScoreDisplay() {
+            let total = 0;
+            let maxMarks = 40.00;
+
+            QUESTIONS_DATA.forEach(q => {
+                if (q.type !== 'COMPREHENSION') {
+                    total += parseFloat(calculateQuestionScore(q));
+                }
+            });
+
+            document.getElementById('liveScoreDisplay').textContent = `${total.toFixed(2)} / ${maxMarks.toFixed(2)}`;
+            const pct = ((total / maxMarks) * 100).toFixed(1);
+            document.getElementById('livePercentDisplay').textContent = `(${pct}%)`;
+        }
+
+        function updatePaletteStatuses() {
+            let answeredCount = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.getElementById(`paletteBtn_${q.qn}`);
+                if (!btn) return;
+
+                const isAnswered = userAnswers[q.qn] && userAnswers[q.qn].length > 0;
+                if (isAnswered) answeredCount++;
+
+                btn.className = 'palette-btn';
+
+                if (currentMode === 'learning' && q.type !== 'COMPREHENSION') {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    if (isAnswered) {
+                        if (score > 0) btn.classList.add('correct');
+                        else btn.classList.add('incorrect');
+                    }
+                } else if (isAnswered) {
+                    btn.classList.add('answered');
+                }
+            });
+
+            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/${QUESTIONS_DATA.length}`;
+        }
+
+        function toggleSolution(qnNum) {
+            const solBox = document.getElementById(`solution_${qnNum}`);
+            if (solBox) {
+                solBox.classList.toggle('open');
+            }
+        }
+
+        function scrollToQuestion(qnNum) {
+            const el = document.getElementById(`qnCard_${qnNum}`);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function toggleTimer() {
+            isTimerRunning = !isTimerRunning;
+            const btn = document.getElementById('btnPauseTimer');
+            if (isTimerRunning) {
+                btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+            } else {
+                btn.innerHTML = '<i class="fa-solid fa-play"></i>';
+            }
+        }
+
+        function resetTimer() {
+            timerSeconds = 0;
+            updateTimerDisplay();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (isTimerRunning) {
+                    timerSeconds++;
+                    updateTimerDisplay();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const secs = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+        }
+
+        function submitExam() {
+            isTimerRunning = false;
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+            let totalScore = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                if (q.type === 'COMPREHENSION') return;
+                const userAns = userAnswers[q.qn];
+                if (!userAns || userAns.length === 0) {
+                    unansweredCount++;
+                } else {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    if (score > 0) {
+                        correctCount++;
+                        totalScore += score;
+                    } else {
+                        incorrectCount++;
+                    }
+                }
+            });
+
+            document.getElementById('modalScoreText').textContent = `${totalScore.toFixed(2)} / 40.00`;
+            document.getElementById('modalPercentText').textContent = `${((totalScore / 40.00) * 100).toFixed(1)}% Accuracy`;
+            document.getElementById('modalCorrectCount').textContent = correctCount;
+            document.getElementById('modalIncorrectCount').textContent = incorrectCount;
+            document.getElementById('modalUnansweredCount').textContent = unansweredCount;
+
+            document.getElementById('resultModal').classList.add('active');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.remove('active');
+        }
+
+        function resetExam() {
+            userAnswers = {};
+            resetTimer();
+            isTimerRunning = true;
+            closeResultModal();
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function openSummaryModal() {
+            document.getElementById('summaryModal').classList.add('active');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.remove('active');
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('portalSidebar');
+            const toggleBtn = document.getElementById('mobileSidebarToggle');
+            if (sidebar && toggleBtn) {
+                sidebar.classList.toggle('open');
+                toggleBtn.classList.toggle('active');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const fab = document.getElementById('fabBackToTop');
+            if (fab) {
+                if (window.scrollY > 300) fab.classList.add('visible');
+                else fab.classList.remove('visible');
+            }
+        });
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+
+</html>
+

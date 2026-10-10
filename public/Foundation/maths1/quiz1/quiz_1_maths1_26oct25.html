@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics for Data Science I (26 Oct 2025) | BSH</title>
+    <meta name="description"
+        content="Practice Mathematics for Data Science I Quiz 1 question paper (26 Oct 2025) with interactive exam & learning modes, instant score calculation, detailed LaTeX solutions, and question palette.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Non-Blocking Asynchronous Load -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/icons/apple-touch-icon.png">
+
+    <!-- Master CSS & Centralized Quiz Portal CSS -->
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/quiz-portal.css">
+
+    <!-- MathJax for rendering LaTeX math formulas -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false,
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <!-- Theme Detection -->
+    <script>
+        (function () {
+            const saved = localStorage.getItem('bsh-theme');
+            if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+            else document.documentElement.setAttribute('data-theme', 'light');
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Site Navigation Header -->
+    <header class="site-header" id="header" data-root-prefix="../../../" data-active-page="quiz_practice"></header>
+
+    <main>
+        <div class="portal-layout">
+
+            <!-- Mobile Collapsible Sidebar Toggle Button -->
+            <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="toggleMobileSidebar()">
+                <span><i class="fa-solid fa-sliders"></i> Exam Controls & Question Menu</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <!-- Left Sidebar: Controls, Menu & Timer -->
+            <aside class="portal-sidebar" id="portalSidebar">
+
+                <!-- Header Info -->
+                <div class="exam-info-header">
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Exam :</span>
+                        <span class="exam-info-val">Quiz 1</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Subject :</span>
+                        <span class="exam-info-val">Maths1</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">Total Marks :</span>
+                        <span class="exam-info-val">50.00</span>
+                    </div>
+                    <div class="exam-info-row">
+                        <span class="exam-info-label">QP :</span>
+                        <span class="exam-info-val" style="font-size:0.75rem;">Maths1 26 Oct 25</span>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher -->
+                <div>
+                    <div class="menu-heading">Portal Mode</div>
+                    <div class="mode-toggle-group">
+                        <button class="mode-btn active" id="btnExamMode" onclick="setPortalMode('exam')">Exam Mode</button>
+                        <button class="mode-btn" id="btnLearningMode" onclick="setPortalMode('learning')">Learning Mode</button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;" onclick="openSummaryModal()">
+                        <i class="fa-solid fa-eye"></i> View Question Paper Summary
+                    </button>
+                    <button class="btn-qn-action" style="justify-content:center; padding:0.65rem;" onclick="window.print()">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </button>
+                </div>
+
+                <!-- Question Menu Grid -->
+                <div>
+                    <div class="menu-heading">
+                        <span>Question Menu</span>
+                        <span id="qnAnsweredCount" style="font-family:var(--font-mono); font-size:0.8rem;">0/14</span>
+                    </div>
+                    <div class="palette-grid" id="paletteGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Timer Box -->
+                <div>
+                    <div class="menu-heading">Timer</div>
+                    <div class="timer-box">
+                        <div class="timer-display" id="timerDisplay">00:00</div>
+                        <div class="timer-controls">
+                            <button class="btn-icon-sm" id="btnPauseTimer" onclick="toggleTimer()"><i class="fa-solid fa-pause"></i></button>
+                            <button class="btn-icon-sm" onclick="resetTimer()"><i class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Score Box & Submit Exam Button -->
+                <div>
+                    <div class="menu-heading">Controls</div>
+                    <button class="btn-submit-exam" onclick="submitExam()">
+                        <i class="fa-solid fa-check-double"></i> SUBMIT EXAM
+                    </button>
+                    <div class="score-card" style="margin-top:1rem;">
+                        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">Your Score</span>
+                        <div class="score-num" id="liveScoreDisplay">0.00 / 50.00</div>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--accent-green);" id="livePercentDisplay">(0%)</span>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Right Content Panel -->
+            <section class="questions-area" id="questionsContainer">
+                <!-- Populated by JS -->
+            </section>
+        </div>
+    </main>
+
+    <!-- Floating Back to Top Button -->
+    <button class="fab-back-to-top" id="fabBackToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;"><i class="fa-solid fa-list-check"></i> Question Paper Summary</h3>
+                <button class="btn-icon-sm" onclick="closeSummaryModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+                Paper Title: <b>Mathematics for Data Science I (26 Oct 2025)</b> (Quiz 1)
+            </p>
+            <div class="summary-stats-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem; text-align:center;">
+                <div class="stat-box" style="background:var(--bg-surface); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="font-size:1.5rem; font-weight:700; font-family:var(--font-mono);">14</div>
+                    <div class="stat-lbl" style="font-size:0.8rem; color:var(--text-muted);">Total Questions</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="font-size:1.5rem; font-weight:700; font-family:var(--font-mono);">50.00</div>
+                    <div class="stat-lbl" style="font-size:0.8rem; color:var(--text-muted);">Total Marks</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" id="summaryAnsweredCount" style="font-size:1.5rem; font-weight:700; font-family:var(--font-mono);">0</div>
+                    <div class="stat-lbl" style="font-size:0.8rem; color:var(--text-muted);">Answered</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Modal -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-card" style="text-align: center;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:var(--font-heading); margin:0;"><i class="fa-solid fa-trophy"></i> Exam Results</h3>
+                <button class="btn-icon-sm" onclick="closeResultModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div style="font-size: 0.9rem; color: var(--text-muted); font-weight: 500;">Final Score</div>
+            <div style="font-size: 2.25rem; font-weight: 800; color: var(--accent-cyan); margin: 0.25rem 0;" id="modalScoreText">0.00 / 50.00</div>
+            <div style="font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1.5rem;" id="modalPercentText">0%</div>
+
+            <div class="summary-stats-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem; text-align:center;">
+                <div class="stat-box" style="background:var(--bg-surface); padding:0.75rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="color:var(--accent-green); font-size:1.4rem; font-weight:700;" id="modalCorrectCount">0</div>
+                    <div class="stat-lbl" style="font-size:0.75rem; color:var(--text-muted);">Correct</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:0.75rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="color:var(--accent-red); font-size:1.4rem; font-weight:700;" id="modalIncorrectCount">0</div>
+                    <div class="stat-lbl" style="font-size:0.75rem; color:var(--text-muted);">Incorrect</div>
+                </div>
+                <div class="stat-box" style="background:var(--bg-surface); padding:0.75rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                    <div class="stat-val" style="color:var(--text-muted); font-size:1.4rem; font-weight:700;" id="modalUnansweredCount">0</div>
+                    <div class="stat-lbl" style="font-size:0.75rem; color:var(--text-muted);">Unanswered</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; gap: 0.75rem; justify-content: center;">
+                <button class="mode-btn active" style="padding:0.6rem 1.2rem; border-radius:var(--radius-md);" onclick="resetExam()"><i class="fa-solid fa-rotate-right"></i> Retake Exam</button>
+                <button class="mode-btn" style="padding:0.6rem 1.2rem; border-radius:var(--radius-md); border:1px solid var(--border-color);" onclick="closeResultModal()"><i class="fa-solid fa-book-open"></i> Review Solutions</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/components.js"></script>
+    <script src="../../../assets/js/main.js"></script>
+
+    <script>
+        const QUESTIONS_DATA = [
+            {
+                qn: 1,
+                id: "6406531527694",
+                type: "MCQ",
+                marks: 0.00,
+                text: "THIS IS QUESTION PAPER FOR THE SUBJECT \"FOUNDATION LEVEL :MATHEMATICS FOR DATA SCIENCE I (COMPUTER BASED EXAM)\" ARE YOU SURE YOU HAVE TO WRITE EXAM FOR THIS SUBJECT? CROSS CHECK YOUR HALL TICKET TO CONFIRM THE SUBJECTS TO BE WRITTEN. (IF IT IS NOT THE CORRECT SUBJECT, PLS CHECK THE SECTION AT THE TOP FOR THE SUBJECTS REGISTERED BY YOU)",
+                options: [
+                    "YES",
+                    "NO"
+                ],
+                correct: [0],
+                solution: "Subject declaration confirmation."
+            },
+            {
+                qn: 2,
+                id: "6406531527695",
+                type: "MCQ",
+                marks: 0.00,
+                text: "<strong>Instructions:</strong><br>• There are some questions which have functions with discrete valued domains (such as day, month, year etc).<br>• For NAT type questions, enter only one right answer even if you get multiple answers for that particular question.<br>• <strong>Notations:</strong><br>&nbsp;&nbsp;• $\\mathbb{R} =$ Set of real numbers<br>&nbsp;&nbsp;• $\\mathbb{Q} =$ Set of rational numbers<br>&nbsp;&nbsp;• $\\mathbb{Z} =$ Set of integers<br>&nbsp;&nbsp;• $\\mathbb{N} =$ Set of natural numbers<br>&nbsp;&nbsp;• The set of natural numbers includes 0.",
+                options: [
+                    "Instructions has been mentioned above.",
+                    "This Instructions is just for a reference & not for an evaluation."
+                ],
+                correct: [0],
+                solution: "Instruction notation notice."
+            },
+            {
+                qn: 3,
+                id: "6406531527696",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Consider the two quadratic functions<br>$$y_1 = x^2 - 4x + 1 \\quad \\text{and} \\quad y_2 = x^2 - 6x - 3$$<br>A quadratic function $f(x) = ax^2 + bx + c$ has its vertex at the intersection point of $y_1$ and $y_2$, its $y$-intercept is $2$, and its axis of symmetry is parallel to the $y$-axis. What is the equation of $f(x)$?",
+                options: [
+                    "$y = \\frac{-11}{4}(x + 2)^2 + 13$",
+                    "$y = \\frac{-11}{4}(x - 2)^2 + 13$",
+                    "$y = \\frac{11}{4}(x + 2)^2 + 13$",
+                    "$y = \\frac{-11}{4}(x + 2)^2 - 13$"
+                ],
+                correct: [0],
+                solution: "First, find the intersection point of $y_1$ and $y_2$:<br>$$x^2 - 4x + 1 = x^2 - 6x - 3 \\implies 2x = -4 \\implies x = -2$$<br>$$y = (-2)^2 - 4(-2) + 1 = 4 + 8 + 1 = 13$$<br>The vertex is $(-2, 13)$. Vertex form: $f(x) = a(x + 2)^2 + 13$.<br>Since the $y$-intercept is $2$:<br>$$f(0) = a(0 + 2)^2 + 13 = 4a + 13 = 2 \\implies 4a = -11 \\implies a = -\\frac{11}{4}$$<br>Thus $y = -\\frac{11}{4}(x + 2)^2 + 13$."
+            },
+            {
+                qn: 4,
+                id: "6406531527699",
+                type: "MCQ",
+                marks: 4.00,
+                text: "Subendu and Mohit reside at $(4, -18.9)$ and $(4, 18.9)$ respectively. They planned a road trip. Subendu decided to go by road $r_1(x) = 0.02(x - 5)(x - 7)(x - 9)(x - 11)(x - 13)$ and Mohit chose the road $r_2(x) = 0.02(x - 5)^2(x - 7)(x - 9)(x - 11)(x - 13)$. They decided to meet where these roads intersect.<br>Based on the given information, Choose the set of correct option(s)",
+                options: [
+                    "The number of $x$-intercepts of $r_1(x)$ and $r_2(x)$ are 5 and 6 respectively.",
+                    "The number of intersection points of $r_1(x)$ and $r_2(x)$ can be found using $r_1(x) = r_2(x)$.",
+                    "The number of intersection points of $r_1(x)$ and $r_2(x)$ can be found using $r_1(x) = -r_2(x)$.",
+                    "The number of $x$-intercepts of $r_1(x)$ and $r_2(x)$ are 6."
+                ],
+                correct: [1],
+                solution: "The points of intersection of two curves $y = r_1(x)$ and $y = r_2(x)$ are found by solving $r_1(x) = r_2(x)$."
+            },
+            {
+                qn: 5,
+                id: "6406531527697",
+                type: "MSQ",
+                marks: 4.00,
+                text: "An online degree programme offers the following courses:<br>• Level I: Mathematics, Statistics<br>• Level II: Machine Learning Foundations, Mathematical Thinking<br>• Level III: Deep Learning, Machine Learning Techniques, Advanced Algorithms<br><br>Every course in Level I is a prerequisite for every course in Level II, and every course in Level II is a prerequisite for every course in Level III.<br>Let $M$ be the set of all these courses and define two relations on $M$:<br>$$R = \\{(A, B) \\mid A \\text{ and } B \\text{ are courses in the same level}\\}$$<br>$$S = \\{(A, B) \\mid A \\text{ is a prerequisite for } B\\}$$<br>Which of the following statements is/are correct?",
+                options: [
+                    "$R$ is an equivalence relation.",
+                    "$S$ is an equivalence relation.",
+                    "$R$ is not transitive.",
+                    "$S$ is not symmetric."
+                ],
+                correct: [0, 3],
+                solution: "$R$ relates courses in the same level, partitioning $M$ into equivalence classes (Level I, Level II, Level III). Hence $R$ is reflexive, symmetric, and transitive (an equivalence relation).<br>$S$ is a strict prerequisite ordering: if $A$ is a prerequisite for $B$, $B$ is never a prerequisite for $A$, so $S$ is not symmetric (and thus not an equivalence relation)."
+            },
+            {
+                qn: 6,
+                id: "6406531527698",
+                type: "MSQ",
+                marks: 4.00,
+                text: "Which of the following statements is(are) true?",
+                options: [
+                    "$y - 6 = 3(x - 10)^2$ is an equation of a parabola whose vertex is at $(10, 6)$.",
+                    "$y - 6 = 3(x - 10)^2$ is an equation of a parabola whose vertex is at $(6, 10)$.",
+                    "$-5x + 4y - 1 = 0$ and $\\frac{x}{4} - \\frac{y}{5} = 1$ are perpendicular to each other.",
+                    "$-5x + 4y - 1 = 0$ and $\\frac{x}{4} - \\frac{y}{5} = 1$ are parallel to each other."
+                ],
+                correct: [0, 3],
+                solution: "1. For $y = 3(x - 10)^2 + 6$, standard vertex form $y = a(x - h)^2 + k$ gives vertex $(h, k) = (10, 6)$.<br>2. For line 1: $-5x + 4y - 1 = 0 \\implies y = \\frac{5}{4}x + \\frac{1}{4}$ (slope $m_1 = 5/4$).<br>For line 2: $\\frac{x}{4} - \\frac{y}{5} = 1 \\implies \\frac{y}{5} = \\frac{x}{4} - 1 \\implies y = \\frac{5}{4}x - 5$ (slope $m_2 = 5/4$).<br>Since $m_1 = m_2 = 5/4$, the two lines are parallel."
+            },
+            {
+                qn: 7,
+                id: "6406531527700",
+                type: "MSQ",
+                marks: 4.00,
+                text: "Consider two polynomials $p(x) = -x^5 + 5x^4 - 7x - 2$ and $q(x) = -x^5 + 5x^4 - x^2 - 2$. Which of the following options is/are true?",
+                options: [
+                    "$q(x) \\to -\\infty$ as $x \\to \\infty$.",
+                    "$p(x) \\to \\infty$ as $x \\to \\infty$.",
+                    "$p(x)$ has at most 5 turning points.",
+                    "The quotient obtained while dividing $q(x)$ by $p(x)$ is a constant."
+                ],
+                correct: [0, 3],
+                solution: "1. The leading term of $q(x)$ is $-x^5$. As $x \\to \\infty$, $-x^5 \\to -\\infty$, so $q(x) \\to -\\infty$.<br>2. For polynomial division, both $p(x)$ and $q(x)$ are of degree 5 with leading coefficient $-1$. Thus $q(x) = 1 \\cdot p(x) + R(x)$, so the quotient is $1$ (a constant)."
+            },
+            {
+                qn: 8,
+                id: "6406531527701",
+                type: "SA",
+                marks: 4.00,
+                acceptedAnswer: "13 to 14",
+                text: "A quadratic equation of the form $ax^2 + bx + c = 0$ has its vertex at $(3, -2)$ and its $y$-intercept at 4. Due to a recording error, the coefficient $b$ was written as 5 instead of its correct value. Find the absolute difference between the sum of the roots of the incorrectly recorded quadratic equation and that of the correct quadratic equation.",
+                solution: "Vertex at $(3, -2) \\implies y = a(x - 3)^2 - 2 = a(x^2 - 6x + 9) - 2$.<br>$y$-intercept at $4 \\implies y(0) = 9a - 2 = 4 \\implies 9a = 6 \\implies a = 2/3$.<br>Correct $b = -6a = -6(2/3) = -4$.<br>Correct sum of roots $= -b/a = -(-4)/(2/3) = 6$.<br>Incorrect $b = 5 \\implies$ Incorrect sum of roots $= -5/(2/3) = -7.5$.<br>Absolute difference $= |6 - (-7.5)| = 13.5$."
+            },
+            {
+                qn: 9,
+                id: "6406531527702",
+                type: "SA",
+                marks: 4.00,
+                acceptedAnswer: "97",
+                text: "In an online degree program, it was found that in one term, 72 students took Mathematics, 85 students took Statistics, and 30 students took both Mathematics and Statistics. How many students took only one of the two subjects?",
+                solution: "Students taking only Mathematics $= 72 - 30 = 42$.<br>Students taking only Statistics $= 85 - 30 = 55$.<br>Students taking only one subject $= 42 + 55 = 97$."
+            },
+            {
+                qn: 10,
+                id: "6406531527703",
+                type: "SA",
+                marks: 4.00,
+                acceptedAnswer: "2",
+                text: "Consider a set $S = \\{a \\mid a \\in \\mathbb{N}, a \\le 10\\}$. Let $R_1$ and $R_2$ be relations on $S \\times S$ defined as $R_1 = \\{(x, y) \\mid x, y \\in S, y = 3x\\}$ and $R_2 = \\{(x, y) \\mid x, y \\in S, y = x^2\\}$. Find the cardinality of the set $R_1 \\setminus R_2$.",
+                solution: "$S = \\{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10\\}$.<br>$R_1 = \\{(0,0), (1,3), (2,6), (3,9)\\}$.<br>$R_2 = \\{(0,0), (1,1), (2,4), (3,9)\\}$.<br>$R_1 \\setminus R_2 = \\{(1,3), (2,6)\\}$.<br>Cardinality $= 2$."
+            },
+            {
+                qn: 11,
+                id: "6406531527704",
+                type: "SA",
+                marks: 4.00,
+                acceptedAnswer: "1.3 to 1.4",
+                text: "Consider the straight line $l : y = -\\frac{2}{3}x + 4$. Let $M$ and $N$ be the $x$- and $y$-intercepts of this line. If a point $P$ divides the segment $MN$ internally in the ratio $2 : 1$, find the slope of the line joining the origin $(0, 0)$ to $P$.",
+                solution: "Line equation: $y = -\\frac{2}{3}x + 4$.<br>$y$-intercept $N(0, 4)$; $x$-intercept $M(6, 0)$.<br>Point $P$ divides $MN$ (from $M(6,0)$ to $N(0,4)$) in ratio $2 : 1$:<br>$$P = \\left(\\frac{1(6) + 2(0)}{2+1}, \\frac{1(0) + 2(4)}{2+1}\\right) = \\left(2, \\frac{8}{3}\\right)$$<br>Slope of line connecting $(0,0)$ and $P(2, 8/3)$ is $m = \\frac{8/3}{2} = \\frac{4}{3} \\approx 1.333$."
+            },
+            {
+                qn: 12,
+                id: "6406531527705",
+                type: "SA",
+                marks: 4.00,
+                acceptedAnswer: "-1",
+                text: "The line $l_1$ intersects the $x$-axis at $(4, 0)$ and the $y$-axis at $(0, 2)$. Another line $l_2$ passes through the point of intersection of $l_1$ with the line $x + y = 5$ and is parallel to the $x$-axis. Determine the $y$-intercept of the line $l_2$.",
+                solution: "Line $l_1$: $\\frac{x}{4} + \\frac{y}{2} = 1 \\implies x + 2y = 4$.<br>Intersection of $l_1$ ($x + 2y = 4$) and line $x + y = 5$:<br>Subtracting the equations yields $y = -1$.<br>Since $l_2$ is parallel to the $x$-axis and passes through this intersection, its equation is $y = -1$. Thus its $y$-intercept is $-1$."
+            },
+            {
+                qn: 13,
+                id: "6406531527706",
+                type: "SA",
+                marks: 5.00,
+                acceptedAnswer: "-1",
+                text: "The polynomial $p(x) = a(x - 4)(x - 6)(x - 8)(x - 10)$ passes through the vertex of the quadratic function $q(x) = -(x - 7)^2 - 9$. Based on this information, calculate the value of $a$.",
+                solution: "Vertex of $q(x) = -(x - 7)^2 - 9$ is $(7, -9)$.<br>Since $p(x)$ passes through $(7, -9)$:<br>$$p(7) = a(7 - 4)(7 - 6)(7 - 8)(7 - 10) = -9$$<br>$$a(3)(1)(-1)(-3) = -9 \\implies 9a = -9 \\implies a = -1$$."
+            },
+            {
+                qn: 14,
+                id: "6406531527707",
+                type: "SA",
+                marks: 5.00,
+                acceptedAnswer: "16",
+                text: "A small cafe records, over five days, the number of hours $(x)$ a barista works and the corresponding number of drinks $(y)$ sold:<br><br><table class=\"table-custom\" style=\"width:100%; border-collapse:collapse; margin:1rem 0; text-align:center;\"><tr style=\"border-bottom:1px solid var(--border-color);\"><th style=\"padding:8px;\">Hours Worked ($x$)</th><td style=\"padding:8px;\">1</td><td style=\"padding:8px;\">2</td><td style=\"padding:8px;\">3</td><td style=\"padding:8px;\">4</td><td style=\"padding:8px;\">5</td></tr><tr><th style=\"padding:8px;\">Drinks Sold ($y$)</th><td style=\"padding:8px;\">6</td><td style=\"padding:8px;\">6</td><td style=\"padding:8px;\">10</td><td style=\"padding:8px;\">11</td><td style=\"padding:8px;\">?</td></tr></table><br>A simple linear regression model fitted to the data is $y = 2x + 3$.<br>The total Sum of Squares Error (SSE) for all five observations is 10. It is known that, on the fifth day, the actual number of drinks sold exceeded the value predicted by the regression line.<br>Determine, correct to the nearest integer, the number of drinks sold on the fifth day.",
+                solution: "Regression line: $\\hat{y} = 2x + 3$.<br>Predicted values and squared errors for first 4 days:<br>• $x=1: \\hat{y}=5, y=6 \\implies e_1^2 = (6-5)^2 = 1$<br>• $x=2: \\hat{y}=7, y=6 \\implies e_2^2 = (6-7)^2 = 1$<br>• $x=3: \\hat{y}=9, y=10 \\implies e_3^2 = (10-9)^2 = 1$<br>• $x=4: \\hat{y}=11, y=11 \\implies e_4^2 = (11-11)^2 = 0$<br>Sum of squared errors for first 4 days $= 1 + 1 + 1 + 0 = 3$.<br>Given total SSE $= 10 \\implies e_5^2 = 10 - 3 = 7 \\implies e_5 = \\sqrt{7} \\approx 2.6457$.<br>For fifth day $x=5$, predicted $\\hat{y}_5 = 2(5) + 3 = 13$.<br>Since actual $y$ exceeded predicted, $y_5 = 13 + \\sqrt{7} \\approx 15.6457$.<br>Rounded to the nearest integer, drinks sold $= 16$."
+            }
+        ];
+
+        let currentMode = 'exam';
+        let userAnswers = {};
+        let timerSeconds = 0;
+        let timerInterval = null;
+        let isTimerRunning = true;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPalette();
+            renderQuestions();
+            updateScoreDisplay();
+            startTimer();
+        });
+
+        function setPortalMode(mode) {
+            currentMode = mode;
+            const btnExam = document.getElementById('btnExamMode');
+            const btnLearning = document.getElementById('btnLearningMode');
+            if (btnExam) btnExam.classList.toggle('active', mode === 'exam');
+            if (btnLearning) btnLearning.classList.toggle('active', mode === 'learning');
+
+            renderQuestions();
+
+            document.querySelectorAll('.solution-box').forEach(box => {
+                if (mode === 'learning') box.classList.add('open');
+                else box.classList.remove('open');
+            });
+            document.querySelectorAll('.accepted-ans-box').forEach(box => {
+                box.style.display = (mode === 'learning') ? 'block' : 'none';
+            });
+
+            updatePaletteStatuses();
+
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function renderPalette() {
+            const palette = document.getElementById('paletteGrid');
+            if (!palette) return;
+            palette.innerHTML = QUESTIONS_DATA.map(q => `
+                <button class="palette-btn" id="paletteBtn_${q.qn}" onclick="scrollToQuestion(${q.qn})">
+                    ${q.qn}
+                </button>
+            `).join('');
+        }
+
+        function scrollToQuestion(qnNum) {
+            const card = document.getElementById(`qnCard_${qnNum}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                document.querySelectorAll('.palette-btn').forEach(b => b.classList.remove('active-qn'));
+                const btn = document.getElementById(`paletteBtn_${qnNum}`);
+                if (btn) btn.classList.add('active-qn');
+            }
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            if (!container) return;
+
+            let html = '';
+
+            QUESTIONS_DATA.forEach(q => {
+                html += `
+                <article class="qn-card" id="qnCard_${q.qn}">
+                    <div class="qn-header-container">
+                        <div class="qn-header-top">
+                            <div class="qn-title-main">
+                                Question ${q.qn} :
+                                ${q.parentQn ? `<span class="badge-type" style="background:rgba(167, 139, 250, 0.15); color:#7c3aed; font-size:0.75rem; padding:0.2rem 0.5rem;"><i class="fa-solid fa-diagram-project"></i> Parent Q${q.parentQn}</span>` : ''}
+                            </div>
+                            <button class="btn-solution-pill" onclick="toggleSolution(${q.qn})">
+                                <i class="fa-regular fa-circle-check"></i> View Solutions (1)
+                            </button>
+                        </div>
+                        <div class="qn-header-sub">
+                            <span class="qn-id-tag">${q.id}</span>
+                            <span class="qn-meta-info">Total Mark : ${q.marks.toFixed(2)} | Type : ${q.type}</span>
+                        </div>
+                    </div>
+
+                    <div class="qn-text">${q.text}</div>
+
+                    ${renderQuestionInputs(q)}
+
+                    <div class="solution-box ${currentMode === 'learning' ? 'open' : ''}" id="solution_${q.qn}">
+                        <div class="solution-title"><i class="fa-solid fa-circle-info" style="color:var(--accent-purple);"></i> Step-by-Step Solution</div>
+                        <div class="solution-text">${q.solution}</div>
+                    </div>
+                </article>
+                `;
+            });
+
+            container.innerHTML = html;
+            if (typeof currentMode !== 'undefined' && currentMode === 'learning') {
+                document.querySelectorAll('.solution-box').forEach(box => box.classList.add('open'));
+                document.querySelectorAll('.accepted-ans-box').forEach(box => box.style.display = 'block');
+            }
+            updatePaletteStatuses();
+
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function renderQuestionInputs(q) {
+            if (q.type === 'COMPREHENSION') {
+                return `<div style="font-size:0.88rem; color:var(--text-muted); font-style:italic; margin-bottom:1.25rem;">[Comprehension Passage Block - Subquestions are listed below]</div>`;
+            }
+
+            if (q.type === 'SA') {
+                const userVal = userAnswers[q.qn] || '';
+                const showGreen = currentMode === 'learning';
+
+                return `
+                <div class="sa-input-wrap">
+                    <label for="sa_${q.qn}">Answer (Numeric):</label>
+                    <input type="text" id="sa_${q.qn}" class="sa-input" value="${userVal}" placeholder="Answer" oninput="handleSAInput(${q.qn}, this.value)">
+                    <div class="accepted-ans-box" style="display:${showGreen ? 'block' : 'none'};">
+                        <i class="fa-solid fa-circle-check"></i> Accepted Answer : ${q.acceptedAnswer}
+                    </div>
+                </div>
+                `;
+            }
+
+            const isMSQ = q.type === 'MSQ';
+            const userArr = userAnswers[q.qn] || [];
+
+            return `
+            <div class="options-list">
+                ${q.options.map((optText, idx) => {
+                const isChecked = userArr.includes(idx);
+                const isCorrect = q.correct.includes(idx);
+                let highlightClass = '';
+                if (isChecked) highlightClass = 'selected';
+
+                if (currentMode === 'learning') {
+                    if (isCorrect) highlightClass = 'correct-highlight';
+                    else if (isChecked && !isCorrect) highlightClass = 'incorrect-highlight';
+                }
+
+                return `
+                    <label class="option-item ${highlightClass}" onclick="handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <input type="${isMSQ ? 'checkbox' : 'radio'}" name="qn_${q.qn}" class="option-input" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); handleOptionSelect(${q.qn}, ${idx}, '${q.type}')">
+                        <span class="option-text">${optText}</span>
+                    </label>
+                    `;
+            }).join('')}
+            </div>
+            `;
+        }
+
+        function handleOptionSelect(qnNum, optIdx, qnType) {
+            if (qnType === 'MCQ') {
+                userAnswers[qnNum] = [optIdx];
+            } else if (qnType === 'MSQ') {
+                if (!userAnswers[qnNum]) userAnswers[qnNum] = [];
+                const pos = userAnswers[qnNum].indexOf(optIdx);
+                if (pos >= 0) userAnswers[qnNum].splice(pos, 1);
+                else userAnswers[qnNum].push(optIdx);
+            }
+            renderQuestions();
+            updateScoreDisplay();
+        }
+
+        function handleSAInput(qnNum, val) {
+            userAnswers[qnNum] = val.trim();
+            updatePaletteStatuses();
+            updateScoreDisplay();
+        }
+
+        function calculateQuestionScore(q) {
+            if (q.type === 'COMPREHENSION') return "0";
+            const userAns = userAnswers[q.qn];
+            if (!userAns) return "0";
+
+            if (q.type === 'SA') {
+                const cleanUser = String(userAns).trim();
+                if (q.acceptedAnswer.includes(' to ')) {
+                    const range = q.acceptedAnswer.split(' to ').map(Number);
+                    const num = parseFloat(cleanUser);
+                    if (!isNaN(num) && num >= range[0] && num <= range[1]) {
+                        return q.marks.toFixed(2);
+                    }
+                }
+                return (cleanUser === q.acceptedAnswer.trim()) ? q.marks.toFixed(2) : "0";
+            }
+
+            if (!Array.isArray(userAns) || userAns.length === 0) return "0";
+
+            if (q.type === 'MCQ') {
+                return (userAns[0] === q.correct[0]) ? q.marks.toFixed(2) : "0";
+            }
+
+            if (q.type === 'MSQ') {
+                const sortedUser = [...userAns].sort().join(',');
+                const sortedCorrect = [...q.correct].sort().join(',');
+                return (sortedUser === sortedCorrect) ? q.marks.toFixed(2) : "0";
+            }
+
+            return "0";
+        }
+
+        function updateScoreDisplay() {
+            let total = 0;
+            let answeredCount = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                const score = parseFloat(calculateQuestionScore(q));
+                total += score;
+
+                const ans = userAnswers[q.qn];
+                if (ans && (Array.isArray(ans) ? ans.length > 0 : ans !== '')) {
+                    answeredCount++;
+                }
+            });
+
+            document.getElementById('liveScoreDisplay').textContent = `${total.toFixed(2)} / 50.00`;
+            const pct = ((total / 50) * 100).toFixed(1);
+            document.getElementById('livePercentDisplay').textContent = `(${pct}%)`;
+            document.getElementById('qnAnsweredCount').textContent = `${answeredCount}/14`;
+            const summaryEl = document.getElementById('summaryAnsweredCount');
+            if (summaryEl) summaryEl.textContent = answeredCount;
+        }
+
+        function updatePaletteStatuses() {
+            QUESTIONS_DATA.forEach(q => {
+                const btn = document.getElementById(`paletteBtn_${q.qn}`);
+                if (!btn) return;
+
+                btn.className = 'palette-btn';
+
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && (Array.isArray(ans) ? ans.length > 0 : ans !== '');
+
+                if (hasAns) {
+                    btn.classList.add('answered');
+                    if (currentMode === 'learning') {
+                        const score = parseFloat(calculateQuestionScore(q));
+                        if (score > 0) btn.classList.add('correct');
+                        else btn.classList.add('incorrect');
+                    }
+                }
+            });
+        }
+
+        function toggleSolution(qnNum) {
+            const box = document.getElementById(`solution_${qnNum}`);
+            if (box) box.classList.toggle('open');
+        }
+
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (isTimerRunning) {
+                    timerSeconds++;
+                    updateTimerUI();
+                }
+            }, 1000);
+        }
+
+        function toggleTimer() {
+            isTimerRunning = !isTimerRunning;
+            const btn = document.getElementById('btnPauseTimer');
+            if (btn) btn.innerHTML = isTimerRunning ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+        }
+
+        function resetTimer() {
+            timerSeconds = 0;
+            updateTimerUI();
+        }
+
+        function updateTimerUI() {
+            const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const secs = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+        }
+
+        function submitExam() {
+            setPortalMode('learning');
+
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+            let totalScore = 0;
+
+            QUESTIONS_DATA.forEach(q => {
+                if (q.type === 'COMPREHENSION') return;
+                const ans = userAnswers[q.qn];
+                const hasAns = ans && (Array.isArray(ans) ? ans.length > 0 : ans !== '');
+
+                if (!hasAns) {
+                    unansweredCount++;
+                } else {
+                    const score = parseFloat(calculateQuestionScore(q));
+                    totalScore += score;
+                    if (score > 0) correctCount++;
+                    else incorrectCount++;
+                }
+            });
+
+            document.getElementById('modalScoreText').textContent = `${totalScore.toFixed(2)} / 50.00`;
+            document.getElementById('modalPercentText').textContent = `${((totalScore / 50) * 100).toFixed(1)}% Accuracy`;
+            document.getElementById('modalCorrectCount').textContent = correctCount;
+            document.getElementById('modalIncorrectCount').textContent = incorrectCount;
+            document.getElementById('modalUnansweredCount').textContent = unansweredCount;
+
+            document.getElementById('resultModal').classList.add('active');
+        }
+
+        function resetExam() {
+            userAnswers = {};
+            resetTimer();
+            closeResultModal();
+            setPortalMode('learning');
+        }
+
+        function openSummaryModal() {
+            document.getElementById('summaryModal').classList.add('active');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.remove('active');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.remove('active');
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('portalSidebar');
+            const toggleBtn = document.getElementById('mobileSidebarToggle');
+            if (sidebar && toggleBtn) {
+                sidebar.classList.toggle('open');
+                toggleBtn.classList.toggle('active');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const fab = document.getElementById('fabBackToTop');
+            if (fab) {
+                if (window.scrollY > 300) fab.classList.add('visible');
+                else fab.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+
+</html>

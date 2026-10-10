@@ -1,0 +1,86 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  activePage?: string;
+  rootPrefix?: string;
+  theme?: string;
+}
+
+const {
+  title = "BSH - Portal for IIT Madras BS Students",
+  description = "BSH (BS Students Helper) is the premier student-driven portal for IIT Madras BS in Data Science & Applications.",
+  activePage = "home",
+  rootPrefix = "/",
+  theme = "light"
+} = Astro.props;
+
+const prefix = rootPrefix && rootPrefix !== "" ? (rootPrefix.endsWith('/') ? rootPrefix : `${rootPrefix}/`) : '/';
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme={theme}>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  
+  <!-- Preconnect & Preload Critical Assets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href={`${prefix}assets/images/logo.webp`} type="image/webp" fetchpriority="high">
+
+  <!-- Asynchronous Non-Blocking Google Fonts -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  </noscript>
+
+  <!-- Asynchronous Non-Blocking FontAwesome CDN -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </noscript>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href={`${prefix}assets/icons/favicon.ico`}>
+  <link rel="icon" type="image/png" sizes="32x32" href={`${prefix}assets/icons/favicon-32x32.png`}>
+  <link rel="icon" type="image/png" sizes="16x16" href={`${prefix}assets/icons/favicon-16x16.png`}>
+
+  <!-- Master Global CSS -->
+  <link rel="stylesheet" href={`${prefix}assets/css/style.css`}>
+
+  <!-- Anti-Flash Theme Script -->
+  <script is:inline>
+    (function () {
+      const saved = localStorage.getItem('bsh-theme');
+      if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+      else document.documentElement.setAttribute('data-theme', 'light');
+    })();
+  </script>
+  
+  <slot name="head" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header" id="siteHeader" data-active-page={activePage} data-root-prefix={prefix}>
+    <slot name="header" />
+  </header>
+
+  <!-- Main Content -->
+  <slot />
+
+  <!-- Footer -->
+  <footer class="site-footer" id="siteFooter" data-root-prefix={prefix}>
+    <slot name="footer" />
+  </footer>
+
+  <!-- Core Scripts Deferred -->
+  <script is:inline src={`${prefix}assets/js/components.js`} defer></script>
+  <script is:inline src={`${prefix}assets/js/main.js`} defer></script>
+  
+  <slot name="scripts" />
+</body>
+</html>

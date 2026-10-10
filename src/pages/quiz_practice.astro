@@ -1,0 +1,270 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="IITM BS Quiz Practice | Quiz 1, Quiz 2, OPPE & PYQs | BS Students Helper"
+  description="Ultimate IITM BS Quiz Practice engine. Practice Quiz 1, Quiz 2, End Term, and OPPE previous year question papers (PYQs) for IIT Madras BS in Data Science & Electronic Systems."
+  activePage="quiz_practice"
+  rootPrefix=""
+>
+  <Fragment slot="head">
+<script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "BSH Home",
+              "item": "https://bsstudentshelper.vercel.app/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "IITM BS Quiz Practice Hub",
+              "item": "https://bsstudentshelper.vercel.app/quiz_practice.html"
+            }
+          ]
+        },
+        {
+          "@type": "EducationalWebPage",
+          "name": "IITM BS Quiz Practice Engine",
+          "description": "Interactive quiz practice platform for IIT Madras BS Degree students covering Quiz 1, Quiz 2, OPPE, and End Term exams.",
+          "provider": {
+            "@type": "Organization",
+            "name": "BS Students Helper",
+            "url": "https://bsstudentshelper.vercel.app/"
+          }
+        }
+      ]
+    }
+</script>
+<link rel="stylesheet" href="/assets/css/quiz-portal.css">
+<style is:inline>
+.quiz-mode-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .quiz-mode-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            text-align: left;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .quiz-mode-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-purple);
+            box-shadow: none;
+        }
+
+        .quiz-mode-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .icon-q1 {
+            background: linear-gradient(135deg, #38bdf8, #2563eb);
+        }
+
+        .icon-q2 {
+            background: linear-gradient(135deg, #a78bfa, #7c3aed);
+        }
+
+        .icon-et {
+            background: linear-gradient(135deg, #34d399, #059669);
+        }
+
+        .icon-pyq {
+            background: linear-gradient(135deg, #fbbf24, #d97706);
+        }
+
+
+        .quiz-mode-title {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            margin-bottom: 0.4rem;
+            color: var(--text-primary);
+        }
+
+        .quiz-mode-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-mode-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.65rem;
+            border-radius: 999px;
+            background: var(--bg-surface);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        .quiz-demo-wrap {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+</style>
+  </Fragment>
+
+  <main>
+        <!-- Hero -->
+        <section class="hero-section">
+            <div class="hero-bg-grid"></div>
+            <div class="container hero-container text-center">
+                <div class="hero-badge-wrapper" style="justify-content:center;">
+                    <div class="pill-badge">
+                        <span class="badge-dot"></span>
+                        <span class="badge-text">4,800+ IITM BS students practice here weekly</span>
+                    </div>
+                </div>
+                <h1 class="hero-title" style="font-size:3rem; margin-bottom:1rem;">
+                    Quiz Practice Engine. <br />
+                    <span class="title-highlight">Built For Real IITM BS Exams.</span>
+                </h1>
+                <p class="hero-subtitle" style="margin:0 auto; max-width:750px;">
+                    Authentic question patterns, timed sessions, 4-option multiple choice, step-by-step hints, and
+                    instant feedback. Pick a mode below and start your practice.
+                </p>
+
+                <!-- Professional Animated Scroll Down Indicator -->
+                <a href="#quiz-modes" class="hero-scroll-indicator" aria-label="Scroll down to quiz practice options">
+                    <span class="scroll-indicator-text">Explore Practice Modes</span>
+                    <div class="scroll-arrow-wrapper">
+                        <div class="scroll-arrow-pulse"></div>
+                        <i class="fa-solid fa-chevron-down scroll-chevron"></i>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Quiz Mode Selector Cards -->
+        <section class="section" id="quiz-modes" style="padding:4rem 0 2rem;">
+            <div class="container">
+                <div class="section-header text-center mb-5">
+                    <div class="pill-badge mb-3"><i class="fa-solid fa-layer-group"></i> CHOOSE YOUR MODE</div>
+                    <h2 class="section-title">Pick A Quiz Mode To Begin</h2>
+                </div>
+
+                <div class="quiz-mode-grid">
+                    <a href="quiz_1_practice.html" class="quiz-mode-card">
+                        <div class="quiz-mode-icon icon-q1"><i class="fa-solid fa-clipboard-list"></i></div>
+                        <h3 class="quiz-mode-title">Quiz 1 Practice</h3>
+                        <p class="quiz-mode-desc">Targeted 30-min sets covering the first half of every Foundational &
+                            Diploma course syllabus.</p>
+                        <span class="quiz-mode-tag"><i class="fa-solid fa-fire"></i> Recommended first</span>
+                    </a>
+                    <a href="quiz_2_practice.html" class="quiz-mode-card">
+                        <div class="quiz-mode-icon icon-q2"><i class="fa-solid fa-clipboard-question"></i></div>
+                        <h3 class="quiz-mode-title">Quiz 2 Practice</h3>
+                        <p class="quiz-mode-desc">High-yield MCQ banks for the second-half syllabus, including
+                            best-of-12 GA style questions.</p>
+                        <span class="quiz-mode-tag"><i class="fa-solid fa-bolt"></i> High weightage</span>
+                    </a>
+                    <a href="end_term_practice.html" class="quiz-mode-card">
+                        <div class="quiz-mode-icon icon-et"><i class="fa-solid fa-book-open-reader"></i></div>
+                        <h3 class="quiz-mode-title">End Term Practice</h3>
+                        <p class="quiz-mode-desc">Full-length 2-hour mock End-Term papers with syllabus coverage &
+                            detailed explanations.</p>
+                        <span class="quiz-mode-tag"><i class="fa-solid fa-trophy"></i> Most important</span>
+                    </a>
+
+                    <a href="oppe_practice.html" class="quiz-mode-card" style="border: 1.5px solid #6366f1;">
+                        <div class="quiz-mode-icon icon-oppe"
+                            style="background: rgba(99, 102, 241, 0.15); color: #6366f1;"><i
+                                class="fa-solid fa-code"></i></div>
+                        <h3 class="quiz-mode-title">OPPE Practice Lab</h3>
+                        <p class="quiz-mode-desc">Interactive IDE portal for Online Programming Practice Exams with
+                            Monaco editor & test cases.</p>
+                        <span class="quiz-mode-tag" style="background: rgba(99, 102, 241, 0.1); color: #6366f1;"><i
+                                class="fa-solid fa-laptop-code"></i> Live Coding IDE</span>
+                    </a>
+                </div>
+
+                <!-- Demo Quiz Engine below -->
+                <div class="section-header text-center" style="margin-top:3rem;">
+                    <div class="pill-badge mb-3"><i class="fa-solid fa-play-circle"></i> LIVE DEMO</div>
+                    <h2 class="section-title">Try A Quick Demo Right Here</h2>
+                    <p class="section-subtitle">4 options per question, instant feedback, step-by-step formula hints.
+                    </p>
+                </div>
+
+                <div class="quiz-demo-wrap">
+                    <div class="quiz-container" style="grid-template-columns:1fr;">
+                        <div class="quiz-card">
+                            <div class="quiz-card-header">
+                                <span class="live-indicator">🔴 Demo Mode</span>
+                                <div class="subject-tag">
+                                    <i class="fa-solid fa-square-root-variable"></i>
+                                    <span id="quizSubject">Mathematics for Data Science I</span>
+                                </div>
+                                <div class="quiz-timer">
+                                    <i class="fa-regular fa-clock"></i>
+                                    <span id="quizTime">01:45</span>
+                                </div>
+                            </div>
+                            <div class="quiz-progress-line">
+                                <div class="quiz-progress-fill" id="quizProgressBar" style="width: 33%;"></div>
+                            </div>
+                            <div class="quiz-body">
+                                <div class="quiz-step-indicator">Question <span id="quizCurrentStep">1</span> of 3</div>
+                                <h3 class="quiz-question-text" id="quizQuestion"></h3>
+                                <div class="quiz-options-list" id="quizOptions"></div>
+                                <div class="quiz-feedback-box hidden" id="quizFeedback">
+                                    <div class="feedback-icon" id="feedbackIcon"></div>
+                                    <div class="feedback-content">
+                                        <div class="feedback-title" id="feedbackTitle"></div>
+                                        <div class="feedback-text" id="feedbackText"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="quiz-card-footer">
+                                <button class="btn btn-outline" id="quizHintBtn">
+                                    <i class="fa-regular fa-lightbulb"></i> Show Formula Hint
+                                </button>
+                                <button class="btn btn-primary" id="quizNextBtn" disabled>
+                                    <span>Submit Answer</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="hint-card hidden" id="hintCard">
+                            <div class="hint-header">
+                                <i class="fa-solid fa-circle-info"></i> Formula & Concept Hint
+                            </div>
+                            <p class="hint-body" id="hintText"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+
+  
+</Layout>

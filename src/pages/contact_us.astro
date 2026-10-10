@@ -1,0 +1,218 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Submit Feedback & Review | BSH - IIT Madras BS Student Portal"
+  description="Share your BSH experience, submit reviews, report bugs, or suggest new features for IIT Madras BS Data Science & Electronic Systems students."
+  activePage="feedback"
+  rootPrefix=""
+>
+  <Fragment slot="head">
+<script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ContactPage",
+          "@id": "https://bsstudentshelper.vercel.app/contact_us#webpage",
+          "url": "https://bsstudentshelper.vercel.app/contact_us",
+          "name": "BSH Feedback & Review Submission",
+          "description": "Submit reviews, feedback, bug reports, and feature suggestions for BSH (BS Students Helper) portal.",
+          "inLanguage": "en"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://bsstudentshelper.vercel.app/contact_us#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://bsstudentshelper.vercel.app/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Submit Feedback",
+              "item": "https://bsstudentshelper.vercel.app/contact_us"
+            }
+          ]
+        }
+      ]
+    }
+</script>
+<style is:inline>
+.form-embed-wrapper {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 1rem;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .form-embed-wrapper iframe {
+            width: 100%;
+            min-height: 1550px;
+            border: none;
+            border-radius: var(--radius-lg);
+            display: block;
+        }
+        .feedback-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+            max-width: 800px;
+            margin: 2.5rem auto 0;
+        }
+        .benefit-pill {
+            background: var(--bg-surface);
+            border: 1.5px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            text-align: left;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        .benefit-pill:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-orange, #e65527);
+            box-shadow: var(--shadow-md);
+        }
+        .benefit-pill i {
+            font-size: 1.1rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            color: #ffffff !important;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        .benefit-pill:nth-child(1) i {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        .benefit-pill:nth-child(2) i {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        }
+        .benefit-pill:nth-child(3) i {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        }
+        .benefit-pill:nth-child(4) i {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        }
+        .benefit-pill span {
+            font-size: 0.92rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            line-height: 1.4;
+        }
+</style>
+  </Fragment>
+
+  <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-bg-grid"></div>
+            <div class="hero-glow-blob"></div>
+
+            <div class="container hero-container text-center">
+                <div class="hero-badge-wrapper" style="justify-content: center;">
+                    <div class="pill-badge">
+                        <i class="fa-solid fa-star" style="color: var(--accent-gold);"></i>
+                        <span class="badge-text">Your voice shapes BSH's future</span>
+                    </div>
+                </div>
+
+                <h1 class="hero-title" style="font-size: 3rem; margin-bottom: 1rem;">
+                    Share Your BSH Story. <br />
+                    <span class="title-highlight">Help Fellow Students Thrive.</span>
+                </h1>
+
+                <p class="hero-subtitle" style="margin: 0 auto; max-width: 750px;">
+                    Submit your review, feedback, bug report, or feature suggestion below. Every single response is read
+                    by the BSH team and helps improve the portal for <strong>4,800+ IITM BS students</strong>.
+                </p>
+            </div>
+        </section>
+
+        <!-- Feedback Form Section -->
+        <section class="section" style="padding: 3rem 0 4rem;">
+            <div class="container">
+                <div class="section-header text-center mb-5">
+                    <div class="pill-badge mb-3">
+                        <i class="fa-solid fa-paper-plane"></i> BSH FEEDBACK FORM
+                    </div>
+                    <h2 class="section-title">Fill Out The Form Below</h2>
+                    <p class="section-subtitle">
+                        Takes under 2 minutes. Your submission is anonymous unless you choose to share your name.
+                    </p>
+                </div>
+
+                <!-- Google Form Embed -->
+                <div class="form-embed-wrapper">
+                    <iframe
+                        src="https://docs.google.com/forms/d/e/1FAIpQLSdh00mir3f8M7qpkBWVUfCUpCEs9VnCd9ULsBpq-7gm2Mlz8A/viewform?embedded=true"
+                        title="BSH Feedback & Review Form"
+                        loading="lazy"
+                        marginheight="0"
+                        marginwidth="0">
+                        Loading feedback form...
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdh00mir3f8M7qpkBWVUfCUpCEs9VnCd9ULsBpq-7gm2Mlz8A/viewform"
+                           target="_blank" rel="noopener noreferrer">
+                            Open form in new tab <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </iframe>
+                </div>
+
+                <!-- What Happens After You Submit -->
+                <div class="feedback-benefits">
+                    <div class="benefit-pill">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>Team reviews every submission within 48 hours</span>
+                    </div>
+                    <div class="benefit-pill">
+                        <i class="fa-solid fa-bug-slash"></i>
+                        <span>Bugs get prioritized & fixed in the next patch</span>
+                    </div>
+                    <div class="benefit-pill">
+                        <i class="fa-solid fa-gem"></i>
+                        <span>Top reviews are featured on the Wall of Love</span>
+                    </div>
+                    <div class="benefit-pill">
+                        <i class="fa-solid fa-rocket"></i>
+                        <span>Great ideas ship as features in the next update</span>
+                    </div>
+                </div>
+
+                <!-- Fallback Link -->
+                <div class="text-center mt-6" style="margin-top: 3rem;">
+                    <p class="form-hint" style="margin-bottom: 0.75rem;">
+                        <i class="fa-solid fa-circle-info"></i> Form not loading? No problem, use the direct link:
+                    </p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdh00mir3f8M7qpkBWVUfCUpCEs9VnCd9ULsBpq-7gm2Mlz8A/viewform"
+                       target="_blank" rel="noopener noreferrer"
+                       class="btn btn-secondary btn-lg">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        <span>Open Google Form in New Tab</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+
+  
+</Layout>
