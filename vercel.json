@@ -44,20 +44,20 @@
   ],
   "headers": [
     {
-      "source": "/(.*)\\.(js|css)",
+      "source": "/assets/(.*)\\.(js|css)",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
+          "value": "public, max-age=0, must-revalidate"
         }
       ]
     },
     {
-      "source": "/(.*)\\.(png|jpg|jpeg|gif|ico|svg|webp|woff2)",
+      "source": "/assets/(.*)\\.(png|jpg|jpeg|gif|ico|svg|webp|woff2)",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
+          "value": "public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400"
         }
       ]
     },

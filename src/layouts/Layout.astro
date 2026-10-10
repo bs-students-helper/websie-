@@ -50,7 +50,7 @@ const prefix = rootPrefix && rootPrefix !== "" ? (rootPrefix.endsWith('/') ? roo
   <link rel="icon" type="image/png" sizes="16x16" href={`${prefix}assets/icons/favicon-16x16.png`}>
 
   <!-- Master Global CSS -->
-  <link rel="stylesheet" href={`${prefix}assets/css/style.css`}>
+  <link rel="stylesheet" href={`${prefix}assets/css/style.css?v=1.0.5`}>
 
   <!-- Anti-Flash Theme Script -->
   <script is:inline>
@@ -78,8 +78,8 @@ const prefix = rootPrefix && rootPrefix !== "" ? (rootPrefix.endsWith('/') ? roo
   </footer>
 
   <!-- Core Scripts Deferred -->
-  <script is:inline src={`${prefix}assets/js/components.js`} defer></script>
-  <script is:inline src={`${prefix}assets/js/main.js`} defer></script>
+  <script is:inline src={`${prefix}assets/js/components.js?v=1.0.5`} defer></script>
+  <script is:inline src={`${prefix}assets/js/main.js?v=1.0.5`} defer></script>
   
   <slot name="scripts" />
 </body>
