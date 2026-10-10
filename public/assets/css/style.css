@@ -1014,8 +1014,8 @@ html[data-theme="dark"] .hero-section,
 .site-header {
     position: sticky;
     top: 0;
-    z-index: 1000;
-    background: rgba(var(--bg-header-rgb, 249, 249, 247), 0.92);
+    z-index: 10000;
+    background: rgba(var(--bg-header-rgb, 249, 249, 247), 0.96);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-light);
@@ -2902,7 +2902,7 @@ body.modal-open {
     }
 
     .nav-menu.active {
-        display: flex;
+        display: flex !important;
         flex-direction: column;
         align-items: stretch;
         position: absolute;
@@ -2910,10 +2910,13 @@ body.modal-open {
         left: 0;
         right: 0;
         background: var(--bg-surface);
-        padding: 24px;
+        padding: 20px 24px 28px;
         border-bottom: 2px solid var(--border-color);
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
-        z-index: 1000;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+        z-index: 10000;
+        max-height: calc(100vh - 70px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .nav-menu.active .nav-links-mobile {

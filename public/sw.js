@@ -13,8 +13,8 @@ const STATIC_ASSETS = [
     '/assets/js/components.js',
     '/assets/js/main.js',
     '/assets/icons/favicon.ico',
-    '/assets/icons/icon-192x192.png',
-    '/assets/icons/icon-512x512.png',
+    '/assets/icons/icon-192x192.webp',
+    '/assets/icons/icon-512x512.webp',
     '/site.webmanifest'
 ];
 

@@ -10,30 +10,30 @@
   "theme_color": "#2563eb",
   "icons": [
     {
-      "src": "assets/icons/favicon-16x16.png",
+      "src": "/assets/icons/favicon-16x16.webp",
       "sizes": "16x16",
-      "type": "image/png"
+      "type": "image/webp"
     },
     {
-      "src": "assets/icons/favicon-32x32.png",
+      "src": "/assets/icons/favicon-32x32.webp",
       "sizes": "32x32",
-      "type": "image/png"
+      "type": "image/webp"
     },
     {
-      "src": "assets/icons/apple-touch-icon.png",
+      "src": "/assets/icons/apple-touch-icon.webp",
       "sizes": "180x180",
-      "type": "image/png"
+      "type": "image/webp"
     },
     {
-      "src": "assets/icons/icon-192x192.png",
+      "src": "/assets/icons/icon-192x192.webp",
       "sizes": "192x192",
-      "type": "image/png",
+      "type": "image/webp",
       "purpose": "any maskable"
     },
     {
-      "src": "assets/icons/icon-512x512.png",
+      "src": "/assets/icons/icon-512x512.webp",
       "sizes": "512x512",
-      "type": "image/png",
+      "type": "image/webp",
       "purpose": "any maskable"
     }
   ]
